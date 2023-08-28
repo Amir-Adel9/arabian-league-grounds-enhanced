@@ -7,11 +7,12 @@ specifiers:
   autoprefixer: 10.4.15
   eslint: 8.47.0
   eslint-config-next: 13.4.19
+  lucide-react: 0.263.1
   next: 13.4.19
   postcss: 8.4.28
   react: 18.2.0
   react-dom: 18.2.0
-  tailwindcss: 3.3.3
+  tailwindcss: 3.3.2
   typescript: 5.2.2
 
 dependencies:
@@ -21,11 +22,12 @@ dependencies:
   autoprefixer: 10.4.15_postcss@8.4.28
   eslint: 8.47.0
   eslint-config-next: 13.4.19_sf2ha5dxxfjuf3a4egfvu5wr24
+  lucide-react: 0.263.1_react@18.2.0
   next: 13.4.19_biqbaboplfbrettd7655fr4n2y
   postcss: 8.4.28
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  tailwindcss: 3.3.3
+  tailwindcss: 3.3.2
   typescript: 5.2.2
 
 packages:
@@ -1683,6 +1685,14 @@ packages:
       yallist: 4.0.0
     dev: false
 
+  /lucide-react/0.263.1_react@18.2.0:
+    resolution: {integrity: sha512-keqxAx97PlaEN89PXZ6ki1N8nRjGWtDa4021GFYLNj0RgruM5odbpl8GHTExj0hhPq3sF6Up0gnxt6TSHu+ovw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
@@ -2315,8 +2325,8 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
-  /tailwindcss/3.3.3:
-    resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
+  /tailwindcss/3.3.2:
+    resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -2340,6 +2350,7 @@ packages:
       postcss-load-config: 4.0.1_postcss@8.4.28
       postcss-nested: 6.0.1_postcss@8.4.28
       postcss-selector-parser: 6.0.13
+      postcss-value-parser: 4.2.0
       resolve: 1.22.4
       sucrase: 3.34.0
     transitivePeerDependencies:
