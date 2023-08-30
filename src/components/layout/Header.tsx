@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import PlayNow from '../dropdowns/PlayNowDropdown';
+import PlayNowDropDown from '../dropdowns/PlayNowDropdown';
 
 const Header = () => {
   return (
@@ -19,20 +21,32 @@ const Header = () => {
           </div>
         </Link>
 
-        <ul className='flex items-center gap-20 '>
-          <li className='hover:text-accent-gold cursor-pointer duration-300'>
-            Schedule
+        <ul className='flex items-center gap-16 '>
+          <li>
+            <span className='hover:text-accent-gold cursor-pointer duration-300  font-bold'>
+              Schedule
+            </span>
           </li>
-          <li className='hover:text-accent-gold cursor-pointer duration-300'>
-            Standings
+          <li>
+            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+              Standings
+            </span>
           </li>
-          <li className='hover:text-accent-gold cursor-pointer duration-300'>
-            Teams
+          <li>
+            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+              Teams
+            </span>
+          </li>
+          <li className=' cursor-pointer duration-300 font-bold'>
+            {/* <PlayNowDropDown /> */}
+            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+              Stats
+            </span>
           </li>
         </ul>
       </nav>
 
-      <button className='mr-10 border-primary border  rounded-3xl w-[100px] h-9  hover:border-accent-gold hover:text-accent-gold duration-300'>
+      <button className='mr-10 border-primary border  rounded-3xl w-[100px] h-9  hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
         Sign in
       </button>
     </header>

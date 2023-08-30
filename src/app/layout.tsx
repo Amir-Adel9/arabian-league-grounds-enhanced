@@ -1,10 +1,20 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Rubik, Gluten } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
+const rubik = Rubik({
+  subsets: ['latin'],
+  variable: '--font-rubik',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+});
+const gluten = Gluten({
+  subsets: ['vietnamese', 'latin-ext', 'latin'],
+  variable: '--font-gluten',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,7 +28,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <head>
+        <link rel='preconnect' href='https://fonts.googleapis.com' />
+        <link rel='preconnect' href='https://fonts.gstatic.com' />
+        <link
+          href='https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap'
+          rel='stylesheet'
+        />
+      </head>
+      <body
+        className={`${inter.variable} ${rubik.variable} ${gluten.variable}`}
+      >
         <Header />
         <Navbar />
         {children}

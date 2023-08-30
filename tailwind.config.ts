@@ -15,6 +15,11 @@ const config: Config = {
         'accent-gold': 'var(--color-accent-gold)',
         text: 'var(--color-text)',
       },
+      fontFamily: {
+        rubik: ['var(--font-rubik)'],
+        inter: ['var(--font-inter)'],
+        gluten: 'Gluten',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
