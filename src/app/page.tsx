@@ -70,7 +70,7 @@ export default function Home() {
                 experience much more enjoyable.
               </p>
               <div className='flex gap-2'>
-                Check Out:
+                <span>Check Out:</span>
                 <span className='underline cursor-pointer hover:text-accent-gold'>
                   Schedule
                 </span>
@@ -96,14 +96,14 @@ export default function Home() {
               <span className='font-light font-gluten'>Get Started</span>
             </button>
           </div>
-          {/* <Image
+          <Image
             src='/al_logo.png'
             alt='Arabian League Logo'
-            width={260}
-            height={260}
+            width={480}
+            height={480}
             draggable={false}
-            className='z-[10] duration-200 '
-          /> */}
+            className='z-[10] duration-200 animate-bounce-y'
+          />
         </div>
       </section>
       <section className='w-full min-h-screen relative flex flex-col justify-center items-center '></section>
