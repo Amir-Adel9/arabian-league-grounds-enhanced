@@ -4,7 +4,7 @@ import { Balancer } from 'react-wrap-balancer';
 export default function Home() {
   return (
     <main className='relative flex min-h-screen flex-col items-center'>
-      <section className='w-full min-h-screen relative flex flex-col text-primary text-center lg:text-start mt-20 xs:mt-0'>
+      <section className='w-full min-h-screen relative flex flex-col text-primary justify-center text-center lg:text-start mt-20 xs:mt-0'>
         <div className='absolute w-full h-full bg-secondary opacity-95 z-[-10]'></div>
         <Image
           src='/background.jpg'
