@@ -20,7 +20,7 @@ const MobileHeader = () => {
       <div
         className={` bg-secondary top-0 z-[200] fixed h-screen w-2/3 right-0 duration-500 ${
           !menuOpen ? 'translate-x-[96rem]' : 'translate-x-0'
-        } flex flex-col justify-start items-start gap-6 text-primary font-bold text-xl px-6 py-10 overflow-hidden`}
+        } flex flex-col justify-start items-start gap-6 text-primary font-bold text-xl px-6 py-10 overflow-hidden border-l border-accent-gold`}
       >
         <div className='absolute w-12 h-12 z-[200] top-6 left-5'>
           <Link href='/'>
@@ -28,7 +28,7 @@ const MobileHeader = () => {
           </Link>
         </div>
         <ul className='flex flex-col items-start justify-around h-1/2 w-full mt-[25%]'>
-          <li>
+          <li onClick={() => setMenuOpen(false)}>
             <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
               Schedule
             </span>
@@ -49,11 +49,10 @@ const MobileHeader = () => {
             </span>
           </li>
         </ul>
-        <div className='absolute bottom-10 mr-5 duration-300 cursor-pointer w-full rounded  after:content-[""] after:bg-accent-gold after:rounded-sm after:duration-300 after:md:h-1 after:h-1  after:left-0 after:absolute after:-bottom-4 after:w-full'>
-          <button className='mr- border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
-            Sign in
-          </button>
-        </div>
+
+        <button className='absolute bottom-10 border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
+          Sign in
+        </button>
       </div>
       {!menuOpen ? (
         <Menu

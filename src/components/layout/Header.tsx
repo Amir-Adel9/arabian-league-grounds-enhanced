@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu } from 'lucide-react';
 import MobileHeader from './MobileHeader';
 
 const Header = () => {
@@ -47,10 +46,6 @@ const Header = () => {
       <button className='hidden md:inline mr- border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
         Sign in
       </button>
-      {/* <Menu
-        className='inline md:hidden hover:text-accent-gold cursor-pointer duration-300 '
-        size={32}
-      /> */}
       <MobileHeader />
     </header>
   );

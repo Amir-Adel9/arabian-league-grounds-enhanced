@@ -4,37 +4,6 @@ import { Balancer } from 'react-wrap-balancer';
 export default function Home() {
   return (
     <main className='relative flex min-h-screen flex-col items-center'>
-      {/* <section className='w-full min-h-screen relative flex flex-col items-center justify-center text-primary'>
-        <div className='absolute w-full h-full bg-secondary opacity-90 z-[-10]'></div>
-        <Image
-          src='/background.jpg'
-          alt='Background Image'
-          className='w-full h-full z-[-20]'
-          layout='fill'
-          objectFit='cover'
-          draggable={false}
-          objectPosition='center'
-        />
-        <Image
-          src='/al_logo.png'
-          alt='Arabian League Logo'
-          width={160}
-          height={160}
-          draggable={false}
-          className='z-[10] duration-200 animate-bounce-y mt-24 lg:mt-20'
-        />
-        <div className='p-32 flex flex-col text-center'>
-          <h1 className='text-3xl lg:text-4xl lg:text-5xl font-bold  '>
-            Welcome back to the
-            <span className='text-accent-gold'> Arabian League</span> Grounds!
-          </h1>
-          <h2 className='text-xl lg:text-xl lg:text-2xl font-bold '>
-            Your all-in-one
-            <span className='text-accent-blue'> Arabian League </span>
-            companion now enhanced and improved.
-          </h2>
-        </div>
-      </section> */}
       <section className='w-full min-h-screen relative flex flex-col text-primary text-center lg:text-start mt-20 xs:mt-0'>
         <div className='absolute w-full h-full bg-secondary opacity-95 z-[-10]'></div>
         <Image

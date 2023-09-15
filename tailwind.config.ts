@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
-        xs: '380px',
+        xs: '400px',
       },
       colors: {
         primary: 'var(--color-primary)',
