@@ -4,6 +4,7 @@ import { Inter, Rubik, Gluten, Permanent_Marker } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import MobileNavbar from '@/components/layout/MobileNavbar';
+import MobileHeader from '@/components/layout/MobileHeader';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { Goal, Info, Medal, Trophy, UserCircle } from 'lucide-react';
 
 const Navbar = () => {

@@ -35,7 +35,7 @@ export default function Home() {
           </h2>
         </div>
       </section> */}
-      <section className='w-full min-h-screen relative flex flex-col text-primary text-center lg:text-start'>
+      <section className='w-full min-h-screen relative flex flex-col text-primary text-center lg:text-start mt-20 xs:mt-0'>
         <div className='absolute w-full h-full bg-secondary opacity-95 z-[-10]'></div>
         <Image
           src='/background.jpg'
@@ -106,8 +106,8 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className='flex items-center justify-center lg:justify-start flex-col lg:flex-row gap-4 relative top-5 lg:top-20 '>
-              <button className='bg-accent-gold w-40 rounded px-4 py-3  hover:bg-primary hover:text-secondary duration-300'>
+            <div className='flex items-center justify-center lg:justify-start flex-col lg:flex-row gap-4 relative mt-5 xs:mt-0 xs:top-10 md:top-14 lg:top-20 '>
+              <button className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300'>
                 <span className='font-light font-gluten'>Get Started</span>
               </button>
               <button className='border-accent-gold border rounded-3xl px-3 py-2 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
