@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Rubik, Gluten } from 'next/font/google';
+import { Inter, Rubik, Gluten, Permanent_Marker } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 
@@ -14,6 +14,12 @@ const gluten = Gluten({
   subsets: ['vietnamese', 'latin-ext', 'latin'],
   variable: '--font-gluten',
   weight: ['300', '400', '500', '600', '700', '800', '900'],
+});
+
+const permanentMarker = Permanent_Marker({
+  subsets: ['latin'],
+  variable: '--font-permanent-marker',
+  weight: ['400'],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +43,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${rubik.variable} ${gluten.variable}`}
+        className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable}`}
       >
         <Header />
         <Navbar />

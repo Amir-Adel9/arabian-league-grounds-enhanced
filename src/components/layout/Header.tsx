@@ -9,7 +9,7 @@ const Header = () => {
       className='h-20 fixed w-full bg-secondary text-primary font-inter flex items-center justify-between z-[501] py-2 px-4'
       id='header'
     >
-      <nav className='flex h-full gap-6'>
+      <nav className='flex h-full gap-6 items-center'>
         <Link href='/'>
           <div className='relative w-10 h-10 sm:w-14 sm:h-14 '>
             <Image
@@ -21,7 +21,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <ul className='flex items-center gap-16 '>
+        <ul className='hidden md:flex items-center gap-16'>
           <li>
             <span className='hover:text-accent-gold cursor-pointer duration-300  font-bold'>
               Schedule

@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        xs: '320px',
+      },
       colors: {
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
@@ -19,6 +22,7 @@ const config: Config = {
         rubik: ['var(--font-rubik)'],
         inter: ['var(--font-inter)'],
         gluten: 'Gluten',
+        marker: 'var(--font-permanent-marker)',
       },
       keyframes: {
         'bounce-y': {
