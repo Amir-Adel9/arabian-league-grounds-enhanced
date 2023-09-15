@@ -46,13 +46,13 @@ export default function Home() {
                   companion now enhanced and improved.
                 </Balancer>
               </h2>
-              <p className='font-rubik font-thin'>
+              {/* <p className='font-rubik font-thin'>
                 <Balancer>
                   The Arabian League Grounds is back with a new look, feel and
                   an array of new features to make your Arabian League
                   experience much more enjoyable.
                 </Balancer>
-              </p>
+              </p> */}
               <div className='hidden lg:flex lg:gap-2 '>
                 <span className='hidden lg:inline'>Check Out:</span>
                 <span className='underline cursor-pointer hover:text-accent-gold duration-300 '>
@@ -75,14 +75,14 @@ export default function Home() {
                 </span>
               </div>
             </div>
-            <div className='flex items-center justify-center lg:justify-start flex-col lg:flex-row gap-4 relative mt-5 xs:mt-0 xs:top-10 md:top-14 lg:top-20 '>
+            {/* <div className='flex items-center justify-center lg:justify-start flex-col lg:flex-row gap-4 relative mt-5 xs:mt-0 xs:top-10 md:top-14 lg:top-20 '>
               <button className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300'>
                 <span className='font-light font-gluten'>Get Started</span>
               </button>
               <button className='border-accent-gold border rounded-3xl px-3 py-2 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
                 <span className='font-light font-gluten'>Upcoming Matches</span>
               </button>
-            </div>
+            </div> */}
           </div>
           <Image
             src='/al_logo.png'
