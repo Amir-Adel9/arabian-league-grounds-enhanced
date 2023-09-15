@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PlayNow from '../dropdowns/PlayNowDropdown';
 import PlayNowDropDown from '../dropdowns/PlayNowDropdown';
+import { Menu } from 'lucide-react';
 
 const Header = () => {
   return (
@@ -46,9 +47,10 @@ const Header = () => {
         </ul>
       </nav>
 
-      <button className='mr-10 border-primary border  rounded-3xl w-[100px] h-9  hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
+      <button className='hidden md:inline mr-10 border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
         Sign in
       </button>
+      <Menu className='inline md:hidden' size={32} />
     </header>
   );
 };
