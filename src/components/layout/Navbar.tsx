@@ -12,16 +12,17 @@ const Navbar = () => {
             Fantasy
           </span>
         </li>
-        <li className='flex gap-2 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
-          <Medal size={28} />
-          <span className='hidden group-hover:inline font-bold text-lg'>
-            Leaderboard
-          </span>
-        </li>
+
         <li className='flex gap-2 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
           <Goal size={28} />
           <span className='hidden group-hover:inline font-bold text-lg'>
             Predictions
+          </span>
+        </li>
+        <li className='flex gap-2 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
+          <Medal size={28} />
+          <span className='hidden group-hover:inline font-bold text-lg'>
+            Leaderboard
           </span>
         </li>
         <li className='flex gap-2 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>

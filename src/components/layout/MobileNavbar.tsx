@@ -10,15 +10,15 @@ const MobileNavbar = () => {
           <span className='hidden xs:inline font-bold text-xs'>Fantasy</span>
         </li>
         <li className='flex flex-col gap-1 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
-          <Medal size={24} className='w-5 h-5 xs:w-auto xs:h-auto' />
-          <span className='hidden xs:inline font-bold text-xs'>
-            Leaderboard
-          </span>
-        </li>
-        <li className='flex flex-col gap-1 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
           <Goal size={24} className='w-5 h-5 xs:w-auto xs:h-auto' />
           <span className='hidden xs:inline font-bold text-xs'>
             Predictions
+          </span>
+        </li>
+        <li className='flex flex-col gap-1 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
+          <Medal size={24} className='w-5 h-5 xs:w-auto xs:h-auto' />
+          <span className='hidden xs:inline font-bold text-xs'>
+            Leaderboard
           </span>
         </li>
         <li className='flex flex-col gap-1 items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>

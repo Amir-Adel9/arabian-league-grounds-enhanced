@@ -33,9 +33,45 @@ const config: Config = {
             transform: 'translateY(20px)',
           },
         },
+        opacity: {
+          '0%': {
+            opacity: '0',
+          },
+          '100%': {
+            opacity: '1',
+          },
+        },
+        translateX: {
+          '0%': {
+            transform: 'translateX(-100%)',
+          },
+          '100%': {
+            transform: 'translateX(0)',
+          },
+        },
+        translateY: {
+          '0%': {
+            transform: 'translateY(120%)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
+        _translateY: {
+          '0%': {
+            transform: 'translateY(240%)',
+          },
+          '100%': {
+            transform: 'translateY(0)',
+          },
+        },
       },
       animation: {
         'bounce-y': 'bounce-y 2s infinite ease-in-out',
+        opacity: 'opacity 1s ease-in-out',
+        'translate-x': 'translateX 1s ease-in-out',
+        'translate-y': 'translateY 0.6s ease-in-out',
+        'translate-y-late': '_translateY 1s ease-in-out',
       },
     },
   },

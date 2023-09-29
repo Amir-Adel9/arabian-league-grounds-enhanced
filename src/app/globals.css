@@ -12,12 +12,12 @@
   --color-secondary: #111111;
   --color-accent-blue: #19485a;
   --color-accent-gold: #bea85d;
-  --color-text: #f1f5f9;
+  --color-text: #111111;
 }
 
 body {
   background-color: rgb(var(--color-primary));
-  color: rgb(var(--color-secondary));
+  color: rgb(var(--color-text));
 }
 
 ::-webkit-scrollbar {

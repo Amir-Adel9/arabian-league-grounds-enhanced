@@ -15,7 +15,7 @@
     "autoprefixer": "10.4.15",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
-    "framer-motion": "^10.16.1",
+    "framer-motion": "^10.16.4",
     "lucide-react": "0.263.1",
     "next": "13.4.19",
     "postcss": "8.4.28",
