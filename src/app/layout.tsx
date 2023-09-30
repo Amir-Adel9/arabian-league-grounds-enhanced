@@ -51,7 +51,7 @@ export default function RootLayout({
         <body
           className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable}`}
         >
-          {/* @ts-expect-error Server Component */}
+          {/*  @ts-ignore Async Server Component */}
           <Header />
           <Navbar />
           <MobileNavbar />
