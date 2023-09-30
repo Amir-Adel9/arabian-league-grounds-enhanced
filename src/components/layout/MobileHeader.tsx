@@ -25,7 +25,12 @@ const MobileHeader = () => {
       >
         <div className='absolute w-12 h-12 z-[200] top-6 left-5'>
           <Link href='/'>
-            <Image src='/al_logo.png' alt='' fill={true} draggable={false} />
+            <Image
+              src='/images/al_logo.png'
+              alt=''
+              fill={true}
+              draggable={false}
+            />
           </Link>
         </div>
         <ul className='flex flex-col items-start justify-around h-1/2 w-full mt-[25%]'>

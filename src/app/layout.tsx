@@ -10,6 +10,7 @@ import {
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
+import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -62,8 +63,8 @@ export default function RootLayout({
           {/*  @ts-ignore Async Server Component */}
           <Header />
           <Navbar />
-
           {children}
+          {/* <Footer /> */}
         </body>
       </html>
     </ClerkProvider>

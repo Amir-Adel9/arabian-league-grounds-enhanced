@@ -6,7 +6,7 @@ function NotFound() {
     <main className='w-full min-h-screen relative flex flex-col justify-center items-center'>
       <div className='font-bold  relative w-full flex flex-col gap-4 justify-center items-center '>
         <Image
-          src='/dinger.gif'
+          src='/images/dinger.gif'
           alt='dinger Image'
           width={260}
           height={260}
