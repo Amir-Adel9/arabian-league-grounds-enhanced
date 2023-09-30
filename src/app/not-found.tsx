@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function NotFound() {
   return (
-    <section className='w-full min-h-screen relative flex flex-col justify-center items-center'>
+    <main className='w-full min-h-screen relative flex flex-col justify-center items-center'>
       <div className='font-bold  relative w-full flex flex-col gap-4 justify-center items-center '>
         <Image
           src='/dinger.gif'
@@ -26,7 +26,7 @@ function NotFound() {
           page.
         </p>
       </div>
-    </section>
+    </main>
   );
 }
 

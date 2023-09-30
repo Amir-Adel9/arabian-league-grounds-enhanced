@@ -24,24 +24,32 @@ const Header = async () => {
         </Link>
         <ul className='hidden md:flex items-center gap-16'>
           <li>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Schedule
-            </span>
+            <Link href='/schedule'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Schedule
+              </span>
+            </Link>
           </li>
           <li>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Standings
-            </span>
+            <Link href='/standings'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Standings
+              </span>
+            </Link>
           </li>
           <li>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Teams
-            </span>
+            <Link href='/teams'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Teams
+              </span>
+            </Link>
           </li>
           <li className=' cursor-pointer duration-300 font-bold'>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Stats
-            </span>
+            <Link href='/stats'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Stats
+              </span>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -51,16 +59,9 @@ const Header = async () => {
             <SignInButton />
           </button>
         ) : (
-          <UserButton
-            appearance={{
-              elements: {
-                userButtonOuterIdentifier: 'capitalize text-primary font-bold',
-              },
-            }}
-          />
+          <UserButton />
         )}
       </div>
-
       <MobileHeader />
     </header>
   );

@@ -30,33 +30,42 @@ const MobileHeader = () => {
         </div>
         <ul className='flex flex-col items-start justify-around h-1/2 w-full mt-[25%]'>
           <li onClick={() => setMenuOpen(false)}>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Schedule
-            </span>
+            <Link href='/schedule'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Schedule
+              </span>
+            </Link>
           </li>
-          <li>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Standings
-            </span>
+          <li onClick={() => setMenuOpen(false)}>
+            <Link href='/standings'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Standings
+              </span>
+            </Link>
           </li>
-          <li>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Teams
-            </span>
+          <li onClick={() => setMenuOpen(false)}>
+            <Link href='/teams'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Teams
+              </span>
+            </Link>
           </li>
-          <li className=' cursor-pointer duration-300 font-bold'>
-            <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-              Stats
-            </span>
+          <li onClick={() => setMenuOpen(false)}>
+            <Link href='/stats'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                Stats
+              </span>
+            </Link>
           </li>
         </ul>
         <SignedIn>
           <div className='absolute bottom-10 '>
             <UserButton
+              showName={true}
               appearance={{
                 elements: {
-                  userButtonOuterIdentifier:
-                    'capitalize text-primary font-bold',
+                  userButtonBox: 'flex-row-reverse ',
+                  userButtonOuterIdentifier: ' text-primary font-bold',
                 },
               }}
             />
