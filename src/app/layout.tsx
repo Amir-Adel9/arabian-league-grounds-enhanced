@@ -1,11 +1,16 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Rubik, Gluten, Permanent_Marker } from 'next/font/google';
+import {
+  Inter,
+  Rubik,
+  Gluten,
+  Permanent_Marker,
+  Kanit,
+} from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
-import MobileNavbar from '@/components/layout/MobileNavbar';
-import MobileHeader from '@/components/layout/MobileHeader';
 import { ClerkProvider } from '@clerk/nextjs';
+import Footer from '@/components/layout/Footer';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -18,11 +23,15 @@ const gluten = Gluten({
   variable: '--font-gluten',
   weight: ['300', '400', '500', '600', '700', '800', '900'],
 });
-
 const permanentMarker = Permanent_Marker({
   subsets: ['latin'],
   variable: '--font-permanent-marker',
   weight: ['400'],
+});
+const kanit = Kanit({
+  subsets: ['latin'],
+  variable: '--font-kanit',
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
 export const metadata: Metadata = {
@@ -49,13 +58,13 @@ export default function RootLayout({
           />
         </head>
         <body
-          className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable}`}
+          className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable} ${kanit.variable}`}
         >
           {/*  @ts-ignore Async Server Component */}
           <Header />
           <Navbar />
-          <MobileNavbar />
           {children}
+          {/* <Footer /> */}
         </body>
       </html>
     </ClerkProvider>

@@ -15,7 +15,7 @@ const Header = async () => {
         <Link href='/'>
           <div className='relative w-10 h-10 sm:w-14 sm:h-14 '>
             <Image
-              src='/al_logo.png'
+              src='/images/al_logo.png'
               alt='Arabian League Logo'
               fill={true}
               draggable={false}

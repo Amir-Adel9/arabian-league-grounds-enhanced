@@ -6,14 +6,20 @@
     "dev": "next dev  --port 3002",
     "build": "next build",
     "start": "next start --port 3002",
-    "lint": "next lint"
+    "lint": "next lint",
+    "studio": "drizzle-kit studio --host 127.0.0.1 --port 6969 --verbose --config=drizzle.config.ts",
+    "migrations:generate": "drizzle-kit generate:mysql",
+    "migrations:push": "node -r esbuild-register src/db/migrate.ts",
+    "migrations:drop": "drizzle-kit drop --config=drizzle.config.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.25.1",
+    "@planetscale/database": "^1.11.0",
     "@types/node": "20.5.6",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "drizzle-orm": "^0.28.6",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
     "framer-motion": "^10.16.4",
@@ -25,5 +31,12 @@
     "react-wrap-balancer": "^1.1.0",
     "tailwindcss": "3.3.2",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.19.13",
+    "esbuild-register": "^3.5.0",
+    "mysql2": "^3.6.1",
+    "undici": "^5.25.2"
   }
 }
