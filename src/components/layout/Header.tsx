@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import MobileHeader from './MobileHeader';
+import { currentUser, SignInButton, UserButton } from '@clerk/nextjs';
 
-const Header = () => {
+const Header = async () => {
+  const loggedInUser = await currentUser();
+
   return (
     <header
       className='h-20 fixed w-full bg-secondary text-primary font-inter flex items-center justify-between z-[501] py-2 px-4'
@@ -42,10 +45,22 @@ const Header = () => {
           </li>
         </ul>
       </nav>
+      <div className='hidden md:inline'>
+        {!loggedInUser ? (
+          <button className='border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
+            <SignInButton />
+          </button>
+        ) : (
+          <UserButton
+            appearance={{
+              elements: {
+                userButtonOuterIdentifier: 'capitalize text-primary font-bold',
+              },
+            }}
+          />
+        )}
+      </div>
 
-      <button className='hidden md:inline mr- border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
-        Sign in
-      </button>
       <MobileHeader />
     </header>
   );

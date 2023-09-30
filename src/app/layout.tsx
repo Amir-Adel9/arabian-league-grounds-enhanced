@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import MobileNavbar from '@/components/layout/MobileNavbar';
 import MobileHeader from '@/components/layout/MobileHeader';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -36,23 +37,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <head>
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' />
-        <link
-          href='https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap'
-          rel='stylesheet'
-        />
-      </head>
-      <body
-        className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable}`}
-      >
-        <Header />
-        <Navbar />
-        <MobileNavbar />
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='en'>
+        <head>
+          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+          <link
+            href='https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap'
+            rel='stylesheet'
+          />
+        </head>
+        <body
+          className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable}`}
+        >
+          {/* @ts-expect-error Server Component */}
+          <Header />
+          <Navbar />
+          <MobileNavbar />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

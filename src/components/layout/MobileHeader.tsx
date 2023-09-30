@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 
 const MobileHeader = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -49,10 +50,23 @@ const MobileHeader = () => {
             </span>
           </li>
         </ul>
-
-        <button className='absolute bottom-10 border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
-          Sign in
-        </button>
+        <SignedIn>
+          <div className='absolute bottom-10 '>
+            <UserButton
+              appearance={{
+                elements: {
+                  userButtonOuterIdentifier:
+                    'capitalize text-primary font-bold',
+                },
+              }}
+            />
+          </div>
+        </SignedIn>
+        <SignedOut>
+          <button className='absolute bottom-10 border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
+            <SignInButton />
+          </button>
+        </SignedOut>
       </div>
       {!menuOpen ? (
         <Menu
