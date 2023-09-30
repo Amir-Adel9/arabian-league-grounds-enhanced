@@ -23,6 +23,7 @@ const config: Config = {
         inter: ['var(--font-inter)'],
         gluten: 'Gluten',
         marker: 'var(--font-permanent-marker)',
+        kanit: 'var(--font-kanit)',
       },
       keyframes: {
         'bounce-y': {

@@ -32,7 +32,7 @@ export default function Home() {
               <h1 className='text-3xl md:text-4xl lg:text-6xl font-bold font-rubik text animate-translate-x'>
                 <Balancer>
                   Welcome back to the
-                  <span className='text-accent-gold font-light font-marker animate-puls'>
+                  <span className='text-accent-gold font-ligt font-kanit animate-puls'>
                     {' '}
                     Arabian League
                   </span>{' '}
@@ -93,7 +93,7 @@ export default function Home() {
         </div>
       </section>
       <section className='w-full min-h-screen bg-primary relative flex flex-col justify-center items-center py-24 '>
-        <h2 className='text-accent-gold font-bold md:2xl: text-4xl underline underline-offset-2 text-center font-rubik'>
+        <h2 className='text-accent-gold font-bold md:2xl: text-4xl underline underline-offset-2 text-center font-kanit'>
           Enhance your Arabian League experience!
         </h2>
         <div className='my-auto flex flex-col gap-10 p-10  lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
