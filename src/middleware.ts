@@ -15,9 +15,16 @@ export default authMiddleware({
     '/match/:matchId',
     '/teams/:slug',
     '/profile/:id',
+    '/api/webhooks/user',
   ],
+  // apiRoutes: ['/api', '/api/webhooks/user'],
 });
 
 export const config = {
-  matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+  matcher: [
+    '/((?!.+\\.[\\w]+$|_next).*)',
+    '/',
+    '/(api|trpc)(.*)',
+    '/api/webhooks/user',
+  ],
 };

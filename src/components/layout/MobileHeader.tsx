@@ -30,6 +30,7 @@ const MobileHeader = () => {
               alt=''
               fill={true}
               draggable={false}
+              onClick={() => setMenuOpen(false)}
             />
           </Link>
         </div>
@@ -62,6 +63,18 @@ const MobileHeader = () => {
               </span>
             </Link>
           </li>
+          <li onClick={() => setMenuOpen(false)}>
+            <SignedOut>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                <SignInButton />
+              </span>
+            </SignedOut>
+            <SignedIn>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                <SignInButton />
+              </span>
+            </SignedIn>
+          </li>
         </ul>
         <SignedIn>
           <div className='absolute bottom-10 '>
@@ -76,11 +89,6 @@ const MobileHeader = () => {
             />
           </div>
         </SignedIn>
-        <SignedOut>
-          <button className='absolute bottom-10 border-primary border rounded-3xl w-[100px] h-9 hover:border-accent-gold hover:text-accent-gold duration-300 font-bold'>
-            <SignInButton />
-          </button>
-        </SignedOut>
       </div>
       {!menuOpen ? (
         <Menu
