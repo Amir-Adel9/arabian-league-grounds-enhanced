@@ -10,13 +10,13 @@ const UpToDate = () => {
   return (
     <>
       <motion.h2
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ translateX: -100, opacity: 0 }}
+        whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold md:2xl: text-4xl underline underline-offset-2 text-center font-kanit'
+        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-6xl text-center font-kanit'
       >
-        Stay up to date!
+        <Balancer>Stay up to date!</Balancer>
       </motion.h2>
       <div className='my-auto flex flex-col gap-10 p-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
         <Link href='/schedule' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
@@ -42,7 +42,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-secondary group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               View Schedule
             </span>
           </motion.div>
@@ -69,7 +69,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-secondary group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               View Standings
             </span>
           </motion.div>
@@ -97,7 +97,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-secondary group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               View Rankings
             </span>
           </motion.div>

@@ -8,11 +8,11 @@ const UpcomingMatches = () => {
   return (
     <>
       <motion.h2
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        initial={{ translateX: -100, opacity: 0 }}
+        whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold md:2xl: text-4xl underline underline-offset-2 text-center font-kanit'
+        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-6xl text-center font-kanit'
       >
         Upcoming Matches
       </motion.h2>
