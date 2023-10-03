@@ -68,7 +68,7 @@ const Features = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-secondary group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               Predict Now
             </span>
           </motion.div>
