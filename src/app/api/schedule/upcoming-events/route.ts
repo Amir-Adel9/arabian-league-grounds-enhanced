@@ -1,0 +1,20 @@
+import { requestParams } from '@/utils/constants/requestParams';
+import { Event } from '@/utils/constants/types';
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const upcomingEvents = await fetch(
+    `https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=${process.env.NEXT_PUBLIC_LEAGUE_ID}`,
+    requestParams
+  )
+    .then((res) => res.json())
+    .then((res) => {
+      return res.data.schedule.events
+        .filter(
+          (event: Event) =>
+            event.state === 'unstarted' || event.state === 'inProgress'
+        )
+        .slice(0, 8);
+    });
+  return NextResponse.json(upcomingEvents);
+}
