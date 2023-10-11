@@ -1,0 +1,23 @@
+import { Event } from '@/utils/constants/types';
+import { Suspense } from 'react';
+import UpcomingMatchCard from './UpcomingMatchCard';
+
+const UpcomingMatchesData = async () => {
+  const upcomingEvents = (await fetch(
+    'http://localhost:3002/api/schedule/upcoming-events'
+  ).then((res) => res.json())) as Event[];
+
+  return (
+    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 w-full bg-secondary h-[500px]'>
+      {upcomingEvents.map((event: Event) => {
+        return (
+          <Suspense fallback={<div>Loading...</div>} key={event.match.id}>
+            <UpcomingMatchCard event={event} />
+          </Suspense>
+        );
+      })}
+    </div>
+  );
+};
+
+export default UpcomingMatchesData;

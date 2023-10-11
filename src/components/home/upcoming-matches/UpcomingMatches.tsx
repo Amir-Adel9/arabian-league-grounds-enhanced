@@ -1,10 +1,12 @@
 'use client';
+import { ReactNode } from 'react';
+
 import Link from 'next/link';
 
 import { motion } from 'framer-motion';
 import { Balancer } from 'react-wrap-balancer';
 
-const UpcomingMatches = () => {
+const UpcomingMatches = (props: { children?: ReactNode }) => {
   return (
     <>
       <motion.h2
@@ -16,8 +18,10 @@ const UpcomingMatches = () => {
       >
         Upcoming Matches
       </motion.h2>
+
       <div className='my-auto flex flex-col gap-10 p-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
-        <div className='w-full bg-secondary h-[500px]'>k</div>
+        {/*  @ts-ignore Async Server Component */}
+        {props.children}
       </div>
     </>
   );

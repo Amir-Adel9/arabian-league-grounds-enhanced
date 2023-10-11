@@ -16,7 +16,7 @@ export default authMiddleware({
     '/teams/:slug',
     '/profile/:id',
     '/api/webhooks/user',
-    '/api/schedule/upcoming-matches',
+    '/api/schedule/upcoming-events',
   ],
   // apiRoutes: ['/api', '/api/webhooks/user'],
 });
