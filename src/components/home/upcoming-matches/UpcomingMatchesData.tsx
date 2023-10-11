@@ -4,7 +4,11 @@ import UpcomingMatchCard from './UpcomingMatchCard';
 
 const UpcomingMatchesData = async () => {
   const upcomingEvents = (await fetch(
-    'http://localhost:3002/api/schedule/upcoming-events'
+    `${
+      process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
+        ? 'https://arabian-league-grounds-enhanced.vercel.app/'
+        : 'http://localhost:3002/'
+    }api/schedule/upcoming-events`
   ).then((res) => res.json())) as Event[];
 
   return (
