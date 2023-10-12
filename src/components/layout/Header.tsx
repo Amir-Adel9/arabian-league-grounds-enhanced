@@ -61,7 +61,7 @@ const Header = async () => {
             </button>
           </SignInButton>
         ) : (
-          <UserButton />
+          <UserButton afterSignOutUrl="/" />
         )}
       </div>
       <MobileHeader />

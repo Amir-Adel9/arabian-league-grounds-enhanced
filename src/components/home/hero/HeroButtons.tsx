@@ -22,7 +22,7 @@ const HeroButtons = () => {
         <span
           onClick={() => {
             if (!user.isSignedIn) {
-              router.push("/sign-in");
+              router.push("https://content-louse-78.accounts.dev/sign-in");
             } else {
               featuresDiv.scrollIntoView({ behavior: "smooth" });
             }
