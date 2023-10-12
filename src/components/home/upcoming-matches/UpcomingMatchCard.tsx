@@ -5,7 +5,7 @@ import { Event } from "@/utils/constants/types";
 const UpcomingMatchCard = ({ event }: { event: Event }) => {
   const { match } = event;
   return (
-    <div className="relative border border-accent-gold flex h-full flex-col justify-between rounded-lg shadow-lg p-4 cursor-pointer duration-200  hover:scale-105">
+    <div className="relative border border-accent-gold flex h-full flex-col items-center justify-center rounded-lg shadow-lg p-4 cursor-pointer duration-200  hover:scale-105">
       <div className="absolute w-full h-full bg-secondary opacity-80 z-[10] top-0 left-0 rounded-lg "></div>
       <Image
         src="/images/background.jpg"
@@ -16,7 +16,7 @@ const UpcomingMatchCard = ({ event }: { event: Event }) => {
         draggable={false}
         objectPosition="center"
       />
-      <div className="flex flex-row items-center justify-center mb-4 z-20">
+      <div className="grid grid-cols-3 flex-row items-center justify-center mb-4 z-20">
         <div className="flex flex-col items-center flex-grow">
           <Image
             src={match.teams[0].image}
