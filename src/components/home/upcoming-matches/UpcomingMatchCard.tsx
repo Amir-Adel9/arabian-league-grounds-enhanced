@@ -5,7 +5,7 @@ import { Event } from "@/utils/constants/types";
 const UpcomingMatchCard = ({ event }: { event: Event }) => {
   const { match } = event;
   return (
-    <div className="relative border border-accent-gold flex h-full flex-col items-center justify-center rounded-lg shadow-lg p-4 cursor-pointer duration-200  hover:scale-105">
+    <div className="relative border border-accent-gold flex min-h-[250  px] flex-col items-center justify-center rounded-lg shadow-lg p-4 cursor-pointer duration-200 hover:scale-105">
       <div className="absolute w-full h-full bg-secondary opacity-80 z-[10] top-0 left-0 rounded-lg "></div>
       <Image
         src="/images/background.jpg"
