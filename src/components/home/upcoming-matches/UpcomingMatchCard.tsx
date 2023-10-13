@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Event } from "@/utils/constants/types";
+import UpcomingMatchCardDate from "./UpcomingMatchDate";
 
 const UpcomingMatchCard = ({ event }: { event: Event }) => {
   const { match } = event;
@@ -48,6 +49,7 @@ const UpcomingMatchCard = ({ event }: { event: Event }) => {
             {match.teams[1].name}
           </h3>
         </div>
+        <UpcomingMatchCardDate matchDate={event.startTime} />
       </div>
     </div>
   );
