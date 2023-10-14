@@ -13,15 +13,19 @@ dayjs.extend(utcPlugin);
 dayjs.extend(timezone);
 
 const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
-  const lastCompletedMatchRef = useRef<HTMLDivElement>(null);
+  const gameDaysDivRef = useRef<HTMLDivElement>(null);
+  const lastGameDayWithCompletedMatchDivRef = useRef<HTMLDivElement>(null);
   const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const scrollToLastCompletedMatch = () => {
-      if (lastCompletedMatchRef.current) {
-        const topOffset = lastCompletedMatchRef.current.offsetTop;
-        window.scrollTo({ top: topOffset - 100, behavior: 'smooth' });
+      if (lastGameDayWithCompletedMatchDivRef.current) {
+        const topOffset = lastGameDayWithCompletedMatchDivRef.current.offsetTop;
+        gameDaysDivRef.current!.scrollTo({
+          top: topOffset - 100,
+          behavior: 'smooth',
+        });
       }
     };
 
@@ -45,26 +49,26 @@ const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
   ).length;
 
   return (
-    <div className='mt-28 bg-primary '>
-      <div className='bg-secondary rounded-lg w-full text-accent-gold p-3 mb-3'>
-        Filter
-      </div>
-      <div className='overflow-y-auto no-scrollbar w-full h-[70vh] '>
+    <div className='mt-20 flex w-full h-[calc(100vh-5rem)]'>
+      <div
+        className='overflow-y-auto no-scrollbar w-full h-full pt-5'
+        ref={gameDaysDivRef}
+      >
         {gameDays.map((gameDay: GameDay, index: number) => {
           const { date, events } = gameDay;
           return (
             <div
-              className='relative mb-7 flex flex-col items-center justify-center space-y-4 w-full text-secondary p-4'
+              className='relative mb- flex flex-col items-start justify-center space-y-2 w-full text-secondary p-3'
               key={date}
               ref={
                 index === gameDaysWithCompletedMatchesCount - 1
-                  ? lastCompletedMatchRef
+                  ? lastGameDayWithCompletedMatchDivRef
                   : null
               }
             >
-              <h1 className='absolute -top-2 left-5 text-xl sm:text-2xl font-bold text-center  '>
+              <h2 className='text-xl sm:text-2xl mb-3 font-bold text-center'>
                 {date}
-              </h1>
+              </h2>
               {events.map((event: Event) => {
                 const relativeEventTime = dayjs
                   .utc(event.startTime)
@@ -90,6 +94,11 @@ const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
           );
         })}
       </div>
+      {/* <div className='bg-accent-gold w-[25%] h-full text-secondary p-3'>
+        <h2 className='text-xl sm:text-2xl mb-3 font-bold font-inter mt-5'>
+          Filter
+        </h2>
+      </div> */}
     </div>
   );
 };
