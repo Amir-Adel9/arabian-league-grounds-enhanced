@@ -8,7 +8,7 @@ import UpcomingMatchesData from '@/components/home/upcoming-matches/UpcomingMatc
 export default function Home() {
   return (
     <main className='relative flex min-h-screen flex-col items-center text-primary'>
-      <section className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex flex-col justify-center items-center text-center lg:text-start mt-20 xs:mt-0'>
+      <section className='w-full min-h-screen relative flex flex-col justify-center items-center text-center lg:text-start mt-20 xs:mt-0'>
         <Hero />
       </section>
       <section
