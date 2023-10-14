@@ -12,7 +12,7 @@ const Talents = () => {
         whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-6xl text-center font-kanit'
+        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit'
       >
         Talents
       </motion.h2>
