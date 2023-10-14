@@ -6,7 +6,7 @@ import UpcomingMatchCardDate from './UpcomingMatchDate';
 const UpcomingMatchCard = ({ event }: { event: Event }) => {
   const { match } = event;
   return (
-    <div className='relative border border-accent-gold flex min-h-[250  px] flex-col items-center justify-center rounded-lg shadow-lg p-4 cursor-pointer duration-200 hover:scale-105'>
+    <div className='relative border border-accent-gold flex min-h-[250px] flex-col items-center justify-center rounded-lg shadow-lg p-4 cursor-pointer duration-200 hover:scale-105'>
       <div className='absolute w-full h-full bg-secondary opacity-80 z-[10] top-0 left-0 rounded-lg '></div>
       <Image
         src='/images/background.jpg'
@@ -33,7 +33,7 @@ const UpcomingMatchCard = ({ event }: { event: Event }) => {
             {match.teams[0].name}
           </h3>
         </div>
-        <h3 className='text-xl font-bold text-center'>VS</h3>
+        <h3 className='text-xl font-bold text-center self-center'>VS</h3>
         <div className='flex flex-col items-center'>
           <Image
             src={match.teams[1].image}

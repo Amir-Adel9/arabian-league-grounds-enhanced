@@ -33,3 +33,8 @@ export type MatchTeam = {
     losses: number;
   };
 };
+
+export type GameDay = {
+  date: string;
+  events: Event[];
+};

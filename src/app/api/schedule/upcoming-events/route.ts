@@ -3,7 +3,7 @@ import { Event } from '@/utils/constants/types';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const upcomingEvents = await fetch(
+  const upcomingEvents: Promise<Event[]> = await fetch(
     `https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=${process.env.NEXT_PUBLIC_LEAGUE_ID}`,
     requestParams
   )

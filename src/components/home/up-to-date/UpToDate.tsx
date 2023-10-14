@@ -14,12 +14,12 @@ const UpToDate = () => {
         whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-6xl text-center font-kanit'
+        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit'
       >
         <Balancer>Stay up to date!</Balancer>
       </motion.h2>
       <div className='my-auto flex flex-col gap-10 p-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
-        <Link href='/schedule' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
+        <Link href='/schedule' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 140, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
@@ -47,7 +47,7 @@ const UpToDate = () => {
             </span>
           </motion.div>
         </Link>
-        <Link href='/standings' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
+        <Link href='/standings' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 240, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
@@ -74,7 +74,7 @@ const UpToDate = () => {
             </span>
           </motion.div>
         </Link>
-        <Link href='/stats' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
+        <Link href='/stats' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 340, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
@@ -91,7 +91,7 @@ const UpToDate = () => {
             <div className='z-20'>
               <p className='font-rubik  '>
                 <Balancer>
-                  Ever wondered who has the most placed wards? Check out the
+                  Ever wondered who has the most wards placed? Check out the
                   stats page for exciting stats about the games, players and
                   teams!
                 </Balancer>

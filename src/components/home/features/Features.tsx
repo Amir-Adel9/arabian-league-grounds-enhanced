@@ -14,12 +14,12 @@ const Features = () => {
         whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-6xl text-center font-kanit'
+        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit'
       >
         <Balancer>Enhance your Arabian League experience!</Balancer>
       </motion.h2>
       <div className='my-auto flex flex-col gap-10 p-10  lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
-        <Link href='/fantasy' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
+        <Link href='/fantasy' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 140, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
@@ -46,7 +46,7 @@ const Features = () => {
             </span>
           </motion.div>
         </Link>
-        <Link href='/predictions' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
+        <Link href='/predictions' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 240, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
@@ -73,7 +73,7 @@ const Features = () => {
             </span>
           </motion.div>
         </Link>
-        <Link href='/leaderboard' className='lg:w-1/4 xl:w-1/5 h-[500px]'>
+        <Link href='/leaderboard' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 340, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
