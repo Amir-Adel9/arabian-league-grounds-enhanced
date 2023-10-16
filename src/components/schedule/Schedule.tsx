@@ -1,13 +1,15 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { Event, GameDay } from '@/utils/constants/types';
 
 import dayjs from 'dayjs';
 import utcPlugin from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import CompletedMatch from './CompletedMatch';
+import CompletedMatch from './CompletedEvent';
+import UnstartedEvent from './UnstartedEvent';
+import LiveEvent from './LiveEvent';
 
 dayjs.extend(utcPlugin);
 dayjs.extend(timezone);
@@ -15,10 +17,8 @@ dayjs.extend(timezone);
 const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
   const gameDaysDivRef = useRef<HTMLDivElement>(null);
   const lastGameDayWithCompletedMatchDivRef = useRef<HTMLDivElement>(null);
-  const [windowWidth, setWindowWidth] = useState<number>(0);
 
   useEffect(() => {
-    setWindowWidth(window.innerWidth);
     const scrollToLastCompletedMatch = () => {
       if (lastGameDayWithCompletedMatchDivRef.current) {
         const topOffset = lastGameDayWithCompletedMatchDivRef.current.offsetTop;
@@ -32,17 +32,6 @@ const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
     scrollToLastCompletedMatch();
   }, []);
 
-  useEffect(() => {
-    window.addEventListener('resize', function () {
-      setWindowWidth(window.innerWidth);
-    });
-
-    return () =>
-      window.removeEventListener('resize', function () {
-        setWindowWidth(window.innerWidth);
-      });
-  }, [windowWidth]);
-
   const gameDaysWithCompletedMatchesCount = gameDays.filter(
     (gameDay: GameDay) =>
       gameDay.events.some((event: Event) => event.state === 'completed')
@@ -50,15 +39,12 @@ const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
 
   return (
     <div className='mt-20 flex w-full h-[calc(100vh-5rem)]'>
-      <div
-        className='overflow-y-auto no-scrollbar w-full h-full pt-5'
-        ref={gameDaysDivRef}
-      >
+      <div className='overflow-y-auto w-full h-full pt-5' ref={gameDaysDivRef}>
         {gameDays.map((gameDay: GameDay, index: number) => {
           const { date, events } = gameDay;
           return (
             <div
-              className='relative mb- flex flex-col items-start justify-center space-y-2 w-full text-secondary p-3'
+              className='relative flex flex-col items-start justify-center space-y-2 w-full text-secondary p-3'
               key={date}
               ref={
                 index === gameDaysWithCompletedMatchesCount - 1
@@ -83,9 +69,38 @@ const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
                   return (
                     <CompletedMatch
                       event={event}
-                      key={event.match.id}
                       startTime={eventStartTime}
-                      windowWidth={windowWidth}
+                      teams={{
+                        firstTeam: event.match.teams[0],
+                        secondTeam: event.match.teams[1],
+                      }}
+                      key={event.match.id}
+                    />
+                  );
+                } else if (event.state === 'unstarted') {
+                  return (
+                    <UnstartedEvent
+                      event={event}
+                      startTime={eventStartTime}
+                      teams={{
+                        firstTeam: event.match.teams[0],
+                        secondTeam: event.match.teams[1],
+                      }}
+                      key={event.match.id}
+                    />
+                  );
+                } else if (
+                  event.state === 'inProgress' &&
+                  event.type === 'match'
+                ) {
+                  return (
+                    <LiveEvent
+                      event={event}
+                      teams={{
+                        firstTeam: event.match.teams[0],
+                        secondTeam: event.match.teams[1],
+                      }}
+                      key={event.match.id}
                     />
                   );
                 }
