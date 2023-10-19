@@ -20,6 +20,7 @@ export default authMiddleware({
     '/api/webhooks/user',
     '/api/schedule/upcoming-events',
     '/api/schedule/full-schedule',
+    '/api/standings',
   ],
   // apiRoutes: ['/api', '/api/webhooks/user'],
 });
