@@ -1,6 +1,7 @@
+import { NextResponse } from 'next/server';
+
 import { requestParams } from '@/utils/constants/requestParams';
 import { Event } from '@/utils/constants/types';
-import { NextResponse } from 'next/server';
 
 export async function GET() {
   const upcomingEvents: Promise<Event[]> = await fetch(
