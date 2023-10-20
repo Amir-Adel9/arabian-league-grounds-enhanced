@@ -18,35 +18,35 @@ const UpcomingMatchCard = ({ event }: { event: Event }) => {
         objectPosition='center'
       />
       <div className='grid grid-cols-3 mb-4 z-20'>
-        <div className='flex flex-col items-center flex-grow'>
+        <div className='flex flex-col items-center flex-grow justify-between'>
           <Image
             src={match.teams[0].image}
-            alt={match.teams[0].name}
+            alt={match.teams[0].code}
             className={`${
-              match.teams[0].name === 'TBD' ? 'opacity-50 invert' : ''
+              match.teams[0].code === 'TBD' ? 'opacity-50 invert' : ''
             }`}
             width={100}
             height={100}
             draggable={false}
           />
           <h3 className='text-xl font-bold mt-2 text-center'>
-            {match.teams[0].name}
+            {match.teams[0].code}
           </h3>
         </div>
         <h3 className='text-xl font-bold text-center self-center'>VS</h3>
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center flex-grow justify-between'>
           <Image
             src={match.teams[1].image}
-            alt={match.teams[1].name}
+            alt={match.teams[1].code}
             className={`${
-              match.teams[1].name === 'TBD' ? 'opacity-50 invert' : ''
+              match.teams[1].code === 'TBD' ? 'opacity-50 invert' : ''
             }`}
             width={100}
             height={100}
             draggable={false}
           />
           <h3 className='text-xl font-bold mt-2 text-center'>
-            {match.teams[1].name}
+            {match.teams[1].code}
           </h3>
         </div>
         <UpcomingMatchCardDate matchDate={event.startTime} />
