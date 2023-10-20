@@ -9,7 +9,10 @@ async function SchedulePage() {
       process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
         ? 'https://arabian-league-grounds-enhanced.vercel.app/'
         : 'http://localhost:3002/'
-    }api/schedule/full-schedule`
+    }api/schedule/full-schedule`,
+    {
+      cache: 'no-store',
+    }
   ).then((res) => res.json())) as Event[];
 
   const gameDays = getGameDays(fullSchedule);
