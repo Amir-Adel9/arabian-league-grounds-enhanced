@@ -2,7 +2,10 @@ import { requestParams } from '@/utils/constants/requestParams';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = 'edge';
+export const runtime =
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
+
+// export const cache = 'no-store';
 
 export async function GET(_request: NextRequest) {
   const standings = await fetch(
