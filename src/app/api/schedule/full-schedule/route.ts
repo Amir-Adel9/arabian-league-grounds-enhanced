@@ -16,21 +16,21 @@ export async function GET(_request: NextRequest) {
       return matches.data.schedule.events;
     });
 
-  // revalidatePath(_request.url);
-  // revalidatePath(
-  //   `${
-  //     process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
-  //       ? 'https://arabian-league-grounds-enhanced.vercel.app/'
-  //       : 'http://localhost:3002/'
-  //   }api/schedule/full-schedule`
-  // );
-  // revalidatePath(
-  //   `${
-  //     process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
-  //       ? 'https://arabian-league-grounds-enhanced.vercel.app/'
-  //       : 'http://localhost:3002/'
-  //   }schedule`
-  // );
+  revalidatePath(_request.url);
+  revalidatePath(
+    `${
+      process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
+        ? 'https://arabian-league-grounds-enhanced.vercel.app/'
+        : 'http://localhost:3002/'
+    }api/schedule/full-schedule`
+  );
+  revalidatePath(
+    `${
+      process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
+        ? 'https://arabian-league-grounds-enhanced.vercel.app/'
+        : 'http://localhost:3002/'
+    }schedule`
+  );
 
   return NextResponse.json(fullSchedule);
 }
