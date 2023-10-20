@@ -2,9 +2,8 @@ import { Event } from '@/utils/constants/types';
 import { Suspense } from 'react';
 import UpcomingMatchCard from './UpcomingMatchCard';
 
-export const runtime = `${
-  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'nodejs' : 'edge'
-}`;
+export const runtime =
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
 
 const UpcomingMatchesData = async () => {
   const upcomingEvents = (await fetch(

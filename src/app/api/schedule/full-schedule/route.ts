@@ -3,9 +3,8 @@ import { Event } from '@/utils/constants/types';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = `${
-  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'nodejs' : 'edge'
-}`;
+export const runtime =
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
 
 export async function GET(_request: NextRequest) {
   const fullSchedule: Promise<Event[]> = await fetch(

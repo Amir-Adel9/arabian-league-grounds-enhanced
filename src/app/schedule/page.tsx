@@ -3,9 +3,8 @@ import { Event } from '@/utils/constants/types';
 import { getGameDays } from '@/utils/functions/getGameDays';
 import Schedule from '@/components/schedule/Schedule';
 
-export const runtime = `${
-  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'nodejs' : 'edge'
-}`;
+export const runtime =
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
 
 async function SchedulePage() {
   const fullSchedule = (await fetch(

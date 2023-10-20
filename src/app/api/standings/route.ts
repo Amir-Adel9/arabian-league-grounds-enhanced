@@ -2,9 +2,8 @@ import { requestParams } from '@/utils/constants/requestParams';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-export const runtime = `${
-  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'nodejs' : 'edge'
-}`;
+export const runtime =
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
 
 // export const cache = 'no-store';
 
