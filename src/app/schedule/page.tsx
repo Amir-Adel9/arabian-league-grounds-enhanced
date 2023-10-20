@@ -4,10 +4,8 @@ import { getGameDays } from '@/utils/functions/getGameDays';
 import Schedule from '@/components/schedule/Schedule';
 
 export const runtime = `${
-  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
-    ? 'https://arabian-league-grounds-enhanced.vercel.app/'
-    : 'http://localhost:3002/'
-}api/schedule/upcoming-events`;
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'nodejs' : 'edge'
+}`;
 
 async function SchedulePage() {
   const fullSchedule = (await fetch(
