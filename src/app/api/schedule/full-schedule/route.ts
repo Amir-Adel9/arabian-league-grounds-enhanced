@@ -31,5 +31,6 @@ export async function GET(_request: NextRequest) {
   //       : 'http://localhost:3002/'
   //   }schedule`
   // );
+
   return NextResponse.json(fullSchedule);
 }
