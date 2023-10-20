@@ -2,7 +2,11 @@ import { Event } from '@/utils/constants/types';
 import { Suspense } from 'react';
 import UpcomingMatchCard from './UpcomingMatchCard';
 
-export const runtime = 'edge';
+export const runtime = `${
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
+    ? 'https://arabian-league-grounds-enhanced.vercel.app/'
+    : 'http://localhost:3002/'
+}api/schedule/upcoming-events`;
 
 const UpcomingMatchesData = async () => {
   const upcomingEvents = (await fetch(

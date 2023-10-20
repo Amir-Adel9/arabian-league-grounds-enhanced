@@ -3,7 +3,11 @@ import { NextResponse } from 'next/server';
 import { requestParams } from '@/utils/constants/requestParams';
 import { Event } from '@/utils/constants/types';
 
-export const runtime = 'edge';
+export const runtime = `${
+  process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
+    ? 'https://arabian-league-grounds-enhanced.vercel.app/'
+    : 'http://localhost:3002/'
+}api/schedule/upcoming-events`;
 
 export async function GET() {
   const upcomingEvents: Promise<Event[]> = await fetch(
