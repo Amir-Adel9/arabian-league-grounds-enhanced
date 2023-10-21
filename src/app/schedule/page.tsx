@@ -6,7 +6,7 @@ import Schedule from '@/components/schedule/Schedule';
 export const runtime =
   process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
 
-async function SchedulePage() {
+export default async function SchedulePage() {
   const fullSchedule = (await fetch(
     `${
       process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
@@ -14,7 +14,7 @@ async function SchedulePage() {
         : 'http://localhost:3002/'
     }api/schedule/full-schedule`,
     {
-      cache: 'no-store',
+      next: { revalidate: 60 },
     }
   ).then((res) => res.json())) as Event[];
 
@@ -26,5 +26,3 @@ async function SchedulePage() {
     </main>
   );
 }
-
-export default SchedulePage;

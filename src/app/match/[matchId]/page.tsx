@@ -1,4 +1,4 @@
-async function Match({
+export default async function Match({
   params,
 }: {
   params: {
@@ -12,5 +12,3 @@ async function Match({
     </main>
   );
 }
-
-export default Match;

@@ -9,7 +9,7 @@ export const runtime =
 export async function GET(_request: NextRequest) {
   const fullSchedule: Promise<Event[]> = await fetch(
     `https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=${process.env.NEXT_PUBLIC_LEAGUE_ID}`,
-    { ...requestParams, cache: 'no-store' }
+    { ...requestParams, next: { revalidate: 60 } }
   )
     .then((res) => res.json())
     .then((matches) => {
