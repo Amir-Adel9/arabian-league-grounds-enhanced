@@ -14,7 +14,7 @@ export default async function SchedulePage() {
         : 'http://localhost:3002/'
     }api/schedule/full-schedule`,
     {
-      cache: 'no-store',
+      next: { revalidate: 60 },
     }
   ).then((res) => res.json())) as Event[];
 

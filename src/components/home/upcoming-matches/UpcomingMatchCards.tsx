@@ -13,7 +13,7 @@ const UpcomingMatchesCards = async () => {
         : 'http://localhost:3002/'
     }api/schedule/upcoming-events`,
     {
-      cache: 'no-store',
+      next: { revalidate: 60 },
     }
   ).then((res) => res.json())) as Event[];
 

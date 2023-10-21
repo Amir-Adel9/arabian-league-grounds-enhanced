@@ -10,7 +10,7 @@ export const runtime =
 export async function GET(_request: NextRequest) {
   const standings = await fetch(
     `https://esports-api.lolesports.com/persisted/gw/getStandings?hl=en-US&tournamentId=${process.env.NEXT_PUBLIC_TOURNAMENT_ID}`,
-    { ...requestParams, cache: 'no-store' }
+    { ...requestParams, next: { revalidate: 60 } }
   ).then((res) => res.json());
 
   // revalidatePath(_request.url);
