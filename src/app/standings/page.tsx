@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 
-function StandingsPage() {
+export default function StandingsPage() {
   useEffect(() => {
     const standings = fetch(
       `${
@@ -19,5 +19,3 @@ function StandingsPage() {
     </main>
   );
 }
-
-export default StandingsPage;

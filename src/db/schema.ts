@@ -26,6 +26,9 @@ export const prediction = mysqlTable('prediction', {
   matchId: text('matchId'),
   winningTeamId: text('winningTeamId'),
   losingTeamId: text('losingTeamId'),
+  bestOf: int('bestOf'),
+  winningTeamScore: int('winningTeamScore'),
+  losingTeamScore: int('losingTeamScore'),
   createdAt: timestamp('createdAt').defaultNow(),
   state: text('state').default('unfulfilled'),
 });
