@@ -42,8 +42,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  matchModal,
 }: {
   children: React.ReactNode;
+  matchModal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -64,6 +66,7 @@ export default function RootLayout({
           <Header />
           <Navbar />
           {children}
+          {matchModal}
           {/* <Footer /> */}
         </body>
       </html>
