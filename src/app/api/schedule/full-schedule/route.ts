@@ -1,5 +1,5 @@
 import { requestParams } from '@/utils/constants/requestParams';
-import { Event } from '@/utils/constants/types';
+import { Event } from '@/utils/types/types';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 

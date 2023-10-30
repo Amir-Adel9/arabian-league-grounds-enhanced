@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 
-import { Event, GameDay } from '@/utils/constants/types';
+import { Event, GameDay } from '@/utils/types/types';
 
 import dayjs from 'dayjs';
 import utcPlugin from 'dayjs/plugin/utc';

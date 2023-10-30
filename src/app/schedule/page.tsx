@@ -1,4 +1,4 @@
-import { Event } from '@/utils/constants/types';
+import { Event } from '@/utils/types/types';
 
 import { getGameDays } from '@/utils/functions/getGameDays';
 import Schedule from '@/components/schedule/Schedule';

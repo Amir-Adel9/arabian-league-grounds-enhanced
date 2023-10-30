@@ -21,6 +21,8 @@ export default authMiddleware({
     '/api/schedule/upcoming-events',
     '/api/schedule/full-schedule',
     '/api/standings',
+    '/api/predictions/retrieve',
+    '/api/predictions/retrieve/:matchId',
   ],
   // apiRoutes: ['/api', '/api/webhooks/user'],
 });

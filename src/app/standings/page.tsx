@@ -8,7 +8,7 @@ export default function StandingsPage() {
         process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT'
           ? 'https://arabian-league-grounds-enhanced.vercel.app/'
           : 'http://localhost:3002/'
-      }api/standings`
+      }api/predictions/retrieve?matchId=110853167109182166`
     )
       .then((res) => res.json())
       .then((res) => console.log(res));

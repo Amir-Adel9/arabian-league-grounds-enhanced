@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import Image from 'next/image';
 
-import { Event, MatchTeam } from '@/utils/constants/types';
+import { Event, Team } from '@/utils/types/types';
 import Link from 'next/link';
 
 const CompletedEvent = forwardRef(
@@ -17,8 +17,8 @@ const CompletedEvent = forwardRef(
       minute: string;
     };
     teams: {
-      firstTeam: MatchTeam;
-      secondTeam: MatchTeam;
+      firstTeam: Team;
+      secondTeam: Team;
     };
   }) => {
     return (

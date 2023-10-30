@@ -11,6 +11,7 @@ import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Footer from '@/components/layout/Footer';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -40,10 +41,12 @@ export const metadata: Metadata = {
     'Your all-in-one League of Legends Arabian League companion. Teams, Schedule, Standings, Leaderboards, Rewards, and more!',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  matchModal,
 }: {
   children: React.ReactNode;
+  matchModal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
@@ -64,7 +67,9 @@ export default function RootLayout({
           <Header />
           <Navbar />
           {children}
+          {matchModal}
           {/* <Footer /> */}
+          <Toaster position='top-center' reverseOrder={false} />
         </body>
       </html>
     </ClerkProvider>
