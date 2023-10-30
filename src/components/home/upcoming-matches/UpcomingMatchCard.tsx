@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { Event } from '@/utils/constants/types';
+import { Event } from '@/utils/types/types';
 import UpcomingMatchCardDate from './UpcomingMatchDate';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ const UpcomingMatchCard = ({ event }: { event: Event }) => {
         draggable={false}
         objectPosition='center'
       />
-      <Link href={`/match/${event.match.id}`} className='z-20'>
+      <Link href={`/match/${event.match.id}`} className='z-20' scroll={false}>
         <div className='grid grid-cols-3 mb-4 z-20'>
           <div className='flex flex-col items-center flex-grow justify-between'>
             <Image

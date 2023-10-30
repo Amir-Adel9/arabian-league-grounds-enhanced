@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import utcPlugin from 'dayjs/plugin/utc';
 import durationPlugin from 'dayjs/plugin/duration';
 import timezone from 'dayjs/plugin/timezone';
-import { Event, GameDay } from '../constants/types';
+import { Event, GameDay } from '../types/types';
 
 dayjs.extend(timezone);
 dayjs.extend(utcPlugin);

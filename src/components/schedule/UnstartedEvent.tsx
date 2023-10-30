@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Event, MatchTeam } from '@/utils/constants/types';
+import { Event, Team } from '@/utils/types/types';
 
 const UnstartedEvent = ({
   event,
@@ -14,8 +14,8 @@ const UnstartedEvent = ({
     minute: string;
   };
   teams: {
-    firstTeam: MatchTeam;
-    secondTeam: MatchTeam;
+    firstTeam: Team;
+    secondTeam: Team;
   };
 }) => {
   return (

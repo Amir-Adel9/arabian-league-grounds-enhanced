@@ -13,14 +13,14 @@ export type Event = {
 export type Match = {
   id: string;
   flags: string[];
-  teams: MatchTeam[];
+  teams: Team[];
   strategy: {
     type: string;
     count: number;
   };
 };
 
-export type MatchTeam = {
+export type Team = {
   name: string;
   code: string;
   image: string;

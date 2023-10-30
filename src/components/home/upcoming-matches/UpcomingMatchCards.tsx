@@ -1,6 +1,6 @@
 import UpcomingMatchCard from './UpcomingMatchCard';
 
-import { Event } from '@/utils/constants/types';
+import { Event } from '@/utils/types/types';
 
 export const runtime =
   process.env.NEXT_PUBLIC_ENVIRONMENT !== 'DEVELOPMENT' ? 'edge' : 'nodejs';
