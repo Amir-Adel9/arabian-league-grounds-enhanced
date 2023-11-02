@@ -1,6 +1,5 @@
 import Image from 'next/image';
 
-import CloseModalBtn from '@/components/modal/CloseModalBtn';
 import Modal from '@/components/modal/Modal';
 import { redirect } from 'next/navigation';
 import { requestParams } from '@/utils/constants/requestParams';
@@ -9,6 +8,7 @@ import EventPredictionModule from '@/components/match/EventPredictionModule';
 import { Prediction } from '@/db/schema';
 import { getPrediction } from '@/utils/functions/getPrediction';
 import PostEventModule from '@/components/match/PostEventModule';
+import { getPostEventStats } from '@/utils/functions/getPostEventStats';
 
 export default async function Match({
   params,
@@ -34,6 +34,7 @@ export default async function Match({
   const currentEventPrediction = await getPrediction({
     matchId: params.matchId,
   });
+  const postEventStats = await getPostEventStats({ event: currentEvent });
 
   return (
     <Modal>
@@ -42,15 +43,15 @@ export default async function Match({
           style={{ height: '75%' }}
           className='w-full z-[120] relative flex justify-center items-center flex-col lg:flex-row rounded'
         >
-          <CloseModalBtn />
           {currentEvent.state === 'completed' ? (
-            <>
+            <div className='w-full h-[75vh]'>
               {/*  @ts-ignore Async Server Component */}
               <PostEventModule
                 event={currentEvent}
                 currentPrediction={currentEventPrediction}
+                postEventStats={postEventStats}
               />
-            </>
+            </div>
           ) : (
             <>
               <div className='w-full relative lg:w-1/2 h-full bg-transparent duration-500 rounded-l-lg group flex flex-col items-center p-16 lg:p-32 text-accent-gold '>

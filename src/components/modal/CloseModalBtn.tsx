@@ -10,7 +10,7 @@ const CloseModalBtn = () => {
         router.refresh();
         router.back();
       }}
-      className='absolute top-0 right-0 z-[150] text-primary mr-3 cursor-pointer font-rubik text-xl'
+      className='absolute top-0 right-0 z-[150] text-secondary mr-3 cursor-pointer font-rubik text-xl'
     >
       X
     </div>

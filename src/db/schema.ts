@@ -19,7 +19,9 @@ export const user = mysqlTable('user', {
 
 export const prediction = mysqlTable('prediction', {
   id: serial('id').primaryKey(),
-  userClerkId: text('userClerkId').notNull(),
+  userClerkId: text('userClerkId')
+    .notNull()
+    .references(() => user.clerkId),
   username: varchar('username', {
     length: 100,
   }).notNull(),

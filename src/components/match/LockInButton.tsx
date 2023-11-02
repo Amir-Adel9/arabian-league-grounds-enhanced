@@ -41,7 +41,7 @@ const LockInButton = ({
               throw new Error('Match has already been played.');
             } else {
               setIsLockedIn(true);
-              fetch('/api/predictions/lock-in', {
+              fetch('/api/match/prediction/lock-in', {
                 method: 'POST',
                 headers: {
                   'Content-Type': 'application/json',

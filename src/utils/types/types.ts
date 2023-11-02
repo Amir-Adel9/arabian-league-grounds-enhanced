@@ -18,6 +18,73 @@ export type Match = {
     type: string;
     count: number;
   };
+  stats?: Stats;
+};
+
+export type Stats = {
+  esportsGameId: string;
+  esportsMatchId: string;
+  gameMetadata: GameMetadata;
+  lastFrame: GameFrame;
+};
+
+export type GameFrame = {
+  rfc460Timestamp: Date;
+  gameState: GameState;
+  blueTeam: Team;
+  redTeam: Team;
+};
+
+export type TeamStats = {
+  totalGold: number;
+  inhibitors: number;
+  towers: number;
+  barons: number;
+  totalKills: number;
+  dragons: Dragon[];
+  participants: Participant[];
+};
+
+export type Dragon =
+  | 'chemtech'
+  | 'ocean'
+  | 'mountain'
+  | 'infernal'
+  | 'elder'
+  | 'cloud'
+  | 'hextech';
+
+export type Participant = {
+  participantId: number;
+  totalGold: number;
+  level: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  creepScore: number;
+  currentHealth: number;
+  maxHealth: number;
+};
+
+export type GameState = 'in_game' | 'finished';
+
+export type GameMetadata = {
+  patchVersion: string;
+  blueTeamMetadata: TeamMetadata;
+  redTeamMetadata: TeamMetadata;
+};
+
+export type TeamMetadata = {
+  esportsTeamId: string;
+  participantMetadata: ParticipantMetadatum[];
+};
+
+export type ParticipantMetadatum = {
+  participantId: number;
+  esportsPlayerId: string;
+  summonerName: string;
+  championId: string;
+  role: string;
 };
 
 export type Team = {
@@ -25,7 +92,7 @@ export type Team = {
   code: string;
   image: string;
   result: {
-    outcome: string | null;
+    outcome: 'win' | 'loss' | null;
     gameWins: number;
   };
   record: {
