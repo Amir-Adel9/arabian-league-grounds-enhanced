@@ -53,8 +53,10 @@ const EventPredictionModule = ({
         <div className='w-full h-full relative flex flex-col lg:flex-row text-primary z-50 '>
           <div
             onClick={() => {
-              if (currentPrediction.status === 'lockedIn') return;
-              setSelectedTeam(event.match.teams[0]);
+              if (currentPrediction.status === 'lockedIn') {
+              } else {
+                setSelectedTeam(event.match.teams[0]);
+              }
             }}
             className={`w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center items-center ${
               selectedTeam === event.match.teams[0] ||
@@ -68,6 +70,9 @@ const EventPredictionModule = ({
               <Image
                 src={event.match.teams[0].image}
                 alt={event.match.teams[0].name}
+                className={
+                  event.match.teams[0].code === 'TBD' ? 'opacity-50 invert' : ''
+                }
                 fill
                 draggable={false}
               />
@@ -78,8 +83,11 @@ const EventPredictionModule = ({
           </div>
           <div
             onClick={() => {
-              if (currentPrediction.status === 'lockedIn') return;
-              setSelectedTeam(event.match.teams[1]);
+              if (currentPrediction.status === 'lockedIn') {
+                return;
+              } else {
+                setSelectedTeam(event.match.teams[1]);
+              }
             }}
             className={`w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center items-center ${
               selectedTeam === event.match.teams[1] ||
@@ -93,6 +101,9 @@ const EventPredictionModule = ({
               <Image
                 src={event.match.teams[1].image}
                 alt={event.match.teams[1].name}
+                className={
+                  event.match.teams[1].code === 'TBD' ? 'opacity-50 invert' : ''
+                }
                 fill
                 draggable={false}
               />
