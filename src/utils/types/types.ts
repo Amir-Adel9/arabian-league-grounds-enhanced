@@ -21,6 +21,16 @@ export type Match = {
   stats?: Stats;
 };
 
+export type Game = {
+  number: number;
+  id: string;
+  state: string;
+  teams: {
+    id: string;
+    side: 'blue' | 'red';
+  }[];
+};
+
 export type Stats = {
   esportsGameId: string;
   esportsMatchId: string;

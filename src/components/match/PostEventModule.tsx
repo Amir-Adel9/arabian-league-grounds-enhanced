@@ -4,7 +4,6 @@ import { Prediction } from '@/db/schema';
 import { Event, Stats } from '@/utils/types/types';
 
 import CloseModalBtn from '../modal/CloseModalBtn';
-import dayjs from 'dayjs';
 import PostEventModuleStats from './PostEventModuleStats';
 
 const PostEventModule = async ({

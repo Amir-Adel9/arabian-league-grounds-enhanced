@@ -1,5 +1,5 @@
 import { requestParams } from '../constants/requestParams';
-import { Event, GameFrame, Stats } from '../types/types';
+import { Event, Game, GameFrame, Stats } from '../types/types';
 
 import dayjs from 'dayjs';
 import utcPlugin from 'dayjs/plugin/utc';
@@ -69,10 +69,10 @@ export async function getPostEventStats({ event }: { event: Event }) {
     .then((res) => res.json())
     .then((res) => {
       return res.data.event.match.games
-        .filter((game: any) => {
+        .filter((game: Game) => {
           return game.state === 'completed';
         })
-        .map((game: any) => {
+        .map((game: Game) => {
           return game.id;
         });
     });

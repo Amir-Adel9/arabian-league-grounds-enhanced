@@ -1,4 +1,5 @@
 import { authMiddleware } from '@clerk/nextjs';
+import { fulfillPredictions } from './utils/functions/fulfillPredictions';
 
 export default authMiddleware({
   publicRoutes: [

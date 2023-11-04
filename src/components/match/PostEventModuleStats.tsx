@@ -13,7 +13,7 @@ const PostEventModuleStats = ({
     prediction: Prediction;
   };
 }) => {
-  console.log('postEventStats', postEventStats);
+  // console.log('postEventStats', postEventStats);
 
   return (
     <div className='relative grid-cols-2 grid-rows-2 flex flex-col flex-grow lg:flex-col bg-primary'>
