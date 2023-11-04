@@ -72,7 +72,7 @@ const UnstartedEvent = ({
                 teams.secondTeam.name === 'TBD'
               }
             >
-              {prediction ? `#${prediction.winningTeamId}_WIN` : 'Predict Now'}
+              {prediction ? `Locked in ` : 'Predict Now'}
             </button>
           </div>
           <div className='flex flex-row lg:flex-row w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:space-x-4'>

@@ -27,7 +27,7 @@ export async function fulfillPredictions() {
         .set({ predictionPoints: sql`${correctUser.predictions.length * 100}` })
         .where(eq(user.id, correctUser.id));
       console.log(
-        `Points updated for to ${correctUser.predictions.length * 100} user: `,
+        `Points updated to ${correctUser.predictions.length * 100} for user: `,
         correctUser.username
       );
     }
