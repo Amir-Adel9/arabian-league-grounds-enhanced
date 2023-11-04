@@ -12,6 +12,7 @@ import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from 'react-hot-toast';
+import { fulfillPredictions } from '@/utils/functions/fulfillPredictions';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -40,6 +41,8 @@ export const metadata: Metadata = {
   description:
     'Your all-in-one League of Legends Arabian League companion. Teams, Schedule, Standings, Leaderboards, Rewards, and more!',
 };
+
+fulfillPredictions();
 
 export default async function RootLayout({
   children,

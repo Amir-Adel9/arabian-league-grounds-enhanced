@@ -1,4 +1,4 @@
-import { InferSelectModel } from 'drizzle-orm';
+import { InferSelectModel, relations } from 'drizzle-orm';
 import {
   int,
   mysqlTable,
@@ -17,6 +17,10 @@ export const user = mysqlTable('user', {
   predictionPoints: int('predictionPoints').default(0),
 });
 
+export const userRelations = relations(user, ({ many }) => ({
+  predictions: many(prediction),
+}));
+
 export const prediction = mysqlTable('prediction', {
   id: serial('id').primaryKey(),
   userClerkId: text('userClerkId').notNull(),
@@ -33,4 +37,14 @@ export const prediction = mysqlTable('prediction', {
   createdAt: timestamp('createdAt').defaultNow(),
 });
 
+export const predictionRelations = relations(prediction, ({ one }) => ({
+  user: one(user, {
+    fields: [prediction.userClerkId],
+    references: [user.clerkId],
+  }),
+}));
+
+export type User = InferSelectModel<typeof user> & {
+  predictions: Prediction[];
+};
 export type Prediction = InferSelectModel<typeof prediction>;

@@ -1,4 +1,5 @@
 import { authMiddleware } from '@clerk/nextjs';
+import { fulfillPredictions } from './utils/functions/fulfillPredictions';
 
 export default authMiddleware({
   publicRoutes: [
@@ -21,8 +22,8 @@ export default authMiddleware({
     '/api/schedule/upcoming-events',
     '/api/schedule/full-schedule',
     '/api/standings',
-    '/api/predictions/retrieve',
-    '/api/predictions/retrieve/:matchId',
+    '/api/match/prediction/retrieve',
+    '/api/match/prediction/retrieve/:matchId',
   ],
   // apiRoutes: ['/api', '/api/webhooks/user'],
 });
