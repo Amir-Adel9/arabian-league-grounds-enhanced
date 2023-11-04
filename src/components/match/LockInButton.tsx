@@ -30,15 +30,23 @@ const LockInButton = ({
       <SignedIn>
         <button
           onClick={async () => {
-            if (status === 'lockedIn' || islockedIn)
+            if (status === 'lockedIn' || islockedIn) {
               return toast.error('You have already locked in!');
-            if (!selectedTeam) {
+            } else if (!selectedTeam) {
               toast.error('Please select a team!');
               throw new Error('No team selected!');
-            }
-            if (event.state === 'completed' || event.state === 'inProgress') {
+            } else if (
+              event.state === 'completed' ||
+              event.state === 'inProgress'
+            ) {
               toast.error('This match has already been played.');
               throw new Error('Match has already been played.');
+            } else if (
+              event.match.teams[0].code === 'TBD' ||
+              event.match.teams[1].code === 'TBD'
+            ) {
+              toast.error('Teams for this match are to be decided.');
+              throw new Error('Teams for match have not been decided.');
             } else {
               setIsLockedIn(true);
               fetch('/api/match/prediction/lock-in', {

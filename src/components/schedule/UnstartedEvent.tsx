@@ -2,11 +2,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import { Event, Team } from '@/utils/types/types';
+import { Prediction } from '@/db/schema';
 
 const UnstartedEvent = ({
   event,
   startTime,
   teams,
+  prediction,
 }: {
   event: Event;
   startTime: {
@@ -17,6 +19,7 @@ const UnstartedEvent = ({
     firstTeam: Team;
     secondTeam: Team;
   };
+  prediction?: Prediction;
 }) => {
   return (
     <div className='relative w-full h-[120px] bg-accent-blue text-primary px-6 py-4 font-kanit border-y-4 border-accent-gold group duration-300 hover:bg-[#0b2c38]'>
@@ -63,18 +66,13 @@ const UnstartedEvent = ({
           >
             <h3 className=' font-bold'>VS</h3>
             <button
-              className='bg-accent-gold text-white py-1 px-2 rounded font-inter font-light duration-300 hover:bg-[#a08b47]'
+              className='w-28 bg-accent-gold text-primary py-1 px-2 rounded font-kanit duration-300 hover:bg-[#a08b47]'
               hidden={
                 teams.firstTeam.name === 'TBD' ||
                 teams.secondTeam.name === 'TBD'
               }
             >
-              {/* <span>
-                {userPredictionsForMatch.length > 0
-                  ? `#${userPredictionsForMatch[0].winningTeamId}_WIN`
-                  : 'Predict Now'}
-              </span> */}
-              Predict Now
+              {prediction ? `#${prediction.winningTeamId}_WIN` : 'Predict Now'}
             </button>
           </div>
           <div className='flex flex-row lg:flex-row w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:space-x-4'>

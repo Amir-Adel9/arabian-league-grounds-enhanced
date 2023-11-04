@@ -10,11 +10,18 @@ import timezone from 'dayjs/plugin/timezone';
 import CompletedMatch from './CompletedEvent';
 import UnstartedEvent from './UnstartedEvent';
 import LiveEvent from './LiveEvent';
+import { Prediction } from '@/db/schema';
 
 dayjs.extend(utcPlugin);
 dayjs.extend(timezone);
 
-const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
+const Schedule = ({
+  gameDays,
+  predictions,
+}: {
+  gameDays: GameDay[];
+  predictions: Prediction[];
+}) => {
   const gameDaysDivRef = useRef<HTMLDivElement>(null);
   const lastGameDayWithCompletedMatchDivRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +93,10 @@ const Schedule = ({ gameDays }: { gameDays: GameDay[] }) => {
                         firstTeam: event.match.teams[0],
                         secondTeam: event.match.teams[1],
                       }}
+                      prediction={predictions.find(
+                        (prediction: Prediction) =>
+                          prediction.matchId === event.match.id
+                      )}
                       key={event.match.id}
                     />
                   );
