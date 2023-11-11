@@ -3,6 +3,13 @@ import Link from 'next/link';
 import { Goal, Info, Medal, Trophy, UserCircle } from 'lucide-react';
 import MobileNavbar from './MobileNavbar';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 const Navbar = () => {
   return (
     <>
@@ -16,6 +23,15 @@ const Navbar = () => {
               </span>
             </Link>
           </li>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>Hover</TooltipTrigger>
+              <TooltipContent>
+                <p>Add to library</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+
           <li className=' duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
             <Link href='/predictions' className='flex gap-2 items-center'>
               <Goal size={28} />
