@@ -27,12 +27,12 @@ const Hero = () => {
               width={180}
               height={180}
               draggable={false}
-              className='z-[10] duration-200 animate-bounce-y sm:w-[180px] sm:h-[180px] mb-4 hidden xs:inline-block lg:hidden'
+              className='z-[10] duration-[2000] animate-bounce-y sm:w-[180px] sm:h-[180px] mb-4 hidden xs:inline-block lg:hidden'
             />
             <h1 className='text-3xl md:text-4xl lg:text-6xl font-bold font-rubik text animate-translate-x'>
               <Balancer>
                 Welcome back to the
-                <span className='text-accent-gold font-kanit animate-puls'>
+                <span className='text-accent-gold font-kanit '>
                   {' '}
                   Arabian League
                 </span>{' '}
@@ -91,7 +91,7 @@ const Hero = () => {
           width={420}
           height={420}
           draggable={false}
-          className='z-[10] duration-200 animate-bounce-y xl:w-[420px] xl:h-[420px] lg:w-[300px] lg:h-[300px] md:w-[280px] md:h-[280px] hidden lg:inline-block'
+          className='z-[10] duration-[2000] animate-bounce-y xl:w-[420px] xl:h-[420px] lg:w-[300px] lg:h-[300px] md:w-[280px] md:h-[280px] hidden lg:inline-block'
         />
       </div>
     </>

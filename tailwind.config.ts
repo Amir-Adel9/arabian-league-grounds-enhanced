@@ -71,6 +71,7 @@ module.exports = {
       screens: {
         xs: '400px',
       },
+
       keyframes: {
         'bounce-y': {
           '0%, 100%': {
