@@ -18,7 +18,7 @@ const UnfulfilledPrediction = ({
   };
 }) => {
   return (
-    <div className='w-full bg-accent-blue border-accent-gold border-y cursor-pointer font-rubik p-4 duration-200 hover:bg-[#0b2c38]'>
+    <div className='relative w-full bg-accent-blue text-primary px-6 py-4 font-kanit border-y border-accent-gold group duration-300 hover:bg-[#0b2c38]'>
       <Link
         href={`/match/${event.match.id}`}
         className='relative w-full h-full flex items-center justify-between'
@@ -67,46 +67,6 @@ const UnfulfilledPrediction = ({
             </h3>
           </div>
         </div>
-        {/* <div className='flex flex-col gap-1 flex-grow items-center justify-center '>
-          <div className='relative w-10 h-10 md:w-20 md:h-20 '>
-            <Image
-              src={event.match.teams[0].image}
-              alt={event.match.teams[0].code}
-              fill={true}
-            />
-          </div>
-          <h3 className='hidden lg:hidden text-end'>
-            {event.match.teams[0].name}
-          </h3>
-          <h3 className='inline lg:hidden font-semibold lg:font-normal'>
-            {event.match.teams[0].code}
-          </h3>
-        </div>
-        <div>
-          <p className='text-center font-bold text-xl p-5'>
-            {prediction.winningTeamId === event.match.teams[0].code
-              ? `#${event.match.teams[0].code}_WIN?`
-              : prediction.winningTeamId === event.match.teams[1].code
-              ? `#${event.match.teams[1].code}_WIN?`
-              : 'No winner yet'}
-          </p>
-          <span className='text-center '>{startTime.date}</span>
-        </div>
-        <div className='flex flex-col flex-grow items-center justify-center '>
-          <div className='relative w-10 h-10 md:w-20 md:h-20 '>
-            <Image
-              src={event.match.teams[1].image}
-              alt={event.match.teams[1].code}
-              fill={true}
-            />
-          </div>
-          <h3 className='hidden lg:hidden text-end'>
-            {event.match.teams[1].name}
-          </h3>
-          <h3 className='inline lg:hidden font-semibold lg:font-normal'>
-            {event.match.teams[1].code}
-          </h3>
-        </div> */}
       </Link>
     </div>
   );

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { currentUser } from '@clerk/nextjs';
 import { db } from '@/db';
 import { prediction } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import Predictions from '@/components/predictions/Predictions';
 import { requestParams } from '@/utils/constants/requestParams';
 
@@ -29,7 +29,8 @@ export default async function PredictionsPage() {
     const userPredictions = await db
       .select()
       .from(prediction)
-      .where(eq(prediction.userClerkId, loggedInUser.id));
+      .where(eq(prediction.userClerkId, loggedInUser.id))
+      .orderBy(desc(prediction.createdAt));
     const allEvents = await fetch(
       `https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=${process.env.NEXT_PUBLIC_LEAGUE_ID}`,
       requestParams
