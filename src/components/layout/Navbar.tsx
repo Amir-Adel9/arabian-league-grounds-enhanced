@@ -6,7 +6,7 @@ import MobileNavbar from './MobileNavbar';
 const Navbar = () => {
   return (
     <>
-      <nav className='hidden lg:flex fixed w-20 h-screen bg-secondary text-primary font-inter  flex-col p-2 z-[500] group hover:w-72 duration-300 hover:border-r'>
+      <nav className='hidden lg:flex fixed w-20 h-screen bg-secondary text-primary font-inter flex-col p-2 z-[500] group duration-300'>
         <ul className='flex flex-col items-start relative top-1/3 gap-14'>
           <li className='duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
             <Link href='/fantasy' className='flex gap-2 items-center'>
@@ -16,7 +16,6 @@ const Navbar = () => {
               </span>
             </Link>
           </li>
-
           <li className=' duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
             <Link href='/predictions' className='flex gap-2 items-center'>
               <Goal size={28} />
