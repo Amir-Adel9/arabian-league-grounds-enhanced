@@ -8,7 +8,7 @@ const Header = async () => {
 
   return (
     <header
-      className='h-20 fixed w-full bg-secondary text-primary font-inter flex items-center justify-between z-[501] py-2 px-4 '
+      className='h-20 fixed w-full bg-background text-primary font-inter flex items-center justify-between z-[501] py-2 px-4 '
       id='header'
     >
       <nav className='flex h-full gap-6 items-center'>

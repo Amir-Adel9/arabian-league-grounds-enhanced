@@ -6,7 +6,7 @@ import UpcomingMatchesCards from './UpcomingMatchCards';
 
 const UpcomingMatchesData = async () => {
   return (
-    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 w-full p-10 bg-secondary rounded-xl'>
+    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 w-full p-10 bg-card rounded-xl'>
       <Suspense
         fallback={
           <div className='text-2xl text-accent-gold relative w-full flex flex-col gap-5 justify-center items-center col-span-4'>

@@ -22,7 +22,7 @@ const CompletedEvent = forwardRef(
     };
   }) => {
     return (
-      <div className='relative w-full h-[120px] bg-accent-blue text-primary px-6 py-4 font-kanit border-y-4 border-accent-gold group duration-300 hover:bg-[#0b2c38]'>
+      <div className='relative w-full h-[120px] bg-card text-primary px-6 py-4 font-kanit border-y border-border group duration-300 hover:bg-[#0b2c38]'>
         <Link
           href={`/match/${event.match.id}`}
           className='w-full flex items-center justify-between'
@@ -49,11 +49,11 @@ const CompletedEvent = forwardRef(
               />
               <div className='flex flex-col lg:items-end flex-grow lg:flex-grow-0'>
                 <div className='flex items-center justify-between lg:justify-normal'>
-                  <h3 className='hidden lg:inline text-end'>
+                  {/* <h3 className='hidden lg:inline text-end'>
                     {teams.firstTeam.name}
-                  </h3>
+                  </h3> */}
                   <h3
-                    className={`inline lg:hidden font-semibold lg:font-normal ${
+                    className={`inline lg:hidde font-semibold lg:font-normal ${
                       teams.firstTeam.result.outcome === 'win'
                         ? 'lg:text-accent-gold '
                         : ''

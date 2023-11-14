@@ -53,7 +53,7 @@ export default async function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang='en' className='bg-primary'>
+      <html lang='en' className='bg-background'>
         <head>
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' />

@@ -13,23 +13,23 @@ export default function Home() {
       </section>
       <section
         id='features'
-        className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen bg-primary relative flex flex-col justify-center items-center pt-24'
+        className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex flex-col justify-center items-center pt-24'
       >
         <Features />
       </section>
-      <section className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen bg-primary relative flex flex-col justify-center items-center pt-24'>
+      <section className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex flex-col justify-center items-center pt-24'>
         <UpToDate />
       </section>
       <section
         id='upcoming-matches'
-        className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen bg-primary relative flex flex-col justify-center items-center pt-24'
+        className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex flex-col justify-center items-center pt-24'
       >
         <UpcomingMatches>
           {/*  @ts-ignore Async Server Component */}
           <UpcomingMatchesData />
         </UpcomingMatches>
       </section>
-      <section className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen bg-primary relative flex flex-col justify-center items-center pt-24'>
+      <section className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex flex-col justify-center items-center pt-24'>
         <Talents />
       </section>
     </main>

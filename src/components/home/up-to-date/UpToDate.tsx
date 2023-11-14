@@ -14,20 +14,20 @@ const UpToDate = () => {
         whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit'
+        className='font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit'
       >
         <Balancer>Stay up to date!</Balancer>
       </motion.h2>
-      <div className='my-auto flex flex-col gap-10 p-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
+      <div className='my-auto text-muted-foreground flex flex-col gap-10 p-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
         <Link href='/schedule' className='lg:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 140, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
             viewport={{ once: true }}
-            className='relative flex flex-col items-center justify-around bg-secondary w-full h-full text-center cursor-pointer rounded-2xl group hover:scale-105 duration-300 hover:text-secondary hover:rounded-sm p-3 shadow-2xl'
+            className='relative flex flex-col items-center justify-around bg-card border border-border w-full h-full text-center cursor-pointer rounded-2xl group hover:scale-105 duration-300 hover:text-secondary hover:rounded-sm p-3'
           >
             <div className='absolute bg-accent-gold w-full rounded-2xl scale-[1.01] cursor-pointer top-0 h-0 duration-300 group-hover:h-full group-hover:rounded-none z-10'></div>
-            <div className='flex flex-col items-center justify-center gap-5 z-20'>
+            <div className='flex flex-col items-center justify-center gap-5 z-20 group-hover:text-secondary'>
               <CalendarClock size={80} />
 
               <h3 className='text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold font-rubik '>
@@ -42,7 +42,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               View Schedule
             </span>
           </motion.div>
@@ -52,10 +52,10 @@ const UpToDate = () => {
             initial={{ translateY: 240, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
             viewport={{ once: true }}
-            className='relative flex flex-col items-center justify-around bg-secondary text-center  w-full h-full cursor-pointer rounded-2xl group hover:scale-105 duration-300 hover:text-secondary hover:rounded-sm p-3 shadow-2xl'
+            className='relative flex flex-col items-center justify-around bg-card border border-border text-center  w-full h-full cursor-pointer rounded-2xl group hover:scale-105 duration-300 hover:text-secondary hover:rounded-sm p-3'
           >
             <div className='absolute bg-accent-gold w-full rounded-2xl scale-[1.01] cursor-pointer top-0 h-0 duration-300 group-hover:h-full group-hover:rounded-none z-10'></div>{' '}
-            <div className='flex flex-col items-center justify-center gap-5 z-20'>
+            <div className='flex flex-col items-center justify-center gap-5 z-20 group-hover:text-secondary'>
               <ListOrdered size={80} />
               <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-rubik '>
                 Standings
@@ -69,7 +69,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               View Standings
             </span>
           </motion.div>
@@ -79,10 +79,10 @@ const UpToDate = () => {
             initial={{ translateY: 340, opacity: 0 }}
             whileInView={{ opacity: 1, translateY: 0 }}
             viewport={{ once: true }}
-            className='relative flex flex-col items-center justify-around bg-secondary text-center  w-full h-full cursor-pointer rounded-2xl group hover:scale-105 duration-300 hover:text-secondary hover:rounded-sm p-3 shadow-2xl'
+            className='relative flex flex-col items-center justify-around bg-card border border-border text-center  w-full h-full cursor-pointer rounded-2xl group hover:scale-105 duration-300 hover:text-secondary hover:rounded-sm p-3'
           >
             <div className='absolute bg-accent-gold w-full rounded-2xl scale-[1.01] cursor-pointer top-0 h-0 duration-300 group-hover:h-full group-hover:rounded-none z-10'></div>{' '}
-            <div className='flex flex-col items-center justify-center gap-5 z-20'>
+            <div className='flex flex-col items-center justify-center gap-5 z-20 group-hover:text-secondary'>
               <FileLineChart size={80} />
               <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold font-rubik  '>
                 Stats
@@ -97,7 +97,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-primary text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20 font-rubik font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
               View Stats
             </span>
           </motion.div>

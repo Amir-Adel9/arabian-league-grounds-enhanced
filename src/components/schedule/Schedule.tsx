@@ -11,6 +11,7 @@ import CompletedMatch from './CompletedEvent';
 import UnstartedEvent from './UnstartedEvent';
 import LiveEvent from './LiveEvent';
 import { Prediction } from '@/db/schema';
+import UpcomingMatchCard from '../home/upcoming-matches/UpcomingMatchCard';
 
 dayjs.extend(utcPlugin);
 dayjs.extend(timezone);
@@ -18,9 +19,11 @@ dayjs.extend(timezone);
 const Schedule = ({
   gameDays,
   predictions,
+  events,
 }: {
   gameDays: GameDay[];
   predictions: Prediction[];
+  events: Event[];
 }) => {
   const gameDaysDivRef = useRef<HTMLDivElement>(null);
   const lastGameDayWithCompletedMatchDivRef = useRef<HTMLDivElement>(null);
@@ -45,13 +48,29 @@ const Schedule = ({
   ).length;
 
   return (
-    <div className='mt-20 flex w-full h-[calc(100vh-5rem)]'>
+    <div className='mt-20 flex flex-col overflow-y-auto overflow-x-hidden w-full h-[calc(100vh-5rem)]'>
+      <div className='bg-card rounded-lg w-full  flex m-5 flex-grow overflow-x-auto no-scrollbar relative'>
+        <div className='flex justify-start items-center w- h-full  '>
+          {events
+            .filter((event: Event) => event.state === 'completed')
+            .map((event: Event) => {
+              return (
+                <div
+                  className='flex-shrink-0 bg-accent text-content font-medium rounded cursor-pointer'
+                  key={event.match.id}
+                >
+                  <UpcomingMatchCard event={event} />
+                </div>
+              );
+            })}
+        </div>
+      </div>
       <div className='overflow-y-auto w-full h-full pt-5' ref={gameDaysDivRef}>
         {gameDays.map((gameDay: GameDay, index: number) => {
           const { date, events } = gameDay;
           return (
             <div
-              className='relative flex flex-col items-start justify-center space-y-2 w-full text-secondary p-3'
+              className='relative flex flex-col items-start  justify-center space-y-2 w-full text-secondary py-3 px-5'
               key={date}
               ref={
                 index === gameDaysWithCompletedMatchesCount - 1
@@ -59,7 +78,7 @@ const Schedule = ({
                   : null
               }
             >
-              <h2 className='text-xl sm:text-2xl mb-3 font-bold text-center'>
+              <h2 className=' mb-3 font-inter text-center text-white'>
                 {date}
               </h2>
               {events.map((event: Event) => {

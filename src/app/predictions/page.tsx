@@ -20,7 +20,7 @@ export default async function PredictionsPage() {
           height={260}
           draggable={false}
         />
-        <p className='text-2xl font-bold text-accent-gold'>
+        <p className='text-2xl font-bold text-accent-gold font-inter'>
           You must be signed in to view your predictions.
         </p>
       </main>
@@ -42,7 +42,7 @@ export default async function PredictionsPage() {
         });
       });
     return (
-      <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-center items-center bg-primary'>
+      <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-center items-center'>
         <Predictions predictions={userPredictions} events={allEvents} />
       </main>
     );

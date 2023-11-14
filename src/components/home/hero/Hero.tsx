@@ -8,7 +8,7 @@ import HeroButtons from './HeroButtons';
 const Hero = () => {
   return (
     <>
-      <div className='absolute w-full h-full bg-secondary opacity-95 z-[-10]'></div>
+      <div className='absolute w-full h-full bg-background opacity-95 z-[-10]'></div>
       <Image
         src='/images/background.jpg'
         alt='Background Image'
@@ -53,7 +53,7 @@ const Hero = () => {
                 much more enjoyable.
               </Balancer>
             </p>
-            <div className='hidden lg:flex lg:gap-2 animate-opacity'>
+            <div className='hidden lg:flex lg:gap-2 animate-opacity '>
               <span className='underline cursor-pointer hover:text-accent-gold hover:-translate-y-1 duration-300 '>
                 <Link href='/schedule'>Schedule</Link>
               </span>
