@@ -15,7 +15,7 @@ const Navbar = () => {
   return (
     <>
       <nav className='hidden lg:flex fixed w-20 h-screen bg-background text-primary font-inter flex-col p-2 z-[500]'>
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
           <ul className='flex flex-col items-start relative top-1/3 gap-14'>
             <Tooltip>
               <TooltipTrigger>

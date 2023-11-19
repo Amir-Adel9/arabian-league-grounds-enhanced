@@ -22,6 +22,8 @@ module.exports = {
         gluten: 'Gluten',
         marker: 'var(--font-permanent-marker)',
         kanit: 'var(--font-kanit)',
+        geist: ['var(--font-geist-sans)'],
+        'geist-mono': ['var(--font-geist-mono)'],
       },
       colors: {
         border: 'var(--border)',

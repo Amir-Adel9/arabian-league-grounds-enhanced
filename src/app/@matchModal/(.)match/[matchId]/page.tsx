@@ -43,47 +43,14 @@ export default async function Match({
           style={{ height: '75%' }}
           className='w-full z-[120] relative flex justify-center items-center flex-col lg:flex-row rounded'
         >
-          {currentEvent.state === 'completed' ? (
-            <div className='w-full h-[75vh]'>
-              {/*  @ts-ignore Async Server Component */}
-              <PostEventModule
-                event={currentEvent}
-                currentPrediction={currentEventPrediction}
-                postEventStats={postEventStats}
-              />
-            </div>
-          ) : (
-            <>
-              <div className='w-full relative lg:w-1/2 h-full bg-transparent duration-500 rounded-l-lg group flex flex-col items-center p-16 lg:p-32 text-accent-gold '>
-                <div className='absolute w-full h-full bg-accent-blue  opacity-90 rounded-l-lg group-hover:bg-accent-blue group-hover:opacity-90 duration-500 z-[-5] top-0 '></div>
-                <div className='absolute w-full h-full z-[-10] top-0 rounded-l-lg'>
-                  <Image
-                    src='/images/rivenbg.jpg'
-                    alt=''
-                    fill={true}
-                    draggable={false}
-                    className='rounded-l-lg'
-                  />
-                </div>
-              </div>
-              <div className='w-full relative lg:w-1/2 h-full bg-transparent duration-500 rounded-r-lg group flex flex-col items-center p-16 lg:p-32 text-accent-blue'>
-                <div className='absolute w-full h-full bg-accent-gold  opacity-90 rounded-r-lg group-hover:bg-accent-gold group-hover:opacity-90 duration-500 z-[-5] top-0'></div>
-                <div className='absolute w-full h-full z-[-10] top-0 rounded-r-lg'>
-                  <Image
-                    src='/images/yasuobg.jpg'
-                    alt=''
-                    fill={true}
-                    draggable={false}
-                    className='rounded-r-lg '
-                  />
-                </div>
-              </div>
-              <EventPredictionModule
-                event={currentEvent}
-                currentPrediction={currentEventPrediction}
-              />
-            </>
-          )}
+          <div className='w-full h-[75vh]'>
+            {/*  @ts-ignore Async Server Component */}
+            <PostEventModule
+              event={currentEvent}
+              currentPrediction={currentEventPrediction}
+              postEventStats={postEventStats}
+            />
+          </div>
         </div>
       </main>
     </Modal>

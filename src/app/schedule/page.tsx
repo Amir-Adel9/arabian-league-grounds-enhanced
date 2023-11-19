@@ -32,7 +32,7 @@ export default async function SchedulePage() {
     .where(eq(prediction.userClerkId, loggedInUser?.id as string));
 
   return (
-    <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-start items-center'>
+    <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-start items-center '>
       <Schedule
         gameDays={gameDays}
         predictions={userPredicitons}

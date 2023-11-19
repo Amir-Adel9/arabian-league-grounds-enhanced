@@ -7,6 +7,8 @@ import {
   Permanent_Marker,
   Kanit,
 } from 'next/font/google';
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
@@ -37,7 +39,7 @@ const kanit = Kanit({
 });
 
 export const metadata: Metadata = {
-  title: 'Arabian League Grounds',
+  title: 'ALGrounds',
   description:
     'Your all-in-one League of Legends Arabian League companion. Teams, Schedule, Standings, Leaderboards, Rewards, and more!',
 };
@@ -64,7 +66,7 @@ export default async function RootLayout({
           />
         </head>
         <body
-          className={`${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable} ${kanit.variable}`}
+          className={`${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable} ${kanit.variable}`}
         >
           {/*  @ts-ignore Async Server Component */}
           <Header />

@@ -12,6 +12,7 @@ import UnstartedEvent from './UnstartedEvent';
 import LiveEvent from './LiveEvent';
 import { Prediction } from '@/db/schema';
 import UpcomingMatchCard from '../home/upcoming-matches/UpcomingMatchCard';
+import { useUser } from '@clerk/nextjs';
 
 dayjs.extend(utcPlugin);
 dayjs.extend(timezone);
@@ -41,6 +42,7 @@ const Schedule = ({
 
     scrollToLastCompletedMatch();
   }, []);
+  const { user: loggedInUser } = useUser();
 
   const gameDaysWithCompletedMatchesCount = gameDays.filter(
     (gameDay: GameDay) =>
@@ -48,11 +50,14 @@ const Schedule = ({
   ).length;
 
   return (
-    <div className='mt-20 flex flex-col overflow-y-auto overflow-x-hidden w-full h-[calc(100vh-5rem)]'>
-      <div className='bg-card rounded-lg w-full  flex m-5 flex-grow overflow-x-auto no-scrollbar relative'>
+    <div
+      ref={gameDaysDivRef}
+      className='mt-20 mb-16 lg:mb-0 flex flex-col overflow-y-auto overflow-x-hidden w-full h-[calc(100vh-10rem)] lg:h-[calc(100vh-5rem)]'
+    >
+      {/* <div className='bg-car rounded-lg w-full p-5  flex m-5 flex-grow overflow-x-auto no-scrollba relative'>
         <div className='flex justify-start items-center w- h-full  '>
           {events
-            .filter((event: Event) => event.state === 'completed')
+            .filter((event: Event) => event.state === 'unstarted')
             .map((event: Event) => {
               return (
                 <div
@@ -64,13 +69,13 @@ const Schedule = ({
               );
             })}
         </div>
-      </div>
-      <div className='overflow-y-auto w-full h-full pt-5' ref={gameDaysDivRef}>
+      </div> */}
+      <div className=' w-[90%] lg:w-[75%] h-[100%] pt-5 mx-auto'>
         {gameDays.map((gameDay: GameDay, index: number) => {
           const { date, events } = gameDay;
           return (
             <div
-              className='relative flex flex-col items-start  justify-center space-y-2 w-full text-secondary py-3 px-5'
+              className=' relative flex flex-col items-start py-3 px-5 border-x border-border justify-center space-y-5 w-full text-secondary'
               key={date}
               ref={
                 index === gameDaysWithCompletedMatchesCount - 1
@@ -78,7 +83,7 @@ const Schedule = ({
                   : null
               }
             >
-              <h2 className=' mb-3 font-inter text-center text-white'>
+              <h2 className=' mb-1 font-inter text-center text-white'>
                 {date}
               </h2>
               {events.map((event: Event) => {
@@ -112,10 +117,10 @@ const Schedule = ({
                         firstTeam: event.match.teams[0],
                         secondTeam: event.match.teams[1],
                       }}
-                      prediction={predictions.find(
-                        (prediction: Prediction) =>
-                          prediction.matchId === event.match.id
-                      )}
+                      user={{
+                        id: loggedInUser?.id,
+                        name: loggedInUser?.username,
+                      }}
                       key={event.match.id}
                     />
                   );
