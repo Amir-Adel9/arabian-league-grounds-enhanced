@@ -1,30 +1,79 @@
-import type { Config } from 'tailwindcss';
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: ['class'],
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
   ],
   theme: {
-    extend: {
+    container: {
+      center: true,
+      padding: '2rem',
       screens: {
-        xs: '400px',
+        '2xl': '1400px',
       },
-      colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        'accent-blue': 'var(--color-accent-blue)',
-        'accent-gold': 'var(--color-accent-gold)',
-        text: 'var(--color-text)',
-      },
+    },
+    extend: {
       fontFamily: {
         rubik: ['var(--font-rubik)'],
         inter: ['var(--font-inter)'],
         gluten: 'Gluten',
         marker: 'var(--font-permanent-marker)',
         kanit: 'var(--font-kanit)',
+        geist: ['var(--font-geist-sans)'],
+        'geist-mono': ['var(--font-geist-mono)'],
       },
+      colors: {
+        border: 'var(--border)',
+        input: 'var(--input)',
+        ring: 'var(--ring)',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        'accent-blue': 'var(--color-accent-blue)',
+        'accent-gold': 'var(--color-accent-gold)',
+        text: 'var(--color-text)',
+        _primary: {
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)',
+        },
+        _secondary: {
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)',
+        },
+        destructive: {
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)',
+        },
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)',
+        },
+        popover: {
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)',
+        },
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)',
+        },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      screens: {
+        xs: '400px',
+      },
+
       keyframes: {
         'bounce-y': {
           '0%, 100%': {
@@ -66,8 +115,18 @@ const config: Config = {
             transform: 'translateY(0)',
           },
         },
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
       },
       animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
         'bounce-y': 'bounce-y 2s infinite ease-in-out',
         opacity: 'opacity 1s ease-in-out',
         'translate-x': 'translateX 1s ease-in-out',
@@ -76,6 +135,5 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 };
-export default config;

@@ -22,7 +22,7 @@ const CompletedEvent = forwardRef(
     };
   }) => {
     return (
-      <div className='relative w-full h-[120px] bg-accent-blue text-primary px-6 py-4 font-kanit border-y-4 border-accent-gold group duration-300 hover:bg-[#0b2c38]'>
+      <div className='relative flex items-center w-full h-[120px] bg-card text-primary px-6 py-4 font-geist rounded-xl group duration-300 hover:bg-accent-blue'>
         <Link
           href={`/match/${event.match.id}`}
           className='w-full flex items-center justify-between'
@@ -48,28 +48,34 @@ const CompletedEvent = forwardRef(
                 draggable={false}
               />
               <div className='flex flex-col lg:items-end flex-grow lg:flex-grow-0'>
-                <div className='flex items-center justify-between lg:justify-normal'>
-                  <h3 className='hidden lg:inline text-end'>
+                <div className='flex items-center gap-1 justify-between lg:justify-normal'>
+                  <h3
+                    className={`hidden lg:inline text-end ${
+                      teams.firstTeam.result.outcome === 'win'
+                        ? 'text-accent-gold '
+                        : ' group-hover:text-primary'
+                    }`}
+                  >
                     {teams.firstTeam.name}
                   </h3>
                   <h3
                     className={`inline lg:hidden font-semibold lg:font-normal ${
                       teams.firstTeam.result.outcome === 'win'
-                        ? 'lg:text-accent-gold '
-                        : ''
+                        ? 'text-primary '
+                        : ' group-hover:text-primary'
                     }`}
                   >
                     {teams.firstTeam.code}
                   </h3>
                   <span
-                    className={`inline lg:hidden font-bold ${
+                    className={`inline lg:hidden font-bold  ${
                       teams.firstTeam.result.outcome === 'win'
                         ? 'text-accent-gold'
-                        : ''
+                        : ' group-hover:text-primary'
                     }`}
                   >{`${teams.firstTeam.result.gameWins}`}</span>
                 </div>
-                <span className='  font-bold text-xs text-end hidden lg:inline'>
+                <span className='font-bold text-xs text-end hidden lg:inline '>
                   {teams.firstTeam.record.wins}W -{' '}
                   {teams.firstTeam.record.losses}L
                 </span>
@@ -110,12 +116,20 @@ const CompletedEvent = forwardRef(
                 draggable={false}
               />
               <div className='flex flex-col lg:items-start flex-grow lg:flex-grow-0 '>
-                <div className='flex items-center justify-between lg:justify-normal '>
-                  <h3 className='hidden lg:inline'>{teams.secondTeam.name}</h3>
+                <div className='flex items-center gap-1 justify-between lg:justify-normal '>
                   <h3
-                    className={`inline lg:hidden font-semibold lg:font-normal ${
+                    className={`hidden lg:inline  ${
                       teams.secondTeam.result.outcome === 'win'
-                        ? 'lg:text-accent-gold '
+                        ? 'text-accent-gold '
+                        : ' group-hover:text-primary'
+                    }`}
+                  >
+                    {teams.secondTeam.name}
+                  </h3>
+                  <h3
+                    className={`inline lg:hidden font-semibold group-hover:text-primary lg:font-normal ${
+                      teams.secondTeam.result.outcome === 'win'
+                        ? 'text-primary'
                         : ''
                     }`}
                   >
@@ -125,11 +139,11 @@ const CompletedEvent = forwardRef(
                     className={`inline lg:hidden font-bold ${
                       teams.secondTeam.result.outcome === 'win'
                         ? 'text-accent-gold'
-                        : ''
+                        : ' group-hover:text-primary'
                     }`}
                   >{`${teams.secondTeam.result.gameWins}`}</span>
                 </div>
-                <span className='font-bold text-xs text-end hidden lg:inline'>
+                <span className='font-bold text-xs text-end hidden  lg:inline'>
                   {teams.secondTeam.record.wins}W -{' '}
                   {teams.secondTeam.record.losses}L
                 </span>

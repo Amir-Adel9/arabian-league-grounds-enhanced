@@ -11,7 +11,7 @@ const UpcomingMatches = (props: { children?: ReactNode }) => {
         whileInView={{ translateX: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className='text-accent-gold font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit mb-7'
+        className='font-bold text-2xl md:text-4xl lg:text-5xl text-center font-kanit mb-7'
       >
         Upcoming Matches
       </motion.h2>

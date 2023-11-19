@@ -20,7 +20,7 @@ export default async function SchedulePage() {
         : 'http://localhost:3002/'
     }api/schedule/full-schedule`,
     {
-      next: { revalidate: 60 },
+      next: { revalidate: 0 },
     }
   ).then((res) => res.json())) as Event[];
 
@@ -32,8 +32,12 @@ export default async function SchedulePage() {
     .where(eq(prediction.userClerkId, loggedInUser?.id as string));
 
   return (
-    <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-start items-center bg-primary'>
-      <Schedule gameDays={gameDays} predictions={userPredicitons} />
+    <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-start items-center '>
+      <Schedule
+        gameDays={gameDays}
+        predictions={userPredicitons}
+        events={fullSchedule}
+      />
     </main>
   );
 }

@@ -18,15 +18,6 @@ async function fetchStatsWithRetries(gameId: string, startTime: string) {
       `https://feed.lolesports.com/livestats/v1/window/${gameId}?startingTime=${startTime}`,
       requestParams
     );
-    // console.log('status: ', res.status);
-    // console.log(
-    //   'gameId: ',
-    //   gameId,
-    //   ' startTime: ',
-    //   startTime,
-    //   ' status: ',
-    //   res.status
-    // );
     if (res.status !== 200 && retryCount < maxRetries) {
       retryCount++;
       const newStartTime = dayjs.utc(startTime).add(1, 'hour').toISOString();
