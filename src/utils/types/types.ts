@@ -34,6 +34,7 @@ export type Game = {
 export type Stats = {
   esportsGameId: string;
   esportsMatchId: string;
+  rosters: any;
   gameMetadata: GameMetadata;
   lastFrame: GameFrame;
 };
