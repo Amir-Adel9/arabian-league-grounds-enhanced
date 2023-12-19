@@ -1,8 +1,8 @@
-import { requestParams } from '../constants/requestParams';
-import { Event, Game, GameFrame, Stats } from '../types/types';
+import { requestParams } from "../constants/requestParams";
+import { Event, Game, GameFrame, Stats } from "../types/types";
 
-import dayjs from 'dayjs';
-import utcPlugin from 'dayjs/plugin/utc';
+import dayjs from "dayjs";
+import utcPlugin from "dayjs/plugin/utc";
 
 dayjs.extend(utcPlugin);
 
@@ -20,25 +20,49 @@ async function fetchStatsWithRetries(gameId: string, startTime: string) {
     );
     if (res.status !== 200 && retryCount < maxRetries) {
       retryCount++;
-      const newStartTime = dayjs.utc(startTime).add(1, 'hour').toISOString();
+      const newStartTime = dayjs.utc(startTime).add(1, "hour").toISOString();
       return fetchStatsInternal(gameId, newStartTime);
     } else {
       retryCount = 0;
       const data = await res.json();
-      console.log('data: ', data);
       const lastFrame: GameFrame = data.frames[data.frames.length - 1];
-      if (lastFrame.gameState !== 'finished') {
+      if (lastFrame.gameState !== "finished") {
         const newStartTime = dayjs
           .utc(startTime)
-          .add(30, 'minute')
+          .add(30, "minute")
           .toISOString();
         return fetchStatsInternal(gameId, newStartTime);
       } else {
-        console.log('lastFrame: ', data.frames[data.frames.length - 1]);
         return {
           esportsGameId: data.esportsGameId,
           esportsMatchId: data.esportsMatchId,
           gameMetadata: data.gameMetadata,
+          rosters: {
+            blueTeam: {
+              esportsTeamId: data.gameMetadata.blueTeamMetadata.esportsTeamId,
+              participants:
+                data.gameMetadata.blueTeamMetadata.participantMetadata.map(
+                  (participant: any) => ({
+                    esportsPlayerId: participant.esportsPlayerId,
+                    esportsTeamId:
+                      data.gameMetadata.blueTeamMetadata.esportsTeamId,
+                    summonerName: participant.summonerName,
+                  })
+                ),
+            },
+            redTeam: {
+              esportsTeamId: data.gameMetadata.redTeamMetadata.esportsTeamId,
+              participants:
+                data.gameMetadata.redTeamMetadata.participantMetadata.map(
+                  (participant: any) => ({
+                    esportsPlayerId: participant.esportsPlayerId,
+                    esportsTeamId:
+                      data.gameMetadata.redTeamMetadata.esportsTeamId,
+                    summonerName: participant.summonerName,
+                  })
+                ),
+            },
+          },
           lastFrame: data.frames[data.frames.length - 1],
         };
       }
@@ -49,8 +73,8 @@ async function fetchStatsWithRetries(gameId: string, startTime: string) {
 }
 
 export async function getPostEventStats({ event }: { event: Event }) {
-  if (event.state !== 'completed') {
-    return 'Event has not concluded yet';
+  if (event.state !== "completed") {
+    return "Event has not concluded yet";
   }
 
   const gameIds = await fetch(
@@ -61,7 +85,7 @@ export async function getPostEventStats({ event }: { event: Event }) {
     .then((res) => {
       return res.data.event.match.games
         .filter((game: Game) => {
-          return game.state === 'completed';
+          return game.state === "completed";
         })
         .map((game: Game) => {
           return game.id;

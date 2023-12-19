@@ -37,3 +37,6 @@ next-env.d.ts
 
 # ngrok
 ngrok.*
+
+# auth pages
+(auth)

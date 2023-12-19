@@ -1,0 +1,506 @@
+[
+  {
+    "id": 1,
+    "teamName": "Fox Gaming",
+    "slug": "fox-gaming",
+    "teamCode": "FOX",
+    "players": [
+      {
+        "id": 1,
+        "name": "Karlo Kovačić",
+        "nationality": "Croatia",
+        "flagUrl": "https://liquipedia.net/commons/images/c/c6/Hr_hd.png",
+        "summonerName": "Falleo",
+        "role": "top",
+        "teamName": "Fox Gaming",
+        "teamSlug": "fox-gaming",
+        "teamCode": "FOX"
+      },
+      {
+        "id": 2,
+        "name": "Meho Wissam",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Porcupine",
+        "role": "jungle",
+        "teamName": "Fox Gaming",
+        "teamSlug": "fox-gaming",
+        "teamCode": "FOX"
+      },
+      {
+        "id": 3,
+        "name": "Saif Alshahrani",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Yoichi",
+        "role": "mid",
+        "teamName": "Fox Gaming",
+        "teamSlug": "fox-gaming",
+        "teamCode": "FOX"
+      },
+      {
+        "id": 4,
+        "name": "Yevhen Zavalnyi",
+        "nationality": "Ukraine",
+        "flagUrl": "https://liquipedia.net/commons/images/b/bb/Ua_hd.png",
+        "summonerName": "Mytant",
+        "role": "bot",
+        "teamName": "Fox Gaming",
+        "teamSlug": "fox-gaming",
+        "teamCode": "FOX"
+      },
+      {
+        "id": 5,
+        "name": "Mehdi Ghalimi",
+        "nationality": "Morocco",
+        "flagUrl": "https://liquipedia.net/commons/images/8/81/Ma_hd.png",
+        "summonerName": "Nova",
+        "role": "support",
+        "teamName": "Fox Gaming",
+        "teamSlug": "fox-gaming",
+        "teamCode": "FOX"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "teamName": "Geekay Esports",
+    "slug": "geekay-esports",
+    "teamCode": "GK",
+    "players": [
+      {
+        "id": 1,
+        "name": "Max Günther",
+        "nationality": "Germany",
+        "flagUrl": "https://liquipedia.net/commons/images/0/0c/De_hd.png",
+        "summonerName": "Satorius",
+        "role": "top",
+        "teamName": "Geekay Esports",
+        "teamSlug": "geekay-esports",
+        "teamCode": "GK"
+      },
+      {
+        "id": 2,
+        "name": "Anton Andersson",
+        "nationality": "Sweden",
+        "flagUrl": "https://liquipedia.net/commons/images/0/02/Se_hd.png",
+        "summonerName": "Viking",
+        "role": "jungle",
+        "teamName": "Geekay Esports",
+        "teamSlug": "geekay-esports",
+        "teamCode": "GK"
+      },
+      {
+        "id": 3,
+        "name": "Ahmad Charif",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Giyuu",
+        "role": "mid",
+        "teamName": "Geekay Esports",
+        "teamSlug": "geekay-esports",
+        "teamCode": "GK"
+      },
+      {
+        "id": 4,
+        "name": "Khalil Sahraoui",
+        "nationality": "Algeria",
+        "flagUrl": "https://liquipedia.net/commons/images/1/1d/Dz_hd.png",
+        "summonerName": "Rin",
+        "role": "bot",
+        "teamName": "Geekay Esports",
+        "teamSlug": "geekay-esports",
+        "teamCode": "GK"
+      },
+      {
+        "id": 5,
+        "name": "Waleed Mohammad",
+        "nationality": "Jordan",
+        "flagUrl": "https://liquipedia.net/commons/images/1/10/Jo_hd.png",
+        "summonerName": "DeKap",
+        "role": "support",
+        "teamName": "Geekay Esports",
+        "teamSlug": "geekay-esports",
+        "teamCode": "GK"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "teamName": "GNG Esports",
+    "slug": "gng-esports",
+    "teamCode": "GNG",
+    "players": [
+      {
+        "id": 1,
+        "name": "Muhammed Fathy",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Murph",
+        "role": "top",
+        "teamName": "GNG Esports",
+        "teamSlug": "gng-esports",
+        "teamCode": "GNG"
+      },
+      {
+        "id": 2,
+        "name": "Attia Haithem",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Dean",
+        "role": "jungle",
+        "teamName": "GNG Esports",
+        "teamSlug": "gng-esports",
+        "teamCode": "GNG"
+      },
+      {
+        "id": 3,
+        "name": "Koussay Soltani",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Koussay",
+        "role": "mid",
+        "teamName": "GNG Esports",
+        "teamSlug": "gng-esports",
+        "teamCode": "GNG"
+      },
+      {
+        "id": 4,
+        "name": "Juhyeong Kim",
+        "nationality": "Korea",
+        "flagUrl": "https://liquipedia.net/commons/images/8/8c/Kr_hd.png",
+        "summonerName": "Shark",
+        "role": "bot",
+        "teamName": "GNG Esports",
+        "teamSlug": "gng-esports",
+        "teamCode": "GNG"
+      },
+      {
+        "id": 5,
+        "name": "Yusin Gwak",
+        "nationality": "Korea",
+        "flagUrl": "https://liquipedia.net/commons/images/8/8c/Kr_hd.png",
+        "summonerName": "Yusin",
+        "role": "support",
+        "teamName": "GNG Esports",
+        "teamSlug": "gng-esports",
+        "teamCode": "GNG"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "teamName": "Nigma Galaxy",
+    "slug": "nigma-galaxy",
+    "teamCode": "NGX",
+    "players": [
+      {
+        "id": 1,
+        "name": "Mohammed Sayed",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Boda",
+        "role": "top",
+        "teamName": "Nigma Galaxy",
+        "teamSlug": "nigma-galaxy",
+        "teamCode": "NGX"
+      },
+      {
+        "id": 2,
+        "name": "Jackson Pavone",
+        "nationality": "Australia",
+        "flagUrl": "https://liquipedia.net/commons/images/a/a3/Au_hd.png",
+        "summonerName": "Pabu",
+        "role": "jungle",
+        "teamName": "Nigma Galaxy",
+        "teamSlug": "nigma-galaxy",
+        "teamCode": "NGX"
+      },
+      {
+        "id": 3,
+        "name": "Sven Vidovic",
+        "nationality": "Croatia",
+        "flagUrl": "https://liquipedia.net/commons/images/c/c6/Hr_hd.png",
+        "summonerName": "Dehaste",
+        "role": "mid",
+        "teamName": "Nigma Galaxy",
+        "teamSlug": "nigma-galaxy",
+        "teamCode": "NGX"
+      },
+      {
+        "id": 4,
+        "name": "Khalifa Al-Dhaheri",
+        "nationality": "United Arab Emirates",
+        "flagUrl": "https://liquipedia.net/commons/images/b/bc/Ae_hd.png",
+        "summonerName": "Rust",
+        "role": "bot",
+        "teamName": "Nigma Galaxy",
+        "teamSlug": "nigma-galaxy",
+        "teamCode": "NGX"
+      },
+      {
+        "id": 5,
+        "name": "Mohammad Al Khalailah",
+        "nationality": "Jordan",
+        "flagUrl": "https://liquipedia.net/commons/images/1/10/Jo_hd.png",
+        "summonerName": "KlownZ",
+        "role": "support",
+        "teamName": "Nigma Galaxy",
+        "teamSlug": "nigma-galaxy",
+        "teamCode": "NGX"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "teamName": "Triple Esports",
+    "slug": "triple-esports",
+    "teamCode": "TE",
+    "players": [
+      {
+        "id": 1,
+        "name": "Kallon Ram",
+        "nationality": "United Kingdom",
+        "flagUrl": "https://liquipedia.net/commons/images/5/5e/Gb_hd.png",
+        "summonerName": "Kerberos",
+        "role": "top",
+        "teamName": "Triple Esports",
+        "teamSlug": "triple-esports",
+        "teamCode": "TE"
+      },
+      {
+        "id": 2,
+        "name": "Safwan Eslam",
+        "nationality": "Palestine",
+        "flagUrl": "https://liquipedia.net/commons/images/8/88/Ps_hd.png",
+        "summonerName": "Kudy",
+        "role": "jungle",
+        "teamName": "Triple Esports",
+        "teamSlug": "triple-esports",
+        "teamCode": "TE"
+      },
+      {
+        "id": 3,
+        "name": "Fares Bouhajja",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Wicked",
+        "role": "mid",
+        "teamName": "Triple Esports",
+        "teamSlug": "triple-esports",
+        "teamCode": "TE"
+      },
+      {
+        "id": 4,
+        "name": "Ala Jalleb",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Jalleba",
+        "role": "bot",
+        "teamName": "Triple Esports",
+        "teamSlug": "triple-esports",
+        "teamCode": "TE"
+      },
+      {
+        "id": 5,
+        "name": "Taieb Kraiem",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Insane",
+        "role": "support",
+        "teamName": "Triple Esports",
+        "teamSlug": "triple-esports",
+        "teamCode": "TE"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "teamName": "RAAD",
+    "slug": "raad",
+    "teamCode": "RAAD",
+    "players": [
+      {
+        "id": 1,
+        "name": "Maged Marwan",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Maged",
+        "role": "top",
+        "teamName": "RAAD",
+        "teamSlug": "raad",
+        "teamCode": "RAAD"
+      },
+      {
+        "id": 2,
+        "name": "Andreas Aarlund",
+        "nationality": "Denmark",
+        "flagUrl": "https://liquipedia.net/commons/images/7/7d/Dk_hd.png",
+        "summonerName": "Skude",
+        "role": "jungle",
+        "teamName": "RAAD",
+        "teamSlug": "raad",
+        "teamCode": "RAAD"
+      },
+      {
+        "id": 3,
+        "name": "Oussama Cherradi",
+        "nationality": "Morocco",
+        "flagUrl": "https://liquipedia.net/commons/images/8/81/Ma_hd.png",
+        "summonerName": "Akashi",
+        "role": "mid",
+        "teamName": "RAAD",
+        "teamSlug": "raad",
+        "teamCode": "RAAD"
+      },
+      {
+        "id": 4,
+        "name": "Fares Saidana",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Xicor",
+        "role": "bot",
+        "teamName": "RAAD",
+        "teamSlug": "raad",
+        "teamCode": "RAAD"
+      },
+      {
+        "id": 5,
+        "name": "Luca Santos",
+        "nationality": "Switzerland",
+        "flagUrl": "https://liquipedia.net/commons/images/1/1c/Ch_hd.png",
+        "summonerName": "Lucky",
+        "role": "support",
+        "teamName": "RAAD",
+        "teamSlug": "raad",
+        "teamCode": "RAAD"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "teamName": "3BL Esports",
+    "slug": "ebl-esports",
+    "teamCode": "3BL",
+    "players": [
+      {
+        "id": 1,
+        "name": "Thodoris Bakogiannis",
+        "nationality": "Greece",
+        "flagUrl": "https://liquipedia.net/commons/images/1/1a/Gr_hd.png",
+        "summonerName": "Bako",
+        "role": "top",
+        "teamName": "3BL Esports",
+        "teamSlug": "ebl-esports",
+        "teamCode": "3BL"
+      },
+      {
+        "id": 2,
+        "name": "Philippe Le",
+        "nationality": "France",
+        "flagUrl": "https://liquipedia.net/commons/images/4/40/Fr_hd.png",
+        "summonerName": "Akabane",
+        "role": "jungle",
+        "teamName": "3BL Esports",
+        "teamSlug": "ebl-esports",
+        "teamCode": "3BL"
+      },
+      {
+        "id": 3,
+        "name": "Hamza Ashraif",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Meza",
+        "role": "mid",
+        "teamName": "3BL Esports",
+        "teamSlug": "ebl-esports",
+        "teamCode": "3BL"
+      },
+      {
+        "id": 4,
+        "name": "Nawaf Al Jauid",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Nawaf",
+        "role": "bot",
+        "teamName": "3BL Esports",
+        "teamSlug": "ebl-esports",
+        "teamCode": "3BL"
+      },
+      {
+        "id": 5,
+        "name": "Abdulkader Halwani",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Butcher",
+        "role": "support",
+        "teamName": "3BL Esports",
+        "teamSlug": "ebl-esports",
+        "teamCode": "3BL"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "teamName": "Anubis Gaming",
+    "slug": "anubis-gaming",
+    "teamCode": "ANB",
+    "players": [
+      {
+        "id": 1,
+        "name": "Bariş Karatop",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Juuzou",
+        "role": "top",
+        "teamName": "Anubis Gaming",
+        "teamSlug": "anubis-gaming",
+        "teamCode": "ANB"
+      },
+      {
+        "id": 2,
+        "name": "Taha Yurdagüven",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Elramir",
+        "role": "jungle",
+        "teamName": "Anubis Gaming",
+        "teamSlug": "anubis-gaming",
+        "teamCode": "ANB"
+      },
+      {
+        "id": 3,
+        "name": "Walid Osman",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Cipher",
+        "role": "mid",
+        "teamName": "Anubis Gaming",
+        "teamSlug": "anubis-gaming",
+        "teamCode": "ANB"
+      },
+      {
+        "id": 4,
+        "name": "Eslam Ashraf",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "San",
+        "role": "bot",
+        "teamName": "Anubis Gaming",
+        "teamSlug": "anubis-gaming",
+        "teamCode": "ANB"
+      },
+      {
+        "id": 5,
+        "name": "Mishal Albarrak",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Mishal",
+        "role": "support",
+        "teamName": "Anubis Gaming",
+        "teamSlug": "anubis-gaming",
+        "teamCode": "ANB"
+      }
+    ]
+  }
+]
