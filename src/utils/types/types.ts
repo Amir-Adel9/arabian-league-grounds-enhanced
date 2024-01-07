@@ -32,18 +32,29 @@ export type Game = {
 };
 
 export type Stats = {
+  state: 'Error' | 'Success';
   esportsGameId: string;
   esportsMatchId: string;
-  rosters: any;
+  rosters: {
+    blueTeam: {
+      esportsTeamId: string;
+      participants: ParticipantMetadata[];
+    };
+    redTeam: {
+      esportsTeamId: string;
+      participants: ParticipantMetadata[];
+    };
+  };
   gameMetadata: GameMetadata;
   lastFrame: GameFrame;
+  event: Event;
 };
 
 export type GameFrame = {
   rfc460Timestamp: Date;
   gameState: GameState;
-  blueTeam: Team;
-  redTeam: Team;
+  blueTeam: TeamStats;
+  redTeam: TeamStats;
 };
 
 export type TeamStats = {
@@ -87,15 +98,16 @@ export type GameMetadata = {
 
 export type TeamMetadata = {
   esportsTeamId: string;
-  participantMetadata: ParticipantMetadatum[];
+  participantMetadata: ParticipantMetadata[];
 };
 
-export type ParticipantMetadatum = {
+export type ParticipantMetadata = {
   participantId: number;
   esportsPlayerId: string;
   summonerName: string;
   championId: string;
   role: string;
+  d: string;
 };
 
 export type Team = {

@@ -2,12 +2,13 @@ import {
   getTeamRosters,
   getTeamRostersByRole,
 } from '@/utils/functions/getTeamRosters';
+import FantasyTest from './_components/FantasyTest';
 
 export default async function FantasyPage() {
   const teamRosters = await getTeamRosters();
   const teamRostersByRole = await getTeamRostersByRole();
   // console.log(teamRosters);
-  console.log(teamRostersByRole['top']);
+
   return (
     <main className='w-full min-h-screen relative flex flex-col justify-start items-center text-primary'>
       <h1 className='font-rubik text-4xl mt-32'>Arabian League Fantasy Demo</h1>
@@ -32,97 +33,7 @@ export default async function FantasyPage() {
             </div>
           );
         })} */}
-
-        <div className='flex flex-col items-center'>
-          <h3 className='font-kanit text-xl mt-5'>Top Laners</h3>
-          <div className='flex flex-row gap-2 justify-center items-center'>
-            {teamRostersByRole['top'].map((player, i) => {
-              return (
-                <div
-                  className='flex flex-col items-center cursor-pointer hover:bg-accent-gold hover:text-secondary rounded p-2'
-                  key={i}
-                >
-                  <h4 className='font-kanit text-lg'>
-                    {player.teamCode} {player.summonerName}
-                  </h4>
-                  {/* <h6>{player.teamName}</h6> */}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className='flex flex-col items-center'>
-          <h3 className='font-kanit text-xl mt-5'>Junglers</h3>
-          <div className='flex flex-row gap-2 justify-center items-center'>
-            {teamRostersByRole['jungle'].map((player, i) => {
-              return (
-                <div
-                  className='flex flex-col items-center cursor-pointer hover:bg-accent-gold hover:text-secondary rounded p-2'
-                  key={i}
-                >
-                  <h4 className='font-kanit text-lg'>
-                    {player.teamCode} {player.summonerName}
-                  </h4>
-                  {/* <h6>{player.teamName}</h6> */}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className='flex flex-col items-center'>
-          <h3 className='font-kanit text-xl mt-5'>Mid Laners</h3>
-          <div className='flex flex-row gap-2 justify-center items-center'>
-            {teamRostersByRole['mid'].map((player, i) => {
-              return (
-                <div
-                  className='flex flex-col items-center cursor-pointer hover:bg-accent-gold hover:text-secondary rounded p-2'
-                  key={i}
-                >
-                  <h4 className='font-kanit text-lg'>
-                    {player.teamCode} {player.summonerName}
-                  </h4>
-                  {/* <h6>{player.teamName}</h6> */}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className='flex flex-col items-center'>
-          <h3 className='font-kanit text-xl mt-5'>Bot Laners</h3>
-          <div className='flex flex-row gap-2 justify-center items-center'>
-            {teamRostersByRole['bot'].map((player, i) => {
-              return (
-                <div
-                  className='flex flex-col items-center cursor-pointer hover:bg-accent-gold hover:text-secondary rounded p-2'
-                  key={i}
-                >
-                  <h4 className='font-kanit text-lg'>
-                    {player.teamCode} {player.summonerName}
-                  </h4>
-                  {/* <h6>{player.teamName}</h6> */}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        <div className='flex flex-col items-center'>
-          <h3 className='font-kanit text-xl mt-5'>Supports</h3>
-          <div className='flex flex-row gap-2 justify-center items-center'>
-            {teamRostersByRole['support'].map((player, i) => {
-              return (
-                <div
-                  className='flex flex-col items-center cursor-pointer hover:bg-accent-gold hover:text-secondary rounded p-2'
-                  key={i}
-                >
-                  <h4 className='font-kanit text-lg'>
-                    {player.teamCode} {player.summonerName}
-                  </h4>
-                  {/* <h6>{player.teamName}</h6> */}
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <FantasyTest roostersByRole={teamRostersByRole} />
       </div>
     </main>
   );
