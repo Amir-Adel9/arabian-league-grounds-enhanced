@@ -16,6 +16,7 @@ export async function getTeamRostersByRole() {
           acc[player.role] = [];
         }
 
+        // @ts-ignore
         acc[player.role].push(player);
       });
 
@@ -35,7 +36,8 @@ export async function getTeamRostersByRole() {
         nationality: string;
         flagUrl: string;
         summonerName: string;
-        role: string;
+        role: 'top' | 'jungle' | 'mid' | 'bot' | 'support';
+        cost: number;
         teamName: string;
         teamSlug: string;
         teamCode: string;
@@ -45,3 +47,7 @@ export async function getTeamRostersByRole() {
 }
 
 export type TeamRosters = Awaited<ReturnType<typeof getTeamRosters>>;
+
+export type TeamRostersByRole = Awaited<
+  ReturnType<typeof getTeamRostersByRole>
+>;

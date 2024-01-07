@@ -12,6 +12,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/c/c6/Hr_hd.png",
         "summonerName": "Falleo",
         "role": "top",
+        "cost": 25,
         "teamName": "Fox Gaming",
         "teamSlug": "fox-gaming",
         "teamCode": "FOX"
@@ -23,6 +24,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
         "summonerName": "Porcupine",
         "role": "jungle",
+        "cost": 25,
         "teamName": "Fox Gaming",
         "teamSlug": "fox-gaming",
         "teamCode": "FOX"
@@ -34,6 +36,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
         "summonerName": "Yoichi",
         "role": "mid",
+        "cost": 25,
         "teamName": "Fox Gaming",
         "teamSlug": "fox-gaming",
         "teamCode": "FOX"
@@ -45,6 +48,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/b/bb/Ua_hd.png",
         "summonerName": "Mytant",
         "role": "bot",
+        "cost": 25,
         "teamName": "Fox Gaming",
         "teamSlug": "fox-gaming",
         "teamCode": "FOX"
@@ -56,6 +60,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/8/81/Ma_hd.png",
         "summonerName": "Nova",
         "role": "support",
+        "cost": 25,
         "teamName": "Fox Gaming",
         "teamSlug": "fox-gaming",
         "teamCode": "FOX"
@@ -75,6 +80,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/0/0c/De_hd.png",
         "summonerName": "Satorius",
         "role": "top",
+        "cost": 25,
         "teamName": "Geekay Esports",
         "teamSlug": "geekay-esports",
         "teamCode": "GK"
@@ -86,6 +92,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/0/02/Se_hd.png",
         "summonerName": "Viking",
         "role": "jungle",
+        "cost": 25,
         "teamName": "Geekay Esports",
         "teamSlug": "geekay-esports",
         "teamCode": "GK"
@@ -97,6 +104,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
         "summonerName": "Giyuu",
         "role": "mid",
+        "cost": 25,
         "teamName": "Geekay Esports",
         "teamSlug": "geekay-esports",
         "teamCode": "GK"
@@ -108,6 +116,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/1/1d/Dz_hd.png",
         "summonerName": "Rin",
         "role": "bot",
+        "cost": 25,
         "teamName": "Geekay Esports",
         "teamSlug": "geekay-esports",
         "teamCode": "GK"
@@ -119,6 +128,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/1/10/Jo_hd.png",
         "summonerName": "DeKap",
         "role": "support",
+        "cost": 25,
         "teamName": "Geekay Esports",
         "teamSlug": "geekay-esports",
         "teamCode": "GK"
@@ -138,6 +148,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
         "summonerName": "Murph",
         "role": "top",
+        "cost": 25,
         "teamName": "GNG Esports",
         "teamSlug": "gng-esports",
         "teamCode": "GNG"
@@ -149,6 +160,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
         "summonerName": "Dean",
         "role": "jungle",
+        "cost": 25,
         "teamName": "GNG Esports",
         "teamSlug": "gng-esports",
         "teamCode": "GNG"
@@ -160,6 +172,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
         "summonerName": "Koussay",
         "role": "mid",
+        "cost": 25,
         "teamName": "GNG Esports",
         "teamSlug": "gng-esports",
         "teamCode": "GNG"
@@ -171,6 +184,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/8/8c/Kr_hd.png",
         "summonerName": "Shark",
         "role": "bot",
+        "cost": 25,
         "teamName": "GNG Esports",
         "teamSlug": "gng-esports",
         "teamCode": "GNG"
@@ -182,6 +196,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/8/8c/Kr_hd.png",
         "summonerName": "Yusin",
         "role": "support",
+        "cost": 25,
         "teamName": "GNG Esports",
         "teamSlug": "gng-esports",
         "teamCode": "GNG"
@@ -201,6 +216,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
         "summonerName": "Boda",
         "role": "top",
+        "cost": 25,
         "teamName": "Nigma Galaxy",
         "teamSlug": "nigma-galaxy",
         "teamCode": "NGX"
@@ -212,6 +228,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/a/a3/Au_hd.png",
         "summonerName": "Pabu",
         "role": "jungle",
+        "cost": 25,
         "teamName": "Nigma Galaxy",
         "teamSlug": "nigma-galaxy",
         "teamCode": "NGX"
@@ -223,6 +240,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/c/c6/Hr_hd.png",
         "summonerName": "Dehaste",
         "role": "mid",
+        "cost": 25,
         "teamName": "Nigma Galaxy",
         "teamSlug": "nigma-galaxy",
         "teamCode": "NGX"
@@ -234,6 +252,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/b/bc/Ae_hd.png",
         "summonerName": "Rust",
         "role": "bot",
+        "cost": 25,
         "teamName": "Nigma Galaxy",
         "teamSlug": "nigma-galaxy",
         "teamCode": "NGX"
@@ -245,6 +264,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/1/10/Jo_hd.png",
         "summonerName": "KlownZ",
         "role": "support",
+        "cost": 25,
         "teamName": "Nigma Galaxy",
         "teamSlug": "nigma-galaxy",
         "teamCode": "NGX"
@@ -264,6 +284,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/5/5e/Gb_hd.png",
         "summonerName": "Kerberos",
         "role": "top",
+        "cost": 25,
         "teamName": "Triple Esports",
         "teamSlug": "triple-esports",
         "teamCode": "TE"
@@ -275,6 +296,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/8/88/Ps_hd.png",
         "summonerName": "Kudy",
         "role": "jungle",
+        "cost": 25,
         "teamName": "Triple Esports",
         "teamSlug": "triple-esports",
         "teamCode": "TE"
@@ -286,6 +308,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
         "summonerName": "Wicked",
         "role": "mid",
+        "cost": 25,
         "teamName": "Triple Esports",
         "teamSlug": "triple-esports",
         "teamCode": "TE"
@@ -297,6 +320,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
         "summonerName": "Jalleba",
         "role": "bot",
+        "cost": 25,
         "teamName": "Triple Esports",
         "teamSlug": "triple-esports",
         "teamCode": "TE"
@@ -308,6 +332,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
         "summonerName": "Insane",
         "role": "support",
+        "cost": 25,
         "teamName": "Triple Esports",
         "teamSlug": "triple-esports",
         "teamCode": "TE"
@@ -327,6 +352,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
         "summonerName": "Maged",
         "role": "top",
+        "cost": 25,
         "teamName": "RAAD",
         "teamSlug": "raad",
         "teamCode": "RAAD"
@@ -338,6 +364,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/7/7d/Dk_hd.png",
         "summonerName": "Skude",
         "role": "jungle",
+        "cost": 25,
         "teamName": "RAAD",
         "teamSlug": "raad",
         "teamCode": "RAAD"
@@ -349,6 +376,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/8/81/Ma_hd.png",
         "summonerName": "Akashi",
         "role": "mid",
+        "cost": 25,
         "teamName": "RAAD",
         "teamSlug": "raad",
         "teamCode": "RAAD"
@@ -360,6 +388,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
         "summonerName": "Xicor",
         "role": "bot",
+        "cost": 25,
         "teamName": "RAAD",
         "teamSlug": "raad",
         "teamCode": "RAAD"
@@ -371,6 +400,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/1/1c/Ch_hd.png",
         "summonerName": "Lucky",
         "role": "support",
+        "cost": 25,
         "teamName": "RAAD",
         "teamSlug": "raad",
         "teamCode": "RAAD"
@@ -390,6 +420,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/1/1a/Gr_hd.png",
         "summonerName": "Bako",
         "role": "top",
+        "cost": 25,
         "teamName": "3BL Esports",
         "teamSlug": "ebl-esports",
         "teamCode": "3BL"
@@ -401,6 +432,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/4/40/Fr_hd.png",
         "summonerName": "Akabane",
         "role": "jungle",
+        "cost": 25,
         "teamName": "3BL Esports",
         "teamSlug": "ebl-esports",
         "teamCode": "3BL"
@@ -412,6 +444,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
         "summonerName": "Meza",
         "role": "mid",
+        "cost": 25,
         "teamName": "3BL Esports",
         "teamSlug": "ebl-esports",
         "teamCode": "3BL"
@@ -423,6 +456,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
         "summonerName": "Nawaf",
         "role": "bot",
+        "cost": 25,
         "teamName": "3BL Esports",
         "teamSlug": "ebl-esports",
         "teamCode": "3BL"
@@ -434,6 +468,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
         "summonerName": "Butcher",
         "role": "support",
+        "cost": 25,
         "teamName": "3BL Esports",
         "teamSlug": "ebl-esports",
         "teamCode": "3BL"
@@ -453,6 +488,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
         "summonerName": "Juuzou",
         "role": "top",
+        "cost": 25,
         "teamName": "Anubis Gaming",
         "teamSlug": "anubis-gaming",
         "teamCode": "ANB"
@@ -464,6 +500,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
         "summonerName": "Elramir",
         "role": "jungle",
+        "cost": 25,
         "teamName": "Anubis Gaming",
         "teamSlug": "anubis-gaming",
         "teamCode": "ANB"
@@ -475,6 +512,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
         "summonerName": "Cipher",
         "role": "mid",
+        "cost": 25,
         "teamName": "Anubis Gaming",
         "teamSlug": "anubis-gaming",
         "teamCode": "ANB"
@@ -486,6 +524,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
         "summonerName": "San",
         "role": "bot",
+        "cost": 25,
         "teamName": "Anubis Gaming",
         "teamSlug": "anubis-gaming",
         "teamCode": "ANB"
@@ -497,6 +536,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
         "summonerName": "Mishal",
         "role": "support",
+        "cost": 25,
         "teamName": "Anubis Gaming",
         "teamSlug": "anubis-gaming",
         "teamCode": "ANB"
