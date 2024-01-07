@@ -52,10 +52,76 @@ const FantasyTest = ({
   });
 
   const [credits, setCredits] = useState<number>(125);
+  const [fantasyPoints, setFantasyPoints] = useState<{
+    top: {
+      fromGameWins: number;
+      fromKills: number;
+      fromDeaths: number;
+      total: number;
+    };
+    jungle: {
+      fromGameWins: number;
+      fromKills: number;
+      fromDeaths: number;
+      total: number;
+    };
+    mid: {
+      fromGameWins: number;
+      fromKills: number;
+      fromDeaths: number;
+      total: number;
+    };
+    bot: {
+      fromGameWins: number;
+      fromKills: number;
+      fromDeaths: number;
+      total: number;
+    };
+    support: {
+      fromGameWins: number;
+      fromKills: number;
+      fromDeaths: number;
+      total: number;
+    };
+    total: number;
+  }>({
+    top: {
+      fromGameWins: 0,
+      fromKills: 0,
+      fromDeaths: 0,
+      total: 0,
+    },
+    jungle: {
+      fromGameWins: 0,
+      fromKills: 0,
+      fromDeaths: 0,
+      total: 0,
+    },
+    mid: {
+      fromGameWins: 0,
+      fromKills: 0,
+      fromDeaths: 0,
+      total: 0,
+    },
+    bot: {
+      fromGameWins: 0,
+      fromKills: 0,
+      fromDeaths: 0,
+      total: 0,
+    },
+    support: {
+      fromGameWins: 0,
+      fromKills: 0,
+      fromDeaths: 0,
+      total: 0,
+    },
+    total: 0,
+  });
 
   useEffect(() => {
     console.log(fantasyRoster);
-  }, [fantasyRoster]);
+    console.log(fantasyPoints);
+  }, [fantasyRoster, fantasyPoints]);
 
   const playerSelect = (player: FantasyPlayer) => {
     const { role } = player;
@@ -316,6 +382,59 @@ const FantasyTest = ({
             );
           })}
         </div>
+        {fantasyPoints.total !== 0 && (
+          <div>
+            <h3 className='font-kanit text-xl mt-5 text-center'>
+              Fantasy Points
+            </h3>
+            <div className='flex flex-row gap-5 justify-center items-center'>
+              {Object.values(fantasyPoints).map((player, i) => {
+                if (player === undefined) {
+                  return (
+                    <div
+                      className={`flex flex-col items-center cursor-pointer hover:bg-accent-gold rounded p-2`}
+                      key={i}
+                    >
+                      <h4 className='font-kanit text-lg'>Empty</h4>
+                    </div>
+                  );
+                }
+
+                if (typeof player === 'number') {
+                  return (
+                    <div
+                      className={`flex flex-col items-center cursor-pointer hover:bg-accent-gold rounded p-2`}
+                      key={i}
+                    >
+                      <h4 className='font-kanit text-lg text-center'>
+                        Total Fantasy Points: {player}
+                      </h4>
+                    </div>
+                  );
+                }
+                return (
+                  <div
+                    className={`flex flex-col items-center rounded p-2 text-center`}
+                    key={i}
+                  >
+                    <h4 className='font-kanit text-lg text-center'>
+                      From Game Wins: {player.fromGameWins}
+                    </h4>
+                    <h4 className='font-kanit text-lg v'>
+                      From Kills {player.fromKills}
+                    </h4>
+                    <h4 className='font-kanit text-lg text-center'>
+                      From Deaths: {player.fromDeaths}
+                    </h4>
+                    <h6 className='capitalize text-center'>
+                      Player Total: {player.total}
+                    </h6>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
         <div className='flex flex-col items-center rounded p-2'>
           <h4 className='font-kanit text-lg'>
             Total Cost: {fantasyTeam.totalCost}
@@ -367,7 +486,42 @@ const FantasyTest = ({
               return;
             } else {
               const res = await getFantasyStats({
-                fantasyRoster: fantasyTeam.roster!,
+                fantasyRoster: fantasyTeam.roster,
+              }).then((res) => {
+                setFantasyPoints({
+                  top: {
+                    fromGameWins: res.top.pointsFromGameWins,
+                    fromKills: res.top.pointsFromKills,
+                    fromDeaths: res.top.pointsFromDeaths,
+                    total: res.top.totalPoints,
+                  },
+                  jungle: {
+                    fromGameWins: res.jungle.pointsFromGameWins,
+                    fromKills: res.jungle.pointsFromKillParticipation,
+                    fromDeaths: res.jungle.pointsFromDeaths,
+                    total: res.jungle.totalPoints,
+                  },
+                  mid: {
+                    fromGameWins: res.mid.pointsFromGameWins,
+                    fromKills: res.mid.pointsFromKills,
+                    fromDeaths: res.mid.pointsFromDeaths,
+                    total: res.mid.totalPoints,
+                  },
+                  bot: {
+                    fromGameWins: res.bot.pointsFromGameWins,
+                    fromKills: res.bot.pointsFromKills,
+                    fromDeaths: res.bot.pointsFromDeaths,
+                    total: res.bot.totalPoints,
+                  },
+                  support: {
+                    fromGameWins: res.support.pointsFromGameWins,
+                    fromKills: res.support.pointsFromAssists,
+                    fromDeaths: res.support.pointsFromDeaths,
+                    total: res.support.totalPoints,
+                  },
+                  total: res.totalFantasyPoints,
+                });
+                return res;
               });
               console.log('res', res);
             }

@@ -609,26 +609,40 @@ export default async function getFantasyStats({
         pointsFromGameWins: pointsFromGameWins.top,
         pointsFromKills: pointsFromKills.top,
         pointsFromDeaths: pointsFromDeaths.top,
+        totalPoints:
+          pointsFromGameWins.top + pointsFromKills.top + pointsFromDeaths.top,
       },
       jungle: {
         pointsFromGameWins: pointsFromGameWins.jungle,
         pointsFromKillParticipation: pointsFromKills.jungle,
         pointsFromDeaths: pointsFromDeaths.jungle,
+        totalPoints:
+          pointsFromGameWins.jungle +
+          pointsFromKills.jungle +
+          pointsFromDeaths.jungle,
       },
       mid: {
         pointsFromGameWins: pointsFromGameWins.mid,
         pointsFromKills: pointsFromKills.mid,
         pointsFromDeaths: pointsFromDeaths.mid,
+        totalPoints:
+          pointsFromGameWins.mid + pointsFromKills.mid + pointsFromDeaths.mid,
       },
       bot: {
         pointsFromGameWins: pointsFromGameWins.bot,
         pointsFromKills: pointsFromKills.bot,
         pointsFromDeaths: pointsFromDeaths.bot,
+        totalPoints:
+          pointsFromGameWins.bot + pointsFromKills.bot + pointsFromDeaths.bot,
       },
       support: {
         pointsFromGameWins: pointsFromGameWins.support,
         pointsFromAssists: pointsFromKills.support,
         pointsFromDeaths: pointsFromDeaths.support,
+        totalPoints:
+          pointsFromGameWins.support +
+          pointsFromKills.support +
+          pointsFromDeaths.support,
       },
       totalFantasyPoints:
         pointsFromGameWins.total +
