@@ -1,5 +1,6 @@
 import { db } from '@/db';
-import { Prediction, prediction } from '@/db/schema';
+import { prediction } from '@/db/schema/schema';
+import { Prediction } from '@/db/types';
 import { currentUser } from '@clerk/nextjs';
 import { eq, and } from 'drizzle-orm';
 

@@ -1,7 +1,8 @@
 'use server';
 
 import { db } from '@/db';
-import { User, prediction, user } from '@/db/schema';
+import { prediction, user } from '@/db/schema/schema';
+import { User } from '@/db/types';
 import { eq, sql } from 'drizzle-orm';
 import { requestParams } from '../../../utils/constants/requestParams';
 import { Event } from '../../../utils/types/types';
@@ -15,6 +16,8 @@ export async function fulfillPredictions() {
       },
     },
   });
+
+  console.log('Users with correct predictions: ', usersWithCorrectPredictions);
 
   usersWithCorrectPredictions.forEach(async (correctUser: User) => {
     if (correctUser.predictions.length * 100 === correctUser.predictionPoints) {
@@ -57,6 +60,7 @@ export async function fulfillPredictions() {
       return;
     } else {
       pendingPredictions.forEach(async (currentPrediction) => {
+        console.log('Current prediction: ', currentPrediction);
         completedMatches.forEach(async (event: Event) => {
           if (event.match.id !== currentPrediction.matchId) return;
           console.log(event.match.id, currentPrediction.matchId);
@@ -92,7 +96,7 @@ export async function fulfillPredictions() {
     }
   }
 
-  revalidatePath('/(client)/(pages)/leaderboard');
-  revalidatePath('/(client)/(pages)/predictions');
-  revalidatePath('/(client)/(pages)/profile');
+  revalidatePath('/(pages)/leaderboard');
+  revalidatePath('/(pages)/predictions');
+  revalidatePath('/(pages)/profile');
 }

@@ -1,0 +1,687 @@
+[
+  {
+    "id": 1,
+    "teamName": "Fnatic",
+    "slug": "fnatic",
+    "teamCode": "FNC",
+    "players": [
+      {
+        "id": 1,
+        "generalId": 1,
+        "name": "Karlo Kovačić",
+        "nationality": "Croatia",
+        "flagUrl": "https://liquipedia.net/commons/images/c/c6/Hr_hd.png",
+        "summonerName": "Oscarinin",
+        "role": "top",
+        "cost": 25,
+        "teamName": "Fnatic",
+        "teamSlug": "fnatic",
+        "teamCode": "FNC"
+      },
+      {
+        "id": 2,
+        "generalId": 2,
+        "name": "Meho Wissam",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Razork",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "Fnatic",
+        "teamSlug": "fnatic",
+        "teamCode": "FNC"
+      },
+      {
+        "id": 3,
+        "generalId": 3,
+        "name": "Saif Alshahrani",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Humanoid",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "Fnatic",
+        "teamSlug": "fnatic",
+        "teamCode": "FNC"
+      },
+      {
+        "id": 4,
+        "generalId": 4,
+        "name": "Yevhen Zavalnyi",
+        "nationality": "Ukraine",
+        "flagUrl": "https://liquipedia.net/commons/images/b/bb/Ua_hd.png",
+        "summonerName": "Noah",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "Fnatic",
+        "teamSlug": "fnatic",
+        "teamCode": "FNC"
+      },
+      {
+        "id": 5,
+        "generalId": 5,
+        "name": "Mehdi Ghalimi",
+        "nationality": "Morocco",
+        "flagUrl": "https://liquipedia.net/commons/images/8/81/Ma_hd.png",
+        "summonerName": "Jun",
+        "role": "support",
+        "cost": 25,
+        "teamName": "Fnatic",
+        "teamSlug": "fnatic",
+        "teamCode": "FNC"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "teamName": "G2 Esports",
+    "slug": "g2-esports",
+    "teamCode": "G2",
+    "players": [
+      {
+        "id": 1,
+        "name": "Max Günther",
+        "nationality": "Germany",
+        "flagUrl": "https://liquipedia.net/commons/images/0/0c/De_hd.png",
+        "summonerName": "BrokenBlade",
+        "role": "top",
+        "cost": 25,
+        "teamName": "G2 Esports",
+        "teamSlug": "g2-esports",
+        "teamCode": "G2"
+      },
+      {
+        "id": 2,
+        "name": "Anton Andersson",
+        "nationality": "Sweden",
+        "flagUrl": "https://liquipedia.net/commons/images/0/02/Se_hd.png",
+        "summonerName": "Yike",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "G2 Esports",
+        "teamSlug": "g2-esports",
+        "teamCode": "G2"
+      },
+      {
+        "id": 3,
+        "name": "Ahmad Charif",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Caps",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "G2 Esports",
+        "teamSlug": "g2-esports",
+        "teamCode": "G2"
+      },
+      {
+        "id": 4,
+        "name": "Khalil Sahraoui",
+        "nationality": "Algeria",
+        "flagUrl": "https://liquipedia.net/commons/images/1/1d/Dz_hd.png",
+        "summonerName": "Hans Sama",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "G2 Esports",
+        "teamSlug": "g2-esports",
+        "teamCode": "G2"
+      },
+      {
+        "id": 5,
+        "name": "Waleed Mohammad",
+        "nationality": "Jordan",
+        "flagUrl": "https://liquipedia.net/commons/images/1/10/Jo_hd.png",
+        "summonerName": "Mikyx",
+        "role": "support",
+        "cost": 25,
+        "teamName": "G2 Esports",
+        "teamSlug": "g2-esports",
+        "teamCode": "G2"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "teamName": "GIANTX",
+    "slug": "giantx-lec",
+    "teamCode": "GX",
+    "players": [
+      {
+        "id": 1,
+        "name": "Muhammed Fathy",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Odoamne",
+        "role": "top",
+        "cost": 25,
+        "teamName": "GIANTX",
+        "teamSlug": "giantx-lec",
+        "teamCode": "GX"
+      },
+      {
+        "id": 2,
+        "name": "Attia Haithem",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Peach",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "GIANTX",
+        "teamSlug": "giantx-lec",
+        "teamCode": "GX"
+      },
+      {
+        "id": 3,
+        "name": "Koussay Soltani",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Jackies",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "GIANTX",
+        "teamSlug": "giantx-lec",
+        "teamCode": "GX"
+      },
+      {
+        "id": 4,
+        "name": "Juhyeong Kim",
+        "nationality": "Korea",
+        "flagUrl": "https://liquipedia.net/commons/images/8/8c/Kr_hd.png",
+        "summonerName": "Patrik",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "GIANTX",
+        "teamSlug": "giantx-lec",
+        "teamCode": "GX"
+      },
+      {
+        "id": 5,
+        "name": "Yusin Gwak",
+        "nationality": "Korea",
+        "flagUrl": "https://liquipedia.net/commons/images/8/8c/Kr_hd.png",
+        "summonerName": "IgNar",
+        "role": "support",
+        "cost": 25,
+        "teamName": "GIANTX",
+        "teamSlug": "giantx-lec",
+        "teamCode": "GX"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "teamName": "Karmine Corp",
+    "slug": "karmine-corp",
+    "teamCode": "KC",
+    "players": [
+      {
+        "id": 1,
+        "name": "Mohammed Sayed",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Cabochard",
+        "role": "top",
+        "cost": 25,
+        "teamName": "Karmine Corp",
+        "teamSlug": "karmine-corp",
+        "teamCode": "KC"
+      },
+      {
+        "id": 2,
+        "name": "Jackson Pavone",
+        "nationality": "Australia",
+        "flagUrl": "https://liquipedia.net/commons/images/a/a3/Au_hd.png",
+        "summonerName": "Bo",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "Karmine Corp",
+        "teamSlug": "karmine-corp",
+        "teamCode": "KC"
+      },
+      {
+        "id": 3,
+        "name": "Sven Vidovic",
+        "nationality": "Croatia",
+        "flagUrl": "https://liquipedia.net/commons/images/c/c6/Hr_hd.png",
+        "summonerName": "Saken",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "Karmine Corp",
+        "teamSlug": "karmine-corp",
+        "teamCode": "KC"
+      },
+      {
+        "id": 4,
+        "name": "Khalifa Al-Dhaheri",
+        "nationality": "United Arab Emirates",
+        "flagUrl": "https://liquipedia.net/commons/images/b/bc/Ae_hd.png",
+        "summonerName": "Upset",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "Karmine Corp",
+        "teamSlug": "karmine-corp",
+        "teamCode": "KC"
+      },
+      {
+        "id": 5,
+        "name": "Mohammad Al Khalailah",
+        "nationality": "Jordan",
+        "flagUrl": "https://liquipedia.net/commons/images/1/10/Jo_hd.png",
+        "summonerName": "Targamas",
+        "role": "support",
+        "cost": 25,
+        "teamName": "Karmine Corp",
+        "teamSlug": "karmine-corp",
+        "teamCode": "KC"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "teamName": "MAD Lions KOI",
+    "slug": "mad-lions",
+    "teamCode": "MDK",
+    "players": [
+      {
+        "id": 1,
+        "name": "Kallon Ram",
+        "nationality": "United Kingdom",
+        "flagUrl": "https://liquipedia.net/commons/images/5/5e/Gb_hd.png",
+        "summonerName": "Myrwn",
+        "role": "top",
+        "cost": 25,
+        "teamName": "MAD Lions KOI",
+        "teamSlug": "mad-lions",
+        "teamCode": "MDK"
+      },
+      {
+        "id": 2,
+        "name": "Safwan Eslam",
+        "nationality": "Palestine",
+        "flagUrl": "https://liquipedia.net/commons/images/8/88/Ps_hd.png",
+        "summonerName": "Elyoya",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "MAD Lions KOI",
+        "teamSlug": "mad-lions",
+        "teamCode": "MDK"
+      },
+      {
+        "id": 3,
+        "name": "Fares Bouhajja",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Fresskowy",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "MAD Lions KOI",
+        "teamSlug": "mad-lions",
+        "teamCode": "MDK"
+      },
+      {
+        "id": 4,
+        "name": "Ala Jalleb",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Supa",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "MAD Lions KOI",
+        "teamSlug": "mad-lions",
+        "teamCode": "MDK"
+      },
+      {
+        "id": 5,
+        "name": "Taieb Kraiem",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Alvaro",
+        "role": "support",
+        "cost": 25,
+        "teamName": "MAD Lions KOI",
+        "teamSlug": "mad-lions",
+        "teamCode": "MDK"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "teamName": "Rogue",
+    "slug": "rogue",
+    "teamCode": "RGE",
+    "players": [
+      {
+        "id": 1,
+        "name": "Maged Marwan",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Szygenda",
+        "role": "top",
+        "cost": 25,
+        "teamName": "Rogue",
+        "teamSlug": "rogue",
+        "teamCode": "RGE"
+      },
+      {
+        "id": 2,
+        "name": "Andreas Aarlund",
+        "nationality": "Denmark",
+        "flagUrl": "https://liquipedia.net/commons/images/7/7d/Dk_hd.png",
+        "summonerName": "Markoon",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "Rogue",
+        "teamSlug": "rogue",
+        "teamCode": "RGE"
+      },
+      {
+        "id": 3,
+        "name": "Oussama Cherradi",
+        "nationality": "Morocco",
+        "flagUrl": "https://liquipedia.net/commons/images/8/81/Ma_hd.png",
+        "summonerName": "Larssen",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "Rogue",
+        "teamSlug": "rogue",
+        "teamCode": "RGE"
+      },
+      {
+        "id": 4,
+        "name": "Fares Saidana",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/3/31/Tn_hd.png",
+        "summonerName": "Comp",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "Rogue",
+        "teamSlug": "rogue",
+        "teamCode": "RGE"
+      },
+      {
+        "id": 5,
+        "name": "Luca Santos",
+        "nationality": "Switzerland",
+        "flagUrl": "https://liquipedia.net/commons/images/1/1c/Ch_hd.png",
+        "summonerName": "Zoelys",
+        "role": "support",
+        "cost": 25,
+        "teamName": "Rogue",
+        "teamSlug": "rogue",
+        "teamCode": "RGE"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "teamName": "SK Gaming",
+    "slug": "sk-gaming",
+    "teamCode": "SK",
+    "players": [
+      {
+        "id": 1,
+        "name": "Thodoris Bakogiannis",
+        "nationality": "Greece",
+        "flagUrl": "https://liquipedia.net/commons/images/1/1a/Gr_hd.png",
+        "summonerName": "Irrelevant",
+        "role": "top",
+        "cost": 25,
+        "teamName": "SK Gaming",
+        "teamSlug": "sk-gaming",
+        "teamCode": "SK"
+      },
+      {
+        "id": 2,
+        "name": "Philippe Le",
+        "nationality": "France",
+        "flagUrl": "https://liquipedia.net/commons/images/4/40/Fr_hd.png",
+        "summonerName": "Isma",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "SK Gaming",
+        "teamSlug": "sk-gaming",
+        "teamCode": "SK"
+      },
+      {
+        "id": 3,
+        "name": "Hamza Ashraif",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Nisqy",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "SK Gaming",
+        "teamSlug": "sk-gaming",
+        "teamCode": "SK"
+      },
+      {
+        "id": 4,
+        "name": "Nawaf Al Jauid",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Exakick",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "SK Gaming",
+        "teamSlug": "sk-gaming",
+        "teamCode": "SK"
+      },
+      {
+        "id": 5,
+        "name": "Abdulkader Halwani",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Doss",
+        "role": "support",
+        "cost": 25,
+        "teamName": "SK Gaming",
+        "teamSlug": "sk-gaming",
+        "teamCode": "SK"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "teamName": "Team BDS",
+    "slug": "team-bds",
+    "teamCode": "BDS",
+    "players": [
+      {
+        "id": 1,
+        "name": "Bariş Karatop",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Adam",
+        "role": "top",
+        "cost": 25,
+        "teamName": "Team BDS",
+        "teamSlug": "team-bds",
+        "teamCode": "BDS"
+      },
+      {
+        "id": 2,
+        "name": "Taha Yurdagüven",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Sheo",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "Team BDS",
+        "teamSlug": "team-bds",
+        "teamCode": "BDS"
+      },
+      {
+        "id": 3,
+        "name": "Walid Osman",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "nuc",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "Team BDS",
+        "teamSlug": "team-bds",
+        "teamCode": "BDS"
+      },
+      {
+        "id": 4,
+        "name": "Eslam Ashraf",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Ice",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "Team BDS",
+        "teamSlug": "team-bds",
+        "teamCode": "BDS"
+      },
+      {
+        "id": 5,
+        "name": "Mishal Albarrak",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Labrov",
+        "role": "support",
+        "cost": 25,
+        "teamName": "Team BDS",
+        "teamSlug": "team-bds",
+        "teamCode": "BDS"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "teamName": "Team Heretics",
+    "slug": "team-heretics-lec",
+    "teamCode": "TH",
+    "players": [
+      {
+        "id": 1,
+        "name": "Bariş Karatop",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Wunder",
+        "role": "top",
+        "cost": 25,
+        "teamName": "Team Heretics",
+        "teamSlug": "team-heretics-lec",
+        "teamCode": "TH"
+      },
+      {
+        "id": 2,
+        "name": "Taha Yurdagüven",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Jankos",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "Team Heretics",
+        "teamSlug": "team-heretics-lec",
+        "teamCode": "TH"
+      },
+      {
+        "id": 3,
+        "name": "Walid Osman",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Perkz",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "Team Heretics",
+        "teamSlug": "team-heretics-lec",
+        "teamCode": "TH"
+      },
+      {
+        "id": 4,
+        "name": "Eslam Ashraf",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Flakked",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "Team Heretics",
+        "teamSlug": "team-heretics-lec",
+        "teamCode": "TH"
+      },
+      {
+        "id": 5,
+        "name": "Mishal Albarrak",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Kaiser",
+        "role": "support",
+        "cost": 25,
+        "teamName": "Team Heretics",
+        "teamSlug": "team-heretics-lec",
+        "teamCode": "TH"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "teamName": "Team Vitality",
+    "slug": "team-vitality",
+    "teamCode": "VIT",
+    "players": [
+      {
+        "id": 1,
+        "name": "Bariş Karatop",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Photon",
+        "role": "top",
+        "cost": 25,
+        "teamName": "Team Vitality",
+        "teamSlug": "team-vitality",
+        "teamCode": "VIT"
+      },
+      {
+        "id": 2,
+        "name": "Taha Yurdagüven",
+        "nationality": "Turkey",
+        "flagUrl": "https://liquipedia.net/commons/images/4/4b/Tr_hd.png",
+        "summonerName": "Daglas",
+        "role": "jungle",
+        "cost": 25,
+        "teamName": "Team Vitality",
+        "teamSlug": "team-vitality",
+        "teamCode": "VIT"
+      },
+      {
+        "id": 3,
+        "name": "Walid Osman",
+        "nationality": "Lebanon",
+        "flagUrl": "https://liquipedia.net/commons/images/d/de/Lb_hd.png",
+        "summonerName": "Vetheo",
+        "role": "mid",
+        "cost": 25,
+        "teamName": "Team Vitality",
+        "teamSlug": "team-vitality",
+        "teamCode": "VIT"
+      },
+      {
+        "id": 4,
+        "name": "Eslam Ashraf",
+        "nationality": "Egypt",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d0/Eg_hd.png",
+        "summonerName": "Carzzy",
+        "role": "bot",
+        "cost": 25,
+        "teamName": "Team Vitality",
+        "teamSlug": "team-vitality",
+        "teamCode": "VIT"
+      },
+      {
+        "id": 5,
+        "name": "Mishal Albarrak",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/d/d6/Sa_hd.png",
+        "summonerName": "Hylissang",
+        "role": "support",
+        "cost": 25,
+        "teamName": "Team Vitality",
+        "teamSlug": "team-vitality",
+        "teamCode": "VIT"
+      }
+    ]
+  }
+]

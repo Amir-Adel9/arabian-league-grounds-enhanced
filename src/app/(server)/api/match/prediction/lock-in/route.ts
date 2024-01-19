@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { db } from '@/db';
-import { Prediction, prediction } from '@/db/schema';
+import { prediction } from '@/db/schema/schema';
+import { Prediction } from '@/db/types';
 import { eq, and } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 
