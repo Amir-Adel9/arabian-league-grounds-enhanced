@@ -20,10 +20,12 @@ export default async function FantasyPage() {
     .then((res) => res[0]?.id);
 
   const currentPlayersIds = await db
-    .select()
+    .select({
+      id: playerToFantasyTeam.playerId,
+    })
     .from(playerToFantasyTeam)
     .where(eq(playerToFantasyTeam.fantasyTeamId, currentTeamId))
-    .then((res) => res.map((player) => player.playerId));
+    .then((res) => res.map((player) => player.id));
 
   const currentPlayers = await Promise.all(
     currentPlayersIds.map(async (id) => {

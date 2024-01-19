@@ -1,11 +1,9 @@
 import { relations } from 'drizzle-orm';
 import {
-  foreignKey,
   int,
   mysqlTable,
   primaryKey,
   serial,
-  text,
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { fantasyTeam } from './fantasyTeam';
@@ -17,7 +15,7 @@ export const playerToFantasyTeam = mysqlTable(
     fantasyTeamId: int('fantasyTeamId')
       .notNull()
       .references(() => fantasyTeam.id),
-    playerId: int('playerId').references(() => player.id),
+    playerId: serial('playerId').references(() => player.id),
     role: varchar('role', {
       length: 10,
     }).notNull(),
