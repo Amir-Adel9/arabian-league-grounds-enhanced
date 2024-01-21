@@ -1,15 +1,15 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "c1d18abc-05f4-4eb2-bd72-404b894fd77c",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "0a5836f7-37a6-4ce1-9253-8f45a3b5c786",
+  "prevId": "4c9899ee-1bcb-4ed1-9c04-26e11df13001",
   "tables": {
     "fantasyTeam": {
       "name": "fantasyTeam",
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
+          "type": "serial",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
@@ -53,7 +53,7 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "int",
+          "type": "serial",
           "primaryKey": false,
           "notNull": true,
           "autoincrement": true
@@ -210,10 +210,10 @@
         },
         "playerId": {
           "name": "playerId",
-          "type": "int",
+          "type": "serial",
           "primaryKey": false,
           "notNull": false,
-          "autoincrement": false
+          "autoincrement": true
         },
         "role": {
           "name": "role",
@@ -221,6 +221,14 @@
           "primaryKey": false,
           "notNull": true,
           "autoincrement": false
+        },
+        "pickedAt": {
+          "name": "pickedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
         }
       },
       "indexes": {},
@@ -419,6 +427,14 @@
         },
         "fantasyPoints": {
           "name": "fantasyPoints",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "credits": {
+          "name": "credits",
           "type": "int",
           "primaryKey": false,
           "notNull": false,

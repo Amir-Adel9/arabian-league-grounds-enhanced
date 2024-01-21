@@ -1,14 +1,15 @@
 'use client';
 
 import { TeamRostersByRole } from '@/utils/functions/getTeamRosters';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import getFantasyStats from '../actions/getFantasyStats';
+import { getFantasyTeamStats } from '@/entities/fantasy/fantasy.actions';
 
 type FantasyPlayer = {
   id: number;
   name: string;
   nationality: string;
-  flagUrl: string;
+  flagUrl?: string;
   summonerName: string;
   role: 'top' | 'jungle' | 'mid' | 'bot' | 'support';
   cost: number;
@@ -29,14 +30,14 @@ const FantasyTest = ({
   currentTeam,
 }: {
   roostersByRole: TeamRostersByRole;
-  currentTeam: FantasyRoster;
+  currentTeam?: FantasyRoster;
 }) => {
   const [fantasyRoster, setFantasyRoster] = useState<FantasyRoster>({
-    top: currentTeam.top || undefined,
-    jungle: currentTeam.jungle || undefined,
-    mid: currentTeam.mid || undefined,
-    bot: currentTeam.bot || undefined,
-    support: currentTeam.support || undefined,
+    top: currentTeam?.top || undefined,
+    jungle: currentTeam?.jungle || undefined,
+    mid: currentTeam?.mid || undefined,
+    bot: currentTeam?.bot || undefined,
+    support: currentTeam?.support || undefined,
   });
   const [fantasyTeam, setFantasyTeam] = useState<{
     roster?: {
@@ -123,7 +124,44 @@ const FantasyTest = ({
   useEffect(() => {
     console.log(fantasyRoster);
     console.log(fantasyPoints);
-  }, [fantasyRoster, fantasyPoints]);
+    getFantasyTeamStats().then((res) => {
+      console.log('res, r', res);
+      setFantasyPoints({
+        top: {
+          fromGameWins: res.top.pointsFromGameWins,
+          fromKills: res.top.pointsFromKills,
+          fromDeaths: res.top.pointsFromDeaths,
+          total: res.top.totalPoints,
+        },
+        jungle: {
+          fromGameWins: res.jungle.pointsFromGameWins,
+          fromKills: res.jungle.pointsFromKillParticipation,
+          fromDeaths: res.jungle.pointsFromDeaths,
+          total: res.jungle.totalPoints,
+        },
+        mid: {
+          fromGameWins: res.mid.pointsFromGameWins,
+          fromKills: res.mid.pointsFromKills,
+          fromDeaths: res.mid.pointsFromDeaths,
+          total: res.mid.totalPoints,
+        },
+        bot: {
+          fromGameWins: res.bot.pointsFromGameWins,
+          fromKills: res.bot.pointsFromKills,
+          fromDeaths: res.bot.pointsFromDeaths,
+          total: res.bot.totalPoints,
+        },
+        support: {
+          fromGameWins: res.support.pointsFromGameWins,
+          fromKills: res.support.pointsFromAssists,
+          fromDeaths: res.support.pointsFromDeaths,
+          total: res.support.totalPoints,
+        },
+        total: res.totalFantasyPoints,
+      });
+      return res;
+    });
+  }, []);
 
   const playerSelect = (player: FantasyPlayer) => {
     const { role } = player;
@@ -438,45 +476,48 @@ const FantasyTest = ({
                 alert('Team is not locked in');
                 return;
               } else {
-                const res = await getFantasyStats({
+                // const res = await getFantasyStats({
+                //   fantasyRoster: fantasyTeam.roster,
+                // }).then((res) => {
+                //   setFantasyPoints({
+                //     top: {
+                //       fromGameWins: res.top.pointsFromGameWins,
+                //       fromKills: res.top.pointsFromKills,
+                //       fromDeaths: res.top.pointsFromDeaths,
+                //       total: res.top.totalPoints,
+                //     },
+                //     jungle: {
+                //       fromGameWins: res.jungle.pointsFromGameWins,
+                //       fromKills: res.jungle.pointsFromKillParticipation,
+                //       fromDeaths: res.jungle.pointsFromDeaths,
+                //       total: res.jungle.totalPoints,
+                //     },
+                //     mid: {
+                //       fromGameWins: res.mid.pointsFromGameWins,
+                //       fromKills: res.mid.pointsFromKills,
+                //       fromDeaths: res.mid.pointsFromDeaths,
+                //       total: res.mid.totalPoints,
+                //     },
+                //     bot: {
+                //       fromGameWins: res.bot.pointsFromGameWins,
+                //       fromKills: res.bot.pointsFromKills,
+                //       fromDeaths: res.bot.pointsFromDeaths,
+                //       total: res.bot.totalPoints,
+                //     },
+                //     support: {
+                //       fromGameWins: res.support.pointsFromGameWins,
+                //       fromKills: res.support.pointsFromAssists,
+                //       fromDeaths: res.support.pointsFromDeaths,
+                //       total: res.support.totalPoints,
+                //     },
+                //     total: res.totalFantasyPoints,
+                //   });
+                //   return res;
+                // });
+                // console.log('res', res);
+                await getFantasyStats({
                   fantasyRoster: fantasyTeam.roster,
-                }).then((res) => {
-                  setFantasyPoints({
-                    top: {
-                      fromGameWins: res.top.pointsFromGameWins,
-                      fromKills: res.top.pointsFromKills,
-                      fromDeaths: res.top.pointsFromDeaths,
-                      total: res.top.totalPoints,
-                    },
-                    jungle: {
-                      fromGameWins: res.jungle.pointsFromGameWins,
-                      fromKills: res.jungle.pointsFromKillParticipation,
-                      fromDeaths: res.jungle.pointsFromDeaths,
-                      total: res.jungle.totalPoints,
-                    },
-                    mid: {
-                      fromGameWins: res.mid.pointsFromGameWins,
-                      fromKills: res.mid.pointsFromKills,
-                      fromDeaths: res.mid.pointsFromDeaths,
-                      total: res.mid.totalPoints,
-                    },
-                    bot: {
-                      fromGameWins: res.bot.pointsFromGameWins,
-                      fromKills: res.bot.pointsFromKills,
-                      fromDeaths: res.bot.pointsFromDeaths,
-                      total: res.bot.totalPoints,
-                    },
-                    support: {
-                      fromGameWins: res.support.pointsFromGameWins,
-                      fromKills: res.support.pointsFromAssists,
-                      fromDeaths: res.support.pointsFromDeaths,
-                      total: res.support.totalPoints,
-                    },
-                    total: res.totalFantasyPoints,
-                  });
-                  return res;
                 });
-                console.log('res', res);
               }
             }}
           >

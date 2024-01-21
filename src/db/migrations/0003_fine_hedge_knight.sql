@@ -1,0 +1,1 @@
+ALTER TABLE `playerToFantasyTeam` ADD `points` int DEFAULT 0;

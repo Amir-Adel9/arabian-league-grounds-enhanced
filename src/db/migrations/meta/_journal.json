@@ -1,1 +1,27 @@
-{"version":"5","dialect":"mysql","entries":[{"idx":0,"version":"5","when":1705289185594,"tag":"0000_jittery_rumiko_fujikawa","breakpoints":true}]}
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1705692837113,
+      "tag": "0002_flimsy_inertia",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1705773110075,
+      "tag": "0003_fine_hedge_knight",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1705806597481,
+      "tag": "0004_fuzzy_purifiers",
+      "breakpoints": true
+    }
+  ]
+}

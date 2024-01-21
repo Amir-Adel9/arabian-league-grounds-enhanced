@@ -4,6 +4,7 @@ import {
   mysqlTable,
   primaryKey,
   serial,
+  timestamp,
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { fantasyTeam } from './fantasyTeam';
@@ -19,6 +20,8 @@ export const playerToFantasyTeam = mysqlTable(
     role: varchar('role', {
       length: 10,
     }).notNull(),
+    points: int('points').default(0).notNull(),
+    pickedAt: timestamp('pickedAt').defaultNow().notNull(),
   },
   (t) => ({
     pk: primaryKey(t.fantasyTeamId, t.role),
