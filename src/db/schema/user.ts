@@ -15,6 +15,7 @@ export const user = mysqlTable('user', {
   }),
   predictionPoints: int('predictionPoints').default(0),
   fantasyPoints: int('fantasyPoints').default(0),
+  credits: int('credits').default(0),
 });
 
 export const userRelations = relations(user, ({ many, one }) => ({

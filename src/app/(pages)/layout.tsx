@@ -14,7 +14,7 @@ import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from 'react-hot-toast';
-import { fulfillPredictions } from '@/app/(server)/actions/fulfillPredictionsAction';
+import { fulfillPredictions } from '@/entities/prediction/actions/fulfillPredictions';
 import { getRoster } from '@/utils/functions/getRoster';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });

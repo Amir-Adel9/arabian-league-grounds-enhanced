@@ -51,9 +51,15 @@ export async function fulfillPredictions() {
     )
       .then((res) => res.json())
       .then((data) => {
-        return data.data.schedule.events.filter((event: Event) => {
-          return event.state === 'completed' && event.type === 'match';
-        });
+        return data.data.schedule.events
+          .filter((event: Event) => {
+            return event.state === 'completed' && event.type === 'match';
+          })
+          .filter((event: Event) => {
+            return pendingPredictions.some((prediction) => {
+              return prediction.matchId === event.match.id;
+            });
+          });
       });
 
     if (completedMatches.length === 0) {

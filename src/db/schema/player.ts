@@ -1,10 +1,17 @@
 import { relations } from 'drizzle-orm';
-import { int, mysqlTable, text, unique, varchar } from 'drizzle-orm/mysql-core';
+import {
+  int,
+  mysqlTable,
+  serial,
+  text,
+  unique,
+  varchar,
+} from 'drizzle-orm/mysql-core';
 import { playerToFantasyTeam } from './playerToFantasyTeam';
 export const player = mysqlTable(
   'player',
   {
-    id: int('id').primaryKey().notNull().autoincrement(),
+    id: serial('id').primaryKey(),
     name: varchar('name', {
       length: 100,
     }),
