@@ -16,6 +16,7 @@ import Footer from '@/components/layout/Footer';
 import { Toaster } from 'react-hot-toast';
 import { fulfillPredictions } from '@/entities/prediction/actions/fulfillPredictions';
 import { getRoster } from '@/utils/functions/getRoster';
+import { fulfillUpdates } from '@/entities/actions';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     'Your all-in-one League of Legends Arabian League companion. Teams, Schedule, Standings, Leaderboards, Rewards, and more!',
 };
 
-fulfillPredictions();
+fulfillUpdates();
 // getRoster(['NRG', 'T1']);
 
 export default async function RootLayout({

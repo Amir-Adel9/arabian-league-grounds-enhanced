@@ -13,7 +13,7 @@ export async function getCompletedEventsInSplit(): Promise<Event[]> {
         (event: Event) =>
           event.state === 'completed' &&
           event.type === 'match' &&
-          new Date(event.startTime) > new Date('2024-01-11T00:00:00Z')
+          new Date(event.startTime) > new Date('2024-01-19T20:16:44.000Z')
       )
     );
 }

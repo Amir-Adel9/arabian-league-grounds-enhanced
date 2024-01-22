@@ -1,0 +1,1 @@
+ALTER TABLE `playerToFantasyTeam` MODIFY COLUMN `points` int NOT NULL;

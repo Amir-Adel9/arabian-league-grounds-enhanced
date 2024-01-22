@@ -91,39 +91,43 @@ export async function calculateFantasyPoints() {
   if (!fantasyTeamId) throw new Error('No fantasy team found');
 
   const fantasyRoster = await getFantasyPlayers({ fantasyTeamId });
-  Object.values(fantasyRoster).forEach(async (fantasyPlayer) => {
-    const _player = await getPlayer({ playerId: fantasyPlayer.playerId });
-    const pickedAt = fantasyPlayer.pickedAt;
+  await Promise.all(
+    Object.values(fantasyRoster).map(async (fantasyPlayer) => {
+      const _player = await getPlayer({ playerId: fantasyPlayer.playerId });
+      const pickedAt = fantasyPlayer.pickedAt;
 
-    const completedEventsSincePicked = await getCompletedEventsSincePicked({
-      pickedAt,
-    });
-
-    const eventsWithFantasyPlayer = filterEventsWithFantasyPlayer({
-      events: completedEventsSincePicked,
-      fantasyPlayer: _player as Player,
-    });
-
-    const statsForEventsWithFantasyPlayer =
-      await getStatsForEventsWithFantasyPlayers({
-        events: eventsWithFantasyPlayer,
+      const completedEventsSincePicked = await getCompletedEventsSincePicked({
+        pickedAt,
       });
 
-    // console.log('statsForEventsWithFantasy: ', statsForEventsWithFantasyPlayer);
+      const eventsWithFantasyPlayer = filterEventsWithFantasyPlayer({
+        events: completedEventsSincePicked,
+        fantasyPlayer: _player as Player,
+      });
 
-    const fantasyPoints = await getFantasyPointsForPlayer({
-      events: statsForEventsWithFantasyPlayer,
-      fantasyPlayer: _player as Player,
-    });
+      const statsForEventsWithFantasyPlayer =
+        await getStatsForEventsWithFantasyPlayers({
+          events: eventsWithFantasyPlayer,
+        });
 
-    console.log(`fantasyPoints for ${_player.summonerName}: `, fantasyPoints);
+      // console.log('statsForEventsWithFantasy: ', statsForEventsWithFantasyPlayer);
 
-    await updateFantasyPointsForPlayer({
-      points: fantasyPoints.totalFantasyPoints,
-      playerId: fantasyPlayer.playerId,
-    });
-  });
+      const fantasyPoints = await getFantasyPointsForPlayer({
+        events: statsForEventsWithFantasyPlayer,
+        fantasyPlayer: _player as Player,
+      });
+
+      console.log(`fantasyPoints for ${_player.summonerName}: `, fantasyPoints);
+
+      await updateFantasyPointsForPlayer({
+        points: fantasyPoints.totalFantasyPoints,
+        playerId: fantasyPlayer.playerId,
+      });
+    })
+  );
   const updatedFantasyRoster = await getFantasyPlayers({ fantasyTeamId });
+
+  // console.log('updatedFantasyRoster: ', updatedFantasyRoster);
 
   const fantasyPoints = getFantasyPointsFromRoster({
     fantasyRoster: updatedFantasyRoster as PlayerToFantasyTeam[],
