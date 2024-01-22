@@ -22,6 +22,20 @@
       "when": 1705806597481,
       "tag": "0004_fuzzy_purifiers",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1705808509239,
+      "tag": "0005_jittery_russian",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1705808569113,
+      "tag": "0006_abandoned_dakota_north",
+      "breakpoints": true
     }
   ]
 }

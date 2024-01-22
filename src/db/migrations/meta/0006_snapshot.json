@@ -1,0 +1,479 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "58faf2d5-015d-4c3c-8bc9-a713e909f8af",
+  "prevId": "0224345e-8384-448b-b027-b1c06db71e5b",
+  "tables": {
+    "fantasyTeam": {
+      "name": "fantasyTeam",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userClerkId": {
+          "name": "userClerkId",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fantasyTeam_userClerkId_user_clerkId_fk": {
+          "name": "fantasyTeam_userClerkId_user_clerkId_fk",
+          "tableFrom": "fantasyTeam",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userClerkId"
+          ],
+          "columnsTo": [
+            "clerkId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "fantasyTeam_id": {
+          "name": "fantasyTeam_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "player": {
+      "name": "player",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "summonerName": {
+          "name": "summonerName",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "nationality": {
+          "name": "nationality",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "cost": {
+          "name": "cost",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "teamName": {
+          "name": "teamName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "teamCode": {
+          "name": "teamCode",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "teamSlug": {
+          "name": "teamSlug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "kills": {
+          "name": "kills",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "deaths": {
+          "name": "deaths",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "assists": {
+          "name": "assists",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "pointsFromKills": {
+          "name": "pointsFromKills",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "pointsFromDeaths": {
+          "name": "pointsFromDeaths",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "pointsFromAssists": {
+          "name": "pointsFromAssists",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "pointsFromGameWins": {
+          "name": "pointsFromGameWins",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "totalFantasyPoints": {
+          "name": "totalFantasyPoints",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "player_id": {
+          "name": "player_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "summonerName": {
+          "name": "summonerName",
+          "columns": [
+            "summonerName"
+          ]
+        }
+      }
+    },
+    "playerToFantasyTeam": {
+      "name": "playerToFantasyTeam",
+      "columns": {
+        "fantasyTeamId": {
+          "name": "fantasyTeamId",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "playerId": {
+          "name": "playerId",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": true
+        },
+        "role": {
+          "name": "role",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "points": {
+          "name": "points",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "pickedAt": {
+          "name": "pickedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "playerToFantasyTeam_fantasyTeamId_fantasyTeam_id_fk": {
+          "name": "playerToFantasyTeam_fantasyTeamId_fantasyTeam_id_fk",
+          "tableFrom": "playerToFantasyTeam",
+          "tableTo": "fantasyTeam",
+          "columnsFrom": [
+            "fantasyTeamId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "playerToFantasyTeam_playerId_player_id_fk": {
+          "name": "playerToFantasyTeam_playerId_player_id_fk",
+          "tableFrom": "playerToFantasyTeam",
+          "tableTo": "player",
+          "columnsFrom": [
+            "playerId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "playerToFantasyTeam_fantasyTeamId_role": {
+          "name": "playerToFantasyTeam_fantasyTeamId_role",
+          "columns": [
+            "fantasyTeamId",
+            "role"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "prediction": {
+      "name": "prediction",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "userClerkId": {
+          "name": "userClerkId",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "matchId": {
+          "name": "matchId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "winningTeamId": {
+          "name": "winningTeamId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "losingTeamId": {
+          "name": "losingTeamId",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bestOf": {
+          "name": "bestOf",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "winningTeamScore": {
+          "name": "winningTeamScore",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "losingTeamScore": {
+          "name": "losingTeamScore",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "state": {
+          "name": "state",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "('unfulfilled')"
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "prediction_userClerkId_user_clerkId_fk": {
+          "name": "prediction_userClerkId_user_clerkId_fk",
+          "tableFrom": "prediction",
+          "tableTo": "user",
+          "columnsFrom": [
+            "userClerkId"
+          ],
+          "columnsTo": [
+            "clerkId"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "prediction_username_user_username_fk": {
+          "name": "prediction_username_user_username_fk",
+          "tableFrom": "prediction",
+          "tableTo": "user",
+          "columnsFrom": [
+            "username"
+          ],
+          "columnsTo": [
+            "username"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "prediction_id": {
+          "name": "prediction_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "user": {
+      "name": "user",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "clerkId": {
+          "name": "clerkId",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "username": {
+          "name": "username",
+          "type": "varchar(100)",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "predictionPoints": {
+          "name": "predictionPoints",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "fantasyPoints": {
+          "name": "fantasyPoints",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "credits": {
+          "name": "credits",
+          "type": "int",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "user_id": {
+          "name": "user_id",
+          "columns": [
+            "id"
+          ]
+        }
+      },
+      "uniqueConstraints": {
+        "user_clerkId_unique": {
+          "name": "user_clerkId_unique",
+          "columns": [
+            "clerkId"
+          ]
+        }
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

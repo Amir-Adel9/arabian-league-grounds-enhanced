@@ -41,7 +41,10 @@ const PredictionCard = ({
             </h3>
           </div>
           <div className='h-[90px] hidden lg:flex lg:flex-col justify-center lg:items-center lg:gap-2 lg:px-8 xl:px-14'>
-            <h3 className='text-center font-bold text-xl'>
+            <h3
+              hidden={prediction.state === 'unfulfilled'}
+              className='text-center font-bold text-xl'
+            >
               {`${
                 prediction.state === 'correct'
                   ? prediction.winningTeamId
@@ -49,10 +52,18 @@ const PredictionCard = ({
               } Won`}
             </h3>
             <h3
+              hidden={prediction.state !== 'unfulfilled'}
+              className='text-center font-bold text-xl'
+            >
+              VS
+            </h3>
+            <h3
               className={`font-bold py-1 px-2 z-10 duration-300 ${
                 prediction.state === 'correct'
                   ? 'text-green-600'
-                  : 'text-red-600'
+                  : prediction.state === 'incorrect'
+                  ? 'text-red-600'
+                  : ''
               }`}
             >
               {`You picked ${prediction.winningTeamId}`}

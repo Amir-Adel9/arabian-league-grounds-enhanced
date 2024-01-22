@@ -136,6 +136,7 @@ export async function addPlayerToFantasyTeam({
         fantasyTeamId: fantasyTeamId,
         playerId: playerToAdd.id,
         role: playerToAdd.role,
+        points: 0,
         pickedAt: new Date(),
       },
     });
