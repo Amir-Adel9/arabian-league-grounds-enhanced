@@ -5,11 +5,15 @@ import {
   getFantasyRoster,
   getFantasyTeam,
 } from '@/entities/fantasy/fantasy.db';
+import { currentUser } from '@clerk/nextjs';
 
 export default async function FantasyPage() {
   const teamRostersByRole = await getTeamRostersByRole();
+  const user = await currentUser();
 
-  const fantasyTeamId = (await getFantasyTeam())?.id;
+  if (!user) return <>Please Log in to fantasy</>;
+
+  const fantasyTeamId = (await getFantasyTeam({ userId: user.id }))?.id;
 
   if (!fantasyTeamId) {
     return (

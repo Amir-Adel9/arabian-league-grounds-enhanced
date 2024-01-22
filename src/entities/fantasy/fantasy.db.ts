@@ -35,18 +35,27 @@ export async function createFantasyTeam() {
   }
 }
 
-export async function getFantasyTeam() {
-  const user = await currentUser();
-
-  if (!user) throw new Error('No user found');
+export async function getFantasyTeam({ userId }: { userId: string }) {
+  if (!userId) throw new Error('No user found');
 
   const fantasyTeamForUser = await db
     .select()
     .from(fantasyTeam)
-    .where(eq(fantasyTeam.userClerkId, user.id))
+    .where(eq(fantasyTeam.userClerkId, userId))
     .then((res) => res[0]);
 
   return fantasyTeamForUser;
+}
+
+export async function getAllUserIds() {
+  const userIds = await db
+    .select({
+      userId: user.clerkId,
+    })
+    .from(user)
+    .then((res) => res.map((user) => user.userId));
+
+  return userIds;
 }
 
 export async function getFantasyRoster({
@@ -112,9 +121,7 @@ export async function addPlayerToFantasyTeam({
   fantasyPlayer: FantasyPlayer;
   fantasyTeamId: number;
 }) {
-  const user = await currentUser();
-
-  if (!user) throw new Error('No user found');
+  if (!fantasyTeamId) throw new Error('No fantasyTeamId found');
 
   const playerToAdd = await db
     .select()
@@ -133,11 +140,7 @@ export async function addPlayerToFantasyTeam({
     })
     .onDuplicateKeyUpdate({
       set: {
-        fantasyTeamId: fantasyTeamId,
-        playerId: playerToAdd.id,
-        role: playerToAdd.role,
-        points: 0,
-        pickedAt: new Date(),
+        playerId: sql`playerId`,
       },
     });
 }
