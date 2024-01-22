@@ -31,23 +31,27 @@ export async function lockInFantasyTeam({
 
   const registeredFantasyTeam = await getFantasyTeam();
 
+  console.log('registeredFantasyTeam: ', registeredFantasyTeam);
+
   const isWeekLocked = checkWeekDay();
 
   // if (isWeekLocked) throw new Error('Week is locked');
 
   if (registeredFantasyTeam) {
-    const currentFantasyRoster = await getFantasyRoster({
-      fantasyTeamId: registeredFantasyTeam.id,
-    });
+    // const currentFantasyRoster = await getFantasyRoster({
+    //   fantasyTeamId: registeredFantasyTeam.id,
+    // });
+    // console.log('currentFantasyRoster: ', currentFantasyRoster);
 
-    const filteredFantasyRoster = Object.values(fantasyRoster).filter(
-      (fantasyPlayer) => {
-        return !Object.values(currentFantasyRoster).some((player) => {
-          return player.summonerName === fantasyPlayer.summonerName;
-        });
-      }
-    );
-    Object.values(filteredFantasyRoster).forEach(async (fantasyPlayer) => {
+    // const filteredFantasyRoster = Object.values(fantasyRoster).filter(
+    //   (fantasyPlayer) => {
+    //     return Object.values(currentFantasyRoster).some((player) => {
+    //       return player.summonerName === fantasyPlayer.summonerName;
+    //     });
+    //   }
+    // );
+    console.log('currentFantasyRoster: ', fantasyRoster);
+    Object.values(fantasyRoster).forEach(async (fantasyPlayer) => {
       await addPlayerToFantasyTeam({
         fantasyPlayer,
         fantasyTeamId: registeredFantasyTeam.id,
