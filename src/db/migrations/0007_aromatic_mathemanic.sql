@@ -1,0 +1,1 @@
+ALTER TABLE `user` MODIFY COLUMN `credits` int DEFAULT 1000;
