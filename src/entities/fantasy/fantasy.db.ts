@@ -1,12 +1,13 @@
 import { db } from '@/db';
 import {
+  fantasyHistory,
   fantasyTeam,
   player,
   playerToFantasyTeam,
   user,
 } from '@/db/schema/schema';
 import { currentUser } from '@clerk/nextjs';
-import { eq, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { FantasyPlayer, FantasyRoster } from './fantasy.types';
 
 export async function createFantasyTeam() {
@@ -129,6 +130,17 @@ export async function addPlayerToFantasyTeam({
     .where(eq(player.summonerName, fantasyPlayer.summonerName))
     .then((res) => res[0]);
 
+  const playerAlreadyInRoleId = await db
+    .select()
+    .from(playerToFantasyTeam)
+    .where(
+      and(
+        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId),
+        eq(playerToFantasyTeam.role, fantasyPlayer.role)
+      )
+    )
+    .then((res) => res[0]);
+
   if (!playerToAdd) throw new Error('Player not found');
 
   await db
@@ -140,9 +152,27 @@ export async function addPlayerToFantasyTeam({
     })
     .onDuplicateKeyUpdate({
       set: {
-        playerId: sql`playerId`,
+        fantasyTeamId: fantasyTeamId,
+        playerId: playerToAdd.id,
+        role: playerToAdd.role,
+        points: 0,
+        pickedAt: new Date(),
       },
+    })
+    .then((res) => {
+      console.log('db insert res', res);
     });
+
+  if (playerAlreadyInRoleId) {
+    await db.insert(fantasyHistory).values({
+      fantasyTeamId: fantasyTeamId,
+      playerId: playerAlreadyInRoleId.playerId,
+      role: playerAlreadyInRoleId.role,
+      points: playerAlreadyInRoleId.points,
+      pickedAt: playerAlreadyInRoleId.pickedAt,
+      droppedAt: new Date(),
+    });
+  }
 }
 
 export async function updateFantasyPointsForPlayer({
@@ -181,4 +211,17 @@ export async function updateFantasyPointsForUser({
       fantasyPoints: points,
     })
     .where(eq(user.clerkId, userId));
+}
+
+export async function getFantasyHistoryPlayers({
+  fantasyTeamId,
+}: {
+  fantasyTeamId: number;
+}) {
+  const fantasyHistoryPlayers = await db
+    .select()
+    .from(fantasyHistory)
+    .where(eq(fantasyHistory.fantasyTeamId, fantasyTeamId));
+
+  return fantasyHistoryPlayers;
 }

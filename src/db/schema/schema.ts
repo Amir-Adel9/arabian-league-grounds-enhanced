@@ -6,3 +6,4 @@ export {
   playerToFantasyTeam,
   playerToFantasyTeamRelations,
 } from './playerToFantasyTeam';
+export { fantasyHistory } from './fantasyHistory';

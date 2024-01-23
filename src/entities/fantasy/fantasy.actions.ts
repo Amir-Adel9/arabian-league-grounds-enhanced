@@ -5,6 +5,7 @@ import {
   addPlayerToFantasyTeam,
   createFantasyTeam,
   getAllUserIds,
+  getFantasyHistoryPlayers,
   getFantasyPlayers,
   getFantasyRoster,
   getFantasyTeam,
@@ -12,7 +13,7 @@ import {
   updateFantasyPointsForPlayer,
   updateFantasyPointsForUser,
 } from './fantasy.db';
-import { FantasyPlayer, FantasyRoster } from './fantasy.types';
+import { FantasyRoster } from './fantasy.types';
 import {
   getCompletedEventsInSplit,
   getCompletedEventsSincePicked,
@@ -44,20 +45,26 @@ export async function lockInFantasyTeam({
   // if (isWeekLocked) throw new Error('Week is locked');
 
   if (registeredFantasyTeam) {
-    // const currentFantasyRoster = await getFantasyRoster({
-    //   fantasyTeamId: registeredFantasyTeam.id,
-    // });
+    const currentFantasyRoster = await getFantasyRoster({
+      fantasyTeamId: registeredFantasyTeam.id,
+    });
     // console.log('currentFantasyRoster: ', currentFantasyRoster);
+    // console.log('FantasyRoster: ', fantasyRoster);
 
-    // const filteredFantasyRoster = Object.values(fantasyRoster).filter(
-    //   (fantasyPlayer) => {
-    //     return Object.values(currentFantasyRoster).some((player) => {
-    //       return player.summonerName === fantasyPlayer.summonerName;
-    //     });
-    //   }
-    // );
-    console.log('currentFantasyRoster: ', fantasyRoster);
-    Object.values(fantasyRoster).forEach(async (fantasyPlayer) => {
+    const newFantasyPlayers = Object.values(fantasyRoster).filter(
+      (fantasyPlayer) => {
+        return !Object.values(currentFantasyRoster).some(
+          (currentFantasyPlayer) => {
+            return (
+              currentFantasyPlayer.id === fantasyPlayer.id &&
+              currentFantasyPlayer.role === fantasyPlayer.role
+            );
+          }
+        );
+      }
+    );
+    console.log('newFantasyPlayers: ', newFantasyPlayers);
+    newFantasyPlayers.forEach(async (fantasyPlayer) => {
       await addPlayerToFantasyTeam({
         fantasyPlayer,
         fantasyTeamId: registeredFantasyTeam.id,
@@ -91,7 +98,7 @@ export async function getFantasyTeamStats() {
       events: eventsWithFantasyPlayers,
     });
 
-  const fantasyPoints = await getFantasyPoints({
+  const fantasyPoints = getFantasyPoints({
     eventsWithFantasyPlayersAndStats: statsForEventsWithFantasyPlayers,
     fantasyRoster,
   });
@@ -158,15 +165,15 @@ export async function calculateFantasyPoints() {
 
         // console.log('statsForEventsWithFantasy: ', statsForEventsWithFantasyPlayer);
 
-        const fantasyPoints = await getFantasyPointsForPlayer({
+        const fantasyPoints = getFantasyPointsForPlayer({
           events: statsForEventsWithFantasyPlayer,
           fantasyPlayer: _player as Player,
         });
 
-        console.log(
-          `fantasyPoints for ${_player.summonerName}: `,
-          fantasyPoints
-        );
+        // console.log(
+        //   `fantasyPoints for ${_player.summonerName}: `,
+        //   fantasyPoints
+        // );
 
         await updateFantasyPointsForPlayer({
           points: fantasyPoints.totalFantasyPoints,
@@ -182,8 +189,12 @@ export async function calculateFantasyPoints() {
       fantasyRoster: updatedFantasyRoster as PlayerToFantasyTeam[],
     });
 
+    const fantasyPointsFromHistory = await getFantasyPointsFromHistory({
+      fantasyTeamId,
+    });
+
     await updateFantasyPointsForUser({
-      points: fantasyPoints,
+      points: fantasyPoints + fantasyPointsFromHistory,
       fantasyTeamId: fantasyTeamId,
     });
   });
@@ -1223,4 +1234,21 @@ function getFantasyPointsFromRoster({
   });
 
   return fantasyPoints.total;
+}
+
+async function getFantasyPointsFromHistory({
+  fantasyTeamId,
+}: {
+  fantasyTeamId: number;
+}) {
+  let fantasyPoints = 0;
+  const fantasyHistoryPlayers = await getFantasyHistoryPlayers({
+    fantasyTeamId,
+  });
+
+  fantasyHistoryPlayers.forEach((fantasyPlayer) => {
+    fantasyPoints += fantasyPlayer.points;
+  });
+
+  return fantasyPoints;
 }

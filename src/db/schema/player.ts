@@ -8,6 +8,7 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { playerToFantasyTeam } from './playerToFantasyTeam';
+import { fantasyHistory } from './fantasyHistory';
 export const player = mysqlTable(
   'player',
   {

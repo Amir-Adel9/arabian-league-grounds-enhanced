@@ -1,0 +1,1 @@
+ALTER TABLE `fantasyHistory` DROP COLUMN `playerId`;

@@ -1,0 +1,1 @@
+ALTER TABLE `fantasyHistory` ADD `playerId` int NOT NULL;
