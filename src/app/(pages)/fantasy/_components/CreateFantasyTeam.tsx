@@ -105,7 +105,7 @@ const CreateFantasyTeam = ({
   useEffect(() => {
     console.log('currentFantasyTeam', currentFantasyTeam);
     setTimeout(() => {
-      if (createRef.current?.style.display === 'none') {
+      if (createRef.current?.style.display === 'none' && isShowing) {
         console.log('displaying');
         createRef.current.style.display = 'flex';
         console.log('displayed');
