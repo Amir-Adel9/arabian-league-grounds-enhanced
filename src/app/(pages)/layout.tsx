@@ -1,4 +1,5 @@
 import '../globals.css';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import {
   Inter,
@@ -79,6 +80,7 @@ export default async function RootLayout({
           {matchModal}
           <Footer />
           <Toaster position='top-center' reverseOrder={false} /> */}
+          <Analytics />
           <section className='w-full min-h-screen relative flex flex-col justify-center items-center'>
             <div className='absolute w-full h-full bg-primary opacity-80 z-[-10]'></div>
             <Image
