@@ -9,13 +9,14 @@ type FantasyPlayer = {
   id: number;
   name: string;
   nationality: string;
-  flagUrl?: string;
+  flagUrl: string;
   summonerName: string;
   role: 'top' | 'jungle' | 'mid' | 'bot' | 'support';
   cost: number;
   teamName: string;
   teamSlug: string;
   teamCode: string;
+  teamLogo: string;
 };
 type FantasyRoster = {
   top: FantasyPlayer | undefined;
@@ -272,7 +273,7 @@ const FantasyTest = ({
     }
   };
   return (
-    <div className='flex flex-col items-center gap-5'>
+    <div className='flex flex-col items-center gap-5 mt-20 mb-16 lg:mb-0'>
       <div>
         <h3 className='font-kanit text-3xl mt-5 text-center'>Fantasy Roster</h3>
         <div className='flex flex-row gap-5 justify-center items-center'>

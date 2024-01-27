@@ -2,13 +2,14 @@ export type FantasyPlayer = {
   id: number;
   name: string;
   nationality: string;
-  flagUrl?: string;
+  flagUrl: string;
   summonerName: string;
   role: 'top' | 'jungle' | 'mid' | 'bot' | 'support';
   cost: number;
   teamName: string;
   teamSlug: string;
   teamCode: string;
+  teamLogo: string;
 };
 
 export type FantasyRoster = {

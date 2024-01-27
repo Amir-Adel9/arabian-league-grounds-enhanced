@@ -24,7 +24,7 @@ const MobileNavbar = () => {
         </li>
         <li className=' items-center duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
           <Link
-            href='/leaderboard'
+            href='/leaderboard/predictions'
             className='flex flex-col gap-1 items-center'
           >
             <Medal size={24} className='w-5 h-5 xs:w-auto xs:h-auto' />

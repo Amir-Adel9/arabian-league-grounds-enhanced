@@ -21,7 +21,7 @@ export default async function SchedulePage() {
   const gameDays = getGameDays(fullSchedule);
 
   return (
-    <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-start items-center '>
+    <main className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex justify-start items-center font-geist'>
       <Schedule gameDays={gameDays} />
     </main>
   );

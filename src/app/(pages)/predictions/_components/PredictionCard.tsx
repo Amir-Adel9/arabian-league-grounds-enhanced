@@ -24,6 +24,14 @@ const PredictionCard = ({
         className='relative w-full h-full flex items-center justify-between'
       >
         <div className='h-full flex justify-center flex-grow items-center flex-col lg:flex-row gap-1 lg:gap-0'>
+          <div className='flex flex-col text-white/70'>
+            <h3 className='text-xl font-bold'>
+              {startTime.hour}:{startTime.minute}
+            </h3>
+            <h3 className='text-sm font-semibold text-center'>
+              {startTime.date}
+            </h3>
+          </div>
           <div className='relative h-full flex flex-row lg:flex-row-reverse w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:gap-4'>
             <Image
               src={event.match.teams[0].image}

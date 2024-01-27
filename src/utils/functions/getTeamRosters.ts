@@ -1,5 +1,6 @@
 import { db } from '@/db';
 import { player } from '@/db/schema/schema';
+import { sql } from 'drizzle-orm';
 
 export async function getTeamRosters() {
   return await import('@/utils/data/lec_team_rosters.json').then(
@@ -26,18 +27,20 @@ async function insertRostersIntoDB() {
     await db
       .insert(player)
       .values({
-        nationality: p.nationality,
         name: p.name,
         summonerName: p.summonerName,
         role: p.role,
+        nationality: p.nationality,
+        flagUrl: p.flagUrl,
         cost: p.cost,
         teamName: p.teamName,
         teamSlug: p.teamSlug,
         teamCode: p.teamCode,
+        teamLogo: p.teamLogo,
       })
       .onDuplicateKeyUpdate({
         set: {
-          summonerName: p.summonerName,
+          summonerName: sql`summonerName`,
         },
       })
       .then((res) => {
@@ -88,6 +91,7 @@ export async function getTeamRostersByRole() {
         teamName: string;
         teamSlug: string;
         teamCode: string;
+        teamLogo: string;
       }[]
     >
   );

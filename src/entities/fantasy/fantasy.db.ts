@@ -1,12 +1,13 @@
 import { db } from '@/db';
 import {
+  fantasyHistory,
   fantasyTeam,
   player,
   playerToFantasyTeam,
   user,
 } from '@/db/schema/schema';
 import { currentUser } from '@clerk/nextjs';
-import { eq, sql } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import { FantasyPlayer, FantasyRoster } from './fantasy.types';
 
 export async function createFantasyTeam() {
@@ -19,7 +20,7 @@ export async function createFantasyTeam() {
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, user.id))
     .then((res) => res[0]);
-
+  console.log('Created Fantasy Team for User: ', user.username);
   if (!existingFantasyTeam) {
     await db
       .insert(fantasyTeam)
@@ -35,18 +36,31 @@ export async function createFantasyTeam() {
   }
 }
 
-export async function getFantasyTeam() {
-  const user = await currentUser();
-
-  if (!user) throw new Error('No user found');
-
+export async function getFantasyTeamId({ userId }: { userId: string }) {
+  if (!userId) throw new Error('No user found');
+  console.log('miro userId', userId);
   const fantasyTeamForUser = await db
     .select()
     .from(fantasyTeam)
-    .where(eq(fantasyTeam.userClerkId, user.id))
-    .then((res) => res[0]);
+    .where(eq(fantasyTeam.userClerkId, userId))
+    .then((res) => {
+      console.log('miro res', res);
+      return res[0]?.id;
+    });
 
   return fantasyTeamForUser;
+}
+
+export async function getAllUserIds() {
+  const userIds = await db
+    .select()
+    .from(user)
+    .innerJoin(fantasyTeam, eq(user.clerkId, fantasyTeam.userClerkId))
+    .then((res) => {
+      return res.map((res) => res.user.clerkId);
+    });
+
+  return userIds;
 }
 
 export async function getFantasyRoster({
@@ -112,14 +126,23 @@ export async function addPlayerToFantasyTeam({
   fantasyPlayer: FantasyPlayer;
   fantasyTeamId: number;
 }) {
-  const user = await currentUser();
-
-  if (!user) throw new Error('No user found');
+  if (!fantasyTeamId) throw new Error('No fantasyTeamId found');
 
   const playerToAdd = await db
     .select()
     .from(player)
     .where(eq(player.summonerName, fantasyPlayer.summonerName))
+    .then((res) => res[0]);
+
+  const playerAlreadyInRoleId = await db
+    .select()
+    .from(playerToFantasyTeam)
+    .where(
+      and(
+        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId),
+        eq(playerToFantasyTeam.role, fantasyPlayer.role)
+      )
+    )
     .then((res) => res[0]);
 
   if (!playerToAdd) throw new Error('Player not found');
@@ -139,7 +162,21 @@ export async function addPlayerToFantasyTeam({
         points: 0,
         pickedAt: new Date(),
       },
+    })
+    .then((res) => {
+      console.log('db insert res', res);
     });
+
+  if (playerAlreadyInRoleId) {
+    await db.insert(fantasyHistory).values({
+      fantasyTeamId: fantasyTeamId,
+      playerId: playerAlreadyInRoleId.playerId,
+      role: playerAlreadyInRoleId.role,
+      points: playerAlreadyInRoleId.points,
+      pickedAt: playerAlreadyInRoleId.pickedAt,
+      droppedAt: new Date(),
+    });
+  }
 }
 
 export async function updateFantasyPointsForPlayer({
@@ -178,4 +215,17 @@ export async function updateFantasyPointsForUser({
       fantasyPoints: points,
     })
     .where(eq(user.clerkId, userId));
+}
+
+export async function getFantasyHistoryPlayers({
+  fantasyTeamId,
+}: {
+  fantasyTeamId: number;
+}) {
+  const fantasyHistoryPlayers = await db
+    .select()
+    .from(fantasyHistory)
+    .where(eq(fantasyHistory.fantasyTeamId, fantasyTeamId));
+
+  return fantasyHistoryPlayers;
 }

@@ -12,6 +12,7 @@ export default authMiddleware({
     '/fantasy',
     '/predictions',
     '/leaderboard',
+    '/leaderboard/:type',
     '/profile',
     '/about',
     '/match/:matchId',

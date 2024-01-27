@@ -10,16 +10,20 @@ const PredictionsFilterButtons = ({
   setFilter: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   return (
-    <div className='w-full flex justify-around items-center text-primary font-geist'>
+    <div className='w-full flex justify-around items-center text-primary gap-5 font-geist'>
       <button
         onClick={() => setFilter('all')}
-        className='bg-transparent flex-grow font-bold hover:text-accent-gold p-2 hover:border-b-2 hover:border-accent-gold hover:bg-card duration-300'
+        className={` flex-grow font-bold hover:text-accent-gold p-2 rounded-md hover:bg-card duration-300 ${
+          filter === 'all' && 'text-accent-gold bg-card'
+        }`}
       >
         All Predictions ({predictions.length})
       </button>
       <button
         onClick={() => setFilter('correct')}
-        className='bg-transparent flex-grow font-bold hover:text-accent-gold p-2 hover:border-b-2 hover:border-accent-gold hover:bg-card duration-300'
+        className={` flex-grow font-bold hover:text-accent-gold p-2 rounded-md hover:bg-card duration-300 ${
+          filter === 'correct' && 'text-accent-gold bg-card'
+        }`}
       >
         Correct (
         {
@@ -30,7 +34,9 @@ const PredictionsFilterButtons = ({
       </button>
       <button
         onClick={() => setFilter('incorrect')}
-        className='bg-transparent flex-grow font-bold hover:text-accent-gold p-2 hover:border-b-2 hover:border-accent-gold hover:bg-card duration-300'
+        className={` flex-grow font-bold hover:text-accent-gold p-2 rounded-md hover:bg-card duration-300 ${
+          filter === 'incorrect' && 'text-accent-gold bg-card'
+        }`}
       >
         Incorrect (
         {
@@ -41,7 +47,9 @@ const PredictionsFilterButtons = ({
       </button>
       <button
         onClick={() => setFilter('unfulfilled')}
-        className='bg-transparent flex-grow font-bold hover:text-accent-gold p-2 hover:border-b-2 hover:border-accent-gold hover:bg-card duration-300'
+        className={` flex-grow font-bold hover:text-accent-gold p-2 rounded-md hover:bg-card duration-300 ${
+          filter === 'unfulfilled' && 'text-accent-gold bg-card'
+        }`}
       >
         Pending (
         {

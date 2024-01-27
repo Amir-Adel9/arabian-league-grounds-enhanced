@@ -1,0 +1,1 @@
+ALTER TABLE `fantasyHistory` MODIFY COLUMN `playerId` int NOT NULL;

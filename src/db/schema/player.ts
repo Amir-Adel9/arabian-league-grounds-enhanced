@@ -8,6 +8,7 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { playerToFantasyTeam } from './playerToFantasyTeam';
+import { fantasyHistory } from './fantasyHistory';
 export const player = mysqlTable(
   'player',
   {
@@ -19,11 +20,13 @@ export const player = mysqlTable(
       length: 100,
     }).notNull(),
     nationality: text('nationality').notNull(),
+    flagUrl: text('flagUrl').notNull(),
     role: text('role').notNull(),
     cost: int('cost').notNull(),
     teamName: text('teamName'),
     teamCode: text('teamCode'),
     teamSlug: text('teamSlug'),
+    teamLogo: text('teamLogo'),
     kills: int('kills').default(0),
     deaths: int('deaths').default(0),
     assists: int('assists').default(0),
