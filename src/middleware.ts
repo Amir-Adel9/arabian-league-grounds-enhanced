@@ -1,6 +1,8 @@
 import { authMiddleware } from '@clerk/nextjs';
 import { fulfillUpdates } from './entities/actions';
 
+export const runtime = 'experimental-edge';
+
 export default authMiddleware({
   publicRoutes: [
     '/',
