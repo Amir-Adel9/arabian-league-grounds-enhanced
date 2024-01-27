@@ -1,4 +1,5 @@
-export const runtime = 'edge';
+// export const runtime = 'edge';
+// export const preferredRegion = ['eu-central-1'];
 
 import { getCompletedEventsInSplit } from '@/data-access/data-access';
 import { Redis } from '@upstash/redis';
