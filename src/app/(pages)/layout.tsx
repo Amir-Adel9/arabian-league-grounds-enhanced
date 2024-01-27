@@ -58,52 +58,52 @@ export default async function RootLayout({
   matchModal: React.ReactNode;
 }) {
   return (
-    // <ClerkProvider>
-    //   <html lang='en' className='bg-background'>
-    //     <head>
-    //       <link rel='preconnect' href='https://fonts.googleapis.com' />
-    //       <link rel='preconnect' href='https://fonts.gstatic.com' />
-    //       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-    //       <link
-    //         href='https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap'
-    //         rel='stylesheet'
-    //       />
-    //     </head>
-    //     <body
-    //       className={`${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable} ${kanit.variable}`}
-    //     >
-    //       {/*  @ts-ignore Async Server Component */}
-    //       <Header />
-    //       <Navbar />
-    //       {children}
-    //       {matchModal}
-    //       {/* <Footer /> */}
-    //       <Toaster position='top-center' reverseOrder={false} />
-    //     </body>
-    //   </html>
-    // </ClerkProvider>
-    <section className='w-full min-h-screen relative flex flex-col justify-center items-center'>
-      <div className='absolute w-full h-full bg-primary opacity-80 z-[-10]'></div>
-      <Image
-        src='/images/background.jpg'
-        alt='Background Image'
-        className='w-full h-full z-[-20]'
-        layout='fill'
-        objectFit='cover'
-        draggable={false}
-        objectPosition='center'
-      />
-      <div className='text-4xl font-bold text-accent-gold relative w-full flex flex-col gap-5 justify-center items-center '>
-        <Image
-          src='/images/dinger.gif'
-          alt='dinger Image'
-          className='animate-bounce-y'
-          width={260}
-          height={260}
-          draggable={false}
-        />
-        ???
-      </div>
-    </section>
+    <ClerkProvider>
+      <html lang='en' className='bg-background'>
+        <head>
+          <link rel='preconnect' href='https://fonts.googleapis.com' />
+          <link rel='preconnect' href='https://fonts.gstatic.com' />
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+          <link
+            href='https://fonts.googleapis.com/css2?family=Gluten:wght@100;200;300;400;500;600;700;800;900&display=swap'
+            rel='stylesheet'
+          />
+        </head>
+        <body
+          className={`${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable} ${kanit.variable}`}
+        >
+          {/*  @ts-ignore Async Server Component */}
+          {/* <Header />
+          <Navbar />
+          {children}
+          {matchModal}
+          <Footer />
+          <Toaster position='top-center' reverseOrder={false} /> */}
+          <section className='w-full min-h-screen relative flex flex-col justify-center items-center'>
+            <div className='absolute w-full h-full bg-primary opacity-80 z-[-10]'></div>
+            <Image
+              src='/images/background.jpg'
+              alt='Background Image'
+              className='w-full h-full z-[-20]'
+              layout='fill'
+              objectFit='cover'
+              draggable={false}
+              objectPosition='center'
+            />
+            <div className='text-4xl font-bold text-accent-gold relative w-full flex flex-col gap-5 justify-center items-center '>
+              <Image
+                src='/images/dinger.gif'
+                alt='dinger Image'
+                className='animate-bounce-y'
+                width={260}
+                height={260}
+                draggable={false}
+              />
+              ???
+            </div>
+          </section>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
