@@ -29,7 +29,11 @@ const FantasyWelcome = ({
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const welcomeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    console.log('user', user);
+    console.log(
+      'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
+      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+    );
+    console.log('CLERK_SECRET_KEY', process.env.CLERK_SECRET_KEY);
     if (!showCreateTeam) return;
     setTimeout(() => {
       welcomeRef.current?.style.setProperty('display', 'none');
