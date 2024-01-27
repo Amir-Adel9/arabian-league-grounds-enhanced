@@ -80,7 +80,11 @@ export default async function FantasyPage() {
           user={_user as User}
         />
       ) : (
-        <Fantasy user={_user as User} />
+        <Fantasy
+          rostersByRole={teamRostersByRole}
+          currentFantasyTeam={fantasyRoster}
+          user={_user as User}
+        />
       )}
     </main>
   );

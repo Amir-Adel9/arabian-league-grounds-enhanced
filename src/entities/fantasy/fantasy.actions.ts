@@ -1235,7 +1235,10 @@ function getFantasyPointsForPlayer({
     pointsFromGameWins,
     pointsFromKA,
     pointsFromDeaths,
-    totalFantasyPoints: pointsFromGameWins + pointsFromKA + pointsFromDeaths,
+    totalFantasyPoints:
+      pointsFromGameWins + pointsFromKA + pointsFromDeaths < 0
+        ? 0
+        : pointsFromGameWins + pointsFromKA + pointsFromDeaths,
   };
 }
 

@@ -14,7 +14,7 @@ const LiveEvent = ({
   };
 }) => {
   return (
-    <div className='relative w-full h-[120px] bg-secondary text-primary px-6 py-4 font-kanit border-y-4 border-red-700 group duration-300 hover:bg-[#0b2c38]'>
+    <div className='relative flex items-center w-full h-[120px] bg-card text-primary px-6 py-4 font-geist border-2 border-destructive rounded-xl group duration-300 hover:bg-accent-blue'>
       <Link
         href='https://www.twitch.tv/lolesports_ar'
         target={'_blank'}

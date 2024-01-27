@@ -1,4 +1,5 @@
 'use server';
+export const runtime = 'edge';
 import { getCompletedEventsInSplit } from '@/data-access/data-access';
 import { Redis } from '@upstash/redis';
 import { fulfillPredictions } from './prediction/actions/fulfillPredictions';
@@ -11,9 +12,12 @@ const redis = new Redis({
 
 export async function fulfillUpdates() {
   const completedEvents = await getCompletedEventsInSplit();
+
   const storedMatchId = await redis.get('lastMatchId');
   const timesExecuted = await redis.get('timesExecuted');
-  await redis.set('timesExecuted', Number(timesExecuted) + 1);
+  const timesCalled = await redis.get('timesExecuted');
+  await redis.set('timesCalled', Number(timesCalled) + 1);
+
   if (completedEvents.length < 1) return;
 
   const lastCompletedEventMatchId =
@@ -24,6 +28,7 @@ export async function fulfillUpdates() {
     return;
   } else {
     await redis.set('lastMatchId', lastCompletedEventMatchId);
+    await redis.set('timesExecuted', Number(timesExecuted) + 1);
     await fulfillPredictions();
     await calculateFantasyPoints();
     console.log('fulfillUpdates', lastCompletedEventMatchId, storedMatchId);

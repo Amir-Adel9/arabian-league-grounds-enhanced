@@ -1,4 +1,5 @@
 import { authMiddleware } from '@clerk/nextjs';
+import { fulfillUpdates } from './entities/actions';
 
 export default authMiddleware({
   publicRoutes: [
@@ -27,8 +28,9 @@ export default authMiddleware({
   ],
   // apiRoutes: ['/api', '/api/webhooks/user'],
 });
-
-console.log('authMiddleware');
+export async function middleware() {
+  await fulfillUpdates();
+}
 
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
