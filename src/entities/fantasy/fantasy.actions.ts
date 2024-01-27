@@ -92,8 +92,7 @@ export async function lockInFantasyTeam({
       });
     });
   } else {
-    await createFantasyTeam();
-    lockInFantasyTeam({ fantasyRoster });
+    await createFantasyTeam().then(() => lockInFantasyTeam({ fantasyRoster }));
   }
 }
 
