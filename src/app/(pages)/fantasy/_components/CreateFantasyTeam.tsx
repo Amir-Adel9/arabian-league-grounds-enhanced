@@ -106,14 +106,18 @@ const CreateFantasyTeam = ({
     console.log('currentFantasyTeam', currentFantasyTeam);
     setTimeout(() => {
       if (createRef.current?.style.display === 'none') {
+        console.log('displaying');
         createRef.current.style.display = 'flex';
+        console.log('displayed');
         return;
       }
       if (createRef.current?.style.display === 'flex') {
+        console.log('hiding');
         createRef.current.style.display = 'none';
+        console.log('hidden');
         return;
       }
-    });
+    }, 500);
 
     window.addEventListener('click', (e) => {
       if (
