@@ -1,4 +1,4 @@
-'use server';
+export const runtime = 'edge';
 
 import { getCompletedEventsInSplit } from '@/data-access/data-access';
 import { Redis } from '@upstash/redis';
