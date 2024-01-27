@@ -1,11 +1,9 @@
-import { drizzle } from 'drizzle-orm/planetscale-serverless';
-import { connect } from '@planetscale/database';
-
+import { drizzle } from 'drizzle-orm/mysql2';
+import mysql from 'mysql2/promise';
 import * as schema from './schema/schema';
 
-// create database connection
-const connection = connect({
-  url: process.env.DATABASE_URL,
+const connection = await mysql.createConnection({
+  uri: process.env.PLANETSCALE_DATABASE_URL,
 });
 
-export const db = drizzle(connection, { schema });
+export const db = drizzle(connection, { schema, mode: 'planetscale' });
