@@ -102,7 +102,8 @@ export async function fulfillPredictions() {
     }
   }
 
-  revalidatePath('/(pages)/leaderboard');
+  revalidatePath('/(pages)/leaderboard/predictions');
+  revalidatePath('/(pages)/leaderboard/fantasy');
   revalidatePath('/(pages)/predictions');
   revalidatePath('/(pages)/profile');
 }

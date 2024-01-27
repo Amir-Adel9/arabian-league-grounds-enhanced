@@ -20,7 +20,7 @@ export async function createFantasyTeam() {
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, user.id))
     .then((res) => res[0]);
-
+  console.log('Created Fantasy Team for User: ', user.username);
   if (!existingFantasyTeam) {
     await db
       .insert(fantasyTeam)
@@ -36,25 +36,29 @@ export async function createFantasyTeam() {
   }
 }
 
-export async function getFantasyTeam({ userId }: { userId: string }) {
+export async function getFantasyTeamId({ userId }: { userId: string }) {
   if (!userId) throw new Error('No user found');
-
+  console.log('miro userId', userId);
   const fantasyTeamForUser = await db
     .select()
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, userId))
-    .then((res) => res[0]);
+    .then((res) => {
+      console.log('miro res', res);
+      return res[0]?.id;
+    });
 
   return fantasyTeamForUser;
 }
 
 export async function getAllUserIds() {
   const userIds = await db
-    .select({
-      userId: user.clerkId,
-    })
+    .select()
     .from(user)
-    .then((res) => res.map((user) => user.userId));
+    .innerJoin(fantasyTeam, eq(user.clerkId, fantasyTeam.userClerkId))
+    .then((res) => {
+      return res.map((res) => res.user.clerkId);
+    });
 
   return userIds;
 }

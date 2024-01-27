@@ -19,7 +19,7 @@ const Hero = () => {
         objectPosition='center'
       />
       <div className='w-full min-h-screen p-0 md:p-5 lg:p-32 flex justify-between items-center'>
-        <div className='flex flex-col  h-full justify-center items-center lg:items-start relative p-2 sm:p-0'>
+        <div className='flex flex-col h-full justify-center items-center lg:items-start relative p-2 sm:p-0'>
           <div className='flex flex-col gap-5 justify-center items-center  lg:justify-start lg:items-start '>
             <Image
               src='/images/al_logo.png'
@@ -42,7 +42,10 @@ const Hero = () => {
             <h2 className='text-xl md:text-2xl lg:text-3xl font-bold font-rubik animate-opacity '>
               <Balancer>
                 Your all-in-one
-                <span className='text-accent-blue'> Arabian League </span>
+                <span className='text-accent-blue brightness-125'>
+                  {' '}
+                  Arabian League{' '}
+                </span>
                 companion now enhanced and improved.
               </Balancer>
             </h2>
@@ -74,7 +77,7 @@ const Hero = () => {
                 <Link href='/predictions'>Predictions</Link>
               </span>
               <span className='underline cursor-pointer hover:text-accent-gold hover:-translate-y-1 duration-300'>
-                <Link href='/leaderboard'>Learderboard</Link>
+                <Link href='/leaderboard/predictions'>Learderboard</Link>
               </span>
               <span className='underline cursor-pointer hover:text-accent-gold hover:-translate-y-1 duration-300'>
                 <Link href='/about'>About</Link>

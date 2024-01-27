@@ -8,7 +8,7 @@ import {
   getFantasyHistoryPlayers,
   getFantasyPlayers,
   getFantasyRoster,
-  getFantasyTeam,
+  getFantasyTeamId,
   getPlayer,
   updateFantasyPointsForPlayer,
   updateFantasyPointsForUser,
@@ -23,33 +23,54 @@ import dayjs from 'dayjs';
 import { Player, PlayerToFantasyTeam } from '@/db/types';
 import { currentUser } from '@clerk/nextjs';
 
-type Role = 'top' | 'jungle' | 'mid' | 'bot' | 'support';
+export type Role = 'top' | 'jungle' | 'mid' | 'bot' | 'support';
 
 export async function lockInFantasyTeam({
   fantasyRoster,
 }: {
   fantasyRoster: FantasyRoster;
 }) {
+  console.log('fantasyRoster: ', fantasyRoster);
   if (!fantasyRoster) throw new Error('No fantasy roster found');
 
   const user = await currentUser();
 
   if (!user) throw new Error('No user found');
 
-  const registeredFantasyTeam = await getFantasyTeam({ userId: user.id });
+  const registeredFantasyTeamId = await getFantasyTeamId({ userId: user.id });
 
-  console.log('registeredFantasyTeam: ', registeredFantasyTeam);
+  console.log('registeredFantasyTeamId: ', registeredFantasyTeamId);
 
   const isWeekLocked = checkWeekDay();
 
   // if (isWeekLocked) throw new Error('Week is locked');
 
-  if (registeredFantasyTeam) {
+  if (registeredFantasyTeamId) {
     const currentFantasyRoster = await getFantasyRoster({
-      fantasyTeamId: registeredFantasyTeam.id,
+      fantasyTeamId: registeredFantasyTeamId,
     });
-    // console.log('currentFantasyRoster: ', currentFantasyRoster);
-    // console.log('FantasyRoster: ', fantasyRoster);
+    console.log(
+      'miro',
+      Object.values(currentFantasyRoster).filter((p) => p !== undefined)
+    );
+    if (
+      Object.values(currentFantasyRoster).filter((p) => p !== undefined)
+        .length === 0
+    ) {
+      await Promise.all(
+        Object.values(fantasyRoster).map(async (fantasyPlayer) => {
+          await addPlayerToFantasyTeam({
+            fantasyPlayer,
+            fantasyTeamId: registeredFantasyTeamId,
+          });
+        })
+      );
+      console.log('done ya miro');
+
+      return;
+    }
+    console.log('currentFantasyRoster: ', currentFantasyRoster);
+    console.log('FantasyRoster: ', fantasyRoster);
 
     const newFantasyPlayers = Object.values(fantasyRoster).filter(
       (fantasyPlayer) => {
@@ -67,7 +88,7 @@ export async function lockInFantasyTeam({
     newFantasyPlayers.forEach(async (fantasyPlayer) => {
       await addPlayerToFantasyTeam({
         fantasyPlayer,
-        fantasyTeamId: registeredFantasyTeam.id,
+        fantasyTeamId: registeredFantasyTeamId,
       });
     });
   } else {
@@ -81,7 +102,7 @@ export async function getFantasyTeamStats() {
 
   if (!user) throw new Error('No user found');
 
-  const fantasyTeamId = (await getFantasyTeam({ userId: user.id })).id;
+  const fantasyTeamId = await getFantasyTeamId({ userId: user.id });
 
   if (!fantasyTeamId) throw new Error('No fantasy team found');
 
@@ -109,7 +130,7 @@ export async function getFantasyTeamStats() {
 export async function getFantasyTeamsStats() {
   const userIds = await getAllUserIds();
   return userIds.map(async (userId) => {
-    const fantasyTeamId = (await getFantasyTeam({ userId })).id;
+    const fantasyTeamId = await getFantasyTeamId({ userId });
 
     if (!fantasyTeamId) throw new Error('No fantasy team found');
 
@@ -126,7 +147,7 @@ export async function getFantasyTeamsStats() {
         events: eventsWithFantasyPlayers,
       });
 
-    const fantasyPoints = await getFantasyPoints({
+    const fantasyPoints = getFantasyPoints({
       eventsWithFantasyPlayersAndStats: statsForEventsWithFantasyPlayers,
       fantasyRoster,
     });
@@ -137,9 +158,12 @@ export async function getFantasyTeamsStats() {
 
 export async function calculateFantasyPoints() {
   const userIds = await getAllUserIds();
+  console.log('miro userIds: ', userIds);
 
   userIds.forEach(async (userId) => {
-    const fantasyTeamId = (await getFantasyTeam({ userId })).id;
+    const fantasyTeamId = await getFantasyTeamId({ userId });
+    console.log('fantasyTeamId: ', fantasyTeamId);
+    console.log('userId: ', userId);
 
     if (!fantasyTeamId) throw new Error('No fantasy team found');
 

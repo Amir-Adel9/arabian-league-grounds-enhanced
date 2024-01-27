@@ -56,7 +56,8 @@ export async function POST(request: NextRequest) {
 
     revalidatePath(`/match/${matchId}`);
     revalidatePath('/match/[matchId]');
-    revalidatePath('/leaderboard');
+    revalidatePath('/leaderboard/predictions');
+    revalidatePath('/leaderboard/fantasy');
     revalidatePath('/');
 
     return NextResponse.json({ state: 'success' });

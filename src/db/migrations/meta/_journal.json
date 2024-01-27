@@ -78,6 +78,13 @@
       "when": 1705968848664,
       "tag": "0018_fresh_darkstar",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "5",
+      "when": 1706306259390,
+      "tag": "0019_lean_vulcan",
+      "breakpoints": true
     }
   ]
 }

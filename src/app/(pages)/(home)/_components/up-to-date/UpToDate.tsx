@@ -45,7 +45,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
               View Schedule
             </span>
           </motion.div>
@@ -75,7 +75,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
               View Standings
             </span>
           </motion.div>
@@ -106,7 +106,7 @@ const UpToDate = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105 hover:opacity-95'>
+            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
               View Stats
             </span>
           </motion.div>
