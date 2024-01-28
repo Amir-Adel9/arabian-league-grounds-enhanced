@@ -31,6 +31,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import handleFantasy from '../actions/getFantasyStats';
+import { useRouter } from 'next/navigation';
 
 type FantasyRoster = {
   top: FantasyPlayer | undefined;
@@ -51,6 +52,8 @@ const CreateFantasyTeam = ({
   isShowing: boolean;
   user: User;
 }) => {
+  const router = useRouter();
+
   const variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
@@ -254,8 +257,9 @@ const CreateFantasyTeam = ({
     <motion.div
       variants={variants}
       initial='hidden'
-      style={{ display: 'none' }}
+      style={{ display: 'flex' }}
       ref={createRef}
+      id='create'
       animate={isShowing ? 'visible' : 'hidden'}
       transition={{ delay: 0.6 }}
       className='w-full h-full flex flex-col items-center gap-4 sm:gap-20'
@@ -317,10 +321,19 @@ const CreateFantasyTeam = ({
                   Top
                 </h3>
               </div>
-              <div>
-                {fantasyRoster.top
-                  ? `${fantasyRoster.top.teamCode} ${fantasyRoster.top.summonerName}`
-                  : 'No player selected'}
+              <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+                {fantasyRoster.top ? (
+                  <>
+                    <span className='text-accent-gold text-2xl'>
+                      {fantasyRoster.top.teamName}
+                    </span>
+                    <span className='text-xl'>
+                      {fantasyRoster.top.summonerName}
+                    </span>
+                  </>
+                ) : (
+                  'No player selected'
+                )}
               </div>
               <span
                 onClick={() => setSelectedRole('top')}
@@ -377,10 +390,19 @@ const CreateFantasyTeam = ({
                   Jungle
                 </h3>
               </div>
-              <div>
-                {fantasyRoster.jungle
-                  ? `${fantasyRoster.jungle.teamCode} ${fantasyRoster.jungle.summonerName}`
-                  : 'No player selected'}
+              <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+                {fantasyRoster.jungle ? (
+                  <>
+                    <span className='text-accent-gold text-2xl'>
+                      {fantasyRoster.jungle.teamName}
+                    </span>
+                    <span className='text-xl'>
+                      {fantasyRoster.jungle.summonerName}
+                    </span>
+                  </>
+                ) : (
+                  'No player selected'
+                )}
               </div>
               <span
                 onClick={() => setSelectedRole('jungle')}
@@ -437,10 +459,19 @@ const CreateFantasyTeam = ({
                   Mid
                 </h3>
               </div>
-              <div>
-                {fantasyRoster.mid
-                  ? `${fantasyRoster.mid.teamCode} ${fantasyRoster.mid.summonerName}`
-                  : 'No player selected'}
+              <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+                {fantasyRoster.mid ? (
+                  <>
+                    <span className='text-accent-gold text-2xl'>
+                      {fantasyRoster.mid.teamName}
+                    </span>
+                    <span className='text-xl'>
+                      {fantasyRoster.mid.summonerName}
+                    </span>
+                  </>
+                ) : (
+                  'No player selected'
+                )}
               </div>
               <span
                 onClick={() => setSelectedRole('mid')}
@@ -497,10 +528,19 @@ const CreateFantasyTeam = ({
                   Bot
                 </h3>
               </div>
-              <div>
-                {fantasyRoster.bot
-                  ? `${fantasyRoster.bot.teamCode} ${fantasyRoster.bot.summonerName}`
-                  : 'No player selected'}
+              <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+                {fantasyRoster.bot ? (
+                  <>
+                    <span className='text-accent-gold text-2xl'>
+                      {fantasyRoster.bot.teamName}
+                    </span>
+                    <span className='text-xl'>
+                      {fantasyRoster.bot.summonerName}
+                    </span>
+                  </>
+                ) : (
+                  'No player selected'
+                )}
               </div>
               <span
                 onClick={() => setSelectedRole('bot')}
@@ -557,10 +597,19 @@ const CreateFantasyTeam = ({
                   Support
                 </h3>
               </div>
-              <div>
-                {fantasyRoster.support
-                  ? `${fantasyRoster.support.teamCode} ${fantasyRoster.support.summonerName}`
-                  : 'No player selected'}
+              <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+                {fantasyRoster.support ? (
+                  <>
+                    <span className='text-accent-gold text-2xl'>
+                      {fantasyRoster.support.teamName}
+                    </span>
+                    <span className='text-xl'>
+                      {fantasyRoster.support.summonerName}
+                    </span>
+                  </>
+                ) : (
+                  'No player selected'
+                )}
               </div>
               <span
                 onClick={() => setSelectedRole('support')}
@@ -711,6 +760,8 @@ const CreateFantasyTeam = ({
                     .then(() => {
                       toast.success('Team locked in successfully');
                       setShowConfirmModal(false);
+                      router.refresh();
+                      router.push('/fantasy');
                     })
                     .catch((err: Error) => {
                       toast.error(`Something went wrong: ${err.message}`);

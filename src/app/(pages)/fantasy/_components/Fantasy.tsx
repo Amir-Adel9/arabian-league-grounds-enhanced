@@ -1,16 +1,11 @@
-import {
-  TeamRostersByRole,
-  getTeamRostersByRole,
-} from '@/utils/functions/getTeamRosters';
-import { currentUser } from '@clerk/nextjs';
-import {
-  getFantasyRoster,
-  getFantasyTeamId,
-} from '@/entities/fantasy/fantasy.db';
+import { TeamRostersByRole } from '@/utils/functions/getTeamRosters';
+
 import { User } from '@/db/types';
 import { FantasyRoster } from '@/entities/fantasy/fantasy.types';
 
 import Image from 'next/image';
+import { getFantasyTeamStats } from '@/entities/fantasy/fantasy.actions';
+import EditRosterBtn from './EditRosterBtn';
 const Fantasy = async ({
   rostersByRole,
   currentFantasyTeam,
@@ -20,6 +15,8 @@ const Fantasy = async ({
   currentFantasyTeam: FantasyRoster;
   user: User;
 }) => {
+  const stats = await getFantasyTeamStats();
+  console.log(stats);
   return (
     <div className='relative w-full h-full overflow-x-hidden p-5 md:p-8 xl:p-16'>
       <div className='w-full h-full flex flex-col items-center gap-4 sm:gap-20'>
@@ -27,7 +24,7 @@ const Fantasy = async ({
           Your current line-up
         </h2>
         <div className='items-center flex flex-col text-muted-foreground lg:flex-row gap-5 justify-center w-full font-geist'>
-          <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
+          <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-4 abs hover:-translate-y-10 '>
             {currentFantasyTeam.top && (
               <div className='absolute top-3 w-full flex justify-between'>
                 <span className='absolute text-xl left-3'>
@@ -56,14 +53,55 @@ const Fantasy = async ({
                 Top
               </h3>
             </div>
-            <div>
-              {currentFantasyTeam.top
-                ? `${currentFantasyTeam.top.teamCode} ${currentFantasyTeam.top.summonerName}`
-                : 'No player selected'}
+            <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+              <span className='text-accent-gold text-2xl'>
+                {currentFantasyTeam.top.teamName}
+              </span>
+              <span className='text-xl'>
+                {currentFantasyTeam.top.summonerName}
+              </span>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'>
-              {currentFantasyTeam.top ? `Change player` : 'Add Player'}
-            </span>
+            <div className='flex justify-center w-full border-y border-border py-4'>
+              <div className='flex flex-col gap-2 items-center mx-auto'>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Kills:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      <span className='font-bold'>
+                        {stats.top.pointsFromKA / 3}
+                      </span>
+                    </span>
+                    {` +(${stats.top.pointsFromKA})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Deaths:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {String(stats.top.pointsFromDeaths / 2).split('-')}
+                    </span>
+                    {` -(${String(stats.top.pointsFromDeaths)
+                      .split('-')
+                      .join('')})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Wins:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.top.pointsFromGameWins / 5}
+                    </span>
+                    {` +(${stats.top.pointsFromGameWins})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Points:</span>
+                  <span className='text-start font-bold'>
+                    {stats.top.totalFantasyPoints}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
             {currentFantasyTeam.jungle && (
@@ -83,7 +121,7 @@ const Fantasy = async ({
             )}
             <div className='w-full flex flex-col items-center justify-center gap-5 z-20 text-primary'>
               <Image
-                src='/images/top_icon.png'
+                src='/images/jungle_icon.png'
                 alt='role icon'
                 width={60}
                 height={60}
@@ -91,17 +129,57 @@ const Fantasy = async ({
                 className='sm:w-[60px] sm:h-[60px] filter brightness-[0.7]'
               />
               <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold '>
-                Top
+                Jungle
               </h3>
             </div>
-            <div>
-              {currentFantasyTeam.jungle
-                ? `${currentFantasyTeam.jungle.teamCode} ${currentFantasyTeam.jungle.summonerName}`
-                : 'No player selected'}
+            <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+              <span className='text-accent-gold text-2xl'>
+                {currentFantasyTeam.jungle.teamName}
+              </span>
+              <span className='text-xl'>
+                {currentFantasyTeam.jungle.summonerName}
+              </span>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'>
-              {currentFantasyTeam.jungle ? `Change player` : 'Add Player'}
-            </span>
+            <div className='flex justify-center w-full border-y border-border py-4'>
+              <div className='flex flex-col gap-2 items-center mx-auto'>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Kills:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.jungle.pointsFromKA / 3}
+                    </span>
+                    {` +(${stats.jungle.pointsFromKA})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Deaths:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {String(stats.jungle.pointsFromDeaths / 2).split('-')}
+                    </span>
+
+                    {` -(${String(stats.jungle.pointsFromDeaths)
+                      .split('-')
+                      .join('')})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Wins:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.jungle.pointsFromGameWins / 5}
+                    </span>
+                    {` +(${stats.jungle.pointsFromGameWins})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Points:</span>
+                  <span className='text-start font-bold'>
+                    {stats.jungle.totalFantasyPoints}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
             {currentFantasyTeam.mid && (
@@ -121,7 +199,7 @@ const Fantasy = async ({
             )}
             <div className='w-full flex flex-col items-center justify-center gap-5 z-20 text-primary'>
               <Image
-                src='/images/top_icon.png'
+                src='/images/mid_icon.png'
                 alt='role icon'
                 width={60}
                 height={60}
@@ -129,17 +207,56 @@ const Fantasy = async ({
                 className='sm:w-[60px] sm:h-[60px] filter brightness-[0.7]'
               />
               <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold '>
-                Top
+                Mid
               </h3>
             </div>
-            <div>
-              {currentFantasyTeam.mid
-                ? `${currentFantasyTeam.mid.teamCode} ${currentFantasyTeam.mid.summonerName}`
-                : 'No player selected'}
+            <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+              <span className='text-accent-gold text-2xl'>
+                {currentFantasyTeam.mid.teamName}
+              </span>
+              <span className='text-xl'>
+                {currentFantasyTeam.mid.summonerName}
+              </span>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'>
-              {currentFantasyTeam.mid ? `Change player` : 'Add Player'}
-            </span>
+            <div className='flex justify-center w-full border-y border-border py-4'>
+              <div className='flex flex-col gap-2 items-center mx-auto'>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Kills:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.mid.pointsFromKA / 3}{' '}
+                    </span>
+                    {`+(${stats.mid.pointsFromKA})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Deaths:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {String(stats.mid.pointsFromDeaths / 2).split('-')}
+                    </span>
+                    {` -(${String(stats.mid.pointsFromDeaths)
+                      .split('-')
+                      .join('')})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Wins:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.mid.pointsFromGameWins / 5}
+                    </span>
+                    {` +(${stats.mid.pointsFromGameWins})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Points:</span>
+                  <span className='text-start font-bold'>
+                    {stats.mid.totalFantasyPoints}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
             {currentFantasyTeam.bot && (
@@ -159,7 +276,7 @@ const Fantasy = async ({
             )}
             <div className='w-full flex flex-col items-center justify-center gap-5 z-20 text-primary'>
               <Image
-                src='/images/top_icon.png'
+                src='/images/bot_icon.png'
                 alt='role icon'
                 width={60}
                 height={60}
@@ -167,17 +284,61 @@ const Fantasy = async ({
                 className='sm:w-[60px] sm:h-[60px] filter brightness-[0.7]'
               />
               <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold '>
-                Top
+                Bot
               </h3>
             </div>
-            <div>
-              {currentFantasyTeam.bot
-                ? `${currentFantasyTeam.bot.teamCode} ${currentFantasyTeam.bot.summonerName}`
-                : 'No player selected'}
+            <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+              <span className='text-accent-gold text-2xl'>
+                {currentFantasyTeam.bot.teamName}
+              </span>
+              <span className='text-xl'>
+                {currentFantasyTeam.bot.summonerName}
+              </span>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'>
-              {currentFantasyTeam.bot ? `Change player` : 'Add Player'}
-            </span>
+            <div className='flex justify-center w-full border-y border-border py-4'>
+              <div className='flex flex-col gap-2 items-center mx-auto'>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Kills:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      <span className='font-bold'>
+                        {' '}
+                        {stats.bot.pointsFromKA / 3}
+                      </span>
+                    </span>
+                    {` +(${stats.bot.pointsFromKA})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Deaths:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {String(stats.bot.pointsFromDeaths / 2).split('-')}
+                    </span>
+                    {` -(${String(stats.bot.pointsFromDeaths)
+                      .split('-')
+                      .join('')})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Wins:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {' '}
+                      {stats.bot.pointsFromGameWins / 5}
+                    </span>
+
+                    {` +(${stats.bot.pointsFromGameWins})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Points:</span>
+                  <span className='text-start font-bold'>
+                    {stats.bot.totalFantasyPoints}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
             {currentFantasyTeam.support && (
@@ -197,7 +358,7 @@ const Fantasy = async ({
             )}
             <div className='w-full flex flex-col items-center justify-center gap-5 z-20 text-primary'>
               <Image
-                src='/images/top_icon.png'
+                src='/images/support_icon.png'
                 alt='role icon'
                 width={60}
                 height={60}
@@ -205,19 +366,59 @@ const Fantasy = async ({
                 className='sm:w-[60px] sm:h-[60px] filter brightness-[0.7]'
               />
               <h3 className='text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold '>
-                Top
+                Support
               </h3>
             </div>
-            <div>
-              {currentFantasyTeam.support
-                ? `${currentFantasyTeam.support.teamCode} ${currentFantasyTeam.support.summonerName}`
-                : 'No player selected'}
+            <div className=' font-bold font-kanit flex flex-col justify-center items-center'>
+              <span className='text-accent-gold text-2xl'>
+                {currentFantasyTeam.support.teamName}
+              </span>
+              <span className='text-xl'>
+                {currentFantasyTeam.support.summonerName}
+              </span>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'>
-              {currentFantasyTeam.support ? `Change player` : 'Add Player'}
-            </span>
+            <div className='flex justify-center w-full border-y border-border py-4'>
+              <div className='flex flex-col gap-2 items-center mx-auto'>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Assists:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.support.pointsFromKA / 3}{' '}
+                    </span>
+                    {`+(${stats.support.pointsFromKA})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Deaths:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {String(stats.support.pointsFromDeaths / 2).split('-')}
+                    </span>
+                    {` -(${String(stats.support.pointsFromDeaths)
+                      .split('-')
+                      .join('')})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Wins:</span>
+                  <span className='text-start'>
+                    <span className='font-bold'>
+                      {stats.support.pointsFromGameWins / 5}
+                    </span>
+                    {` +(${stats.support.pointsFromGameWins})`}
+                  </span>
+                </div>
+                <div className='flex gap-1 items-start'>
+                  <span className='text-start'>Points:</span>
+                  <span className='text-start font-bold'>
+                    {stats.support.totalFantasyPoints}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <EditRosterBtn />
       </div>
     </div>
   );

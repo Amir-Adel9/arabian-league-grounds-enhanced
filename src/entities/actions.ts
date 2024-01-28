@@ -28,10 +28,10 @@ export async function fulfillUpdates() {
     console.log('no updates', lastCompletedEventMatchId, storedMatchId);
     return;
   } else {
-    await redis.set('lastMatchId', lastCompletedEventMatchId);
-    await redis.set('timesExecuted', Number(timesExecuted) + 1);
     await fulfillPredictions();
     await calculateFantasyPoints();
+    await redis.set('lastMatchId', lastCompletedEventMatchId);
+    await redis.set('timesExecuted', Number(timesExecuted) + 1);
     console.log('fulfillUpdates', lastCompletedEventMatchId, storedMatchId);
   }
 }

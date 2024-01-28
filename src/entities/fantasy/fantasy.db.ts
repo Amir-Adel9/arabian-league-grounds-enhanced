@@ -20,7 +20,7 @@ export async function createFantasyTeam() {
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, user.id))
     .then((res) => res[0]);
-  console.log('Created Fantasy Team for User: ', user.username);
+
   if (!existingFantasyTeam) {
     await db
       .insert(fantasyTeam)
@@ -38,13 +38,12 @@ export async function createFantasyTeam() {
 
 export async function getFantasyTeamId({ userId }: { userId: string }) {
   if (!userId) throw new Error('No user found');
-  console.log('miro userId', userId);
+
   const fantasyTeamForUser = await db
     .select()
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, userId))
     .then((res) => {
-      console.log('miro res', res);
       return res[0]?.id;
     });
 
