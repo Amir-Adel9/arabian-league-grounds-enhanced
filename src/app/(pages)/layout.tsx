@@ -45,8 +45,6 @@ export const metadata: Metadata = {
     'Your all-in-one League of Legends Arabian League companion. Teams, Schedule, Standings, Leaderboards, Rewards, and more!',
 };
 
-fulfillUpdates();
-
 export default async function RootLayout({
   children,
   matchModal,
@@ -54,6 +52,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   matchModal: React.ReactNode;
 }) {
+  fulfillUpdates();
   return (
     <ClerkProvider>
       <html lang='en' className='bg-background'>

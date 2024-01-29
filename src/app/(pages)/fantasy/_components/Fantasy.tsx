@@ -454,7 +454,6 @@ const Fantasy = async ({
               </span>
             </div>
             <EditRosterBtn />
-
             <Tooltip>
               <TooltipTrigger>
                 <span className='text-xl sm:text-2xl w-[320px] flex items-center gap-2 cursor-pointer md:text-2xl lg:text-3xl text-white/70 text-center font-rubik font-bold filter tracking-wider duration-300 hover:text-accent-gold'>
