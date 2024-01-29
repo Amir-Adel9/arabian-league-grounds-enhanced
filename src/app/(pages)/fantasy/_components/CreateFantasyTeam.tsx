@@ -18,7 +18,7 @@ import {
 } from '@/components/ui/drawer';
 import { User } from '@/db/types';
 import { Button } from '@/components/ui/button';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 import {
   AlertDialog,
   AlertDialogAction,

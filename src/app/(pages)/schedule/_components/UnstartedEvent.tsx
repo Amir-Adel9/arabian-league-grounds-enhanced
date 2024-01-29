@@ -6,7 +6,7 @@ import { Prediction } from '@/db/types';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '@/utils/utils';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 import EventSkeleton from './EventSkeleton';
 
 let count = 0;

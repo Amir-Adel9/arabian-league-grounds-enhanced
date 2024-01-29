@@ -14,8 +14,8 @@ import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Footer from '@/components/layout/Footer';
-import { Toaster } from 'react-hot-toast';
 import { fulfillUpdates } from '@/entities/actions';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -75,7 +75,7 @@ export default async function RootLayout({
           {children}
           {matchModal}
           {/* <Footer /> */}
-          <Toaster position='top-center' reverseOrder={false} />
+          <Toaster richColors position='top-center' />
           <Analytics />
         </body>
       </html>
