@@ -9,6 +9,7 @@ import { Event } from '../../../utils/types/types';
 import { revalidatePath } from 'next/cache';
 
 export async function fulfillPredictions() {
+  console.log('Fulfilling predictions...');
   const usersWithCorrectPredictions = await db.query.user.findMany({
     with: {
       predictions: {
@@ -16,8 +17,6 @@ export async function fulfillPredictions() {
       },
     },
   });
-
-  console.log('Users with correct predictions: ', usersWithCorrectPredictions);
 
   usersWithCorrectPredictions.forEach(async (correctUser: User) => {
     if (correctUser.predictions.length * 100 === correctUser.predictionPoints) {
@@ -101,7 +100,6 @@ export async function fulfillPredictions() {
       });
     }
   }
-
   revalidatePath('/(pages)/leaderboard/predictions');
   revalidatePath('/(pages)/leaderboard/fantasy');
   revalidatePath('/(pages)/predictions');

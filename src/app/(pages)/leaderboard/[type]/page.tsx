@@ -13,7 +13,6 @@ export default async function LeaderboardPage({
   if (params.type !== 'predictions' && params.type !== 'fantasy') {
     redirect('/leaderboard/predictions');
   }
-  console.log(params.type);
   const usersByPoints = await db
     .select()
     .from(user)

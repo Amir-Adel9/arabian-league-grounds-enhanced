@@ -15,8 +15,6 @@ import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Footer from '@/components/layout/Footer';
 import { Toaster } from 'react-hot-toast';
-import { fulfillPredictions } from '@/entities/prediction/actions/fulfillPredictions';
-import { getRoster } from '@/utils/functions/getRoster';
 import { fulfillUpdates } from '@/entities/actions';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
@@ -48,7 +46,6 @@ export const metadata: Metadata = {
 };
 
 fulfillUpdates();
-// getRoster(['NRG', 'T1']);
 
 export default async function RootLayout({
   children,

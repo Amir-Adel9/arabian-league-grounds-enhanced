@@ -16,7 +16,7 @@ const Fantasy = async ({
   user: User;
 }) => {
   const stats = await getFantasyTeamStats();
-  console.log(stats);
+  // console.log(stats);
   return (
     <div className='relative w-full h-full overflow-x-hidden p-5 md:p-8 xl:p-16'>
       <div className='w-full h-full flex flex-col items-center gap-4 sm:gap-20'>
@@ -383,7 +383,7 @@ const Fantasy = async ({
                   <span className='text-start'>Assists:</span>
                   <span className='text-start'>
                     <span className='font-bold'>
-                      {stats.support.pointsFromKA / 3}{' '}
+                      {stats.support.pointsFromKA / 2}{' '}
                     </span>
                     {`+(${stats.support.pointsFromKA})`}
                   </span>

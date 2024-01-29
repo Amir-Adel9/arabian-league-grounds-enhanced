@@ -20,7 +20,6 @@ import {
 } from './fantasy.helpers';
 import { FantasyRoster } from './fantasy.types';
 import { getCompletedEventsSincePicked } from '@/data-access/data-access';
-import dayjs from 'dayjs';
 import { Player, PlayerToFantasyTeam } from '@/db/types';
 import { currentUser } from '@clerk/nextjs';
 
@@ -169,6 +168,7 @@ export async function getFantasyTeamStats() {
 // }
 
 export async function calculateFantasyPoints() {
+  console.log('Calculating fantasy points...');
   const userIds = await getAllUserIds();
 
   userIds.forEach(async (userId) => {
@@ -223,6 +223,7 @@ export async function calculateFantasyPoints() {
       fantasyTeamId: fantasyTeamId,
     });
   });
+  console.log('Fantasy points updated!');
 }
 
 // function filterEventsWithFantasyPlayers({

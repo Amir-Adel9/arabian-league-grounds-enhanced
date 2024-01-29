@@ -28,8 +28,6 @@ export default authMiddleware({
   // apiRoutes: ['/api', '/api/webhooks/user'],
 });
 
-console.log('authMiddleware');
-
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };
