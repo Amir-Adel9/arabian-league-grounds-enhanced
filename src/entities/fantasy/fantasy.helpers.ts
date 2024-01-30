@@ -2,9 +2,17 @@ import { Player } from '@/db/types';
 import { getPostEventStats } from '@/utils/functions/getPostEventStats';
 import { Event } from '@/utils/types/types';
 import dayjs from 'dayjs';
+import utcPlugin from 'dayjs/plugin/utc';
+import durationPlugin from 'dayjs/plugin/duration';
+import timezone from 'dayjs/plugin/timezone';
+
+dayjs.extend(timezone);
+dayjs.extend(utcPlugin);
+dayjs.extend(durationPlugin);
 
 export function checkWeekDay() {
-  const today = dayjs();
+  const today = dayjs().tz(dayjs.tz.guess());
+  console.log(today.day());
   return today.day() === 0 || today.day() === 6 || today.day() === 1;
 }
 

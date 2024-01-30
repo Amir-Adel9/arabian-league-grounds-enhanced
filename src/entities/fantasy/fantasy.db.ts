@@ -181,16 +181,23 @@ export async function addPlayerToFantasyTeam({
 export async function updateFantasyPointsForPlayer({
   playerId,
   points,
+  fantasyTeamId,
 }: {
   playerId: number;
   points: number;
+  fantasyTeamId: number;
 }) {
   await db
     .update(playerToFantasyTeam)
     .set({
       points: points,
     })
-    .where(eq(playerToFantasyTeam.playerId, playerId));
+    .where(
+      and(
+        eq(playerToFantasyTeam.playerId, playerId),
+        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId)
+      )
+    );
 }
 
 export async function updateFantasyPointsForUser({

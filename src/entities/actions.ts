@@ -24,7 +24,7 @@ export async function fulfillUpdates() {
   const lastCompletedEventMatchId =
     completedEvents[completedEvents.length - 1].match.id;
 
-  if (storedMatchId === lastCompletedEventMatchId) {
+  if (storedMatchId == lastCompletedEventMatchId) {
     console.log('no updates', lastCompletedEventMatchId, storedMatchId);
     return;
   } else {

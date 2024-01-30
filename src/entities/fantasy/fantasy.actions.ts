@@ -174,6 +174,13 @@ export async function calculateFantasyPoints() {
   userIds.forEach(async (userId) => {
     const fantasyTeamId = await getFantasyTeamId({ userId });
 
+    console.log(
+      'Updating points for user ',
+      userId,
+      'with team: ',
+      fantasyTeamId
+    );
+
     if (!fantasyTeamId) throw new Error('No fantasy team found');
 
     const fantasyRoster = await getFantasyPlayers({ fantasyTeamId });
@@ -196,15 +203,20 @@ export async function calculateFantasyPoints() {
           await getStatsForEventsWithFantasyPlayers({
             events: eventsWithFantasyPlayer,
           });
-
+        console.log(
+          `Completed events since ${pickedAt} for ${fantasyPlayer.playerId} in ${fantasyPlayer.fantasyTeamId}: `,
+          statsForEventsWithFantasyPlayer.map((event) => event.event.startTime)
+        );
         const fantasyPoints = getFantasyPointsForPlayer({
           events: statsForEventsWithFantasyPlayer,
           fantasyPlayer: _player as Player,
         });
+        console.log('fantasyPoints: ', fantasyPoints.totalFantasyPoints);
 
         await updateFantasyPointsForPlayer({
           points: fantasyPoints.totalFantasyPoints,
           playerId: fantasyPlayer.playerId,
+          fantasyTeamId: fantasyPlayer.fantasyTeamId,
         });
       })
     );
