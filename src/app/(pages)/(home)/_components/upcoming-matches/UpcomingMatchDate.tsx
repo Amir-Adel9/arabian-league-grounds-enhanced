@@ -14,18 +14,18 @@ dayjs.extend(timezone);
 const UpcomingMatchCardDate = ({ matchDate }: { matchDate: string }) => {
   const targetDate = dayjs.utc(matchDate);
   const [formattedDate, setFormattedDate] = useState(
-    targetDate.add(3, 'hour').format('DD/MM/YYYY HH:mm')
+    targetDate.add(3, 'hour').format('MMMM DD HH:mm')
   );
 
   useEffect(() => {
     const userDate = targetDate.local();
-    const newFormattedDate = userDate.format('DD/MM/YYYY HH:mm');
+    const newFormattedDate = userDate.format('MMMM DD HH:mm');
     setFormattedDate(newFormattedDate);
   }, []);
 
   return (
-    <p className='text-accent-gold text-center w-full mt-1 col-span-3'>
-      Date: {formattedDate}
+    <p className='text-accent-gold font-light font-kanit text-center w-full mt-2 col-span-full'>
+      {formattedDate}
     </p>
   );
 };

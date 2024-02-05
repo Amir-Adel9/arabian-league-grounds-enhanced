@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 import { motion } from 'framer-motion';
 import { Balancer } from 'react-wrap-balancer';
+import { talentsArray } from '@/utils/constants/talents';
+import TalentCard from './TalentCard';
 
 const Talents = () => {
   return (
@@ -16,8 +18,14 @@ const Talents = () => {
       >
         Talents
       </motion.h2>
-      <div className='my-auto flex flex-col gap-10 p-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
-        <div className='w-full bg-card h-[500px]'>k</div>
+      <div className='my-auto flex flex-col gap-10 py-10 lg:flex-row lg:gap-0 lg:p-0 justify-around w-[85%]'>
+        <div className='w-full flex justify-center bg-card py-8 px-4 xl:p-10 border-border border rounded-xl'>
+          <div className='flex flex-col lg:flex-row items-center justify-center gap-2 xl:gap-5'>
+            {talentsArray.map((talent, index) => (
+              <TalentCard key={index} talent={talent} />
+            ))}
+          </div>
+        </div>
       </div>
     </>
   );

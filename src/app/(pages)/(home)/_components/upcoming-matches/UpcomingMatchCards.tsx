@@ -1,3 +1,4 @@
+import { currentUser } from '@clerk/nextjs';
 import UpcomingMatchCard from './UpcomingMatchCard';
 
 import { Event } from '@/utils/types/types';
@@ -16,10 +17,21 @@ const UpcomingMatchesCards = async () => {
       next: { revalidate: 60 },
     }
   ).then((res) => res.json())) as Event[];
+
+  const user = await currentUser();
   return (
     <>
       {upcomingEvents.map((event: Event) => {
-        return <UpcomingMatchCard event={event} key={event.match.id} />;
+        return (
+          <UpcomingMatchCard
+            event={event}
+            key={event.match.id}
+            user={{
+              id: user?.id,
+              name: user?.username,
+            }}
+          />
+        );
       })}
     </>
   );
