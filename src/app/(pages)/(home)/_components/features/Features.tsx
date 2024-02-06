@@ -5,11 +5,8 @@ import { motion } from 'framer-motion';
 import { Balancer } from 'react-wrap-balancer';
 
 import { Goal, Medal, Trophy } from 'lucide-react';
-import {
-  SignedIn,
-  SignedOut,
-} from '@clerk/nextjs/dist/types/components.server';
-import { SignInButton } from '@clerk/nextjs';
+
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
 const Features = () => {
   return (
