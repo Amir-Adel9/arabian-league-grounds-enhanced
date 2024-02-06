@@ -817,8 +817,8 @@ const CreateFantasyTeam = ({
           )}
         </Drawer>
       </div>
-      <div className='flex relative justify-between items-center w-full'>
-        <div className='flex flex-col gap-1 items-start md:w-[320px]'>
+      <div className='grid grid-cols-1 gap-y-2 md:grid-cols-3 relative justify-between items-center w-full'>
+        <div className='flex flex-col gap-1 items-center md:items-start md:w-[320px]'>
           <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
             Your Credits: ${credits}
           </span>
