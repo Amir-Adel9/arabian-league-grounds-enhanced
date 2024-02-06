@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { fetcher } from '@/utils/utils';
 import EventSkeleton from './EventSkeleton';
 import PredictButton from './PredictButton';
+import { SignedOut, SignInButton, SignedIn } from '@clerk/nextjs';
 
 let count = 0;
 const UnstartedEvent = ({
@@ -172,18 +173,33 @@ const UnstartedEvent = ({
               }  lg:gap-2 lg:px-8 xl:px-14`}
             >
               <h3 className='font-bold'>VS</h3>
-              <PredictButton
-                color='bg-accent-gold'
-                event={event}
-                teams={teams}
-                isPredicting={isPredicting}
-                setIsPredicting={setIsPredicting}
-                selectedTeam={selectedTeam}
-                currentPrediction={currentPrediction}
-                isLockedIn={isLockedIn}
-                setIsLockedIn={setIsLockedIn}
-                user={user}
-              />
+              <SignedOut>
+                <SignInButton
+                  afterSignInUrl='/schedule'
+                  afterSignUpUrl='/schedule'
+                  redirectUrl='/schedule'
+                >
+                  <button
+                    className={`w-28 h-8 bg-accent-gold text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-sm font-medium`}
+                  >
+                    Predict
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <PredictButton
+                  color='bg-accent-gold'
+                  event={event}
+                  teams={teams}
+                  isPredicting={isPredicting}
+                  setIsPredicting={setIsPredicting}
+                  selectedTeam={selectedTeam}
+                  currentPrediction={currentPrediction}
+                  isLockedIn={isLockedIn}
+                  setIsLockedIn={setIsLockedIn}
+                  user={user}
+                />
+              </SignedIn>
             </div>
             <div
               className={`flex flex-row lg:flex-row w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:space-x-4 ${

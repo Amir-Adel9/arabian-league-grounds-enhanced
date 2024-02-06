@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { RedirectToSignIn, currentUser } from '@clerk/nextjs';
+import { RedirectToSignIn, RedirectToSignUp, currentUser } from '@clerk/nextjs';
 import { db } from '@/db';
 import { prediction } from '@/db/schema/schema';
 import { desc, eq } from 'drizzle-orm';
@@ -11,11 +11,6 @@ export default async function PredictionsPage() {
   const loggedInUser = await currentUser();
 
   if (!loggedInUser) {
-    RedirectToSignIn({
-      afterSignInUrl: '/predictions',
-      afterSignUpUrl: '/predictions',
-      redirectUrl: '/predictions',
-    });
     return (
       <main className='w-full min-h-screen relative flex flex-col justify-center items-center'>
         <Image
@@ -28,6 +23,11 @@ export default async function PredictionsPage() {
         <p className='text-2xl font-bold text-accent-gold font-inter'>
           You must be signed in to view your predictions.
         </p>
+        <RedirectToSignIn
+          afterSignInUrl={'/predictions'}
+          afterSignUpUrl={'/predictions'}
+          redirectUrl={'/predictions'}
+        />
       </main>
     );
   } else {

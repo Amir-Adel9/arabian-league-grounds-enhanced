@@ -11,6 +11,7 @@ import { Event, Team } from '@/utils/types/types';
 import { useState } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '@/utils/utils';
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
 
 const UpcomingMatchCard = ({
   user,
@@ -110,21 +111,38 @@ const UpcomingMatchCard = ({
         </div>
         <UpcomingMatchCardDate matchDate={event.startTime} />
         <div className='col-span-full flex items-center justify-center mt-2'>
-          <PredictButton
-            color='bg-accent-blue'
-            currentPrediction={currentPrediction}
-            event={event}
-            teams={{
-              firstTeam: match.teams[0],
-              secondTeam: match.teams[1],
-            }}
-            isLockedIn={isLockedIn}
-            isPredicting={isPredicting}
-            selectedTeam={selectedTeam}
-            setIsLockedIn={setIsLockedIn}
-            setIsPredicting={setIsPredicting}
-            user={user}
-          />
+          <SignedOut>
+            <SignInButton>
+              <SignInButton
+                afterSignInUrl='/'
+                afterSignUpUrl='/'
+                redirectUrl='/'
+              >
+                <button
+                  className={`w-28 h-8 bg-accent-blue text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-sm font-medium`}
+                >
+                  Predict
+                </button>
+              </SignInButton>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <PredictButton
+              color='bg-accent-blue'
+              currentPrediction={currentPrediction}
+              event={event}
+              teams={{
+                firstTeam: match.teams[0],
+                secondTeam: match.teams[1],
+              }}
+              isLockedIn={isLockedIn}
+              isPredicting={isPredicting}
+              selectedTeam={selectedTeam}
+              setIsLockedIn={setIsLockedIn}
+              setIsPredicting={setIsPredicting}
+              user={user}
+            />
+          </SignedIn>
         </div>
       </div>
     </div>
