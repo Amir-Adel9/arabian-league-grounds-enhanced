@@ -44,7 +44,7 @@ async function insertRostersIntoDB() {
         },
       })
       .then((res) => {
-        console.log('Inserted player successfully:', p.summonerName);
+        // console.log('Inserted player successfully:', p.summonerName);
       })
       .catch((err) => {
         console.error('Error inserting player:', p.summonerName, err);

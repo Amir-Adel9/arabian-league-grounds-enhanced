@@ -29,7 +29,6 @@ const FantasyWelcome = ({
   const [showCreateTeam, setShowCreateTeam] = useState(false);
   const welcomeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    console.log('user', user);
     if (!showCreateTeam) return;
     setTimeout(() => {
       welcomeRef.current?.style.setProperty('display', 'none');

@@ -17,6 +17,7 @@ import {
   filterEventsWithFantasyPlayer,
   getStatsForEventsWithFantasyPlayers,
   checkWeekDay,
+  areTeamsEqual,
 } from './fantasy.helpers';
 import { FantasyRoster } from './fantasy.types';
 import { getCompletedEventsSincePicked } from '@/data-access/data-access';
@@ -40,13 +41,21 @@ export async function lockInFantasyTeam({
 
   const isWeekLocked = checkWeekDay();
 
-  // if (isWeekLocked) throw new Error('Week is locked');
+  if (isWeekLocked) throw new Error('Week is locked');
 
   if (registeredFantasyTeamId) {
     const currentFantasyRoster = await getFantasyRoster({
       fantasyTeamId: registeredFantasyTeamId,
     });
 
+    if (
+      areTeamsEqual(
+        Object.values(fantasyRoster).map((p) => p!.summonerName),
+        Object.values(currentFantasyRoster).map((p) => p?.summonerName)
+      )
+    ) {
+      throw new Error('No changes to roster');
+    }
     if (
       Object.values(currentFantasyRoster).filter((p) => p !== undefined)
         .length === 0
@@ -56,6 +65,7 @@ export async function lockInFantasyTeam({
           await addPlayerToFantasyTeam({
             fantasyPlayer,
             fantasyTeamId: registeredFantasyTeamId,
+            userClerkId: user.id,
           });
         })
       );
@@ -78,6 +88,7 @@ export async function lockInFantasyTeam({
       await addPlayerToFantasyTeam({
         fantasyPlayer,
         fantasyTeamId: registeredFantasyTeamId,
+        userClerkId: user.id,
       });
     });
   } else {

@@ -10,9 +10,17 @@ dayjs.extend(timezone);
 dayjs.extend(utcPlugin);
 dayjs.extend(durationPlugin);
 
+export function areTeamsEqual(arr1: string[], arr2: string[]) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+
+  return arr1.every((value, index) => value === arr2[index]);
+}
+
 export function checkWeekDay() {
-  const today = dayjs().tz(dayjs.tz.guess());
-  console.log(today.day());
+  const today = dayjs().tz('Africa/Cairo').add(4, 'hours');
+  console.log(today.format('dddd DD/MM/YYYY HH:mm'));
   return today.day() === 3 || today.day() === 4;
 }
 

@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 
-import { FantasyPlayer } from '@/entities/fantasy/fantasy.types';
+import { FantasyPlayer, FantasyRoster } from '@/entities/fantasy/fantasy.types';
 import { TeamRostersByRole } from '@/utils/functions/getTeamRosters';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
@@ -32,8 +32,9 @@ import {
 import handleFantasy from '../actions/getFantasyStats';
 import { useRouter } from 'next/navigation';
 import CreditsDialog from './CreditsDialog';
+import { areTeamsEqual } from '@/entities/fantasy/fantasy.helpers';
 
-type FantasyRoster = {
+type CreateFantasyRoster = {
   top: FantasyPlayer | undefined;
   jungle: FantasyPlayer | undefined;
   mid: FantasyPlayer | undefined;
@@ -84,7 +85,7 @@ const CreateFantasyTeam = ({
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [fantasyRoster, setFantasyRoster] = useState<FantasyRoster>({
+  const [fantasyRoster, setFantasyRoster] = useState<CreateFantasyRoster>({
     top: currentFantasyTeam?.top || undefined,
     jungle: currentFantasyTeam?.jungle || undefined,
     mid: currentFantasyTeam?.mid || undefined,
@@ -93,26 +94,33 @@ const CreateFantasyTeam = ({
   });
   const [fantasyTeam, setFantasyTeam] = useState<{
     roster?: {
-      top: FantasyPlayer;
-      jungle: FantasyPlayer;
-      mid: FantasyPlayer;
-      bot: FantasyPlayer;
-      support: FantasyPlayer;
+      top: FantasyPlayer | undefined;
+      jungle: FantasyPlayer | undefined;
+      mid: FantasyPlayer | undefined;
+      bot: FantasyPlayer | undefined;
+      support: FantasyPlayer | undefined;
     };
     totalCost: number;
     isLockedIn: boolean;
   }>({
-    totalCost: 0,
+    roster: {
+      top: currentFantasyTeam?.top || undefined,
+      jungle: currentFantasyTeam?.jungle || undefined,
+      mid: currentFantasyTeam?.mid || undefined,
+      bot: currentFantasyTeam?.bot || undefined,
+      support: currentFantasyTeam?.support || undefined,
+    },
+    totalCost: currentFantasyTeam
+      ? Object.values(currentFantasyTeam).reduce((acc, p) => acc + p!.cost, 0)
+      : 0,
     isLockedIn: false,
   });
-
+  const [cart, setCart] = useState<FantasyPlayer[]>([]);
+  useEffect(() => {}, [cart]);
   useEffect(() => {
-    console.log('currentFantasyTeam', currentFantasyTeam);
     setTimeout(() => {
       if (createRef.current?.style.display === 'none' && isShowing) {
-        console.log('displaying');
         createRef.current.style.display = 'flex';
-        console.log('displayed');
         return;
       }
     }, 500);
@@ -130,11 +138,6 @@ const CreateFantasyTeam = ({
     });
   }, [isShowing]);
 
-  useEffect(() => {
-    console.log('fantasyRoster', fantasyRoster);
-    console.log('fantasyTeam', fantasyTeam);
-  }, [fantasyRoster, fantasyTeam]);
-
   const playerSelect = (player: FantasyPlayer) => {
     const { role } = player;
 
@@ -148,17 +151,28 @@ const CreateFantasyTeam = ({
       return p.summonerName === player.summonerName;
     });
 
+    const isPlayerInTeam = currentFantasyTeam
+      ? Object.values(currentFantasyTeam as FantasyRoster).some((p) => {
+          if (p === undefined) return false;
+          return p.summonerName === player.summonerName;
+        })
+      : false;
+
     const playersFromTheSameTeam = Object.values(fantasyRoster).filter((p) => {
       if (player === undefined || p === undefined) return false;
       return player.teamCode === p.teamCode;
     });
 
-    console.log(playersFromTheSameTeam);
-
     let error = '';
 
+    if (isPlayerInTeam) {
+      toast.error('This player is already in your team');
+      error = 'Player already selected';
+      return error;
+    }
+
     if (isPlayerAlreadySelected) {
-      toast.error('Player already selected');
+      toast.error('This player is already selected');
       error = 'Player already selected';
       return error;
     }
@@ -175,12 +189,18 @@ const CreateFantasyTeam = ({
             ...fantasyTeam,
             totalCost: fantasyTeam.totalCost + player.cost,
           });
+          setCart([...cart, player]);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
               fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
           });
+          setCart(
+            [...cart, player]
+              .filter((p) => p.role !== fantasyRoster[role]!.role)
+              .concat(player)
+          );
         }
         break;
       case 'jungle':
@@ -190,12 +210,18 @@ const CreateFantasyTeam = ({
             ...fantasyTeam,
             totalCost: fantasyTeam.totalCost + player.cost,
           });
+          setCart([...cart, player]);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
               fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
           });
+          setCart(
+            [...cart, player]
+              .filter((p) => p.role !== fantasyRoster[role]!.role)
+              .concat(player)
+          );
         }
         break;
       case 'mid':
@@ -205,12 +231,18 @@ const CreateFantasyTeam = ({
             ...fantasyTeam,
             totalCost: fantasyTeam.totalCost + player.cost,
           });
+          setCart([...cart, player]);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
               fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
           });
+          setCart(
+            [...cart, player]
+              .filter((p) => p.role !== fantasyRoster[role]!.role)
+              .concat(player)
+          );
         }
         break;
       case 'bot':
@@ -220,12 +252,18 @@ const CreateFantasyTeam = ({
             ...fantasyTeam,
             totalCost: fantasyTeam.totalCost + player.cost,
           });
+          setCart([...cart, player]);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
               fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
           });
+          setCart(
+            [...cart, player]
+              .filter((p) => p.role !== fantasyRoster[role]!.role)
+              .concat(player)
+          );
         }
         break;
       case 'support':
@@ -235,12 +273,18 @@ const CreateFantasyTeam = ({
             ...fantasyTeam,
             totalCost: fantasyTeam.totalCost + player.cost,
           });
+          setCart([...cart, player]);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
               fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
           });
+          setCart(
+            [...cart, player]
+              .filter((p) => p.role !== fantasyRoster[role]!.role)
+              .concat(player)
+          );
         }
         break;
       default:
@@ -252,7 +296,7 @@ const CreateFantasyTeam = ({
     <motion.div
       variants={variants}
       initial='hidden'
-      style={{ display: 'flex' }}
+      style={{ display: 'none' }}
       ref={createRef}
       id='create'
       animate={isShowing ? 'visible' : 'hidden'}
@@ -671,7 +715,10 @@ const CreateFantasyTeam = ({
                     Choose a <span className='capitalize'>{selectedRole} </span>
                     player
                   </DrawerTitle>
-                  <span>Roster&apos;s cost: ${fantasyTeam.totalCost}</span>
+                  <span>
+                    Roster&apos;s cost: ${fantasyTeam.totalCost} (
+                    {cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0)})
+                  </span>
                 </DrawerHeader>
                 <div className='font-bold flex flex-wrap flex-col md:flex-row items-center justify-center gap-5 z-20 text-center my-10'>
                   {rostersByRole[selectedRole]?.map((player) => {
@@ -682,7 +729,12 @@ const CreateFantasyTeam = ({
                         onClick={() => {
                           setSelectedPlayer(player);
                         }}
-                        className={`flex flex-col gap-2 w-[300px] text-lg border-border border rounded-lg h-auto duration-300 p-3 font-bold cursor-pointer ${
+                        className={`flex flex-col gap-2 w-[300px] text-lg ${
+                          fantasyRoster[player.role]?.summonerName ===
+                          player.summonerName
+                            ? 'border-accent-gold'
+                            : 'border-border'
+                        } border rounded-lg h-auto duration-300 p-3 font-bold cursor-pointer ${
                           selectedPlayer?.summonerName ===
                             player.summonerName ||
                           (!selectedPlayer &&
@@ -704,10 +756,13 @@ const CreateFantasyTeam = ({
                           </div>
                           <span
                             className={`text-sm ${
-                              selectedPlayer?.summonerName !==
-                              player.summonerName
-                                ? 'text-accent-gold'
-                                : 'text-secondary'
+                              selectedPlayer?.summonerName ===
+                                player.summonerName ||
+                              (!selectedPlayer &&
+                                fantasyRoster[player.role]?.summonerName ===
+                                  player.summonerName)
+                                ? 'text-secondary'
+                                : 'text-accent-gold'
                             }`}
                           >
                             ${player.cost}
@@ -768,84 +823,150 @@ const CreateFantasyTeam = ({
             Your Credits: ${credits}
           </span>
           <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
-            Roster&apos;s cost: ${fantasyTeam.totalCost}
+            Roster&apos;s cost: ${fantasyTeam.totalCost} (
+            {cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0)})
           </span>
         </div>
-        <AlertDialog open={showConfirmModal}>
-          <button
-            className='md:w-[320px] px-2 py-2 relative rounded-md font-inter font-semibold text-secondary bg-accent-gold hover:brightness-105 hover:opacity-80 !duration-300'
+        <div className='flex flex-col justify-center items-center gap-4'>
+          <AlertDialog open={showConfirmModal}>
+            <button
+              className='md:w-[320px] px-2 py-2 relative rounded-md font-inter font-semibold text-secondary bg-accent-gold hover:brightness-105 hover:opacity-80 !duration-300'
+              onClick={() => {
+                if (Object.values(fantasyRoster).some((p) => p === undefined)) {
+                  toast.error('You need to fill all the roles');
+                  return;
+                }
+
+                if (currentFantasyTeam) {
+                  if (
+                    areTeamsEqual(
+                      Object.values(fantasyRoster).map((p) => p!.summonerName),
+                      Object.values(currentFantasyTeam as FantasyRoster).map(
+                        (p) => p?.summonerName
+                      )
+                    )
+                  ) {
+                    toast.error('No changes made');
+                    return;
+                  }
+                }
+
+                if (
+                  cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0) >
+                  credits
+                ) {
+                  toast.error('Not enough credits');
+                  return;
+                }
+
+                setFantasyTeam({
+                  roster: {
+                    top: fantasyRoster.top!,
+                    jungle: fantasyRoster.jungle!,
+                    mid: fantasyRoster.mid!,
+                    bot: fantasyRoster.bot!,
+                    support: fantasyRoster.support!,
+                  },
+                  totalCost: fantasyTeam.totalCost,
+                  isLockedIn: true,
+                });
+                setShowConfirmModal(true);
+              }}
+            >
+              Lock In
+            </button>
+            <AlertDialogContent className='border-border'>
+              <AlertDialogHeader>
+                <AlertDialogTitle className='text-white'>
+                  Are you sure you?
+                </AlertDialogTitle>
+                <AlertDialogDescription>
+                  You won&apos;t be allowed to make any changes to your roster
+                  during the Arabian League game days (Thursday and Friday).
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel
+                  onClick={() => setShowConfirmModal(false)}
+                  className='text-white'
+                >
+                  Cancel
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  disabled={isLoading}
+                  onClick={async () => {
+                    setIsLoading(true);
+                    await handleFantasy({
+                      fantasyRoster: fantasyTeam.roster! as FantasyRoster,
+                    })
+                      .then(() => {
+                        toast.success('Team locked in successfully');
+                        setIsLoading(false);
+                        setShowConfirmModal(false);
+                        router.refresh();
+                        router.push('/fantasy');
+                      })
+                      .catch((err: Error) => {
+                        toast.error(`Something went wrong: ${err.message}`);
+                        setIsLoading(false);
+                        setShowConfirmModal(false);
+                      });
+                  }}
+                  className='bg-accent-gold'
+                >
+                  Lock In
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
+          <span
+            className='underline cursor-pointer'
             onClick={() => {
-              if (fantasyTeam.totalCost > credits) {
-                toast.error('Not enough credits');
-                return;
+              if (currentFantasyTeam) {
+                if (
+                  areTeamsEqual(
+                    Object.values(fantasyRoster).map((p) => p!.summonerName),
+                    Object.values(currentFantasyTeam as FantasyRoster).map(
+                      (p) => p?.summonerName
+                    )
+                  )
+                ) {
+                  toast.error('No changes made');
+                  return;
+                }
               }
 
-              if (Object.values(fantasyRoster).some((p) => p === undefined)) {
-                toast.error('You need to fill all the roles');
-                return;
-              }
-
+              setFantasyRoster({
+                top: currentFantasyTeam?.top || undefined,
+                jungle: currentFantasyTeam?.jungle || undefined,
+                mid: currentFantasyTeam?.mid || undefined,
+                bot: currentFantasyTeam?.bot || undefined,
+                support: currentFantasyTeam?.support || undefined,
+              });
               setFantasyTeam({
                 roster: {
-                  top: fantasyRoster.top!,
-                  jungle: fantasyRoster.jungle!,
-                  mid: fantasyRoster.mid!,
-                  bot: fantasyRoster.bot!,
-                  support: fantasyRoster.support!,
+                  top: currentFantasyTeam?.top || undefined,
+                  jungle: currentFantasyTeam?.jungle || undefined,
+                  mid: currentFantasyTeam?.mid || undefined,
+                  bot: currentFantasyTeam?.bot || undefined,
+                  support: currentFantasyTeam?.support || undefined,
                 },
-                totalCost: fantasyTeam.totalCost,
-                isLockedIn: true,
+                totalCost: currentFantasyTeam
+                  ? Object.values(currentFantasyTeam).reduce(
+                      (acc, p) => acc + p!.cost,
+                      0
+                    )
+                  : 0,
+                isLockedIn: false,
               });
-              setShowConfirmModal(true);
+
+              setCart([]);
             }}
           >
-            Lock In
-          </button>
-          <AlertDialogContent className='border-border'>
-            <AlertDialogHeader>
-              <AlertDialogTitle className='text-white'>
-                Are you sure you?
-              </AlertDialogTitle>
-              <AlertDialogDescription>
-                You won&apos;t be allowed to make any changes to your roster
-                during the Arabian League game days (Thursday and Friday).
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel
-                onClick={() => setShowConfirmModal(false)}
-                className='text-white'
-              >
-                Cancel
-              </AlertDialogCancel>
-              <AlertDialogAction
-                disabled={isLoading}
-                onClick={async () => {
-                  setIsLoading(true);
-                  await handleFantasy({
-                    fantasyRoster: fantasyTeam.roster!,
-                  })
-                    .then(() => {
-                      toast.success('Team locked in successfully');
-                      setIsLoading(false);
-                      setShowConfirmModal(false);
-                      router.refresh();
-                      router.push('/fantasy');
-                    })
-                    .catch((err: Error) => {
-                      toast.error(`Something went wrong: ${err.message}`);
-                      setIsLoading(false);
-                      setShowConfirmModal(false);
-                    });
-                }}
-                className='bg-accent-gold'
-              >
-                Lock In
-              </AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
-        <CreditsDialog />
+            Reset
+          </span>
+        </div>
+        <CreditsDialog isCreatingTeam={isShowing} />
       </div>
       <div></div>
     </motion.div>

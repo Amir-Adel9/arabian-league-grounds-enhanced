@@ -13,16 +13,19 @@ import {
 } from '@/components/ui/alert-dialog';
 
 import { Info } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-const CreditsDialog = () => {
+const CreditsDialog = ({ isCreatingTeam }: { isCreatingTeam: boolean }) => {
+  const [isOpened, setIsOpened] = useState(false);
+
+  useEffect(() => {
+    if (!isCreatingTeam || localStorage.getItem('credits_dialog')) return;
+    setIsOpened(true);
+  }, [isCreatingTeam]);
+
   return (
-    <AlertDialog
-      defaultOpen={localStorage.getItem('credits_dialog') ? false : true}
-      onOpenChange={() => {
-        localStorage.setItem('credits_dialog', 'true');
-      }}
-    >
-      <AlertDialogTrigger>
+    <AlertDialog open={isOpened}>
+      <AlertDialogTrigger onClick={() => setIsOpened(true)}>
         <span className='text-xl sm:text-2xl md:w-[320px] flex items-center gap-2 cursor-pointer md:text-2xl lg:text-3xl text-white/70 text-center font-rubik font-bold filter tracking-wider duration-300 hover:text-accent-gold'>
           Credits System
           <Info className='w-5 h-5 text-accent-gold cursor-pointer' />
@@ -71,7 +74,13 @@ const CreditsDialog = () => {
             </li>
           </ul>
         </AlertDialogDescription>
-        <AlertDialogAction className='w-[100%] bg-accent-gold text-secondary justify-self-center hover:opacity-90'>
+        <AlertDialogAction
+          onClick={() => {
+            setIsOpened(false);
+            localStorage.setItem('credits_dialog', 'true');
+          }}
+          className='w-[100%] bg-accent-gold text-secondary justify-self-center hover:opacity-90'
+        >
           Confirm
         </AlertDialogAction>
       </AlertDialogContent>

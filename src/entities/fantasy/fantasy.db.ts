@@ -121,9 +121,11 @@ export async function getPlayer({ playerId }: { playerId: number }) {
 export async function addPlayerToFantasyTeam({
   fantasyPlayer,
   fantasyTeamId,
+  userClerkId,
 }: {
   fantasyPlayer: FantasyPlayer;
   fantasyTeamId: number;
+  userClerkId: string;
 }) {
   if (!fantasyTeamId) throw new Error('No fantasyTeamId found');
 
@@ -165,6 +167,13 @@ export async function addPlayerToFantasyTeam({
     .then((res) => {
       console.log('db insert res', res);
     });
+
+  await db
+    .update(user)
+    .set({
+      credits: sql`${user.credits} - ${playerToAdd.cost}`,
+    })
+    .where(eq(user.clerkId, userClerkId));
 
   if (playerAlreadyInRoleId) {
     await db.insert(fantasyHistory).values({
