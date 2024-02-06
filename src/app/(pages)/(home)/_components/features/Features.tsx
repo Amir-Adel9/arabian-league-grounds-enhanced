@@ -5,6 +5,11 @@ import { motion } from 'framer-motion';
 import { Balancer } from 'react-wrap-balancer';
 
 import { Goal, Medal, Trophy } from 'lucide-react';
+import {
+  SignedIn,
+  SignedOut,
+} from '@clerk/nextjs/dist/types/components.server';
+import { SignInButton } from '@clerk/nextjs';
 
 const Features = () => {
   return (
@@ -74,9 +79,18 @@ const Features = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
-              Predict Now
-            </span>
+            <SignedIn>
+              <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
+                Predict Now
+              </span>
+            </SignedIn>
+            <SignedOut>
+              <SignInButton>
+                <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
+                  Predict Now
+                </span>
+              </SignInButton>
+            </SignedOut>
           </motion.div>
         </Link>
         <Link
