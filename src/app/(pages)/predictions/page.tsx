@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { currentUser } from '@clerk/nextjs';
+import { RedirectToSignIn, currentUser } from '@clerk/nextjs';
 import { db } from '@/db';
 import { prediction } from '@/db/schema/schema';
 import { desc, eq } from 'drizzle-orm';
@@ -11,6 +11,11 @@ export default async function PredictionsPage() {
   const loggedInUser = await currentUser();
 
   if (!loggedInUser) {
+    RedirectToSignIn({
+      afterSignInUrl: '/predictions',
+      afterSignUpUrl: '/predictions',
+      redirectUrl: '/predictions',
+    });
     return (
       <main className='w-full min-h-screen relative flex flex-col justify-center items-center'>
         <Image
