@@ -1,0 +1,1 @@
+ALTER TABLE `wildcard` ADD CONSTRAINT `wildcard_name_userClerkId_unique` UNIQUE(`name`,`userClerkId`);

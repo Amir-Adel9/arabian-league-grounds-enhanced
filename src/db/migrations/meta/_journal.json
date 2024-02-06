@@ -99,6 +99,20 @@
       "when": 1707092418923,
       "tag": "0021_mighty_ghost_rider",
       "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "5",
+      "when": 1707222645880,
+      "tag": "0022_legal_rictor",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "5",
+      "when": 1707227033107,
+      "tag": "0023_fancy_juggernaut",
+      "breakpoints": true
     }
   ]
 }

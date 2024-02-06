@@ -2,6 +2,7 @@ import { relations } from 'drizzle-orm';
 import { int, mysqlTable, serial, varchar } from 'drizzle-orm/mysql-core';
 import { fantasyTeam } from './fantasyTeam';
 import { prediction } from './prediction';
+import { wildcard } from './wildcard';
 
 export const user = mysqlTable('user', {
   id: serial('id').primaryKey(),
@@ -21,4 +22,5 @@ export const user = mysqlTable('user', {
 export const userRelations = relations(user, ({ many, one }) => ({
   fantasyTeams: one(fantasyTeam),
   predictions: many(prediction),
+  wildcard: many(wildcard),
 }));

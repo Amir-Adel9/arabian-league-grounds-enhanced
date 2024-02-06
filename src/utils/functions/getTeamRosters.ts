@@ -97,6 +97,17 @@ export async function getTeamRostersByRole() {
   );
 }
 
+export async function getTeams() {
+  const rosters = await getTeamRosters();
+
+  return rosters.map((t) => {
+    return {
+      name: t.teamName,
+      logo: t.teamLogo,
+    };
+  });
+}
+
 export type TeamRosters = Awaited<ReturnType<typeof getTeamRosters>>;
 
 export type TeamRostersByRole = Awaited<

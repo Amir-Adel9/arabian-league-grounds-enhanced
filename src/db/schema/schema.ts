@@ -7,3 +7,4 @@ export {
   playerToFantasyTeamRelations,
 } from './playerToFantasyTeam';
 export { fantasyHistory } from './fantasyHistory';
+export { wildcard, wildcardRelations } from './wildcard';
