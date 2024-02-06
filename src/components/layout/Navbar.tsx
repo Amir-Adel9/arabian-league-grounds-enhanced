@@ -89,7 +89,7 @@ const Navbar = () => {
                 <ToolTipArrow className='fill-accent-gold' />
               </TooltipContent>
             </Tooltip>
-            <Tooltip>
+            {/* <Tooltip>
               <TooltipTrigger>
                 <li className='duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
                   <Link href='/profile' className='flex gap-2 items-center'>
@@ -105,7 +105,7 @@ const Navbar = () => {
                 <p>Profile</p>
                 <ToolTipArrow className='fill-accent-gold' />
               </TooltipContent>
-            </Tooltip>
+            </Tooltip> */}
           </ul>
         </TooltipProvider>
       </nav>

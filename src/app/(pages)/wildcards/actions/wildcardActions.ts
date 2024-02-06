@@ -28,6 +28,7 @@ export async function lockInWildCard({
       set: {
         id: sql`id`,
         picked: _wildcard.picked,
+        updatedAt: new Date(),
       },
     })
     .then((res) => {

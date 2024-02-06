@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 const Footer = () => {
   return (
-    <footer className='h-48 lg:h-24 w-full relative bg-accent-gold text-secondary font-inter flex flex-col lg:flex-row items-center justify-between px-2 xs:px-6 lg:px-10 z-[500]'>
+    <footer className='h-48 lg:h-24 w-full relative bg-secondary text-muted-foreground border-t border-border font-inter flex flex-col lg:flex-row items-center justify-between px-2 xs:px-6 lg:px-10 z-[500]'>
       <div className='flex justify-center items-center gap-4 my-2 lg:my-0'>
         <Link href='https://github.com/Amir-Adel9' target={'_blank'}>
           <svg

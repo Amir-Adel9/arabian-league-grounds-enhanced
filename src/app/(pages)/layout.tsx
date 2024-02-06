@@ -74,7 +74,6 @@ export default async function RootLayout({
           <Navbar />
           {children}
           {matchModal}
-          {/* <Footer /> */}
           <Toaster richColors position='top-center' expand />
           <Analytics />
         </body>
