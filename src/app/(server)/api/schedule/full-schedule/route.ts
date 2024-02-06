@@ -14,7 +14,14 @@ export async function GET(_request: NextRequest) {
     .then((res) => res.json())
     .then((matches) => {
       return matches.data.schedule.events;
-    });
+    })
+    .then((events) =>
+      events.filter(
+        (event: Event) =>
+          event.type === 'match' &&
+          new Date(event.startTime) > new Date('2024-01-11T20:16:44.000Z')
+      )
+    );
 
   revalidatePath(_request.url);
   revalidatePath(

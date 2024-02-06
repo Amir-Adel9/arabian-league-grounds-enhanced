@@ -3,7 +3,7 @@ import { player } from '@/db/schema/schema';
 import { sql } from 'drizzle-orm';
 
 export async function getTeamRosters() {
-  return await import('@/utils/data/lec_team_rosters.json').then(
+  return await import('@/utils/data/team_rosters.json').then(
     (module) => module.default
   );
 }
@@ -44,7 +44,7 @@ async function insertRostersIntoDB() {
         },
       })
       .then((res) => {
-        // console.log('Inserted player successfully:', p.summonerName);
+        console.log('Inserted player successfully:', p.summonerName);
       })
       .catch((err) => {
         console.error('Error inserting player:', p.summonerName, err);

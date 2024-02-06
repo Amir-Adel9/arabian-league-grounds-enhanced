@@ -1,0 +1,1 @@
+ALTER TABLE `player` MODIFY COLUMN `flagUrl` text NOT NULL DEFAULT ('https://liquipedia.net/commons/images/d/d0/Eg_hd.png');

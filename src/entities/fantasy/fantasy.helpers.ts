@@ -13,7 +13,7 @@ dayjs.extend(durationPlugin);
 export function checkWeekDay() {
   const today = dayjs().tz(dayjs.tz.guess());
   console.log(today.day());
-  return today.day() === 0 || today.day() === 6 || today.day() === 1;
+  return today.day() === 3 || today.day() === 4;
 }
 
 export function filterEventsWithFantasyPlayer({

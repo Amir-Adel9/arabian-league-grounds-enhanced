@@ -144,7 +144,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/thumb/4/4b/Tr_hd.png/36px-Tr_hd.png",
         "summonerName": "Iheb",
         "role": "support",
-        "cost": 25,
+        "cost": 100,
         "teamName": "GNG Esports",
         "teamSlug": "gng-esports",
         "teamCode": "GNG",
@@ -192,7 +192,7 @@
         "flagUrl": "https://liquipedia.net/commons/images/thumb/4/4b/Tr_hd.png/36px-Tr_hd.png",
         "summonerName": "mercyy",
         "role": "mid",
-        "cost": 150,
+        "cost": 100,
         "teamName": "Anubis Gaming",
         "teamSlug": "anubis-gaming",
         "teamCode": "ANB",
@@ -452,7 +452,7 @@
     "id": 7,
     "teamName": "One More Esports ",
     "slug": "one-more-esports-",
-    "teamCode": "one-more-esports-",
+    "teamCode": "1M",
     "teamLogo": "http://static.lolesports.com/teams/1706266251764_OneMoreEsportslogo3.2transaprentbackground.png",
     "players": [
       {
@@ -465,7 +465,7 @@
         "cost": 150,
         "teamName": "One More Esports ",
         "teamSlug": "one-more-esports-",
-        "teamCode": "one-more-esports-",
+        "teamCode": "1M",
         "teamLogo": "http://static.lolesports.com/teams/1706266251764_OneMoreEsportslogo3.2transaprentbackground.png"
       },
       {
@@ -478,7 +478,7 @@
         "cost": 100,
         "teamName": "One More Esports ",
         "teamSlug": "one-more-esports-",
-        "teamCode": "one-more-esports-",
+        "teamCode": "1M",
         "teamLogo": "http://static.lolesports.com/teams/1706266251764_OneMoreEsportslogo3.2transaprentbackground.png"
       },
       {
@@ -491,7 +491,7 @@
         "cost": 100,
         "teamName": "One More Esports ",
         "teamSlug": "one-more-esports-",
-        "teamCode": "one-more-esports-",
+        "teamCode": "1M",
         "teamLogo": "http://static.lolesports.com/teams/1706266251764_OneMoreEsportslogo3.2transaprentbackground.png"
       },
       {
@@ -504,7 +504,7 @@
         "cost": 100,
         "teamName": "One More Esports ",
         "teamSlug": "one-more-esports-",
-        "teamCode": "one-more-esports-",
+        "teamCode": "1M",
         "teamLogo": "http://static.lolesports.com/teams/1706266251764_OneMoreEsportslogo3.2transaprentbackground.png"
       },
       {
@@ -517,7 +517,7 @@
         "cost": 150,
         "teamName": "One More Esports ",
         "teamSlug": "one-more-esports-",
-        "teamCode": "one-more-esports-",
+        "teamCode": "1M",
         "teamLogo": "http://static.lolesports.com/teams/1706266251764_OneMoreEsportslogo3.2transaprentbackground.png"
       }
     ]

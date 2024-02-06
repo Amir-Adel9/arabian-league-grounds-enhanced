@@ -14,6 +14,7 @@ import {
 } from '@/components/ui/tooltip';
 import { TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Info } from 'lucide-react';
+import PointsDialog from './PointsDialog';
 const Fantasy = async ({
   rostersByRole,
   currentFantasyTeam,
@@ -36,7 +37,7 @@ const Fantasy = async ({
             <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-4 abs hover:-translate-y-10 '>
               {currentFantasyTeam.top && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${currentFantasyTeam.top.cost}
                   </span>
                   <Image
@@ -69,6 +70,15 @@ const Fantasy = async ({
                 <span className='text-xl'>
                   {currentFantasyTeam.top.summonerName}
                 </span>
+                <div className='relative h-5 w-8 mt-2'>
+                  <Image
+                    src={currentFantasyTeam.top.flagUrl}
+                    alt=''
+                    title={currentFantasyTeam.top.nationality}
+                    fill={true}
+                    draggable={false}
+                  />
+                </div>
               </div>
               <div className='flex justify-center w-full border-y border-border py-4'>
                 <div className='flex flex-col gap-2 items-center mx-auto'>
@@ -115,7 +125,7 @@ const Fantasy = async ({
             <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
               {currentFantasyTeam.jungle && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${currentFantasyTeam.jungle.cost}
                   </span>
                   <Image
@@ -148,6 +158,15 @@ const Fantasy = async ({
                 <span className='text-xl'>
                   {currentFantasyTeam.jungle.summonerName}
                 </span>
+                <div className='relative h-5 w-8 mt-2'>
+                  <Image
+                    src={currentFantasyTeam.jungle.flagUrl}
+                    alt=''
+                    title={currentFantasyTeam.jungle.nationality}
+                    fill={true}
+                    draggable={false}
+                  />
+                </div>
               </div>
               <div className='flex justify-center w-full border-y border-border py-4'>
                 <div className='flex flex-col gap-2 items-center mx-auto'>
@@ -193,7 +212,7 @@ const Fantasy = async ({
             <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
               {currentFantasyTeam.mid && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${currentFantasyTeam.mid.cost}
                   </span>
                   <Image
@@ -226,6 +245,15 @@ const Fantasy = async ({
                 <span className='text-xl'>
                   {currentFantasyTeam.mid.summonerName}
                 </span>
+                <div className='relative h-5 w-8 mt-2'>
+                  <Image
+                    src={currentFantasyTeam.mid.flagUrl}
+                    alt=''
+                    title={currentFantasyTeam.mid.nationality}
+                    fill={true}
+                    draggable={false}
+                  />
+                </div>
               </div>
               <div className='flex justify-center w-full border-y border-border py-4'>
                 <div className='flex flex-col gap-2 items-center mx-auto'>
@@ -270,7 +298,7 @@ const Fantasy = async ({
             <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
               {currentFantasyTeam.bot && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${currentFantasyTeam.bot.cost}
                   </span>
                   <Image
@@ -303,6 +331,15 @@ const Fantasy = async ({
                 <span className='text-xl'>
                   {currentFantasyTeam.bot.summonerName}
                 </span>
+                <div className='relative h-5 w-8 mt-2'>
+                  <Image
+                    src={currentFantasyTeam.bot.flagUrl}
+                    alt=''
+                    title={currentFantasyTeam.bot.nationality}
+                    fill={true}
+                    draggable={false}
+                  />
+                </div>
               </div>
               <div className='flex justify-center w-full border-y border-border py-4'>
                 <div className='flex flex-col gap-2 items-center mx-auto'>
@@ -352,7 +389,7 @@ const Fantasy = async ({
             <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
               {currentFantasyTeam.support && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${currentFantasyTeam.support.cost}
                   </span>
                   <Image
@@ -385,6 +422,15 @@ const Fantasy = async ({
                 <span className='text-xl'>
                   {currentFantasyTeam.support.summonerName}
                 </span>
+                <div className='relative h-5 w-8 mt-2'>
+                  <Image
+                    src={currentFantasyTeam.support.flagUrl}
+                    alt=''
+                    title={currentFantasyTeam.support.nationality}
+                    fill={true}
+                    draggable={false}
+                  />
+                </div>
               </div>
               <div className='flex justify-center w-full border-y border-border py-4'>
                 <div className='flex flex-col gap-2 items-center mx-auto'>
@@ -429,7 +475,7 @@ const Fantasy = async ({
           </div>
           <div className='flex relative justify-between items-center w-full'>
             <div className='flex flex-col gap-1 items-start'>
-              <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
+              <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70  font-rubik font-bold filter tracking-wide'>
                 Current roster Points:{' '}
                 {stats.bot.totalFantasyPoints +
                   stats.top.totalFantasyPoints +
@@ -437,7 +483,7 @@ const Fantasy = async ({
                   stats.jungle.totalFantasyPoints +
                   stats.support.totalFantasyPoints}
               </span>
-              <span className='flex gap-2 items-center sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wider'>
+              <span className='flex gap-2 items-center sm:text-lg md:text-xl lg:text-2xl text-white/70  font-rubik font-bold filter tracking-wider'>
                 Total Fantasy Points: {user.fantasyPoints}
                 <Tooltip>
                   <TooltipTrigger>
@@ -454,21 +500,7 @@ const Fantasy = async ({
               </span>
             </div>
             <EditRosterBtn />
-            <Tooltip>
-              <TooltipTrigger>
-                <span className='text-xl sm:text-2xl w-[320px] flex items-center gap-2 cursor-pointer md:text-2xl lg:text-3xl text-white/70 text-center font-rubik font-bold filter tracking-wider duration-300 hover:text-accent-gold'>
-                  Points System
-                  <Info className='w-5 h-5 text-accent-gold cursor-pointer' />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className='flex flex-col text-secondary bg-accent-gold max-w-xs p-2 border-none justify-center font-bold text-center'>
-                <span>Win: +5</span>
-                <span>Kill: +3</span>
-                <span>Death: -2</span>
-                <span>Assist: +2 (Support)</span>
-                <ToolTipArrow className='fill-accent-gold' />
-              </TooltipContent>
-            </Tooltip>
+            <PointsDialog />
           </div>
         </TooltipProvider>
       </div>

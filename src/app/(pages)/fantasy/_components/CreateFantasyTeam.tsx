@@ -28,10 +28,10 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import handleFantasy from '../actions/getFantasyStats';
 import { useRouter } from 'next/navigation';
+import CreditsDialog from './CreditsDialog';
 
 type FantasyRoster = {
   top: FantasyPlayer | undefined;
@@ -82,6 +82,7 @@ const CreateFantasyTeam = ({
   const [selectedPlayer, setSelectedPlayer] = useState<FantasyPlayer>();
   const [credits, setCredits] = useState<number>(user.credits);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const [fantasyRoster, setFantasyRoster] = useState<FantasyRoster>({
     top: currentFantasyTeam?.top || undefined,
@@ -289,7 +290,7 @@ const CreateFantasyTeam = ({
             >
               {fantasyRoster.top && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${fantasyRoster.top.cost}
                   </span>
                   <Image
@@ -324,6 +325,15 @@ const CreateFantasyTeam = ({
                     <span className='text-xl'>
                       {fantasyRoster.top.summonerName}
                     </span>
+                    <div className='relative h-5 w-8 mt-2'>
+                      <Image
+                        src={fantasyRoster.top.flagUrl}
+                        alt=''
+                        title={fantasyRoster.top.nationality}
+                        fill={true}
+                        draggable={false}
+                      />
+                    </div>
                   </>
                 ) : (
                   'No player selected'
@@ -358,7 +368,7 @@ const CreateFantasyTeam = ({
             >
               {fantasyRoster.jungle && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${fantasyRoster.jungle.cost}
                   </span>
                   <Image
@@ -393,6 +403,15 @@ const CreateFantasyTeam = ({
                     <span className='text-xl'>
                       {fantasyRoster.jungle.summonerName}
                     </span>
+                    <div className='relative h-5 w-8 mt-2'>
+                      <Image
+                        src={fantasyRoster.jungle.flagUrl}
+                        alt=''
+                        title={fantasyRoster.jungle.nationality}
+                        fill={true}
+                        draggable={false}
+                      />
+                    </div>
                   </>
                 ) : (
                   'No player selected'
@@ -427,7 +446,7 @@ const CreateFantasyTeam = ({
             >
               {fantasyRoster.mid && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${fantasyRoster.mid.cost}
                   </span>
                   <Image
@@ -462,6 +481,15 @@ const CreateFantasyTeam = ({
                     <span className='text-xl'>
                       {fantasyRoster.mid.summonerName}
                     </span>
+                    <div className='relative h-5 w-8 mt-2'>
+                      <Image
+                        src={fantasyRoster.mid.flagUrl}
+                        alt=''
+                        title={fantasyRoster.mid.nationality}
+                        fill={true}
+                        draggable={false}
+                      />
+                    </div>
                   </>
                 ) : (
                   'No player selected'
@@ -496,7 +524,7 @@ const CreateFantasyTeam = ({
             >
               {fantasyRoster.bot && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${fantasyRoster.bot.cost}
                   </span>
                   <Image
@@ -531,6 +559,15 @@ const CreateFantasyTeam = ({
                     <span className='text-xl'>
                       {fantasyRoster.bot.summonerName}
                     </span>
+                    <div className='relative h-5 w-8 mt-2'>
+                      <Image
+                        src={fantasyRoster.bot.flagUrl}
+                        alt=''
+                        title={fantasyRoster.bot.nationality}
+                        fill={true}
+                        draggable={false}
+                      />
+                    </div>
                   </>
                 ) : (
                   'No player selected'
@@ -565,7 +602,7 @@ const CreateFantasyTeam = ({
             >
               {fantasyRoster.support && (
                 <div className='absolute top-3 w-full flex justify-between'>
-                  <span className='absolute text-xl left-3'>
+                  <span className='absolute text-lg left-3'>
                     ${fantasyRoster.support.cost}
                   </span>
                   <Image
@@ -600,6 +637,15 @@ const CreateFantasyTeam = ({
                     <span className='text-xl'>
                       {fantasyRoster.support.summonerName}
                     </span>
+                    <div className='relative h-5 w-8 mt-2'>
+                      <Image
+                        src={fantasyRoster.support.flagUrl}
+                        alt=''
+                        title={fantasyRoster.support.nationality}
+                        fill={true}
+                        draggable={false}
+                      />
+                    </div>
                   </>
                 ) : (
                   'No player selected'
@@ -625,7 +671,7 @@ const CreateFantasyTeam = ({
                     Choose a <span className='capitalize'>{selectedRole} </span>
                     player
                   </DrawerTitle>
-                  <span>Roster&apos;s credits: ${fantasyTeam.totalCost}</span>
+                  <span>Roster&apos;s cost: ${fantasyTeam.totalCost}</span>
                 </DrawerHeader>
                 <div className='font-bold flex flex-wrap flex-col md:flex-row items-center justify-center gap-5 z-20 text-center my-10'>
                   {rostersByRole[selectedRole]?.map((player) => {
@@ -636,7 +682,7 @@ const CreateFantasyTeam = ({
                         onClick={() => {
                           setSelectedPlayer(player);
                         }}
-                        className={`flex flex-col gap-2 w-[200px] text-lg border-border border rounded-lg h-auto duration-300 p-4 font-bold cursor-pointer ${
+                        className={`flex flex-col gap-2 w-[300px] text-lg border-border border rounded-lg h-auto duration-300 p-3 font-bold cursor-pointer ${
                           selectedPlayer?.summonerName ===
                             player.summonerName ||
                           (!selectedPlayer &&
@@ -647,17 +693,35 @@ const CreateFantasyTeam = ({
                         }`}
                       >
                         <div className='w-full flex items-center justify-between'>
-                          <span className='text-sm'>${player.cost}</span>
+                          <div className='relative h-5 w-8'>
+                            <Image
+                              src={player.flagUrl}
+                              alt=''
+                              title={player.nationality}
+                              fill={true}
+                              draggable={false}
+                            />
+                          </div>
+                          <span
+                            className={`text-sm ${
+                              selectedPlayer?.summonerName !==
+                              player.summonerName
+                                ? 'text-accent-gold'
+                                : 'text-secondary'
+                            }`}
+                          >
+                            ${player.cost}
+                          </span>
                           <Image
                             src={player.teamLogo}
                             alt='team logo'
-                            width={30}
-                            height={30}
+                            width={40}
+                            height={40}
                             draggable={false}
-                            className='sm:w-[30px] sm:h-[30px]'
+                            className='sm:w-[40px] sm:h-[40px]'
                           />
                         </div>
-                        <div>
+                        <div className='text-xl'>
                           {player.teamCode} {player.summonerName}
                         </div>
                       </Button>
@@ -698,10 +762,18 @@ const CreateFantasyTeam = ({
           )}
         </Drawer>
       </div>
-      <div>
+      <div className='flex relative justify-between items-center w-full'>
+        <div className='flex flex-col gap-1 items-start md:w-[320px]'>
+          <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
+            Your Credits: ${credits}
+          </span>
+          <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
+            Roster&apos;s cost: ${fantasyTeam.totalCost}
+          </span>
+        </div>
         <AlertDialog open={showConfirmModal}>
           <button
-            className='w-[320px] py-2 rounded-md font-inter font-semibold text-secondary bg-accent-gold hover:brightness-105 hover:opacity-80 !duration-300'
+            className='md:w-[320px] px-2 py-2 relative rounded-md font-inter font-semibold text-secondary bg-accent-gold hover:brightness-105 hover:opacity-80 !duration-300'
             onClick={() => {
               if (fantasyTeam.totalCost > credits) {
                 toast.error('Not enough credits');
@@ -747,18 +819,22 @@ const CreateFantasyTeam = ({
                 Cancel
               </AlertDialogCancel>
               <AlertDialogAction
+                disabled={isLoading}
                 onClick={async () => {
+                  setIsLoading(true);
                   await handleFantasy({
                     fantasyRoster: fantasyTeam.roster!,
                   })
                     .then(() => {
                       toast.success('Team locked in successfully');
+                      setIsLoading(false);
                       setShowConfirmModal(false);
                       router.refresh();
                       router.push('/fantasy');
                     })
                     .catch((err: Error) => {
                       toast.error(`Something went wrong: ${err.message}`);
+                      setIsLoading(false);
                       setShowConfirmModal(false);
                     });
                 }}
@@ -769,7 +845,9 @@ const CreateFantasyTeam = ({
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
+        <CreditsDialog />
       </div>
+      <div></div>
     </motion.div>
   );
 };
