@@ -473,8 +473,8 @@ const Fantasy = async ({
               </div>
             </div>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-y-2 relative justify-between items-center w-full'>
-            <div className='flex flex-col gap-1 items-center md:items-start'>
+          <div className='flex relative justify-between items-center w-full'>
+            <div className='flex flex-col gap-1 items-start'>
               <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70  font-rubik font-bold filter tracking-wide'>
                 Current roster Points:{' '}
                 {stats.bot.totalFantasyPoints +
