@@ -5,6 +5,7 @@ import UpcomingMatches from './_components/upcoming-matches/UpcomingMatches';
 import Talents from './_components/talents/Talents';
 import UpcomingMatchesData from './_components/upcoming-matches/UpcomingMatchesData';
 import { Metadata } from 'next';
+import Footer from '@/components/layout/Footer';
 
 export const metadata: Metadata = {
   title: 'AL Grounds | Home',
@@ -39,6 +40,7 @@ export default function Home() {
       <section className='w-full lg:w-[calc(100%-5rem)] lg:ml-20 min-h-screen relative flex flex-col justify-center items-center pt-24'>
         <Talents />
       </section>
+      <Footer />
     </main>
   );
 }
