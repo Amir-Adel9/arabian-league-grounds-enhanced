@@ -21,7 +21,7 @@ export function areTeamsEqual(arr1: string[], arr2: string[]) {
 export function checkWeekDay() {
   const today = dayjs().tz('Africa/Cairo').add(4, 'hours');
   console.log(today.format('dddd DD/MM/YYYY HH:mm'));
-  return today.day() === 3 || today.day() === 4;
+  return today.day() === 4 || today.day() === 5;
 }
 
 export function filterEventsWithFantasyPlayer({
