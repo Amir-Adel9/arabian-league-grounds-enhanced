@@ -15,6 +15,8 @@ export default async function handleFantasy({
 }) {
   await lockInFantasyTeam({
     fantasyRoster,
+  }).catch((error) => {
+    return error;
   });
 
   // const fantasyPoints = await getFantasyTeamStats();
