@@ -4,6 +4,7 @@ import { player } from './schema/player';
 import { playerToFantasyTeam } from './schema/playerToFantasyTeam';
 import { prediction } from './schema/prediction';
 import { user } from './schema/user';
+import { wildcard } from './schema/wildcard';
 
 export type User = InferSelectModel<typeof user> & {
   predictions: Prediction[];
@@ -21,4 +22,7 @@ export type PlayerToFantasyTeam = InferSelectModel<
 > & {
   fantasyTeam: FantasyTeam;
   player: Player;
+};
+export type Wildcard = InferSelectModel<typeof wildcard> & {
+  user: User;
 };

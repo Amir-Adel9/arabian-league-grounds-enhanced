@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { Goal, Info, Medal, Trophy, UserCircle } from 'lucide-react';
+import { Goal, Medal, Swords, UserCircle } from 'lucide-react';
 import MobileNavbar from './MobileNavbar';
 
 import {
@@ -10,6 +10,7 @@ import {
   TooltipTrigger,
   ToolTipArrow,
 } from '@/components/ui/tooltip';
+import WildCard from '../ui/wild-card';
 
 const Navbar = () => {
   return (
@@ -21,7 +22,7 @@ const Navbar = () => {
               <TooltipTrigger>
                 <li className='duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
                   <Link href='/fantasy' className='flex gap-2 items-center'>
-                    <Trophy size={28} />
+                    <Swords size={28} />
                   </Link>
                 </li>
               </TooltipTrigger>
@@ -48,6 +49,23 @@ const Navbar = () => {
                 sideOffset={-10}
               >
                 <p>Predictions</p>
+                <ToolTipArrow className='fill-accent-gold' />
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger>
+                <li className='duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
+                  <Link href='/wildcards' className='flex gap-2 items-center'>
+                    <WildCard />
+                  </Link>
+                </li>
+              </TooltipTrigger>
+              <TooltipContent
+                className='bg-accent-gold border-none font-medium text-secondary rounded-lg px-4 py-2'
+                side='left'
+                sideOffset={-10}
+              >
+                <p>Wildcards</p>
                 <ToolTipArrow className='fill-accent-gold' />
               </TooltipContent>
             </Tooltip>
@@ -85,23 +103,6 @@ const Navbar = () => {
                 sideOffset={-10}
               >
                 <p>Profile</p>
-                <ToolTipArrow className='fill-accent-gold' />
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger>
-                <li className='duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
-                  <Link href='/about' className='flex gap-2 items-center'>
-                    <Info size={28} />
-                  </Link>
-                </li>
-              </TooltipTrigger>
-              <TooltipContent
-                className='bg-accent-gold border-none font-medium text-secondary rounded-lg px-4 py-2'
-                side='left'
-                sideOffset={-10}
-              >
-                <p>About</p>
                 <ToolTipArrow className='fill-accent-gold' />
               </TooltipContent>
             </Tooltip>

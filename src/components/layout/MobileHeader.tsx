@@ -49,17 +49,18 @@ const MobileHeader = () => {
               </span>
             </Link>
           </li>
-          <li onClick={() => setMenuOpen(false)}>
-            <Link href='/teams'>
-              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
-                Teams
-              </span>
-            </Link>
-          </li>
+
           <li onClick={() => setMenuOpen(false)}>
             <Link href='/stats'>
               <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
                 Stats
+              </span>
+            </Link>
+          </li>
+          <li onClick={() => setMenuOpen(false)}>
+            <Link href='/about'>
+              <span className='hover:text-accent-gold cursor-pointer duration-300 font-bold'>
+                About
               </span>
             </Link>
           </li>
