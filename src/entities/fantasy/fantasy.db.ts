@@ -20,7 +20,7 @@ export async function createFantasyTeam() {
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, user.id))
     .then((res) => res[0]);
-  console.log('Created Fantasy Team for User: ', user.username);
+
   if (!existingFantasyTeam) {
     await db
       .insert(fantasyTeam)
@@ -38,13 +38,12 @@ export async function createFantasyTeam() {
 
 export async function getFantasyTeamId({ userId }: { userId: string }) {
   if (!userId) throw new Error('No user found');
-  console.log('miro userId', userId);
+
   const fantasyTeamForUser = await db
     .select()
     .from(fantasyTeam)
     .where(eq(fantasyTeam.userClerkId, userId))
     .then((res) => {
-      console.log('miro res', res);
       return res[0]?.id;
     });
 
@@ -122,9 +121,11 @@ export async function getPlayer({ playerId }: { playerId: number }) {
 export async function addPlayerToFantasyTeam({
   fantasyPlayer,
   fantasyTeamId,
+  userClerkId,
 }: {
   fantasyPlayer: FantasyPlayer;
   fantasyTeamId: number;
+  userClerkId: string;
 }) {
   if (!fantasyTeamId) throw new Error('No fantasyTeamId found');
 
@@ -167,6 +168,13 @@ export async function addPlayerToFantasyTeam({
       console.log('db insert res', res);
     });
 
+  await db
+    .update(user)
+    .set({
+      credits: sql`${user.credits} - ${playerToAdd.cost}`,
+    })
+    .where(eq(user.clerkId, userClerkId));
+
   if (playerAlreadyInRoleId) {
     await db.insert(fantasyHistory).values({
       fantasyTeamId: fantasyTeamId,
@@ -182,16 +190,23 @@ export async function addPlayerToFantasyTeam({
 export async function updateFantasyPointsForPlayer({
   playerId,
   points,
+  fantasyTeamId,
 }: {
   playerId: number;
   points: number;
+  fantasyTeamId: number;
 }) {
   await db
     .update(playerToFantasyTeam)
     .set({
       points: points,
     })
-    .where(eq(playerToFantasyTeam.playerId, playerId));
+    .where(
+      and(
+        eq(playerToFantasyTeam.playerId, playerId),
+        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId)
+      )
+    );
 }
 
 export async function updateFantasyPointsForUser({

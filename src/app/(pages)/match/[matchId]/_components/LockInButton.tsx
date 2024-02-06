@@ -3,7 +3,7 @@
 import { Prediction } from '@/db/types';
 import { Event, Team } from '@/utils/types/types';
 import { SignedIn, SignedOut, SignInButton, useUser } from '@clerk/nextjs';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 
 const LockInButton = ({
   event,

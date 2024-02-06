@@ -20,7 +20,9 @@ export const player = mysqlTable(
       length: 100,
     }).notNull(),
     nationality: text('nationality').notNull(),
-    flagUrl: text('flagUrl').notNull(),
+    flagUrl: text('flagUrl')
+      .notNull()
+      .default('https://liquipedia.net/commons/images/d/d0/Eg_hd.png'),
     role: text('role').notNull(),
     cost: int('cost').notNull(),
     teamName: text('teamName'),

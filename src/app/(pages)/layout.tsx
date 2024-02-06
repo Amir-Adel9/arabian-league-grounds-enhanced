@@ -15,11 +15,8 @@ import Header from '@/components/layout/Header';
 import Navbar from '@/components/layout/Navbar';
 import { ClerkProvider } from '@clerk/nextjs';
 import Footer from '@/components/layout/Footer';
-import { Toaster } from 'react-hot-toast';
-import { fulfillPredictions } from '@/entities/prediction/actions/fulfillPredictions';
-import { getRoster } from '@/utils/functions/getRoster';
 import { fulfillUpdates } from '@/entities/actions';
-import Image from 'next/image';
+import { Toaster } from '@/components/ui/sonner';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const rubik = Rubik({
@@ -49,9 +46,6 @@ export const metadata: Metadata = {
     'Your all-in-one League of Legends Arabian League companion. Teams, Schedule, Standings, Leaderboards, Rewards, and more!',
 };
 
-fulfillUpdates();
-// getRoster(['NRG', 'T1']);
-
 export default async function RootLayout({
   children,
   matchModal,
@@ -59,6 +53,7 @@ export default async function RootLayout({
   children: React.ReactNode;
   matchModal: React.ReactNode;
 }) {
+  fulfillUpdates();
   return (
     <ClerkProvider>
       <html lang='en' className='bg-background'>
@@ -75,37 +70,13 @@ export default async function RootLayout({
           className={`${GeistSans.variable} ${GeistMono.variable} ${inter.variable} ${rubik.variable} ${gluten.variable} ${permanentMarker.variable} ${kanit.variable}`}
         >
           {/*  @ts-ignore Async Server Component */}
-          {/* <Header />
+          <Header />
           <Navbar />
           {children}
           {matchModal}
-          <Footer />
-          <Toaster position='top-center' reverseOrder={false} /> */}
+          {/* <Footer /> */}
+          <Toaster richColors position='top-center' />
           <Analytics />
-          <SpeedInsights />
-          <section className='w-full min-h-screen relative flex flex-col justify-center items-center'>
-            <div className='absolute w-full h-full bg-primary opacity-80 z-[-10]'></div>
-            <Image
-              src='/images/background.jpg'
-              alt='Background Image'
-              className='w-full h-full z-[-20]'
-              layout='fill'
-              objectFit='cover'
-              draggable={false}
-              objectPosition='center'
-            />
-            <div className='text-4xl font-bold text-accent-gold relative w-full flex flex-col gap-5 justify-center items-center '>
-              <Image
-                src='/images/dinger.gif'
-                alt='dinger Image'
-                className='animate-bounce-y'
-                width={260}
-                height={260}
-                draggable={false}
-              />
-              ???
-            </div>
-          </section>
         </body>
       </html>
     </ClerkProvider>

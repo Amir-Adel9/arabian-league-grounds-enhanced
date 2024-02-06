@@ -18,7 +18,7 @@ const UpToDate = () => {
       >
         <Balancer>Stay up to date!</Balancer>
       </motion.h2>
-      <div className='my-auto text-muted-foreground flex flex-col gap-10 p-10 lg:flex-row lg:gap-10 xl:gap-0 lg:p-0 justify-around w-[85%] font-geist '>
+      <div className='my-auto text-muted-foreground flex flex-col gap-10 py-10 lg:flex-row lg:gap-10 xl:gap-0 lg:p-0 justify-around w-[85%] font-geist '>
         <Link href='/schedule' className='lg:w-1/3 xl:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 140, opacity: 0 }}

@@ -16,7 +16,19 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'static.lolesports.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'img.clerk.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'liquipedia.net',
         port: '',
         pathname: '/**',
       },

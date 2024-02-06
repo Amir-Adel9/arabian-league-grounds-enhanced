@@ -6,6 +6,8 @@ import { Balancer } from 'react-wrap-balancer';
 
 import { Goal, Medal, Trophy } from 'lucide-react';
 
+import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
+
 const Features = () => {
   return (
     <>
@@ -18,7 +20,7 @@ const Features = () => {
       >
         <Balancer>Enhance your Arabian League experience!</Balancer>
       </motion.h2>
-      <div className='my-auto flex flex-col gap-10 p-10 text-muted-foreground lg:flex-row lg:gap-10 xl:gap-0 lg:p-0 justify-around w-[85%] font-geist'>
+      <div className='my-auto flex flex-col gap-10 py-10 text-muted-foreground lg:flex-row lg:gap-10 xl:gap-0 lg:p-0 justify-around w-[85%] font-geist'>
         <Link href='/fantasy' className='lg:w-1/3 xl:w-1/4 h-[500px]'>
           <motion.div
             initial={{ translateY: 140, opacity: 0 }}
@@ -74,9 +76,18 @@ const Features = () => {
                 </Balancer>
               </p>
             </div>
-            <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
-              Predict Now
-            </span>
+            <SignedIn>
+              <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
+                Predict Now
+              </span>
+            </SignedIn>
+            <SignedOut>
+              <SignInButton>
+                <span className='bg-accent-gold text-secondary group-hover:bg-accent-blue group-hover:text-primary group-hover:rounded-none z-20  font-b py-2 px-3 cursor-pointer rounded-sm duration-300 hover:scale-105'>
+                  Predict Now
+                </span>
+              </SignInButton>
+            </SignedOut>
           </motion.div>
         </Link>
         <Link

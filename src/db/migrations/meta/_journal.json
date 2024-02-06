@@ -85,6 +85,20 @@
       "when": 1706306259390,
       "tag": "0019_lean_vulcan",
       "breakpoints": true
+    },
+    {
+      "idx": 20,
+      "version": "5",
+      "when": 1707014188369,
+      "tag": "0020_tense_supreme_intelligence",
+      "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "5",
+      "when": 1707092418923,
+      "tag": "0021_mighty_ghost_rider",
+      "breakpoints": true
     }
   ]
 }
