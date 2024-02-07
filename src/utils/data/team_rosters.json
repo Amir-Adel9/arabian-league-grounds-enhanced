@@ -80,10 +80,10 @@
   },
   {
     "id": 2,
-    "teamName": "GNG Esports",
+    "teamName": "GNG Amazigh",
     "slug": "gng-esports",
     "teamCode": "GNG",
-    "teamLogo": "https://static.lolesports.com/teams/1673828854182_White.png",
+    "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png",
     "players": [
       {
         "id": 1,
@@ -93,10 +93,10 @@
         "summonerName": "Raider",
         "role": "top",
         "cost": 100,
-        "teamName": "GNG Esports",
+        "teamName": "GNG Amazigh",
         "teamSlug": "gng-esports",
         "teamCode": "GNG",
-        "teamLogo": "https://static.lolesports.com/teams/1673828854182_White.png"
+        "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png"
       },
       {
         "id": 2,
@@ -106,10 +106,10 @@
         "summonerName": "Ajwad",
         "role": "jungle",
         "cost": 150,
-        "teamName": "GNG Esports",
+        "teamName": "GNG Amazigh",
         "teamSlug": "gng-esports",
         "teamCode": "GNG",
-        "teamLogo": "https://static.lolesports.com/teams/1673828854182_White.png"
+        "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png"
       },
       {
         "id": 3,
@@ -119,10 +119,10 @@
         "summonerName": "Fade",
         "role": "mid",
         "cost": 150,
-        "teamName": "GNG Esports",
+        "teamName": "GNG Amazigh",
         "teamSlug": "gng-esports",
         "teamCode": "GNG",
-        "teamLogo": "https://static.lolesports.com/teams/1673828854182_White.png"
+        "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png"
       },
       {
         "id": 4,
@@ -132,10 +132,10 @@
         "summonerName": "Jalleba",
         "role": "bot",
         "cost": 150,
-        "teamName": "GNG Esports",
+        "teamName": "GNG Amazigh",
         "teamSlug": "gng-esports",
         "teamCode": "GNG",
-        "teamLogo": "https://static.lolesports.com/teams/1673828854182_White.png"
+        "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png"
       },
       {
         "id": 5,
@@ -145,10 +145,10 @@
         "summonerName": "Iheb",
         "role": "support",
         "cost": 100,
-        "teamName": "GNG Esports",
+        "teamName": "GNG Amazigh",
         "teamSlug": "gng-esports",
         "teamCode": "GNG",
-        "teamLogo": "https://static.lolesports.com/teams/1673828854182_White.png"
+        "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png"
       }
     ]
   },

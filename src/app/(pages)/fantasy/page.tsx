@@ -1,4 +1,7 @@
-import { getTeamRostersByRole } from '@/utils/functions/getTeamRosters';
+import {
+  getTeamRostersByRole,
+  insertRostersIntoDB,
+} from '@/utils/functions/getTeamRosters';
 import Fantasy from './_components/Fantasy';
 import Image from 'next/image';
 import { currentUser } from '@clerk/nextjs';
@@ -15,6 +18,7 @@ import { User } from '@/db/types';
 export default async function FantasyPage() {
   const teamRostersByRole = await getTeamRostersByRole();
   const loggedInUser = await currentUser();
+  insertRostersIntoDB();
 
   if (!loggedInUser)
     return (

@@ -8,7 +8,7 @@ export async function getTeamRosters() {
   );
 }
 
-async function insertRostersIntoDB() {
+export async function insertRostersIntoDB() {
   // Insert rosters into database
 
   const rosters = await getTeamRosters();

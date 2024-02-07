@@ -12,6 +12,9 @@ export const fantasyHistory = mysqlTable('fantasyHistory', {
   id: serial('id').primaryKey(),
   fantasyTeamId: int('fantasyTeamId').notNull(),
   playerId: int('playerId').notNull(),
+  playerSummonerName: varchar('playerSummonerName', {
+    length: 100,
+  }).notNull(),
   role: varchar('role', {
     length: 10,
   }).notNull(),

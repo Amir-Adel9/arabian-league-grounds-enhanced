@@ -13,7 +13,7 @@ export const user = mysqlTable('user', {
     .notNull(),
   username: varchar('username', {
     length: 100,
-  }),
+  }).unique(),
   predictionPoints: int('predictionPoints').default(0),
   fantasyPoints: int('fantasyPoints').default(0),
   credits: int('credits').default(700).notNull(),

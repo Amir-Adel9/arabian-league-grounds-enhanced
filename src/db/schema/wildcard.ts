@@ -18,6 +18,11 @@ export const wildcard = mysqlTable(
     })
       .notNull()
       .references(() => user.clerkId),
+    username: varchar('username', {
+      length: 100,
+    })
+      .notNull()
+      .references(() => user.username),
     name: varchar('name', {
       length: 100,
     }).notNull(),
@@ -34,7 +39,7 @@ export const wildcard = mysqlTable(
 
 export const wildcardRelations = relations(wildcard, ({ one }) => ({
   user: one(user, {
-    fields: [wildcard.userClerkId],
-    references: [user.clerkId],
+    fields: [wildcard.userClerkId, wildcard.username],
+    references: [user.clerkId, user.username],
   }),
 }));
