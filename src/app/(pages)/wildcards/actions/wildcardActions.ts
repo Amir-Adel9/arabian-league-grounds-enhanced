@@ -21,6 +21,7 @@ export async function lockInWildCard({
   db.insert(wildcard)
     .values({
       userClerkId: user.id,
+      username: user.username!,
       name: _wildcard.name,
       picked: _wildcard.picked,
     })
