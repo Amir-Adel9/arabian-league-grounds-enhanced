@@ -1,0 +1,2 @@
+ALTER TABLE `fantasyTeam` ADD CONSTRAINT `fantasyTeam_username_user_username_fk` FOREIGN KEY (`username`) REFERENCES `user`(`username`) ON DELETE no action ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE `wildcard` ADD CONSTRAINT `wildcard_username_user_username_fk` FOREIGN KEY (`username`) REFERENCES `user`(`username`) ON DELETE no action ON UPDATE no action;

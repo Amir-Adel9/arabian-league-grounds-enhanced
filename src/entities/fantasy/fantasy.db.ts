@@ -26,6 +26,7 @@ export async function createFantasyTeam() {
       .insert(fantasyTeam)
       .values({
         userClerkId: user.id,
+        username: user.username!,
       })
       .onDuplicateKeyUpdate({
         set: {
@@ -152,6 +153,7 @@ export async function addPlayerToFantasyTeam({
     .insert(playerToFantasyTeam)
     .values({
       fantasyTeamId: fantasyTeamId,
+      playerSummonerName: playerToAdd.summonerName,
       playerId: playerToAdd.id,
       role: playerToAdd.role,
     })
@@ -179,6 +181,7 @@ export async function addPlayerToFantasyTeam({
     await db.insert(fantasyHistory).values({
       fantasyTeamId: fantasyTeamId,
       playerId: playerAlreadyInRoleId.playerId,
+      playerSummonerName: playerAlreadyInRoleId.playerSummonerName,
       role: playerAlreadyInRoleId.role,
       points: playerAlreadyInRoleId.points,
       pickedAt: playerAlreadyInRoleId.pickedAt,

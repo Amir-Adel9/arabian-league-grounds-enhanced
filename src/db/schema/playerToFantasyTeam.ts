@@ -17,6 +17,9 @@ export const playerToFantasyTeam = mysqlTable(
       .notNull()
       .references(() => fantasyTeam.id),
     playerId: serial('playerId').references(() => player.id),
+    playerSummonerName: varchar('playerSummonerName', {
+      length: 100,
+    }).notNull(),
     role: varchar('role', {
       length: 10,
     }).notNull(),
@@ -36,8 +39,11 @@ export const playerToFantasyTeamRelations = relations(
       references: [fantasyTeam.id],
     }),
     player: one(player, {
-      fields: [playerToFantasyTeam.playerId],
-      references: [player.id],
+      fields: [
+        playerToFantasyTeam.playerId,
+        playerToFantasyTeam.playerSummonerName,
+      ],
+      references: [player.id, player.summonerName],
     }),
   })
 );

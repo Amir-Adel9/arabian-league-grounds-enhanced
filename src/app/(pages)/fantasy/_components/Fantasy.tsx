@@ -25,6 +25,7 @@ const Fantasy = async ({
   user: User;
 }) => {
   const stats = await getFantasyTeamStats();
+  console.log(currentFantasyTeam);
   // console.log(stats);
   return (
     <div className='relative w-full h-full overflow-x-hidden p-5 md:p-8 xl:p-16'>
