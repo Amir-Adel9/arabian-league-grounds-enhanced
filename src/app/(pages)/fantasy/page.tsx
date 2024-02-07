@@ -18,7 +18,7 @@ import { User } from '@/db/types';
 export default async function FantasyPage() {
   const teamRostersByRole = await getTeamRostersByRole();
   const loggedInUser = await currentUser();
-  insertRostersIntoDB();
+  // insertRostersIntoDB();
 
   if (!loggedInUser)
     return (
