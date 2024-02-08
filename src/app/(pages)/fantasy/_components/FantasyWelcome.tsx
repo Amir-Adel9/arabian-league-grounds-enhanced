@@ -36,7 +36,7 @@ const FantasyWelcome = ({
     }, 500);
   }, [showCreateTeam]);
   return (
-    <div className='relative w-full h-full overflow-x-hidden p-5 md:p-8 xl:p-16'>
+    <div className='relative w-full h-full overflow-x-hidden p-5 md:p-8 xl:p-16 mb-20 md:mb-0'>
       <motion.div
         animate={showCreateTeam ? 'hidden' : 'visible'}
         variants={variants}
