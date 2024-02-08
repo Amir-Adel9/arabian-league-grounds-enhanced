@@ -18,12 +18,11 @@ export function areTeamsEqual(arr1: string[], arr2: string[]) {
   return arr1.every((value, index) => value === arr2[index]);
 }
 
-export function checkWeekDay() {
-  const today = dayjs().tz('Africa/Cairo').add(-4, 'hours');
-  console.log(today.format('dddd DD/MM/YYYY HH:mm'));
+export function isLockInLocked() {
+  const today = dayjs().tz('Africa/Cairo');
   return (
-    (today.day() === 4 && today.hour() > 19) ||
-    (today.day() === 5 && today.hour() > 19)
+    (today.day() === 4 && today.hour() >= 19 && today.minute() >= 15) ||
+    (today.day() === 5 && today.hour() > 19 && today.minute() > 15)
   );
 }
 

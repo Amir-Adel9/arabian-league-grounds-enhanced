@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { lockInWildCard } from '../actions/wildcardActions';
 import { toast } from 'sonner';
+import { isLockInLocked } from '@/entities/fantasy/fantasy.helpers';
 
 const TeamCard = ({
   team,
@@ -37,14 +38,20 @@ const TeamCard = ({
       variant={'outline'}
       onClick={async () => {
         setSelectedTeam(team);
-        await lockInWildCard({
-          _wildcard: {
-            name: 'champion',
-            picked: team.name,
-          },
-        })
-          .then(() => toast.success('Wildcard locked in!'))
-          .catch(() => toast.error('Error locking in wildcard'));
+        if (isLockInLocked()) {
+          return toast.error('You cannot lock in a wildcard on a game day.');
+        } else {
+          await lockInWildCard({
+            _wildcard: {
+              name: 'champion',
+              picked: team.name,
+            },
+          })
+            .then(() => toast.success('Wildcard locked in!'))
+            .catch(() =>
+              toast.error('You cannot lock in a wildcard on a game day.')
+            );
+        }
       }}
       className={`flex flex-col gap-2 w-[200px] text-lg border rounded-lg h-auto duration-300 p-3 font-bold cursor-pointer ${
         selectedTeam?.name === team.name && 'bg-accent-gold text-secondary'

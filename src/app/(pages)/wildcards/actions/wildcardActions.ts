@@ -2,6 +2,7 @@
 
 import { db } from '@/db';
 import { wildcard } from '@/db/schema/wildcard';
+import { isLockInLocked } from '@/entities/fantasy/fantasy.helpers';
 import { currentUser } from '@clerk/nextjs';
 import { eq, sql } from 'drizzle-orm';
 
@@ -13,6 +14,9 @@ export async function lockInWildCard({
     picked: string;
   };
 }) {
+  if (isLockInLocked()) {
+    return new Error('Cannot lock in wildcard on a game day');
+  }
   const user = await currentUser();
   if (!user) {
     throw new Error('User not found');
