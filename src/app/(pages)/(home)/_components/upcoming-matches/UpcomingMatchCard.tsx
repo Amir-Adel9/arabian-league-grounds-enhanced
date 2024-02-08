@@ -18,7 +18,6 @@ const UpcomingMatchCard = ({
   event,
 }: {
   event: Event;
-
   user: { id: string | undefined; name: string | undefined | null };
 }) => {
   const { match } = event;
@@ -54,11 +53,8 @@ const UpcomingMatchCard = ({
       <div className='grid grid-cols-3 p-2 z-20 w-full h-full'>
         <div
           onClick={() => {
-            if (currentPrediction?.status === 'lockedIn' || !isPredicting) {
-              return;
-            } else {
-              setSelectedTeam(match.teams[0]);
-            }
+            if (!isPredicting) return;
+            setSelectedTeam(match.teams[0]);
           }}
           className='flex flex-col items-center flex-grow justify-between cursor-pointer group'
         >
@@ -75,7 +71,14 @@ const UpcomingMatchCard = ({
           <h3
             className={`text-xl font-bold mt-2 text-center ${
               isPredicting && 'group-hover:text-accent-gold duration-200'
-            } ${selectedTeam === match.teams[0] && 'text-accent-gold'}`}
+            } ${
+              selectedTeam === match.teams[0] ||
+              (currentPrediction?.prediction.winningTeamId ===
+                match.teams[0].code &&
+                !isPredicting)
+                ? 'text-accent-gold'
+                : ''
+            }`}
           >
             {match.teams[0].code}
           </h3>
@@ -83,11 +86,8 @@ const UpcomingMatchCard = ({
         <h3 className='text-xl font-bold text-center self-center'>VS</h3>
         <div
           onClick={() => {
-            if (currentPrediction?.status === 'lockedIn' || !isPredicting) {
-              return;
-            } else {
-              setSelectedTeam(match.teams[1]);
-            }
+            if (!isPredicting) return;
+            setSelectedTeam(match.teams[1]);
           }}
           className='flex flex-col items-center flex-grow justify-between cursor-pointer relative group'
         >
@@ -104,7 +104,14 @@ const UpcomingMatchCard = ({
           <h3
             className={`text-xl font-bold mt-2 text-center ${
               isPredicting && 'group-hover:text-accent-gold duration-200'
-            } ${selectedTeam === match.teams[1] && 'text-accent-gold'}`}
+            } ${
+              selectedTeam === match.teams[1] ||
+              (currentPrediction?.prediction.winningTeamId ===
+                match.teams[1].code &&
+                !isPredicting)
+                ? 'text-accent-gold'
+                : ''
+            }`}
           >
             {match.teams[1].code}
           </h3>
@@ -131,6 +138,7 @@ const UpcomingMatchCard = ({
               color='bg-accent-blue'
               currentPrediction={currentPrediction}
               event={event}
+              setSelectedTeam={setSelectedTeam}
               teams={{
                 firstTeam: match.teams[0],
                 secondTeam: match.teams[1],
