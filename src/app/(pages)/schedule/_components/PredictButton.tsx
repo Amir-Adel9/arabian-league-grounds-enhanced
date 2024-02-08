@@ -83,7 +83,7 @@ const PredictButton = ({
         toast.success('Prediction Locked In!');
         setIsPredicting(false);
       }}
-      className={`w-28 h-8 ${color} text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-sm font-medium`}
+      className={`w-18 sm:w-28 h-8 ${color} text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-xs sm:text-sm font-medium`}
       hidden={teams.firstTeam.name === 'TBD' || teams.secondTeam.name === 'TBD'}
     >
       {currentPrediction?.status === 'lockedIn' || isLockedIn
