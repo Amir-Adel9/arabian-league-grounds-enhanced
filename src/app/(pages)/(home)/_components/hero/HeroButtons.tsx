@@ -1,6 +1,6 @@
 'use client';
 
-import { useUser } from '@clerk/nextjs';
+import { SignInButton, SignedIn, SignedOut, useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -18,18 +18,23 @@ const HeroButtons = () => {
 
   return (
     <>
-      <button
-        onClick={() => {
-          if (!user.isSignedIn) {
-            router.push('https://content-louse-78.accounts.dev/sign-in');
-          } else {
+      <SignedIn>
+        <button
+          onClick={() => {
             featuresDiv.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
-        className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300 delay-0 animate-translate-y'
-      >
-        <span className='font-rubik'>Get Started</span>
-      </button>
+          }}
+          className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300 delay-0 animate-translate-y'
+        >
+          <span className='font-rubik'>Get Started</span>
+        </button>
+      </SignedIn>
+      <SignedOut>
+        <SignInButton afterSignInUrl='/' afterSignUpUrl='/' redirectUrl='/'>
+          <button className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300 delay-0 animate-translate-y'>
+            <span className='font-rubik'>Get Started</span>
+          </button>
+        </SignInButton>
+      </SignedOut>
       <button
         onClick={() =>
           upcomingMatchesDiv.scrollIntoView({ behavior: 'smooth' })
