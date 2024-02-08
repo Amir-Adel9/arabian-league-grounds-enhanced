@@ -22,7 +22,8 @@ export const wildcard = mysqlTable(
       length: 100,
     })
       .notNull()
-      .references(() => user.username),
+      .references(() => user.username)
+      .default(''),
     name: varchar('name', {
       length: 100,
     }).notNull(),

@@ -1,0 +1,1 @@
+ALTER TABLE `wildcard` MODIFY COLUMN `username` varchar(100) NOT NULL DEFAULT '';

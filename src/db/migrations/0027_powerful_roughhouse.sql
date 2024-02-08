@@ -1,0 +1,2 @@
+ALTER TABLE `fantasyTeam` MODIFY COLUMN `username` varchar(100) NOT NULL DEFAULT '';--> statement-breakpoint
+ALTER TABLE `playerToFantasyTeam` MODIFY COLUMN `playerSummonerName` varchar(100) NOT NULL DEFAULT '';
