@@ -41,7 +41,31 @@ export async function POST(request: NextRequest) {
     );
 
   if (existingPrediction.length > 0) {
-    throw new Error('Prediction already exists');
+    console.log('updating prediction');
+    db.update(prediction)
+      .set({
+        winningTeamId,
+        losingTeamId,
+        bestOf,
+        winningTeamScore,
+        losingTeamScore,
+      })
+      .where(
+        and(
+          eq(prediction.matchId, matchId),
+          eq(prediction.userClerkId, userClerkId)
+        )
+      )
+      .then((res) => {
+        console.log('donez', res);
+      });
+    revalidatePath(`/match/${matchId}`);
+    revalidatePath('/match/[matchId]');
+    revalidatePath('/leaderboard/predictions');
+    revalidatePath('/leaderboard/fantasy');
+    revalidatePath('/');
+
+    NextResponse.json({ state: 'success' });
   } else {
     await db.insert(prediction).values({
       userClerkId,
