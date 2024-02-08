@@ -74,7 +74,7 @@ const UnstartedEvent = ({
                 setSelectedTeam(teams.firstTeam);
               }
             }}
-            className={`absolute w-24 lg:w-1/2 left-0 h-full flex justify-center items-center overflow-hidden duration-700  group z-10 ${
+            className={`absolute w-[40%] lg:w-1/2 left-0 h-full flex justify-center items-center overflow-hidden duration-700  group z-10 ${
               !isPredicting &&
               currentPrediction?.status !== 'lockedIn' &&
               !isLockedIn
@@ -108,7 +108,7 @@ const UnstartedEvent = ({
                 setSelectedTeam(teams.secondTeam);
               }
             }}
-            className={`absolute w-24 lg:w-1/2 right-0 h-full flex justify-center items-center overflow-hidden duration-700 group z-10 ${
+            className={`absolute w-[40%] lg:w-1/2 right-0 h-full flex justify-center items-center overflow-hidden duration-700 group z-10 ${
               !isPredicting &&
               currentPrediction?.status !== 'lockedIn' &&
               !isLockedIn
@@ -158,7 +158,14 @@ const UnstartedEvent = ({
                   <h3 className='hidden lg:inline text-end '>
                     {teams.firstTeam.name}
                   </h3>
-                  <h3 className='inline lg:hidden font-semibold lg:font-normal '>
+                  <h3
+                    onClick={() => setSelectedTeam(teams.firstTeam)}
+                    className={`inline lg:hidden font-semibold lg:font-normal ${
+                      isPredicting && 'cursor-pointer'
+                    } ${
+                      selectedTeam === teams.firstTeam && 'text-accent-gold'
+                    }`}
+                  >
                     {teams.firstTeam.code}
                   </h3>
                 </div>
@@ -222,7 +229,14 @@ const UnstartedEvent = ({
               <div className='flex flex-col lg:items-start flex-grow lg:flex-grow-0 '>
                 <div className='flex items-center justify-between lg:justify-normal '>
                   <h3 className='hidden lg:inline '>{teams.secondTeam.name}</h3>
-                  <h3 className='inline lg:hidden font-semibold lg:font-normal '>
+                  <h3
+                    onClick={() => setSelectedTeam(teams.secondTeam)}
+                    className={`inline lg:hidden font-semibold lg:font-normal ${
+                      isPredicting && 'cursor-pointer'
+                    } ${
+                      selectedTeam === teams.secondTeam && 'text-accent-gold'
+                    }`}
+                  >
                     {teams.secondTeam.code}
                   </h3>
                 </div>
@@ -230,12 +244,41 @@ const UnstartedEvent = ({
             </div>
           </div>
           <div
-            className={`font-bold flex-col hidden xs:flex relative duration-300 z-20 ${
-              isPredicting ? 'opacity-0' : ''
+            className={`flex font-bold flex-col relative duration-300 z-20 ${
+              isPredicting ? 'lg:opacity-0' : ''
             }`}
           >
-            <span> {event.league.name} </span>
+            <span className='hidden lg:inline'>{event.league.name}</span>
             <span className=' hidden lg:inline'>{`Best of ${event.match.strategy.count}`}</span>
+            <div className='inline lg:hidden'>
+              <SignedOut>
+                <SignInButton
+                  afterSignInUrl='/schedule'
+                  afterSignUpUrl='/schedule'
+                  redirectUrl='/schedule'
+                >
+                  <button
+                    className={`w-28 h-8 bg-accent-gold text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-sm font-medium`}
+                  >
+                    Predict
+                  </button>
+                </SignInButton>
+              </SignedOut>
+              <SignedIn>
+                <PredictButton
+                  color='bg-accent-gold'
+                  event={event}
+                  teams={teams}
+                  isPredicting={isPredicting}
+                  setIsPredicting={setIsPredicting}
+                  selectedTeam={selectedTeam}
+                  currentPrediction={currentPrediction}
+                  isLockedIn={isLockedIn}
+                  setIsLockedIn={setIsLockedIn}
+                  user={user}
+                />
+              </SignedIn>
+            </div>
           </div>
         </div>
       )}

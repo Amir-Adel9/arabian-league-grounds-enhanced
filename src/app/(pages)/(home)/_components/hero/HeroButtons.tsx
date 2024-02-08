@@ -1,6 +1,6 @@
 'use client';
 
-import { SignInButton, SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
@@ -18,23 +18,18 @@ const HeroButtons = () => {
 
   return (
     <>
-      <SignedIn>
-        <button
-          onClick={() => {
+      <button
+        onClick={() => {
+          if (!user.isSignedIn) {
+            router.push('accounts.arabianleaguegrounds.live/sign-in');
+          } else {
             featuresDiv.scrollIntoView({ behavior: 'smooth' });
-          }}
-          className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300 delay-0 animate-translate-y'
-        >
-          <span className='font-rubik'>Get Started</span>
-        </button>
-      </SignedIn>
-      <SignedOut>
-        <SignInButton afterSignInUrl='/' afterSignUpUrl='/' redirectUrl='/'>
-          <button className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300 delay-0 animate-translate-y'>
-            <span className='font-rubik'>Get Started</span>
-          </button>
-        </SignInButton>
-      </SignedOut>
+          }
+        }}
+        className='bg-accent-gold w-40 rounded px-4 py-3 hover:bg-primary hover:text-secondary duration-300 delay-0 animate-translate-y'
+      >
+        <span className='font-rubik'>Get Started</span>
+      </button>
       <button
         onClick={() =>
           upcomingMatchesDiv.scrollIntoView({ behavior: 'smooth' })
