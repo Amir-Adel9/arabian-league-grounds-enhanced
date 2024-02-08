@@ -9,6 +9,7 @@ import {
 import { currentUser } from '@clerk/nextjs';
 import { and, eq, sql } from 'drizzle-orm';
 import { FantasyPlayer, FantasyRoster } from './fantasy.types';
+import { revalidatePath } from 'next/cache';
 
 export async function createFantasyTeam() {
   const user = await currentUser();
@@ -147,6 +148,12 @@ export async function addPlayerToFantasyTeam({
     )
     .then((res) => res[0]);
 
+  const playerAlreadyInRole = await db
+    .select()
+    .from(player)
+    .where(eq(player.id, playerAlreadyInRoleId?.playerId))
+    .then((res) => res[0]);
+
   if (!playerToAdd) throw new Error('Player not found');
 
   await db
@@ -161,6 +168,7 @@ export async function addPlayerToFantasyTeam({
       set: {
         fantasyTeamId: fantasyTeamId,
         playerId: playerToAdd.id,
+        playerSummonerName: playerToAdd.summonerName,
         role: playerToAdd.role,
         points: 0,
         pickedAt: new Date(),
@@ -169,13 +177,6 @@ export async function addPlayerToFantasyTeam({
     .then((res) => {
       console.log('db insert res', res);
     });
-
-  await db
-    .update(user)
-    .set({
-      credits: sql`${user.credits} - ${playerToAdd.cost}`,
-    })
-    .where(eq(user.clerkId, userClerkId));
 
   if (playerAlreadyInRoleId) {
     await db.insert(fantasyHistory).values({
@@ -187,7 +188,31 @@ export async function addPlayerToFantasyTeam({
       pickedAt: playerAlreadyInRoleId.pickedAt,
       droppedAt: new Date(),
     });
+    await db
+      .update(user)
+      .set({
+        credits:
+          playerToAdd.cost > playerAlreadyInRole.cost
+            ? sql`${user.credits} - ${Math.abs(
+                playerToAdd.cost - playerAlreadyInRole.cost
+              )}`
+            : sql`${user.credits} + ${Math.abs(
+                playerToAdd.cost - playerAlreadyInRole.cost
+              )}`,
+      })
+      .where(eq(user.clerkId, userClerkId));
+  } else {
+    await db
+      .update(user)
+      .set({
+        credits: sql`${user.credits} - ${playerToAdd.cost}`,
+      })
+      .where(eq(user.clerkId, userClerkId));
   }
+  revalidatePath('/', 'layout');
+  revalidatePath('/fantasy');
+  revalidatePath('/(pages)/fantasy', 'page');
+  revalidatePath('/(pages)/fantasy/edit', 'page');
 }
 
 export async function updateFantasyPointsForPlayer({

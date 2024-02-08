@@ -1,3 +1,6 @@
+export const revalidate = 0;
+export const dynamic = 'force-dynamic';
+
 import { getTeamRostersByRole } from '@/utils/functions/getTeamRosters';
 import Fantasy from '../_components/Fantasy';
 import Image from 'next/image';
