@@ -16,7 +16,7 @@ import {
 import {
   filterEventsWithFantasyPlayer,
   getStatsForEventsWithFantasyPlayers,
-  checkWeekDay,
+  isLockInLocked,
   areTeamsEqual,
 } from './fantasy.helpers';
 import { FantasyRoster } from './fantasy.types';
@@ -39,7 +39,7 @@ export async function lockInFantasyTeam({
 
   const registeredFantasyTeamId = await getFantasyTeamId({ userId: user.id });
 
-  const isWeekLocked = checkWeekDay();
+  const isWeekLocked = isLockInLocked();
 
   if (isWeekLocked) throw new Error('Week is locked');
 

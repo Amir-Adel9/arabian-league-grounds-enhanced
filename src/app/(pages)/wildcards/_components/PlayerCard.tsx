@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FantasyPlayer } from '@/entities/fantasy/fantasy.types';
 import { lockInWildCard } from '../actions/wildcardActions';
 import { toast } from 'sonner';
+import { isLockInLocked } from '@/entities/fantasy/fantasy.helpers';
 
 const PlayerCard = ({
   player,
@@ -22,14 +23,20 @@ const PlayerCard = ({
       variant={'outline'}
       onClick={async () => {
         setSelectedPlayer(player);
-        await lockInWildCard({
-          _wildcard: {
-            name: 'killLeader',
-            picked: player.summonerName,
-          },
-        })
-          .then(() => toast.success('Wildcard locked in!'))
-          .catch(() => toast.error('Error locking in wildcard'));
+        if (isLockInLocked()) {
+          return toast.error('You cannot lock in a wildcard on a game day.');
+        } else {
+          await lockInWildCard({
+            _wildcard: {
+              name: 'killLeader',
+              picked: player.summonerName,
+            },
+          })
+            .then(() => toast.success('Wildcard locked in!'))
+            .catch(() =>
+              toast.error('You cannot lock in a wildcard on a game day.')
+            );
+        }
       }}
       className={`flex flex-col gap-2 w-[100px] text-lg border rounded-lg h-auto duration-300 p-3 font-bold cursor-pointer ${
         selectedPlayer?.summonerName === player.summonerName &&
