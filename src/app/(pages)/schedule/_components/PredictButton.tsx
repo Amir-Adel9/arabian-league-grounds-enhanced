@@ -49,8 +49,8 @@ const PredictButton = ({
             isPredicting && toast.error('Please select a team');
             throw new Error('No team selected!');
           } else if (
-            event.state === 'completeds' ||
-            event.state === 'inProgresss'
+            event.state === 'completes' ||
+            event.state === 'inProgress'
           ) {
             toast.error('This match has already been played.');
             throw new Error('Match has already been played.');
