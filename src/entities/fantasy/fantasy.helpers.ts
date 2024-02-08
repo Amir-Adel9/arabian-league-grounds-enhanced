@@ -21,8 +21,8 @@ export function areTeamsEqual(arr1: string[], arr2: string[]) {
 export function isLockInLocked() {
   const today = dayjs().tz('Africa/Cairo');
   return (
-    (today.day() === 4 && today.hour() >= 19 && today.minute() >= 15) ||
-    (today.day() === 5 && today.hour() > 19 && today.minute() > 15)
+    (today.day() === 4 && today.hour() >= 19 && today.minute() >= 45) ||
+    (today.day() === 5 && today.hour() > 19 && today.minute() > 45)
   );
 }
 

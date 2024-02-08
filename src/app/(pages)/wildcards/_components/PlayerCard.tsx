@@ -22,10 +22,10 @@ const PlayerCard = ({
     <Button
       variant={'outline'}
       onClick={async () => {
-        setSelectedPlayer(player);
         if (isLockInLocked()) {
           return toast.error('You cannot lock in a wildcard on a game day.');
         } else {
+          setSelectedPlayer(player);
           await lockInWildCard({
             _wildcard: {
               name: 'killLeader',

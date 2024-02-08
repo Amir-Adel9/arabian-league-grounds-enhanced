@@ -37,10 +37,10 @@ const TeamCard = ({
     <Button
       variant={'outline'}
       onClick={async () => {
-        setSelectedTeam(team);
         if (isLockInLocked()) {
           return toast.error('You cannot lock in a wildcard on a game day.');
         } else {
+          setSelectedTeam(team);
           await lockInWildCard({
             _wildcard: {
               name: 'champion',
