@@ -1,3 +1,5 @@
+export const cache = 'no-cache';
+
 import {
   getTeamRostersByRole,
   insertRostersIntoDB,

@@ -70,7 +70,7 @@ const CreateFantasyTeam = ({
       translateY: 0,
     },
   };
-
+  console.log('currentFantasyTeam', currentFantasyTeam);
   const createRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const jungleRef = useRef<HTMLDivElement>(null);
@@ -85,6 +85,7 @@ const CreateFantasyTeam = ({
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const [rosterCostDifference, setRosterCostDifference] = useState<number>(0);
   const [fantasyRoster, setFantasyRoster] = useState<CreateFantasyRoster>({
     top: currentFantasyTeam?.top || undefined,
     jungle: currentFantasyTeam?.jungle || undefined,
@@ -190,16 +191,22 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
+          setRosterCostDifference(player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
+              fantasyTeam.totalCost +
+              player.cost -
+              fantasyTeam.roster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
+          );
+          setRosterCostDifference(
+            player.cost - fantasyTeam.roster![role]?.cost!
           );
         }
         break;
@@ -211,16 +218,22 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
+          setRosterCostDifference(player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
+              fantasyTeam.totalCost +
+              player.cost -
+              fantasyTeam.roster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
+          );
+          setRosterCostDifference(
+            player.cost - fantasyTeam.roster![role]?.cost!
           );
         }
         break;
@@ -232,16 +245,22 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
+          setRosterCostDifference(player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
+              fantasyTeam.totalCost +
+              player.cost -
+              fantasyTeam.roster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
+          );
+          setRosterCostDifference(
+            player.cost - fantasyTeam.roster![role]?.cost!
           );
         }
         break;
@@ -253,16 +272,22 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
+          setRosterCostDifference(player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
+              fantasyTeam.totalCost +
+              player.cost -
+              fantasyTeam.roster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
+          );
+          setRosterCostDifference(
+            player.cost - fantasyTeam.roster![role]?.cost!
           );
         }
         break;
@@ -274,16 +299,22 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
+          setRosterCostDifference(player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost + player.cost - fantasyRoster[role]!.cost,
+              fantasyTeam.totalCost +
+              player.cost -
+              fantasyTeam.roster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
+          );
+          setRosterCostDifference(
+            player.cost - fantasyTeam.roster![role]?.cost!
           );
         }
         break;
@@ -710,14 +741,19 @@ const CreateFantasyTeam = ({
             >
               <div className=' w-full overflow-y-scroll no-scrollbar'>
                 <DrawerHeader className='w-full flex justify-between'>
-                  <span>Your credits: ${credits}</span>
+                  <span>
+                    Your credits: ${user.credits} (
+                    {rosterCostDifference < 0 ? '+' : ''}
+                    {rosterCostDifference})
+                  </span>
                   <DrawerTitle className='text-center text-2xl'>
                     Choose a <span className='capitalize'>{selectedRole} </span>
                     player
                   </DrawerTitle>
                   <span>
                     Roster&apos;s cost: ${fantasyTeam.totalCost} (
-                    {cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0)})
+                    {rosterCostDifference > 0 ? '+' : ''}
+                    {rosterCostDifference})
                   </span>
                 </DrawerHeader>
                 <div className='font-bold flex flex-wrap flex-col md:flex-row items-center justify-center gap-5 z-20 text-center my-10'>
@@ -818,13 +854,20 @@ const CreateFantasyTeam = ({
         </Drawer>
       </div>
       <div className='flex flex-col-reverse md:flex-row relative justify-between items-center w-full'>
-        <div className='flex flex-col gap-1 items-start md:w-[320px]'>
+        <div className='flex flex-col gap-1 items-start md:w-[420px]'>
           <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
-            Your Credits: ${credits}
+            Your Credits: ${credits} (
+            {rosterCostDifference < 0
+              ? '+'
+              : rosterCostDifference === 0
+              ? ''
+              : '-'}
+            {Math.abs(rosterCostDifference)})
           </span>
           <span className='sm:text-lg md:text-xl lg:text-2xl text-white/70 text-center font-rubik font-bold filter tracking-wide'>
             Roster&apos;s cost: ${fantasyTeam.totalCost} (
-            {cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0)})
+            {rosterCostDifference > 0 ? '+' : ''}
+            {rosterCostDifference})
           </span>
         </div>
         <div className='flex flex-col justify-center items-center gap-4'>
@@ -836,7 +879,6 @@ const CreateFantasyTeam = ({
                   toast.error('You need to fill all the roles');
                   return;
                 }
-
                 if (currentFantasyTeam) {
                   if (
                     areTeamsEqual(
@@ -849,28 +891,32 @@ const CreateFantasyTeam = ({
                     toast.error('No changes made');
                     return;
                   }
+                  if (rosterCostDifference > credits) {
+                    toast.error('Not enough credits');
+                    return;
+                  }
                 }
-
                 if (
+                  !currentFantasyTeam &&
                   cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0) >
-                  credits
+                    credits
                 ) {
                   toast.error('Not enough credits');
                   return;
+                } else {
+                  setFantasyTeam({
+                    roster: {
+                      top: fantasyRoster.top!,
+                      jungle: fantasyRoster.jungle!,
+                      mid: fantasyRoster.mid!,
+                      bot: fantasyRoster.bot!,
+                      support: fantasyRoster.support!,
+                    },
+                    totalCost: fantasyTeam.totalCost,
+                    isLockedIn: true,
+                  });
+                  setShowConfirmModal(true);
                 }
-
-                setFantasyTeam({
-                  roster: {
-                    top: fantasyRoster.top!,
-                    jungle: fantasyRoster.jungle!,
-                    mid: fantasyRoster.mid!,
-                    bot: fantasyRoster.bot!,
-                    support: fantasyRoster.support!,
-                  },
-                  totalCost: fantasyTeam.totalCost,
-                  isLockedIn: true,
-                });
-                setShowConfirmModal(true);
               }}
             >
               Lock In

@@ -26,7 +26,7 @@ const CreditsDialog = ({ isCreatingTeam }: { isCreatingTeam: boolean }) => {
   return (
     <AlertDialog open={isOpened}>
       <AlertDialogTrigger onClick={() => setIsOpened(true)}>
-        <span className='text-xl sm:text-2xl md:w-[320px] flex items-center gap-2 cursor-pointer md:text-2xl lg:text-3xl text-white/70  text-center font-rubik font-bold filter tracking-wider duration-300 hover:text-accent-gold'>
+        <span className='text-xl sm:text-2xl md:w-[420px] flex items-center gap-2 cursor-pointer md:text-2xl lg:text-3xl text-white/70  text-center justify-end font-rubik font-bold filter tracking-wider duration-300 hover:text-accent-gold'>
           Credits System
           <Info className='w-5 h-5 text-accent-gold cursor-pointer' />
         </span>

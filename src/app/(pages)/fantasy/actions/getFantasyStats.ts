@@ -7,6 +7,7 @@ import {
 } from '@/entities/fantasy/fantasy.actions';
 
 import { FantasyRoster } from '@/entities/fantasy/fantasy.types';
+import { revalidatePath } from 'next/cache';
 
 export default async function handleFantasy({
   fantasyRoster,
@@ -21,6 +22,10 @@ export default async function handleFantasy({
 
   // const fantasyPoints = await getFantasyTeamStats();
   const fantasyPoints = await calculateFantasyPoints();
+  revalidatePath('/', 'layout');
+  revalidatePath('/fantasy');
+  revalidatePath('/(pages)/fantasy', 'page');
+  revalidatePath('/(pages)/fantasy/edit', 'page');
 
   return fantasyPoints;
 }

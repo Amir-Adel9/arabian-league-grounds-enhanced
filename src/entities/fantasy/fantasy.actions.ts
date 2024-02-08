@@ -47,7 +47,8 @@ export async function lockInFantasyTeam({
     const currentFantasyRoster = await getFantasyRoster({
       fantasyTeamId: registeredFantasyTeamId,
     });
-
+    // console.log('currentFantasyRoster: ', currentFantasyRoster);
+    // console.log('fantasyRoster: ', fantasyRoster);
     if (
       areTeamsEqual(
         Object.values(fantasyRoster).map((p) => p!.summonerName),
@@ -77,14 +78,18 @@ export async function lockInFantasyTeam({
         return !Object.values(currentFantasyRoster).some(
           (currentFantasyPlayer) => {
             return (
-              currentFantasyPlayer.id === fantasyPlayer.id &&
+              currentFantasyPlayer.summonerName ===
+                fantasyPlayer.summonerName &&
               currentFantasyPlayer.role === fantasyPlayer.role
             );
           }
         );
       }
     );
+    // console.log('newFantasyPlayers: ', newFantasyPlayers);
+
     newFantasyPlayers.forEach(async (fantasyPlayer) => {
+      // console.log('doing: ', fantasyPlayer);
       await addPlayerToFantasyTeam({
         fantasyPlayer,
         fantasyTeamId: registeredFantasyTeamId,
@@ -214,15 +219,11 @@ export async function calculateFantasyPoints() {
           await getStatsForEventsWithFantasyPlayers({
             events: eventsWithFantasyPlayer,
           });
-        console.log(
-          `Completed events since ${pickedAt} for ${fantasyPlayer.playerId} in ${fantasyPlayer.fantasyTeamId}: `,
-          statsForEventsWithFantasyPlayer.map((event) => event.event.startTime)
-        );
+
         const fantasyPoints = getFantasyPointsForPlayer({
           events: statsForEventsWithFantasyPlayer,
           fantasyPlayer: _player as Player,
         });
-        console.log('fantasyPoints: ', fantasyPoints.totalFantasyPoints);
 
         await updateFantasyPointsForPlayer({
           points: fantasyPoints.totalFantasyPoints,
