@@ -68,7 +68,7 @@ const UnstartedEvent = ({
           </div>
           <div
             onClick={() => {
-              if (currentPrediction?.status === 'lockedIn' || !isPredicting) {
+              if (!isPredicting) {
                 return;
               } else {
                 setSelectedTeam(teams.firstTeam);
@@ -85,8 +85,9 @@ const UnstartedEvent = ({
             <div
               className={`absolute w-full opacity-0 h-full bg-gradient-to-r from-destructive duration-700 rounded-xl group-hover:opacity-100 ${
                 selectedTeam === teams.firstTeam ||
-                currentPrediction?.prediction.winningTeamId ===
-                  teams.firstTeam.code
+                (currentPrediction?.prediction.winningTeamId ===
+                  teams.firstTeam.code &&
+                  !isPredicting)
                   ? 'opacity-100'
                   : ''
               }`}
@@ -102,7 +103,7 @@ const UnstartedEvent = ({
           </div>
           <div
             onClick={() => {
-              if (currentPrediction?.status === 'lockedIn' || !isPredicting) {
+              if (!isPredicting) {
                 return;
               } else {
                 setSelectedTeam(teams.secondTeam);
@@ -119,8 +120,9 @@ const UnstartedEvent = ({
             <div
               className={`absolute w-full opacity-0 h-full bg-gradient-to-l from-accent-blue duration-700 rounded-xl group-hover:opacity-100 ${
                 selectedTeam === teams.secondTeam ||
-                currentPrediction?.prediction.winningTeamId ===
-                  teams.secondTeam.code
+                (currentPrediction?.prediction.winningTeamId ===
+                  teams.secondTeam.code &&
+                  !isPredicting)
                   ? 'opacity-100'
                   : ''
               }`}
@@ -138,9 +140,9 @@ const UnstartedEvent = ({
             <div
               className={`relative h-full flex flex-row lg:flex-row-reverse w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:gap-4 ${
                 selectedTeam === teams.firstTeam ||
-                currentPrediction?.prediction.winningTeamId ===
-                  teams.firstTeam.code ||
-                isLockedIn
+                (currentPrediction?.prediction.winningTeamId ===
+                  teams.firstTeam.code &&
+                  !isPredicting)
                   ? 'z-20'
                   : ''
               }`}
@@ -201,6 +203,7 @@ const UnstartedEvent = ({
                   isPredicting={isPredicting}
                   setIsPredicting={setIsPredicting}
                   selectedTeam={selectedTeam}
+                  setSelectedTeam={setSelectedTeam}
                   currentPrediction={currentPrediction}
                   isLockedIn={isLockedIn}
                   setIsLockedIn={setIsLockedIn}
@@ -211,9 +214,9 @@ const UnstartedEvent = ({
             <div
               className={`flex flex-row lg:flex-row w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:space-x-4 ${
                 selectedTeam === teams.secondTeam ||
-                currentPrediction?.prediction.winningTeamId ===
-                  teams.secondTeam.code ||
-                isLockedIn
+                (currentPrediction?.prediction.winningTeamId ===
+                  teams.secondTeam.code &&
+                  !isPredicting)
                   ? 'z-20'
                   : ''
               }`}
@@ -272,6 +275,7 @@ const UnstartedEvent = ({
                   isPredicting={isPredicting}
                   setIsPredicting={setIsPredicting}
                   selectedTeam={selectedTeam}
+                  setSelectedTeam={setSelectedTeam}
                   currentPrediction={currentPrediction}
                   isLockedIn={isLockedIn}
                   setIsLockedIn={setIsLockedIn}

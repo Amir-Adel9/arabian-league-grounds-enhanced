@@ -13,6 +13,7 @@ const PredictButton = ({
   currentPrediction,
   isLockedIn,
   selectedTeam,
+  setSelectedTeam,
   isPredicting,
   setIsLockedIn,
   setIsPredicting,
@@ -30,6 +31,9 @@ const PredictButton = ({
     | undefined;
   isLockedIn: boolean;
   selectedTeam: Team | null | undefined;
+  setSelectedTeam: React.Dispatch<
+    React.SetStateAction<Team | null | undefined>
+  >;
   isPredicting: boolean;
   setIsLockedIn: (isLockedIn: boolean) => void;
   setIsPredicting: (isPredicting: boolean) => void;
@@ -43,8 +47,9 @@ const PredictButton = ({
           toast.error('Please sign in to predict!');
           throw new Error('Not logged in!');
         } else {
-          if (currentPrediction?.status === 'lockedIn' || isLockedIn) {
-            return toast.error('You have already locked in!');
+          if (currentPrediction?.status === 'lockedIn' && !isPredicting) {
+            setSelectedTeam(null);
+            return;
           } else if (!selectedTeam) {
             isPredicting && toast.error('Please select a team');
             throw new Error('No team selected!');
@@ -86,12 +91,14 @@ const PredictButton = ({
       className={`w-18 sm:w-28 h-8 ${color} text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-xs sm:text-sm font-medium`}
       hidden={teams.firstTeam.name === 'TBD' || teams.secondTeam.name === 'TBD'}
     >
-      {currentPrediction?.status === 'lockedIn' || isLockedIn
-        ? 'Locked in'
+      {currentPrediction?.status === 'lockedIn' && !isPredicting
+        ? 'Edit'
         : selectedTeam
         ? 'Lock in'
         : isPredicting
         ? 'Pick a team'
+        : currentPrediction?.status === 'lockedIn' || isLockedIn
+        ? 'Edit'
         : 'Predict'}
     </button>
   );
