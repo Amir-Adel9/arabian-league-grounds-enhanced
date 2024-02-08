@@ -30,9 +30,10 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import handleFantasy from '../actions/getFantasyStats';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import CreditsDialog from './CreditsDialog';
 import { areTeamsEqual } from '@/entities/fantasy/fantasy.helpers';
+import Link from 'next/link';
 
 type CreateFantasyRoster = {
   top: FantasyPlayer | undefined;
@@ -54,6 +55,7 @@ const CreateFantasyTeam = ({
   user: User;
 }) => {
   const router = useRouter();
+  const currentPath = usePathname();
 
   const variants = {
     hidden: { opacity: 0 },
@@ -70,7 +72,7 @@ const CreateFantasyTeam = ({
       translateY: 0,
     },
   };
-  console.log('currentFantasyTeam', currentFantasyTeam);
+
   const createRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
   const jungleRef = useRef<HTMLDivElement>(null);
@@ -1011,6 +1013,11 @@ const CreateFantasyTeam = ({
           >
             Reset
           </span>
+          {currentPath.includes('edit') && (
+            <Link className='underline cursor-pointer' href={'/fantasy'}>
+              Stop editing
+            </Link>
+          )}
         </div>
         <CreditsDialog isCreatingTeam={isShowing} />
       </div>

@@ -1,7 +1,4 @@
-import {
-  getTeamRostersByRole,
-  insertRostersIntoDB,
-} from '@/utils/functions/getTeamRosters';
+import { getTeamRostersByRole } from '@/utils/functions/getTeamRosters';
 import Fantasy from './_components/Fantasy';
 import Image from 'next/image';
 import { currentUser } from '@clerk/nextjs';
