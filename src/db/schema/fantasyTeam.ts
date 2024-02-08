@@ -14,7 +14,8 @@ export const fantasyTeam = mysqlTable('fantasyTeam', {
     length: 100,
   })
     .notNull()
-    .references(() => user.username),
+    .references(() => user.username)
+    .default(''),
 });
 
 export const fantasyTeamRelations = relations(fantasyTeam, ({ one, many }) => ({

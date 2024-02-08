@@ -19,7 +19,9 @@ export const playerToFantasyTeam = mysqlTable(
     playerId: serial('playerId').references(() => player.id),
     playerSummonerName: varchar('playerSummonerName', {
       length: 100,
-    }).notNull(),
+    })
+      .notNull()
+      .default(''),
     role: varchar('role', {
       length: 10,
     }).notNull(),
