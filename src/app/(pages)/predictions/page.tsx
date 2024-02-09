@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { RedirectToSignIn, RedirectToSignUp, currentUser } from '@clerk/nextjs';
 import { db } from '@/db';
 import { prediction } from '@/db/schema/schema';
-import { desc, eq } from 'drizzle-orm';
+import { asc, desc, eq } from 'drizzle-orm';
 import Predictions from '@/app/(pages)/predictions/_components/Predictions';
 import { requestParams } from '@/utils/constants/requestParams';
 
