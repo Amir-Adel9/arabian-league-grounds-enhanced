@@ -77,11 +77,12 @@ const PredictButton = ({
                 username: user.name,
                 matchId: event.match.id,
                 winningTeamId: selectedTeam.code,
+                matchAt: event.startTime,
                 losingTeamId: event.match.teams.find((team: Team) => {
                   return team.code !== selectedTeam.code;
                 })?.code,
                 bestOf: event.match.strategy.count,
-              } as Prediction),
+              }),
             });
           }
         }

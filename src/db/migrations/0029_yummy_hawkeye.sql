@@ -1,0 +1,1 @@
+ALTER TABLE `prediction` DROP COLUMN `matchAt`;

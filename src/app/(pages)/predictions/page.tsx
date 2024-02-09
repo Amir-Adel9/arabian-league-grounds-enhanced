@@ -35,7 +35,7 @@ export default async function PredictionsPage() {
       .select()
       .from(prediction)
       .where(eq(prediction.userClerkId, loggedInUser.id))
-      .orderBy(desc(prediction.createdAt));
+      .orderBy(asc(prediction.createdAt));
     const allEvents = await fetch(
       `https://esports-api.lolesports.com/persisted/gw/getSchedule?hl=en-US&leagueId=${process.env.NEXT_PUBLIC_LEAGUE_ID}`,
       requestParams
