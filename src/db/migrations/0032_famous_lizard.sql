@@ -1,0 +1,1 @@
+ALTER TABLE `prediction` ADD `matchAt` timestamp NOT NULL;

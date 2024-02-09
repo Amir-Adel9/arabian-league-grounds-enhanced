@@ -264,6 +264,45 @@ export async function updateFantasyPointsForUser({
     });
 }
 
+export async function updateCreditsForUsers() {
+  const userIds = await db
+    .select({
+      userId: user.clerkId,
+    })
+    .from(user)
+    .then((res) => res.map((res) => res.userId));
+
+  userIds.forEach(async (userId) => {
+    const { fantasyPoints, predictionPoints, credits } = await db
+      .select({
+        fantasyPoints: user.fantasyPoints,
+        predictionPoints: user.predictionPoints,
+        credits: user.credits,
+      })
+      .from(user)
+      .where(eq(user.clerkId, userId))
+      .then((res) => res[0]);
+    const half = fantasyPoints * 0.5;
+
+    console.log('hamtaro', fantasyPoints, predictionPoints);
+    console.log(
+      'maro',
+      fantasyPoints * 0.5,
+      (predictionPoints / 100) * 10,
+      credits,
+      credits + (predictionPoints / 100) * 10 + Math.ceil(half / 5) * 5
+    );
+    await db
+      .update(user)
+      .set({
+        credits: sql`${(predictionPoints / 100) * 10} + ${
+          Math.ceil(half / 5) * 5
+        }`,
+      })
+      .where(eq(user.clerkId, userId));
+  });
+}
+
 export async function getFantasyHistoryPlayers({
   fantasyTeamId,
 }: {

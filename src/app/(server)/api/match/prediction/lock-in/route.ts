@@ -7,7 +7,7 @@ import { eq, and } from 'drizzle-orm';
 import { revalidatePath } from 'next/cache';
 
 export async function POST(request: NextRequest) {
-  const body = (await request.json()) as Prediction;
+  const body = await request.json();
 
   const {
     userClerkId,
@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
     matchId,
     winningTeamId,
     losingTeamId,
+    matchAt,
     bestOf,
     winningTeamScore,
     losingTeamScore,
@@ -73,6 +74,7 @@ export async function POST(request: NextRequest) {
       matchId,
       winningTeamId,
       losingTeamId,
+      matchAt: new Date(matchAt),
       bestOf,
       winningTeamScore,
       losingTeamScore,

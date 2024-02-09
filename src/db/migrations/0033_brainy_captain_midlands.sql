@@ -1,0 +1,1 @@
+ALTER TABLE `prediction` MODIFY COLUMN `matchAt` timestamp NOT NULL DEFAULT '2024-02-08 00:00:00.000';

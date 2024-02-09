@@ -7,6 +7,19 @@
     "teamLogo": "http://static.lolesports.com/teams/1676278903430_FullcolorTransparent1.png",
     "players": [
       {
+        "id": 2,
+        "name": "Ajwad Wazzan",
+        "nationality": "Saudi Arabia",
+        "flagUrl": "https://liquipedia.net/commons/images/thumb/d/d6/Sa_hd.png/36px-Sa_hd.png",
+        "summonerName": "Ajwad",
+        "role": "jungle",
+        "cost": 150,
+        "teamName": "GNG Amazigh",
+        "teamSlug": "gng-esports",
+        "teamCode": "GNG",
+        "teamLogo": "http://static.lolesports.com/teams/1707302773649_WHITE.png"
+      },
+      {
         "id": 1,
         "generalId": 1,
         "name": "Karlo Kovačić",
