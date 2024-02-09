@@ -19,10 +19,7 @@ const PredictionCard = ({
 }) => {
   return (
     <div className='relative flex justify-between items-center w-full h-[120px] bg-card text-primary px-6 py-4 font-geist rounded-xl duration-300 hover:bg-accent-blue'>
-      <Link
-        href={`/match/${event.match.id}`}
-        className='relative w-full h-full flex items-center justify-between'
-      >
+      <div className='relative w-full h-full flex items-center justify-between'>
         <div className='h-full flex justify-center flex-grow items-center flex-col lg:flex-row gap-1 lg:gap-0'>
           <div className='flex flex-col text-white/70'>
             <h3 className='text-xl font-bold'>
@@ -94,7 +91,7 @@ const PredictionCard = ({
             </h3>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

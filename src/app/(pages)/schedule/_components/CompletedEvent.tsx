@@ -23,10 +23,7 @@ const CompletedEvent = forwardRef(
   }) => {
     return (
       <div className='relative flex items-center w-full h-[120px] bg-card text-primary px-6 py-4 font-geist rounded-xl group duration-300 hover:bg-accent-blue'>
-        <Link
-          href={`/match/${event.match.id}`}
-          className='w-full flex items-center justify-between'
-        >
+        <div className='w-full flex items-center justify-between'>
           <div className='relative'>
             <span className='text-xl sm:text-3xl'>{startTime.hour}</span>
             <span className='absolute text-xs sm:text-sm top-1 ml-1'>
@@ -154,7 +151,7 @@ const CompletedEvent = forwardRef(
             <span> {event.league.name} </span>
             <span className=' hidden lg:inline'>{`Best of ${event.match.strategy.count}`}</span>
           </div>
-        </Link>
+        </div>
       </div>
     );
   }
