@@ -118,7 +118,7 @@ const TeamMatchesSlider = ({ teamMatches }: { teamMatches: any }) => {
 
           if (targetDate.isAfter(cutoffDate)) {
             return (
-              <Link href={`/match/${match.match.id}`} key={index}>
+              <div key={index}>
                 <div
                   key={index}
                   className='flex flex-col justify-center items-start duration-300 hover:bg-accent-blue gap-1 w-full h-full p-8  text-primary border-x border-x-[#5b6064]'
@@ -178,7 +178,7 @@ const TeamMatchesSlider = ({ teamMatches }: { teamMatches: any }) => {
                     <h1 className='text-base'>{matchHour}</h1>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           } else {
             return;

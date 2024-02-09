@@ -19,10 +19,7 @@ const IncorrectPrediction = ({
 }) => {
   return (
     <div className='relative flex justify-between items-center w-full h-[120px] bg-card text-primary px-6 py-4 font-geist rounded-xl duration-300 hover:bg-red-950'>
-      <Link
-        href={`/match/${event.match.id}`}
-        className='relative w-full h-full flex items-center justify-between'
-      >
+      <div className='relative w-full h-full flex items-center justify-between'>
         <div className='h-full flex justify-center flex-grow items-center flex-col lg:flex-row gap-1 lg:gap-0'>
           <div className='relative h-full flex flex-row lg:flex-row-reverse w-24 lg:w-1/3 items-center justify-between lg:justify-start space-x-1 lg:gap-4'>
             <Image
@@ -65,7 +62,7 @@ const IncorrectPrediction = ({
             </h3>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

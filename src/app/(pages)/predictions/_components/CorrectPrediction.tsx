@@ -18,7 +18,7 @@ const CorrectPrediction = ({
   };
 }) => {
   return (
-    <Link href={`/match/${event.match.id}`} className='w-full'>
+    <div className='w-full'>
       <div className='flex  w-full items-center text-primary justify-around bg-green-900 border-accent-gold border-y cursor-pointer p-4 duration-200 hover:bg-green-950 '>
         <div className='flex w-full flex-row items-center justify-center '>
           <div className='relative w-10 h-10 md:w-20 md:h-20 '>
@@ -47,7 +47,7 @@ const CorrectPrediction = ({
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

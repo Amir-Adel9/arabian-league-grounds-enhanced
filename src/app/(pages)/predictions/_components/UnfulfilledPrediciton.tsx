@@ -19,10 +19,7 @@ const UnfulfilledPrediction = ({
 }) => {
   return (
     <div className='relative w-full bg-accent-blue text-primary px-6 py-4 font-kanit border-y border-accent-gold group duration-300 hover:bg-[#0b2c38]'>
-      <Link
-        href={`/match/${event.match.id}`}
-        className='relative w-full h-full flex items-center justify-between'
-      >
+      <div className='relative w-full h-full flex items-center justify-between'>
         <div className=' h-full flex justify-center flex-grow items-center flex-col lg:flex-row gap-1 lg:gap-0'>
           <div className='h-full flex flex-col w-24 lg:w-1/3 items-center gap-1'>
             <Image
@@ -67,7 +64,7 @@ const UnfulfilledPrediction = ({
             </h3>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };
