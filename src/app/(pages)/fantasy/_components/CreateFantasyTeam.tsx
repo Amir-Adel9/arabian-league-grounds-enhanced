@@ -1009,6 +1009,7 @@ const CreateFantasyTeam = ({
               });
 
               setCart([]);
+              setRosterCostDifference(0);
             }}
           >
             Reset

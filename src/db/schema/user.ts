@@ -14,8 +14,8 @@ export const user = mysqlTable('user', {
   username: varchar('username', {
     length: 100,
   }).unique(),
-  predictionPoints: int('predictionPoints').default(0),
-  fantasyPoints: int('fantasyPoints').default(0),
+  predictionPoints: int('predictionPoints').default(0).notNull(),
+  fantasyPoints: int('fantasyPoints').default(0).notNull(),
   credits: int('credits').default(700).notNull(),
 });
 

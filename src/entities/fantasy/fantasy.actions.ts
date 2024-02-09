@@ -10,6 +10,7 @@ import {
   getFantasyRoster,
   getFantasyTeamId,
   getPlayer,
+  updateCreditsForUsers,
   updateFantasyPointsForPlayer,
   updateFantasyPointsForUser,
 } from './fantasy.db';
@@ -246,6 +247,8 @@ export async function calculateFantasyPoints() {
       points: fantasyPoints.total + fantasyPointsFromHistory,
       fantasyTeamId: fantasyTeamId,
     });
+
+    await updateCreditsForUsers();
   });
   console.log('Fantasy points updated!');
 }
