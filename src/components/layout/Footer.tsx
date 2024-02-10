@@ -34,7 +34,7 @@ const Footer = () => {
             </g>
           </svg>
         </Link>
-        <Link href='mailto:amiradel899@gmail.com' target={'_blank'}>
+        <Link href='mailto:algrounds.dev@gmail.com' target={'_blank'}>
           <svg
             className='duration-200 fill-primary hover:fill-accent-gold hover:-translate-y-1'
             width='32px'
