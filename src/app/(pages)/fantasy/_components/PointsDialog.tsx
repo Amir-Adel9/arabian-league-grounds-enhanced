@@ -50,7 +50,7 @@ const PointsDialog = () => {
             </li>
             <li>
               <span className='font-semibold text-white'>Kills:</span>{' '}
-              <span className='font-semibold'>+5 points</span> per kill.
+              <span className='font-semibold'>+3 points</span> per kill.
             </li>
             <li>
               <span className='font-semibold text-white'>Deaths:</span>
