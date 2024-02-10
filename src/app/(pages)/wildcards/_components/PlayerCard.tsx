@@ -28,7 +28,7 @@ const PlayerCard = ({
           setSelectedPlayer(player);
           await lockInWildCard({
             _wildcard: {
-              name: 'killLeader',
+              name: 'deathMaster',
               picked: player.summonerName,
             },
           })

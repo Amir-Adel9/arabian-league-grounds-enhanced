@@ -19,6 +19,7 @@ import {
   getStatsForEventsWithFantasyPlayers,
   isLockInLocked,
   areTeamsEqual,
+  getPointsFromKillsForPlayer,
 } from './fantasy.helpers';
 import { FantasyRoster } from './fantasy.types';
 import { getCompletedEventsSincePicked } from '@/data-access/data-access';
@@ -1078,45 +1079,6 @@ function getPointsFromGameWinsForPlayer({
   });
 
   return pointsFromGameWins;
-}
-
-function getPointsFromKillsForPlayer({
-  events,
-  fantasyPlayer,
-}: {
-  events: Stats[];
-  fantasyPlayer: Player;
-}) {
-  let pointsFromKills = 0;
-
-  events.forEach((event: Stats) => {
-    const lastFrameSide =
-      event.gameMetadata.blueTeamMetadata.participantMetadata.find(
-        (participant) =>
-          participant.summonerName ===
-          `${fantasyPlayer.teamCode} ${fantasyPlayer.summonerName}`
-      )?.summonerName ===
-      `${fantasyPlayer.teamCode} ${fantasyPlayer.summonerName}`
-        ? 'blueTeam'
-        : 'redTeam';
-
-    const playerParticipantId = event.gameMetadata[
-      lastFrameSide === 'blueTeam' ? 'blueTeamMetadata' : 'redTeamMetadata'
-    ].participantMetadata.find(
-      (participant) =>
-        participant.summonerName ===
-        `${fantasyPlayer.teamCode} ${fantasyPlayer.summonerName}`
-    )?.participantId;
-
-    const participant = event.lastFrame[lastFrameSide].participants.find(
-      (participant) => participant.participantId === playerParticipantId
-    );
-
-    if (!participant) return;
-    pointsFromKills += participant.kills * 3;
-  });
-
-  return pointsFromKills;
 }
 
 function getPointsFromAssistsForPlayer({

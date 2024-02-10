@@ -1,6 +1,6 @@
 import { Player } from '@/db/types';
 import { getPostEventStats } from '@/utils/functions/getPostEventStats';
-import { Event } from '@/utils/types/types';
+import { Event, Stats } from '@/utils/types/types';
 import dayjs from 'dayjs';
 import utcPlugin from 'dayjs/plugin/utc';
 import durationPlugin from 'dayjs/plugin/duration';
@@ -53,4 +53,43 @@ export async function getStatsForEventsWithFantasyPlayers({
   )
     .then((events) => events.flat())
     .then((events) => events.filter((event) => event.state === 'Success'));
+}
+
+export function getPointsFromKillsForPlayer({
+  events,
+  fantasyPlayer,
+}: {
+  events: Stats[];
+  fantasyPlayer: Player;
+}) {
+  let pointsFromKills = 0;
+
+  events.forEach((event: Stats) => {
+    const lastFrameSide =
+      event.gameMetadata.blueTeamMetadata.participantMetadata.find(
+        (participant) =>
+          participant.summonerName ===
+          `${fantasyPlayer.teamCode} ${fantasyPlayer.summonerName}`
+      )?.summonerName ===
+      `${fantasyPlayer.teamCode} ${fantasyPlayer.summonerName}`
+        ? 'blueTeam'
+        : 'redTeam';
+
+    const playerParticipantId = event.gameMetadata[
+      lastFrameSide === 'blueTeam' ? 'blueTeamMetadata' : 'redTeamMetadata'
+    ].participantMetadata.find(
+      (participant) =>
+        participant.summonerName ===
+        `${fantasyPlayer.teamCode} ${fantasyPlayer.summonerName}`
+    )?.participantId;
+
+    const participant = event.lastFrame[lastFrameSide].participants.find(
+      (participant) => participant.participantId === playerParticipantId
+    );
+
+    if (!participant) return;
+    pointsFromKills += participant.kills * 3;
+  });
+
+  return pointsFromKills;
 }

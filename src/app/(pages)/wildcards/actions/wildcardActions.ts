@@ -1,6 +1,7 @@
 'use server';
 
 import { db } from '@/db';
+import { user } from '@/db/schema/schema';
 import { wildcard } from '@/db/schema/wildcard';
 import { isLockInLocked } from '@/entities/fantasy/fantasy.helpers';
 import { currentUser } from '@clerk/nextjs';
@@ -65,13 +66,34 @@ export async function fulfillWildCard({
     .from(wildcard)
     .where(eq(wildcard.name, wildcardName));
 
+  const correctPicks = wildCardCorrect.split(',').map((name) => name.trim());
+
   wildcards.forEach(async (_wildcard) => {
+    if (_wildcard.state !== 'unfulfilled') return;
     await db
       .update(wildcard)
       .set({
         correct: wildCardCorrect,
-        state: wildCardCorrect === _wildcard.picked ? 'correct' : 'incorrect',
+        state: correctPicks.includes(_wildcard.picked)
+          ? 'correct'
+          : 'incorrect',
       })
       .where(eq(wildcard.id, _wildcard.id));
+    if (
+      correctPicks.includes(_wildcard.picked) &&
+      _wildcard.state === 'unfulfilled'
+    ) {
+      const _user = await currentUser();
+      if (!_user) {
+        throw new Error('User not found');
+      }
+
+      await db
+        .update(user)
+        .set({
+          credits: sql`${user.credits} + ${200}`,
+        })
+        .where(eq(user.clerkId, _user.id));
+    }
   });
 }
