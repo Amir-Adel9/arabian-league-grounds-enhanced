@@ -283,15 +283,6 @@ export async function updateCreditsForUsers() {
       .where(eq(user.clerkId, userId))
       .then((res) => res[0]);
     const half = fantasyPoints * 0.5;
-
-    console.log('hamtaro', fantasyPoints, predictionPoints);
-    console.log(
-      'maro',
-      fantasyPoints * 0.5,
-      (predictionPoints / 100) * 10,
-      credits,
-      credits + (predictionPoints / 100) * 10 + Math.ceil(half / 5) * 5
-    );
     await db
       .update(user)
       .set({

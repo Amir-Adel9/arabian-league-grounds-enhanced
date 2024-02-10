@@ -28,7 +28,7 @@ export const player = mysqlTable(
     teamName: text('teamName'),
     teamCode: text('teamCode'),
     teamSlug: text('teamSlug'),
-    teamLogo: text('teamLogo'),
+    teamLogo: text('teamLogo').notNull(),
     kills: int('kills').default(0),
     deaths: int('deaths').default(0),
     assists: int('assists').default(0),

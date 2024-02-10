@@ -43,7 +43,7 @@ const TeamCard = ({
           setSelectedTeam(team);
           await lockInWildCard({
             _wildcard: {
-              name: 'champion',
+              name: 'baronSpecialists',
               picked: team.name,
             },
           })
