@@ -176,6 +176,20 @@
       "when": 1707485341541,
       "tag": "0033_brainy_captain_midlands",
       "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "5",
+      "when": 1707605571891,
+      "tag": "0034_square_spectrum",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "5",
+      "when": 1707605582634,
+      "tag": "0035_good_giant_girl",
+      "breakpoints": true
     }
   ]
 }
