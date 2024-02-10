@@ -83,17 +83,12 @@ export async function fulfillWildCard({
       correctPicks.includes(_wildcard.picked) &&
       _wildcard.state === 'unfulfilled'
     ) {
-      const _user = await currentUser();
-      if (!_user) {
-        throw new Error('User not found');
-      }
-
       await db
         .update(user)
         .set({
           credits: sql`${user.credits} + ${200}`,
         })
-        .where(eq(user.clerkId, _user.id));
+        .where(eq(user.clerkId, _wildcard.userClerkId));
     }
   });
 }

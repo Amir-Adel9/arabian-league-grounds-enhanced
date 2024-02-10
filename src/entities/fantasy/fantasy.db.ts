@@ -244,7 +244,7 @@ export async function updateFantasyPointsForUser({
   fantasyTeamId: number;
   points: number;
 }) {
-  console.log('updatings points for user');
+  console.log('updating points for user');
   const userId = await db
     .select({
       userId: fantasyTeam.userClerkId,
@@ -258,10 +258,7 @@ export async function updateFantasyPointsForUser({
     .set({
       fantasyPoints: points,
     })
-    .where(eq(user.clerkId, userId))
-    .then((res) => {
-      console.log('are we hara', res);
-    });
+    .where(eq(user.clerkId, userId));
 }
 
 export async function updateCreditsForUsers() {
