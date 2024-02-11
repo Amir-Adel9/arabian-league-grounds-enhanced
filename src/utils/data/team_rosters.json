@@ -127,8 +127,8 @@
       {
         "id": 4,
         "name": "Ala Jalleb",
-        "nationality": "Turkey",
-        "flagUrl": "https://liquipedia.net/commons/images/thumb/4/4b/Tr_hd.png/36px-Tr_hd.png",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/thumb/3/31/Tn_hd.png/36px-Tn_hd.png",
         "summonerName": "Jalleba",
         "role": "bot",
         "cost": 150,
@@ -140,8 +140,8 @@
       {
         "id": 5,
         "name": "Iheb Arif",
-        "nationality": "Turkey",
-        "flagUrl": "https://liquipedia.net/commons/images/thumb/4/4b/Tr_hd.png/36px-Tr_hd.png",
+        "nationality": "Tunisia",
+        "flagUrl": "https://liquipedia.net/commons/images/thumb/3/31/Tn_hd.png/36px-Tn_hd.png",
         "summonerName": "Iheb",
         "role": "support",
         "cost": 100,
