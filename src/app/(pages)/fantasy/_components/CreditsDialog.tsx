@@ -63,7 +63,7 @@ const CreditsDialog = ({ isCreatingTeam }: { isCreatingTeam: boolean }) => {
             </li>
             <li>
               <Link
-                href={'/stats'}
+                href={'/wildcards'}
                 target='_blank'
                 className='font-semibold text-white'
               >
