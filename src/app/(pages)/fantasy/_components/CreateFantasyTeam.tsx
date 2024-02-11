@@ -193,23 +193,19 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
-          setRosterCostDifference(player.cost);
+          setRosterCostDifference(rosterCostDifference + player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost +
-              player.cost -
-              fantasyTeam.roster![role]?.cost!,
+              fantasyTeam.totalCost + player.cost - fantasyRoster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
           );
-          setRosterCostDifference(
-            player.cost - fantasyTeam.roster![role]?.cost!
-          );
+          setRosterCostDifference(player.cost - fantasyRoster![role]?.cost!);
         }
         break;
       case 'jungle':
@@ -220,23 +216,19 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
-          setRosterCostDifference(player.cost);
+          setRosterCostDifference(rosterCostDifference + player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost +
-              player.cost -
-              fantasyTeam.roster![role]?.cost!,
+              fantasyTeam.totalCost + player.cost - fantasyRoster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
           );
-          setRosterCostDifference(
-            player.cost - fantasyTeam.roster![role]?.cost!
-          );
+          setRosterCostDifference(player.cost - fantasyRoster![role]?.cost!);
         }
         break;
       case 'mid':
@@ -247,23 +239,19 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
-          setRosterCostDifference(player.cost);
+          setRosterCostDifference(rosterCostDifference + player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost +
-              player.cost -
-              fantasyTeam.roster![role]?.cost!,
+              fantasyTeam.totalCost + player.cost - fantasyRoster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
           );
-          setRosterCostDifference(
-            player.cost - fantasyTeam.roster![role]?.cost!
-          );
+          setRosterCostDifference(player.cost - fantasyRoster![role]?.cost!);
         }
         break;
       case 'bot':
@@ -274,23 +262,19 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
-          setRosterCostDifference(player.cost);
+          setRosterCostDifference(rosterCostDifference + player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost +
-              player.cost -
-              fantasyTeam.roster![role]?.cost!,
+              fantasyTeam.totalCost + player.cost - fantasyRoster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
           );
-          setRosterCostDifference(
-            player.cost - fantasyTeam.roster![role]?.cost!
-          );
+          setRosterCostDifference(player.cost - fantasyRoster![role]?.cost!);
         }
         break;
       case 'support':
@@ -301,23 +285,19 @@ const CreateFantasyTeam = ({
             totalCost: fantasyTeam.totalCost + player.cost,
           });
           setCart([...cart, player]);
-          setRosterCostDifference(player.cost);
+          setRosterCostDifference(rosterCostDifference + player.cost);
         } else {
           setFantasyTeam({
             ...fantasyTeam,
             totalCost:
-              fantasyTeam.totalCost +
-              player.cost -
-              fantasyTeam.roster![role]?.cost!,
+              fantasyTeam.totalCost + player.cost - fantasyRoster![role]?.cost!,
           });
           setCart(
             [...cart, player]
               .filter((p) => p.role !== fantasyRoster[role]!.role)
               .concat(player)
           );
-          setRosterCostDifference(
-            player.cost - fantasyTeam.roster![role]?.cost!
-          );
+          setRosterCostDifference(player.cost - fantasyRoster![role]?.cost!);
         }
         break;
       default:
