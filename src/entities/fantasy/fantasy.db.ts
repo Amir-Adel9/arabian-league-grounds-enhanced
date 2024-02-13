@@ -244,7 +244,6 @@ export async function updateFantasyPointsForUser({
   fantasyTeamId: number;
   points: number;
 }) {
-  console.log('updating points for user');
   const userId = await db
     .select({
       userId: fantasyTeam.userClerkId,
@@ -262,32 +261,24 @@ export async function updateFantasyPointsForUser({
 }
 
 export async function updateCreditsForUsers() {
-  const userIds = await db
-    .select({
-      userId: user.clerkId,
-    })
+  console.log('updateCreditsForUsers');
+  const users = await db
+    .select()
     .from(user)
-    .then((res) => res.map((res) => res.userId));
+    .then((res) => res);
 
-  userIds.forEach(async (userId) => {
-    const { fantasyPoints, predictionPoints, credits } = await db
-      .select({
-        fantasyPoints: user.fantasyPoints,
-        predictionPoints: user.predictionPoints,
-        credits: user.credits,
-      })
-      .from(user)
-      .where(eq(user.clerkId, userId))
-      .then((res) => res[0]);
-    const half = fantasyPoints * 0.5;
+  users.forEach(async (_user) => {
+    const { clerkId, predictionPoints, fantasyPoints } = _user;
+
+    console.log('creds', _user.username);
     await db
       .update(user)
       .set({
-        credits: sql`${(predictionPoints / 100) * 10} + ${
-          Math.ceil(half / 5) * 5
+        credits: sql`${user.credits} + ${(predictionPoints / 100) * 10} + ${
+          Math.ceil((fantasyPoints * 0.5) / 5) * 5
         }`,
       })
-      .where(eq(user.clerkId, userId));
+      .where(eq(user.clerkId, clerkId));
   });
 }
 

@@ -53,7 +53,9 @@ export default async function RootLayout({
   children: React.ReactNode;
   matchModal: React.ReactNode;
 }) {
-  fulfillUpdates();
+  console.log('abeeta', 'layout.tsx');
+
+  // await fulfillUpdates();
   return (
     <ClerkProvider>
       <html lang='en' className='bg-background'>

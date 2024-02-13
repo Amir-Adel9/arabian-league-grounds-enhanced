@@ -88,10 +88,21 @@ const Fantasy = async ({
                     <span className='text-start'>
                       <span className='font-bold'>
                         <span className='font-bold'>
-                          {stats.top.pointsFromKA / 3}
+                          {stats.top.pointsFromKills / 3}
                         </span>
                       </span>
-                      {` +(${stats.top.pointsFromKA})`}
+                      {` +(${stats.top.pointsFromKills})`}
+                    </span>
+                  </div>
+                  <div className='flex gap-1 items-start'>
+                    <span className='text-start'>Assists:</span>
+                    <span className='text-start'>
+                      <span className='font-bold'>
+                        <span className='font-bold'>
+                          {stats.top.pointsFromAssists}
+                        </span>
+                      </span>
+                      {` +(${stats.top.pointsFromAssists})`}
                     </span>
                   </div>
                   <div className='flex gap-1 items-start'>
@@ -175,9 +186,18 @@ const Fantasy = async ({
                     <span className='text-start'>Kills:</span>
                     <span className='text-start'>
                       <span className='font-bold'>
-                        {stats.jungle.pointsFromKA / 3}
+                        {stats.jungle.pointsFromKills / 3}
                       </span>
-                      {` +(${stats.jungle.pointsFromKA})`}
+                      {` +(${stats.jungle.pointsFromKills})`}
+                    </span>
+                  </div>
+                  <div className='flex gap-1 items-start'>
+                    <span className='text-start'>Assists:</span>
+                    <span className='text-start'>
+                      <span className='font-bold'>
+                        {stats.jungle.pointsFromAssists}
+                      </span>
+                      {` +(${stats.jungle.pointsFromAssists})`}
                     </span>
                   </div>
                   <div className='flex gap-1 items-start'>
@@ -262,9 +282,18 @@ const Fantasy = async ({
                     <span className='text-start'>Kills:</span>
                     <span className='text-start'>
                       <span className='font-bold'>
-                        {stats.mid.pointsFromKA / 3}{' '}
+                        {stats.mid.pointsFromKills / 3}{' '}
                       </span>
-                      {`+(${stats.mid.pointsFromKA})`}
+                      {`+(${stats.mid.pointsFromKills})`}
+                    </span>
+                  </div>
+                  <div className='flex gap-1 items-start'>
+                    <span className='text-start'>Assists:</span>
+                    <span className='text-start'>
+                      <span className='font-bold'>
+                        {stats.mid.pointsFromAssists}{' '}
+                      </span>
+                      {`+(${stats.mid.pointsFromAssists})`}
                     </span>
                   </div>
                   <div className='flex gap-1 items-start'>
@@ -350,10 +379,22 @@ const Fantasy = async ({
                       <span className='font-bold'>
                         <span className='font-bold'>
                           {' '}
-                          {stats.bot.pointsFromKA / 3}
+                          {stats.bot.pointsFromKills / 3}
                         </span>
                       </span>
-                      {` +(${stats.bot.pointsFromKA})`}
+                      {` +(${stats.bot.pointsFromKills})`}
+                    </span>
+                  </div>
+                  <div className='flex gap-1 items-start'>
+                    <span className='text-start'>Assists:</span>
+                    <span className='text-start'>
+                      <span className='font-bold'>
+                        <span className='font-bold'>
+                          {' '}
+                          {stats.bot.pointsFromAssists / 3}
+                        </span>
+                      </span>
+                      {` +(${stats.bot.pointsFromAssists})`}
                     </span>
                   </div>
                   <div className='flex gap-1 items-start'>
@@ -436,12 +477,21 @@ const Fantasy = async ({
               <div className='flex justify-center w-full border-y border-border py-4'>
                 <div className='flex flex-col gap-2 items-center mx-auto'>
                   <div className='flex gap-1 items-start'>
+                    <span className='text-start'>Kills:</span>
+                    <span className='text-start'>
+                      <span className='font-bold'>
+                        {stats.support.pointsFromKills / 3}{' '}
+                      </span>
+                      {`+(${stats.support.pointsFromKills})`}
+                    </span>
+                  </div>
+                  <div className='flex gap-1 items-start'>
                     <span className='text-start'>Assists:</span>
                     <span className='text-start'>
                       <span className='font-bold'>
-                        {stats.support.pointsFromKA / 2}{' '}
+                        {stats.support.pointsFromAssists}{' '}
                       </span>
-                      {`+(${stats.support.pointsFromKA})`}
+                      {`+(${stats.support.pointsFromAssists})`}
                     </span>
                   </div>
                   <div className='flex gap-1 items-start'>
