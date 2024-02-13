@@ -5,6 +5,7 @@ import { getCompletedEventsInSplit } from '@/data-access/data-access';
 import { Redis } from '@upstash/redis';
 import { fulfillPredictions } from './prediction/actions/fulfillPredictions';
 import { calculateFantasyPoints } from './fantasy/fantasy.actions';
+import { updateCreditsForUsers } from './fantasy/fantasy.db';
 
 const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL || '',
@@ -30,6 +31,7 @@ export async function fulfillUpdates() {
   } else {
     await fulfillPredictions();
     await calculateFantasyPoints();
+    await updateCreditsForUsers();
     await redis.set('lastMatchId', lastCompletedEventMatchId, {
       ex: 120,
     });

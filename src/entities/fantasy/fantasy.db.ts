@@ -274,7 +274,7 @@ export async function updateCreditsForUsers() {
     await db
       .update(user)
       .set({
-        credits: sql`${user.credits} + ${(predictionPoints / 100) * 10} + ${
+        credits: sql`${(predictionPoints / 100) * 10} + ${
           Math.ceil((fantasyPoints * 0.5) / 5) * 5
         }`,
       })

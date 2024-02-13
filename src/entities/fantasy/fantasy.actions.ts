@@ -250,8 +250,6 @@ export async function calculateFantasyPoints() {
     });
   });
 
-  await updateCreditsForUsers();
-
   console.log('Fantasy points updated!');
 }
 
