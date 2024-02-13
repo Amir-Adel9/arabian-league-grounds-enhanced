@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,9 +15,9 @@ import { Info } from 'lucide-react';
 const PointsDialog = () => {
   return (
     <AlertDialog
-      defaultOpen={localStorage.getItem('points_dialog') ? false : true}
+      defaultOpen={localStorage.getItem('points_dialog_updated') ? false : true}
       onOpenChange={() => {
-        localStorage.setItem('points_dialog', 'true');
+        localStorage.setItem('points_dialog_updated', 'true');
       }}
     >
       <AlertDialogTrigger>
@@ -53,13 +51,12 @@ const PointsDialog = () => {
               <span className='font-semibold'>+3 points</span> per kill.
             </li>
             <li>
-              <span className='font-semibold text-white'>Deaths:</span>
-              <span className='font-semibold'> -2 points</span> per death.
+              <span className='font-semibold text-white'>Assists:</span>
+              <span className='font-semibold'> +1 points</span> per assist.
             </li>
             <li>
-              <span className='font-semibold text-white'>Assists:</span>
-              <span className='font-semibold'> +2 points</span> per death (only
-              for support players).
+              <span className='font-semibold text-white'>Deaths:</span>
+              <span className='font-semibold'> -2 points</span> per death.
             </li>
           </ul>
           <p>

@@ -248,9 +248,10 @@ export async function calculateFantasyPoints() {
       points: fantasyPoints.total + fantasyPointsFromHistory,
       fantasyTeamId: fantasyTeamId,
     });
-
-    await updateCreditsForUsers();
   });
+
+  await updateCreditsForUsers();
+
   console.log('Fantasy points updated!');
 }
 
@@ -1114,7 +1115,7 @@ function getPointsFromAssistsForPlayer({
     );
 
     if (!participant) return;
-    pointsFromAssists += participant.assists * 2;
+    pointsFromAssists += participant.assists * 1;
   });
 
   return pointsFromAssists;
@@ -1171,16 +1172,15 @@ function getFantasyPointsForPlayer({
     fantasyPlayer,
   });
 
-  const pointsFromKA =
-    fantasyPlayer.role === 'support'
-      ? getPointsFromAssistsForPlayer({
-          events,
-          fantasyPlayer,
-        })
-      : getPointsFromKillsForPlayer({
-          events,
-          fantasyPlayer,
-        });
+  const pointsFromKills = getPointsFromKillsForPlayer({
+    events,
+    fantasyPlayer,
+  });
+
+  const pointsFromAssists = getPointsFromAssistsForPlayer({
+    events,
+    fantasyPlayer,
+  });
 
   const pointsFromDeaths = getPointsFromDeathsForPlayer({
     events,
@@ -1189,12 +1189,20 @@ function getFantasyPointsForPlayer({
 
   return {
     pointsFromGameWins,
-    pointsFromKA,
+    pointsFromKills,
+    pointsFromAssists,
     pointsFromDeaths,
     totalFantasyPoints:
-      pointsFromGameWins + pointsFromKA + pointsFromDeaths < 0
+      pointsFromGameWins +
+        pointsFromKills +
+        pointsFromAssists +
+        pointsFromDeaths <
+      0
         ? 0
-        : pointsFromGameWins + pointsFromKA + pointsFromDeaths,
+        : pointsFromGameWins +
+          pointsFromKills +
+          pointsFromAssists +
+          pointsFromDeaths,
   };
 }
 
