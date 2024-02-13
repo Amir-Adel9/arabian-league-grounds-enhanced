@@ -10,7 +10,7 @@ import {
   getFantasyRoster,
   getFantasyTeamId,
   getPlayer,
-  updateCreditsForUsers,
+  updateCreditsForUser,
   updateFantasyPointsForPlayer,
   updateFantasyPointsForUser,
 } from './fantasy.db';
@@ -242,6 +242,10 @@ export async function calculateFantasyPoints() {
 
     const fantasyPointsFromHistory = await getFantasyPointsFromHistory({
       fantasyTeamId,
+    });
+    await updateCreditsForUser({
+      userClerkId: userId,
+      fantasyPoints: fantasyPoints.total + fantasyPointsFromHistory,
     });
 
     await updateFantasyPointsForUser({
