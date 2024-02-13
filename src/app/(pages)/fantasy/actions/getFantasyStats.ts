@@ -21,11 +21,9 @@ export default async function handleFantasy({
   });
 
   // const fantasyPoints = await getFantasyTeamStats();
-  const fantasyPoints = await calculateFantasyPoints();
+
   revalidatePath('/', 'layout');
   revalidatePath('/fantasy');
   revalidatePath('/(pages)/fantasy', 'page');
   revalidatePath('/(pages)/fantasy/edit', 'page');
-
-  return fantasyPoints;
 }

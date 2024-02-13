@@ -173,42 +173,52 @@ export async function addPlayerToFantasyTeam({
         points: 0,
         pickedAt: new Date(),
       },
-    })
-    .then((res) => {
-      console.log('db insert res', res);
     });
 
-  if (playerAlreadyInRoleId) {
-    await db.insert(fantasyHistory).values({
-      fantasyTeamId: fantasyTeamId,
-      playerId: playerAlreadyInRoleId.playerId,
-      playerSummonerName: playerAlreadyInRoleId.playerSummonerName,
-      role: playerAlreadyInRoleId.role,
-      points: playerAlreadyInRoleId.points,
-      pickedAt: playerAlreadyInRoleId.pickedAt,
-      droppedAt: new Date(),
-    });
-    await db
-      .update(user)
-      .set({
-        credits:
-          playerToAdd.cost > playerAlreadyInRole.cost
-            ? sql`${user.credits} - ${Math.abs(
-                playerToAdd.cost - playerAlreadyInRole.cost
-              )}`
-            : sql`${user.credits} + ${Math.abs(
-                playerToAdd.cost - playerAlreadyInRole.cost
-              )}`,
+  db.transaction(async (tx) => {
+    const [_user] = await tx
+      .select({
+        credits: user.credits,
+        predictionPoints: user.predictionPoints,
+        fantasyPoints: user.fantasyPoints,
       })
+      .from(user)
       .where(eq(user.clerkId, userClerkId));
-  } else {
-    await db
-      .update(user)
-      .set({
-        credits: sql`${user.credits} - ${playerToAdd.cost}`,
-      })
-      .where(eq(user.clerkId, userClerkId));
-  }
+    console.log(playerToAdd.cost, playerAlreadyInRole.cost, _user.credits);
+    if (playerAlreadyInRoleId) {
+      await db.insert(fantasyHistory).values({
+        fantasyTeamId: fantasyTeamId,
+        playerId: playerAlreadyInRoleId.playerId,
+        playerSummonerName: playerAlreadyInRoleId.playerSummonerName,
+        role: playerAlreadyInRoleId.role,
+        points: playerAlreadyInRoleId.points,
+        pickedAt: playerAlreadyInRoleId.pickedAt,
+        droppedAt: new Date(),
+      });
+
+      await db
+        .update(user)
+        .set({
+          credits:
+            playerToAdd.cost > playerAlreadyInRole.cost
+              ? sql`${_user.credits} - ${Math.abs(
+                  playerToAdd.cost - playerAlreadyInRole.cost
+                )}`
+              : sql`${_user.credits} + ${Math.abs(
+                  playerToAdd.cost - playerAlreadyInRole.cost
+                )}`,
+        })
+        .where(eq(user.clerkId, userClerkId));
+    } else {
+      await db
+        .update(user)
+        .set({
+          credits: sql`${_user.credits} - ${playerToAdd.cost}`,
+        })
+        .where(eq(user.clerkId, userClerkId));
+    }
+  });
+
   revalidatePath('/', 'layout');
   revalidatePath('/fantasy');
   revalidatePath('/(pages)/fantasy', 'page');
@@ -260,25 +270,54 @@ export async function updateFantasyPointsForUser({
     .where(eq(user.clerkId, userId));
 }
 
-export async function updateCreditsForUsers() {
-  console.log('updateCreditsForUsers');
-  const users = await db
-    .select()
-    .from(user)
-    .then((res) => res);
+export async function updateCreditsForUser({
+  userClerkId,
+  fantasyPoints,
+}: {
+  userClerkId: string;
+  fantasyPoints: number;
+}) {
+  db.transaction(async (tx) => {
+    const [_user] = await tx
+      .select({
+        credits: user.credits,
+        predictionPoints: user.predictionPoints,
+        fantasyPoints: user.fantasyPoints,
+      })
+      .from(user)
+      .where(eq(user.clerkId, userClerkId));
 
-  users.forEach(async (_user) => {
-    const { clerkId, predictionPoints, fantasyPoints } = _user;
+    const tId = await getFantasyTeamId({ userId: userClerkId });
+    const cost = await getFantasyRoster({
+      fantasyTeamId: tId,
+    }).then((res) => {
+      return Object.values(res).reduce((acc, curr) => {
+        return acc + curr?.cost;
+      }, 0);
+    });
 
-    console.log('creds', _user.username);
+    console.log(cost);
+    // console.log(
+    //   'abeeta',
+    //   _user.credits,
+    //   (_user.predictionPoints / 100) * 10 +
+    //     Math.ceil((fantasyPoints * 0.5) / 5) * 5,
+    //   ` ${
+    //     _user.credits -
+    //     ((_user.predictionPoints / 100) * 10 +
+    //       Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+    //   }`
+    // );
     await db
       .update(user)
       .set({
-        credits: sql`${(predictionPoints / 100) * 10} + ${
-          Math.ceil((fantasyPoints * 0.5) / 5) * 5
-        }`,
+        credits: sql`${Math.abs(700 - cost)} + ${Math.abs(
+          _user.credits -
+            ((_user.predictionPoints / 100) * 10 +
+              Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+        )}`,
       })
-      .where(eq(user.clerkId, clerkId));
+      .where(eq(user.clerkId, userClerkId));
   });
 }
 
