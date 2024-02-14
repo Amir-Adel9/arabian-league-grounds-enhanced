@@ -361,17 +361,17 @@ export async function updateCreditsForUser({
 
     console.log(cost);
 
-    // console.log(
-    //   'abeeta',
-    //   _user.credits,
-    //   (_user.predictionPoints / 100) * 10 +
-    //     Math.ceil((fantasyPoints * 0.5) / 5) * 5,
-    //   ` ${
-    //     _user.credits -
-    //     ((_user.predictionPoints / 100) * 10 +
-    //       Math.ceil((fantasyPoints * 0.5) / 5) * 5)
-    //   }`
-    // );
+    console.log(
+      'abeeta',
+      _user.credits,
+      (_user.predictionPoints / 100) * 10 +
+        Math.ceil((fantasyPoints * 0.5) / 5) * 5,
+      ` ${
+        _user.credits -
+        ((_user.predictionPoints / 100) * 10 +
+          Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+      }`
+    );
     await db
       .update(user)
       .set({
@@ -382,6 +382,49 @@ export async function updateCreditsForUser({
         )}`,
       })
       .where(eq(user.clerkId, userClerkId));
+  });
+}
+
+export async function updateCreditsForUsers() {
+  db.transaction(async (tx) => {
+    const users = await tx.select().from(user);
+
+    users.forEach(async (_user) => {
+      const { clerkId: userClerkId, fantasyPoints } = _user;
+      console.log('updating creds for user:', _user.username);
+      const tId = await getFantasyTeamId({ userId: userClerkId });
+      const cost = await getFantasyRoster({
+        fantasyTeamId: tId,
+      }).then((res) => {
+        return Object.values(res).reduce((acc, curr) => {
+          return acc + curr?.cost;
+        }, 0);
+      });
+
+      console.log(cost);
+
+      console.log(
+        'abeeta',
+        _user.credits,
+        (_user.predictionPoints / 100) * 10 +
+          Math.ceil((fantasyPoints * 0.5) / 5) * 5,
+        ` ${
+          _user.credits -
+          ((_user.predictionPoints / 100) * 10 +
+            Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+        }`
+      );
+      await db
+        .update(user)
+        .set({
+          credits: sql`${700 - cost < 0 ? 0 : 700 - cost} + ${Math.abs(
+            _user.credits -
+              ((_user.predictionPoints / 100) * 10 +
+                Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+          )}`,
+        })
+        .where(eq(user.clerkId, userClerkId));
+    });
   });
 }
 
