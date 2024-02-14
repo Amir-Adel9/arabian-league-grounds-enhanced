@@ -126,8 +126,8 @@ const CreateFantasyTeam = ({
   const [captain, setCaptain] = useState<FantasyPlayer | undefined>(
     teamCaptain
   );
+
   const [cart, setCart] = useState<FantasyPlayer[]>([]);
-  useEffect(() => {}, [cart]);
   useEffect(() => {
     setTimeout(() => {
       if (createRef.current?.style.display === 'none' && isShowing) {
@@ -148,14 +148,6 @@ const CreateFantasyTeam = ({
         setSelectedRole(undefined);
     });
   }, [isShowing]);
-
-  useEffect(() => {
-    console.log(
-      'capitan',
-      captain,
-      Object.values(currentFantasyTeam as FantasyRoster)
-    );
-  }, [captain]);
 
   const playerSelect = (player: FantasyPlayer) => {
     const { role } = player;
@@ -365,8 +357,10 @@ const CreateFantasyTeam = ({
                 setSelectedRole('top');
               }}
               className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
-                captain?.id === fantasyRoster.top?.id &&
-                captain?.summonerName === fantasyRoster.top?.summonerName
+                !captain
+                  ? 'border-border'
+                  : captain?.id === fantasyRoster.top?.id &&
+                    captain?.summonerName === fantasyRoster.top?.summonerName
                   ? 'border-accent-gold'
                   : 'border-border'
               } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
@@ -429,7 +423,7 @@ const CreateFantasyTeam = ({
                 >
                   {fantasyRoster.top ? `Change player` : 'Add Player'}
                 </span>
-                {fantasyRoster.top && (
+                {fantasyRoster.top && currentFantasyTeam && (
                   <Button
                     disabled={isLoading}
                     onClick={async (e) => {
@@ -440,6 +434,7 @@ const CreateFantasyTeam = ({
                         );
                       }
                       if (
+                        captain &&
                         captain?.id === fantasyRoster.top?.id &&
                         captain?.summonerName ===
                           fantasyRoster.top?.summonerName
@@ -493,8 +488,10 @@ const CreateFantasyTeam = ({
               animate={selectedRole === 'jungle' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('jungle')}
               className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
-                captain?.id === fantasyRoster.jungle?.id &&
-                captain?.summonerName === fantasyRoster.jungle?.summonerName
+                !captain
+                  ? 'border-border'
+                  : captain?.id === fantasyRoster.jungle?.id &&
+                    captain?.summonerName === fantasyRoster.jungle?.summonerName
                   ? 'border-accent-gold'
                   : 'border-border'
               } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
@@ -557,7 +554,7 @@ const CreateFantasyTeam = ({
                 >
                   {fantasyRoster.jungle ? `Change player` : 'Add Player'}
                 </span>
-                {fantasyRoster.jungle && (
+                {fantasyRoster.jungle && currentFantasyTeam && (
                   <Button
                     disabled={isLoading}
                     onClick={async (e) => {
@@ -621,8 +618,10 @@ const CreateFantasyTeam = ({
               animate={selectedRole === 'mid' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('mid')}
               className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
-                captain?.id === fantasyRoster.mid?.id &&
-                captain?.summonerName === fantasyRoster.mid?.summonerName
+                !captain
+                  ? 'border-border'
+                  : captain?.id === fantasyRoster.mid?.id &&
+                    captain?.summonerName === fantasyRoster.mid?.summonerName
                   ? 'border-accent-gold'
                   : 'border-border'
               } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
@@ -685,7 +684,7 @@ const CreateFantasyTeam = ({
                 >
                   {fantasyRoster.mid ? `Change player` : 'Add Player'}
                 </span>
-                {fantasyRoster.mid && (
+                {fantasyRoster.mid && currentFantasyTeam && (
                   <Button
                     disabled={isLoading}
                     onClick={async (e) => {
@@ -749,8 +748,10 @@ const CreateFantasyTeam = ({
               animate={selectedRole === 'bot' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('bot')}
               className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
-                captain?.id === fantasyRoster.bot?.id &&
-                captain?.summonerName === fantasyRoster.bot?.summonerName
+                !captain
+                  ? 'border-border'
+                  : captain?.id === fantasyRoster.bot?.id &&
+                    captain?.summonerName === fantasyRoster.bot?.summonerName
                   ? 'border-accent-gold'
                   : 'border-border'
               } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
@@ -813,7 +814,7 @@ const CreateFantasyTeam = ({
                 >
                   {fantasyRoster.bot ? `Change player` : 'Add Player'}
                 </span>
-                {fantasyRoster.bot && (
+                {fantasyRoster.bot && currentFantasyTeam && (
                   <Button
                     disabled={isLoading}
                     onClick={async (e) => {
@@ -877,8 +878,11 @@ const CreateFantasyTeam = ({
               animate={selectedRole === 'support' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('support')}
               className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
-                captain?.id === fantasyRoster.support?.id &&
-                captain?.summonerName === fantasyRoster.support?.summonerName
+                !captain
+                  ? 'border-border'
+                  : captain?.id === fantasyRoster.support?.id &&
+                    captain?.summonerName ===
+                      fantasyRoster.support?.summonerName
                   ? 'border-accent-gold'
                   : 'border-border'
               } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
@@ -941,7 +945,7 @@ const CreateFantasyTeam = ({
                 >
                   {fantasyRoster.support ? `Change player` : 'Add Player'}
                 </span>
-                {fantasyRoster.support && (
+                {fantasyRoster.support && currentFantasyTeam && (
                   <Button
                     disabled={isLoading}
                     onClick={async (e) => {
@@ -1159,7 +1163,7 @@ const CreateFantasyTeam = ({
                   cart.map((p) => p.cost).reduce((acc, c) => acc + c, 0) >
                     credits
                 ) {
-                  toast.error('Not enough credits');
+                  toast.error(`Not enough credits`);
                   return;
                 } else {
                   setFantasyTeam({

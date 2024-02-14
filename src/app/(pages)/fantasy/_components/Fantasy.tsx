@@ -602,7 +602,13 @@ const Fantasy = async ({
                 </Tooltip>
               </span>
             </div>
-            <EditRosterBtn />
+            <div className='flex flex-col gap-4 items-center'>
+              <EditRosterBtn />
+              <Link className='underline cursor-pointer' href={'/fantasy/edit'}>
+                Choose team captain
+              </Link>
+            </div>
+
             <PointsDialog />
           </div>
         </TooltipProvider>
