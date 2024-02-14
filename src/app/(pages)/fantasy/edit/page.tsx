@@ -49,7 +49,7 @@ export default async function FantasyPage() {
   if (!fantasyTeamId) redirect('/fantasy');
 
   const fantasyRoster = await getFantasyRoster({ fantasyTeamId });
-  const teamCaptain = await getTeamCaptain({ fantasyTeamId });
+  // const teamCaptain = await getTeamCaptain({ fantasyTeamId });
 
   return (
     <main className='w-full min-h-screen relative overflow-x-hidden justify-start items-center text-primary mb-20 lg:m-0 lg:ml-20 lg:w-[calc(100%-5rem)] h-[calc(100vh-10rem)] lg:h-[calc(100vh-5rem)] flex flex-col gap-5 font-geist'>
@@ -66,7 +66,7 @@ export default async function FantasyPage() {
         <CreateFantasyTeam
           isShowing={true}
           rostersByRole={teamRostersByRole}
-          teamCaptain={teamCaptain as FantasyPlayer}
+          // teamCaptain={teamCaptain as FantasyPlayer}
           currentFantasyTeam={fantasyRoster}
           user={_user as User}
         />

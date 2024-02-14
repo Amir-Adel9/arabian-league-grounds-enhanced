@@ -287,6 +287,7 @@ export async function getTeamCaptain({
 
   return captain;
 }
+
 export async function updateFantasyPointsForPlayer({
   playerId,
   points,
@@ -349,6 +350,17 @@ export async function updateCreditsForUser({
       .from(user)
       .where(eq(user.clerkId, userClerkId));
 
+    const tId = await getFantasyTeamId({ userId: userClerkId });
+    const cost = await getFantasyRoster({
+      fantasyTeamId: tId,
+    }).then((res) => {
+      return Object.values(res).reduce((acc, curr) => {
+        return acc + curr?.cost;
+      }, 0);
+    });
+
+    console.log(cost);
+
     // console.log(
     //   'abeeta',
     //   _user.credits,
@@ -363,7 +375,7 @@ export async function updateCreditsForUser({
     await db
       .update(user)
       .set({
-        credits: sql`${_user.credits} + ${Math.abs(
+        credits: sql`${700 - cost < 0 ? 0 : 700 - cost} + ${Math.abs(
           _user.credits -
             ((_user.predictionPoints / 100) * 10 +
               Math.ceil((fantasyPoints * 0.5) / 5) * 5)
