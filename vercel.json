@@ -3,7 +3,10 @@
     "app/api/**/*": {
       "maxDuration": 1
     },
-    "/api/**/*": {
+    "app/(pages)/*": {
+      "maxDuration": 1
+    },
+    "app/(server)/api/": {
       "maxDuration": 1
     },
     "src/app/(pages)/*": {
