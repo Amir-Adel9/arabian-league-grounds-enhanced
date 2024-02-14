@@ -418,9 +418,8 @@ export async function updateCreditsForUsers() {
         .update(user)
         .set({
           credits: sql`${700 - cost < 0 ? 0 : 700 - cost} + ${Math.abs(
-            _user.credits -
-              ((_user.predictionPoints / 100) * 10 +
-                Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+            (_user.predictionPoints / 100) * 10 +
+              Math.ceil((fantasyPoints * 0.5) / 5) * 5
           )}`,
         })
         .where(eq(user.clerkId, userClerkId));
