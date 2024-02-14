@@ -1,5 +1,6 @@
 import { relations } from 'drizzle-orm';
 import {
+  boolean,
   int,
   mysqlTable,
   primaryKey,
@@ -25,6 +26,7 @@ export const playerToFantasyTeam = mysqlTable(
     role: varchar('role', {
       length: 10,
     }).notNull(),
+    isCaptain: boolean('isCaptain').default(false).notNull(),
     points: int('points').default(0).notNull(),
     pickedAt: timestamp('pickedAt').defaultNow().notNull(),
   },
