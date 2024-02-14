@@ -18,7 +18,7 @@ export default async function WildCardsPage() {
   const allTeams = await getTeams();
   const allEvents = await getCompletedEventsInSplit();
   const allStats = await getAllStats({
-    allPlayers: Object.values(allPlayers).flat() as Player[],
+    allPlayers: Object.values(allPlayers).flat() as unknown as Player[],
     allEvents,
   });
   const userWildcards = await getWildCards();
