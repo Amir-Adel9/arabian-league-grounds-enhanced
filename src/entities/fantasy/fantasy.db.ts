@@ -265,7 +265,9 @@ export async function getTeamCaptain({
     .select()
     .from(playerToFantasyTeam)
     .where(eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId))
-    .then((res) => (res[0].isCaptain ? res[0].playerId : null));
+    .then(
+      (res) => res.find((player) => player.isCaptain)?.playerId || undefined
+    );
 
   if (!captainId) return undefined;
   const captain = await db
