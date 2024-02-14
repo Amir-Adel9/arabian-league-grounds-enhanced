@@ -434,7 +434,6 @@ const CreateFantasyTeam = ({
                         );
                       }
                       if (
-                        captain &&
                         captain?.id === fantasyRoster.top?.id &&
                         captain?.summonerName ===
                           fantasyRoster.top?.summonerName
