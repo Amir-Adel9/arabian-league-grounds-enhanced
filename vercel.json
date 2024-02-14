@@ -1,7 +1,19 @@
 {
   "functions": {
-    "app/**": {
-      "maxDuration": 1
+    "app/api/**/*": {
+      "maxDuration": 20
+    },
+    "app/(pages)/*": {
+      "maxDuration": 20
+    },
+    "app/(server)/api/": {
+      "maxDuration": 20
+    },
+    "src/app/(pages)/*": {
+      "maxDuration": 20
+    },
+    "src/app/(server)/api/": {
+      "maxDuration": 20
     }
   }
 }

@@ -73,7 +73,7 @@ const Navbar = () => {
               <TooltipTrigger>
                 <li className='duration-300 hover:text-accent-gold rounded-lg cursor-pointer px-4'>
                   <Link
-                    href='/leaderboard/predictions'
+                    href='/leaderboard/fantasy'
                     className='flex gap-2 items-center'
                   >
                     <Medal size={28} />

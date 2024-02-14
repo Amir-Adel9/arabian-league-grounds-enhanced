@@ -77,7 +77,7 @@ const Hero = () => {
                 <Link href='/predictions'>Predictions</Link>
               </span>
               <span className='underline cursor-pointer hover:text-accent-gold hover:-translate-y-1 duration-300'>
-                <Link href='/leaderboard/predictions'>Learderboard</Link>
+                <Link href='/leaderboard/fantasys'>Learderboard</Link>
               </span>
               <span className='underline cursor-pointer hover:text-accent-gold hover:-translate-y-1 duration-300'>
                 <Link href='/about'>About</Link>
