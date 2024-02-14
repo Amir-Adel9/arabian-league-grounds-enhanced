@@ -23,11 +23,11 @@ const LeaderboardSelect = ({
         {sortBy === 'predictions' ? 'Predictions' : 'Fantasy'}
       </SelectTrigger>
       <SelectContent className='border-border outline-none'>
-        <SelectItem value='predictions' className='cursor-pointer'>
-          Predictions
-        </SelectItem>
         <SelectItem value='fantasy' className='cursor-pointer'>
           Fantasy
+        </SelectItem>
+        <SelectItem value='predictions' className='cursor-pointer'>
+          Predictions
         </SelectItem>
       </SelectContent>
     </Select>
