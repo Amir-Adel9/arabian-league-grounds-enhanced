@@ -14,9 +14,6 @@
     },
     "src/app/(server)/api/": {
       "maxDuration": 1
-    },
-    "*": {
-      "maxDuration": 1
     }
   }
 }
