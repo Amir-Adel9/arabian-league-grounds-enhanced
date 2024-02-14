@@ -23,7 +23,7 @@ export async function insertRostersIntoDB() {
   // insert players into database
 
   players.forEach(async (p) => {
-    console.log('Inserting player:', p.summonerName);
+    // console.log('Inserting player:', p.summonerName);
     await db
       .insert(player)
       .values({
@@ -46,7 +46,7 @@ export async function insertRostersIntoDB() {
         },
       })
       .then((res) => {
-        console.log('Inserted player successfully:', p.summonerName);
+        // console.log('Inserted player successfully:', p.summonerName);
       })
       .catch((err) => {
         console.error('Error inserting player:', p.summonerName, err);
@@ -90,6 +90,7 @@ export async function getTeamRostersByRole() {
         summonerName: string;
         role: 'top' | 'jungle' | 'mid' | 'bot' | 'support';
         cost: number;
+        isCaptain: boolean;
         isSub: boolean;
         teamName: string;
         teamSlug: string;

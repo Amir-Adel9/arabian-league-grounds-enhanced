@@ -1,7 +1,7 @@
 import { TeamRostersByRole } from '@/utils/functions/getTeamRosters';
 
 import { User } from '@/db/types';
-import { FantasyRoster } from '@/entities/fantasy/fantasy.types';
+import { FantasyPlayer, FantasyRoster } from '@/entities/fantasy/fantasy.types';
 
 import Image from 'next/image';
 import { getFantasyTeamStats } from '@/entities/fantasy/fantasy.actions';
@@ -17,10 +17,12 @@ import { Info } from 'lucide-react';
 import PointsDialog from './PointsDialog';
 const Fantasy = async ({
   rostersByRole,
+  teamCaptain,
   currentFantasyTeam,
   user,
 }: {
   rostersByRole: TeamRostersByRole;
+  teamCaptain?: FantasyPlayer;
   currentFantasyTeam: FantasyRoster;
   user: User;
 }) => {
@@ -35,7 +37,15 @@ const Fantasy = async ({
         </h2>
         <TooltipProvider delayDuration={0}>
           <div className='items-center flex flex-col text-muted-foreground lg:flex-row gap-5 justify-center w-full font-geist'>
-            <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-4 abs hover:-translate-y-10 '>
+            <div
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                teamCaptain?.id === currentFantasyTeam.top?.id &&
+                teamCaptain?.summonerName ===
+                  currentFantasyTeam.top?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-4 abs hover:-translate-y-10`}
+            >
               {currentFantasyTeam.top && (
                 <div className='absolute top-3 w-full flex justify-between'>
                   <span className='absolute text-lg left-3'>
@@ -128,13 +138,23 @@ const Fantasy = async ({
                   <div className='flex gap-1 items-start'>
                     <span className='text-start'>Points:</span>
                     <span className='text-start font-bold'>
-                      {stats.top.totalFantasyPoints}
+                      {stats.top.totalFantasyPoints}{' '}
+                      {teamCaptain?.summonerName ===
+                        currentFantasyTeam.top?.summonerName && ' (2x)'}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
+            <div
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                teamCaptain?.id === currentFantasyTeam.jungle?.id &&
+                teamCaptain?.summonerName ===
+                  currentFantasyTeam.jungle?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10`}
+            >
               {currentFantasyTeam.jungle && (
                 <div className='absolute top-3 w-full flex justify-between'>
                   <span className='absolute text-lg left-3'>
@@ -224,13 +244,23 @@ const Fantasy = async ({
                   <div className='flex gap-1 items-start'>
                     <span className='text-start'>Points:</span>
                     <span className='text-start font-bold'>
-                      {stats.jungle.totalFantasyPoints}
+                      {stats.jungle.totalFantasyPoints}{' '}
+                      {teamCaptain?.summonerName ===
+                        currentFantasyTeam.jungle?.summonerName && ' (2x)'}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
+            <div
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                teamCaptain?.id === currentFantasyTeam.mid?.id &&
+                teamCaptain?.summonerName ===
+                  currentFantasyTeam.mid?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10`}
+            >
               {currentFantasyTeam.mid && (
                 <div className='absolute top-3 w-full flex justify-between'>
                   <span className='absolute text-lg left-3'>
@@ -319,13 +349,23 @@ const Fantasy = async ({
                   <div className='flex gap-1 items-start'>
                     <span className='text-start'>Points:</span>
                     <span className='text-start font-bold'>
-                      {stats.mid.totalFantasyPoints}
+                      {stats.mid.totalFantasyPoints}{' '}
+                      {teamCaptain?.summonerName ===
+                        currentFantasyTeam.mid?.summonerName && ' (2x)'}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
+            <div
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                teamCaptain?.id === currentFantasyTeam.bot?.id &&
+                teamCaptain?.summonerName ===
+                  currentFantasyTeam.bot?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
+            >
               {currentFantasyTeam.bot && (
                 <div className='absolute top-3 w-full flex justify-between'>
                   <span className='absolute text-lg left-3'>
@@ -422,13 +462,23 @@ const Fantasy = async ({
                   <div className='flex gap-1 items-start'>
                     <span className='text-start'>Points:</span>
                     <span className='text-start font-bold'>
-                      {stats.bot.totalFantasyPoints}
+                      {stats.bot.totalFantasyPoints}{' '}
+                      {teamCaptain?.summonerName ===
+                        currentFantasyTeam.bot?.summonerName && ' (2x)'}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '>
+            <div
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                teamCaptain?.id === currentFantasyTeam.support?.id &&
+                teamCaptain?.summonerName ===
+                  currentFantasyTeam.support?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
+            >
               {currentFantasyTeam.support && (
                 <div className='absolute top-3 w-full flex justify-between'>
                   <span className='absolute text-lg left-3'>
@@ -517,7 +567,9 @@ const Fantasy = async ({
                   <div className='flex gap-1 items-start'>
                     <span className='text-start'>Points:</span>
                     <span className='text-start font-bold'>
-                      {stats.support.totalFantasyPoints}
+                      {stats.support.totalFantasyPoints}{' '}
+                      {teamCaptain?.summonerName ===
+                        currentFantasyTeam.support?.summonerName && ' (2x)'}
                     </span>
                   </div>
                 </div>

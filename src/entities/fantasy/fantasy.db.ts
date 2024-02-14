@@ -225,6 +225,68 @@ export async function addPlayerToFantasyTeam({
   revalidatePath('/(pages)/fantasy/edit', 'page');
 }
 
+export async function changeToCaptain({
+  fantasyPlayer,
+  fantasyTeamId,
+}: {
+  fantasyPlayer: FantasyPlayer;
+  fantasyTeamId: number;
+}) {
+  await db
+    .update(playerToFantasyTeam)
+    .set({
+      isCaptain: false,
+    })
+    .where(eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId));
+
+  await db
+    .update(playerToFantasyTeam)
+    .set({
+      isCaptain: true,
+    })
+    .where(
+      and(
+        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId),
+        eq(playerToFantasyTeam.playerSummonerName, fantasyPlayer.summonerName)
+      )
+    );
+  revalidatePath('/', 'layout');
+  revalidatePath('/fantasy');
+  revalidatePath('/(pages)/fantasy', 'page');
+  revalidatePath('/(pages)/fantasy/edit', 'page');
+}
+
+export async function getTeamCaptain({
+  fantasyTeamId,
+}: {
+  fantasyTeamId: number;
+}) {
+  const captainId = await db
+    .select({
+      playerId: playerToFantasyTeam.playerId,
+    })
+    .from(playerToFantasyTeam)
+    .where(
+      and(
+        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId),
+        eq(playerToFantasyTeam.isCaptain, true)
+      )
+    )
+    .then((res) => res[0].playerId);
+
+  const captain = await db
+    .select()
+    .from(player)
+    .where(eq(player.id, captainId))
+    .then((res) => res[0]);
+
+  revalidatePath('/', 'layout');
+  revalidatePath('/fantasy');
+  revalidatePath('/(pages)/fantasy', 'page');
+  revalidatePath('/(pages)/fantasy/edit', 'page');
+
+  return captain;
+}
 export async function updateFantasyPointsForPlayer({
   playerId,
   points,

@@ -9,6 +9,7 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { playerToFantasyTeam } from './playerToFantasyTeam';
+
 export const player = mysqlTable(
   'player',
   {

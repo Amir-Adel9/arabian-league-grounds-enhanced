@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { FantasyPlayer, FantasyRoster } from '@/entities/fantasy/fantasy.types';
 import { TeamRostersByRole } from '@/utils/functions/getTeamRosters';
 import { motion } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import { Role } from '@/entities/fantasy/fantasy.actions';
+import { use, useEffect, useRef, useState } from 'react';
+import { Role, makeCaptain } from '@/entities/fantasy/fantasy.actions';
 import {
   Drawer,
   DrawerClose,
@@ -32,7 +32,10 @@ import {
 import handleFantasy from '../actions/getFantasyStats';
 import { usePathname, useRouter } from 'next/navigation';
 import CreditsDialog from './CreditsDialog';
-import { areTeamsEqual } from '@/entities/fantasy/fantasy.helpers';
+import {
+  areTeamsEqual,
+  isLockInLocked,
+} from '@/entities/fantasy/fantasy.helpers';
 import Link from 'next/link';
 
 type CreateFantasyRoster = {
@@ -46,11 +49,13 @@ type CreateFantasyRoster = {
 const CreateFantasyTeam = ({
   rostersByRole,
   currentFantasyTeam,
+  teamCaptain,
   isShowing,
   user,
 }: {
   rostersByRole: TeamRostersByRole;
   currentFantasyTeam?: FantasyRoster;
+  teamCaptain?: FantasyPlayer;
   isShowing: boolean;
   user: User;
 }) => {
@@ -118,6 +123,9 @@ const CreateFantasyTeam = ({
       : 0,
     isLockedIn: false,
   });
+  const [captain, setCaptain] = useState<FantasyPlayer | undefined>(
+    teamCaptain
+  );
   const [cart, setCart] = useState<FantasyPlayer[]>([]);
   useEffect(() => {}, [cart]);
   useEffect(() => {
@@ -140,6 +148,14 @@ const CreateFantasyTeam = ({
         setSelectedRole(undefined);
     });
   }, [isShowing]);
+
+  useEffect(() => {
+    console.log(
+      'capitan',
+      captain,
+      Object.values(currentFantasyTeam as FantasyRoster)
+    );
+  }, [captain]);
 
   const playerSelect = (player: FantasyPlayer) => {
     const { role } = player;
@@ -305,6 +321,9 @@ const CreateFantasyTeam = ({
     }
   };
 
+  useEffect(() => {
+    console.log(selectedRole);
+  }, [selectedRole]);
   return (
     <motion.div
       variants={variants}
@@ -342,8 +361,15 @@ const CreateFantasyTeam = ({
               ref={topRef}
               variants={roleVariants}
               animate={selectedRole === 'top' ? 'selected' : 'unselected'}
-              onClick={() => setSelectedRole('top')}
-              className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '
+              onClick={() => {
+                setSelectedRole('top');
+              }}
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                captain?.id === fantasyRoster.top?.id &&
+                captain?.summonerName === fantasyRoster.top?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
             >
               {fantasyRoster.top && (
                 <div className='absolute top-3 w-full flex justify-between'>
@@ -396,12 +422,57 @@ const CreateFantasyTeam = ({
                   'No player selected'
                 )}
               </div>
-              <span
-                onClick={() => setSelectedRole('top')}
-                className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
-              >
-                {fantasyRoster.top ? `Change player` : 'Add Player'}
-              </span>
+              <div className='flex flex-col gap-4'>
+                <span
+                  onClick={() => setSelectedRole('top')}
+                  className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                >
+                  {fantasyRoster.top ? `Change player` : 'Add Player'}
+                </span>
+                {fantasyRoster.top && (
+                  <Button
+                    disabled={isLoading}
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      if (isLockInLocked()) {
+                        toast.error(
+                          'You cannot set your team captain on game days'
+                        );
+                      }
+                      if (
+                        captain?.id === fantasyRoster.top?.id &&
+                        captain?.summonerName ===
+                          fantasyRoster.top?.summonerName
+                      ) {
+                        toast.info('This player is already the team captain');
+                        return;
+                      }
+                      setIsLoading(true);
+
+                      setSelectedRole(undefined);
+                      await makeCaptain({
+                        fantasyPlayer: fantasyRoster.top!,
+                      })
+                        .then(() => {
+                          setCaptain(fantasyRoster.top);
+                          toast.success(
+                            `${fantasyRoster.top?.summonerName} is now your team captain`
+                          );
+                          setIsLoading(false);
+                        })
+                        .catch((err) => {
+                          setIsLoading(false);
+                        });
+                    }}
+                    variant={'outline'}
+                    className='border-accent-gold bg-transparent hover:!bg-transparent hover:text-accent-gold text-accent-gold group-hover:rounded-none  duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                  >
+                    {captain === fantasyRoster.top
+                      ? 'Team Captain'
+                      : 'Make Captain'}
+                  </Button>
+                )}
+              </div>
             </motion.div>
           </DrawerTrigger>
           <DrawerTrigger asChild>
@@ -421,7 +492,12 @@ const CreateFantasyTeam = ({
               variants={roleVariants}
               animate={selectedRole === 'jungle' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('jungle')}
-              className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                captain?.id === fantasyRoster.jungle?.id &&
+                captain?.summonerName === fantasyRoster.jungle?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
             >
               {fantasyRoster.jungle && (
                 <div className='absolute top-3 w-full flex justify-between'>
@@ -474,12 +550,57 @@ const CreateFantasyTeam = ({
                   'No player selected'
                 )}
               </div>
-              <span
-                onClick={() => setSelectedRole('jungle')}
-                className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
-              >
-                {fantasyRoster.jungle ? `Change player` : 'Add Player'}
-              </span>
+              <div className='flex flex-col gap-4'>
+                <span
+                  onClick={() => setSelectedRole('jungle')}
+                  className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                >
+                  {fantasyRoster.jungle ? `Change player` : 'Add Player'}
+                </span>
+                {fantasyRoster.jungle && (
+                  <Button
+                    disabled={isLoading}
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      if (isLockInLocked()) {
+                        toast.error(
+                          'You cannot set your team captain on game days'
+                        );
+                      }
+                      if (
+                        captain?.id === fantasyRoster.jungle?.id &&
+                        captain?.summonerName ===
+                          fantasyRoster.jungle?.summonerName
+                      ) {
+                        toast.info('This player is already the team captain');
+                        return;
+                      }
+                      setIsLoading(true);
+
+                      setSelectedRole(undefined);
+                      await makeCaptain({
+                        fantasyPlayer: fantasyRoster.jungle!,
+                      })
+                        .then(() => {
+                          setCaptain(fantasyRoster.jungle);
+                          toast.success(
+                            `${fantasyRoster.jungle?.summonerName} is now your team captain`
+                          );
+                          setIsLoading(false);
+                        })
+                        .catch((err) => {
+                          setIsLoading(false);
+                        });
+                    }}
+                    variant={'outline'}
+                    className='border-accent-gold bg-transparent hover:!bg-transparent hover:text-accent-gold text-accent-gold group-hover:rounded-none  duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                  >
+                    {captain === fantasyRoster.jungle
+                      ? 'Team Captain'
+                      : 'Make Captain'}
+                  </Button>
+                )}
+              </div>
             </motion.div>
           </DrawerTrigger>
           <DrawerTrigger asChild>
@@ -499,7 +620,12 @@ const CreateFantasyTeam = ({
               variants={roleVariants}
               animate={selectedRole === 'mid' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('mid')}
-              className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                captain?.id === fantasyRoster.mid?.id &&
+                captain?.summonerName === fantasyRoster.mid?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
             >
               {fantasyRoster.mid && (
                 <div className='absolute top-3 w-full flex justify-between'>
@@ -552,12 +678,57 @@ const CreateFantasyTeam = ({
                   'No player selected'
                 )}
               </div>
-              <span
-                onClick={() => setSelectedRole('mid')}
-                className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
-              >
-                {fantasyRoster.mid ? `Change player` : 'Add Player'}
-              </span>
+              <div className='flex flex-col gap-4'>
+                <span
+                  onClick={() => setSelectedRole('mid')}
+                  className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                >
+                  {fantasyRoster.mid ? `Change player` : 'Add Player'}
+                </span>
+                {fantasyRoster.mid && (
+                  <Button
+                    disabled={isLoading}
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      if (isLockInLocked()) {
+                        toast.error(
+                          'You cannot set your team captain on game days'
+                        );
+                      }
+                      if (
+                        captain?.id === fantasyRoster.mid?.id &&
+                        captain?.summonerName ===
+                          fantasyRoster.mid?.summonerName
+                      ) {
+                        toast.info('This player is already the team captain');
+                        return;
+                      }
+                      setIsLoading(true);
+
+                      setSelectedRole(undefined);
+                      await makeCaptain({
+                        fantasyPlayer: fantasyRoster.mid!,
+                      })
+                        .then(() => {
+                          setCaptain(fantasyRoster.mid);
+                          toast.success(
+                            `${fantasyRoster.mid?.summonerName} is now your team captain`
+                          );
+                          setIsLoading(false);
+                        })
+                        .catch((err) => {
+                          setIsLoading(false);
+                        });
+                    }}
+                    variant={'outline'}
+                    className='border-accent-gold bg-transparent hover:!bg-transparent hover:text-accent-gold text-accent-gold group-hover:rounded-none  duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                  >
+                    {captain === fantasyRoster.mid
+                      ? 'Team Captain'
+                      : 'Make Captain'}
+                  </Button>
+                )}
+              </div>
             </motion.div>
           </DrawerTrigger>
           <DrawerTrigger asChild>
@@ -577,7 +748,12 @@ const CreateFantasyTeam = ({
               variants={roleVariants}
               animate={selectedRole === 'bot' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('bot')}
-              className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                captain?.id === fantasyRoster.bot?.id &&
+                captain?.summonerName === fantasyRoster.bot?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
             >
               {fantasyRoster.bot && (
                 <div className='absolute top-3 w-full flex justify-between'>
@@ -630,12 +806,57 @@ const CreateFantasyTeam = ({
                   'No player selected'
                 )}
               </div>
-              <span
-                onClick={() => setSelectedRole('bot')}
-                className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
-              >
-                {fantasyRoster.bot ? `Change player` : 'Add Player'}
-              </span>
+              <div className='flex flex-col gap-4'>
+                <span
+                  onClick={() => setSelectedRole('bot')}
+                  className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                >
+                  {fantasyRoster.bot ? `Change player` : 'Add Player'}
+                </span>
+                {fantasyRoster.bot && (
+                  <Button
+                    disabled={isLoading}
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      if (isLockInLocked()) {
+                        toast.error(
+                          'You cannot set your team captain on game days'
+                        );
+                      }
+                      if (
+                        captain?.id === fantasyRoster.bot?.id &&
+                        captain?.summonerName ===
+                          fantasyRoster.bot?.summonerName
+                      ) {
+                        toast.info('This player is already the team captain');
+                        return;
+                      }
+                      setIsLoading(true);
+
+                      setSelectedRole(undefined);
+                      await makeCaptain({
+                        fantasyPlayer: fantasyRoster.bot!,
+                      })
+                        .then(() => {
+                          setCaptain(fantasyRoster.bot);
+                          toast.success(
+                            `${fantasyRoster.bot?.summonerName} is now your team captain`
+                          );
+                          setIsLoading(false);
+                        })
+                        .catch((err) => {
+                          setIsLoading(false);
+                        });
+                    }}
+                    variant={'outline'}
+                    className='border-accent-gold bg-transparent hover:!bg-transparent hover:text-accent-gold text-accent-gold group-hover:rounded-none  duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                  >
+                    {captain === fantasyRoster.bot
+                      ? 'Team Captain'
+                      : 'Make Captain'}
+                  </Button>
+                )}
+              </div>
             </motion.div>
           </DrawerTrigger>
           <DrawerTrigger asChild>
@@ -655,7 +876,12 @@ const CreateFantasyTeam = ({
               variants={roleVariants}
               animate={selectedRole === 'support' ? 'selected' : 'unselected'}
               onClick={() => setSelectedRole('support')}
-              className='relative duration-300 flex flex-col items-center justify-around bg-card border border-border text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 '
+              className={`relative duration-300 flex flex-col items-center justify-around bg-card border ${
+                captain?.id === fantasyRoster.support?.id &&
+                captain?.summonerName === fantasyRoster.support?.summonerName
+                  ? 'border-accent-gold'
+                  : 'border-border'
+              } text-center  w-full lg:w-1/3 xl:w-1/5 h-[500px] cursor-pointer rounded-2xl group hover:scale-105 hover:rounded-sm p-3 abs hover:-translate-y-10 `}
             >
               {fantasyRoster.support && (
                 <div className='absolute top-3 w-full flex justify-between'>
@@ -708,12 +934,57 @@ const CreateFantasyTeam = ({
                   'No player selected'
                 )}
               </div>
-              <span
-                onClick={() => setSelectedRole('support')}
-                className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
-              >
-                {fantasyRoster.support ? `Change player` : 'Add Player'}
-              </span>
+              <div className='flex flex-col gap-4'>
+                <span
+                  onClick={() => setSelectedRole('support')}
+                  className='bg-accent-gold text-secondary group-hover:rounded-none z-20 duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                >
+                  {fantasyRoster.support ? `Change player` : 'Add Player'}
+                </span>
+                {fantasyRoster.support && (
+                  <Button
+                    disabled={isLoading}
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      if (isLockInLocked()) {
+                        toast.error(
+                          'You cannot set your team captain on game days'
+                        );
+                      }
+                      if (
+                        captain?.id === fantasyRoster.support?.id &&
+                        captain?.summonerName ===
+                          fantasyRoster.support?.summonerName
+                      ) {
+                        toast.info('This player is already the team captain');
+                        return;
+                      }
+                      setIsLoading(true);
+
+                      setSelectedRole(undefined);
+                      await makeCaptain({
+                        fantasyPlayer: fantasyRoster.support!,
+                      })
+                        .then(() => {
+                          setCaptain(fantasyRoster.support);
+                          toast.success(
+                            `${fantasyRoster.support?.summonerName} is now your team captain`
+                          );
+                          setIsLoading(false);
+                        })
+                        .catch((err) => {
+                          setIsLoading(false);
+                        });
+                    }}
+                    variant={'outline'}
+                    className='border-accent-gold bg-transparent hover:!bg-transparent hover:text-accent-gold text-accent-gold group-hover:rounded-none  duration-300 font-b py-2 px-3 cursor-pointer rounded-sm'
+                  >
+                    {captain === fantasyRoster.support
+                      ? 'Team Captain'
+                      : 'Make Captain'}
+                  </Button>
+                )}
+              </div>
             </motion.div>
           </DrawerTrigger>
           {selectedRole && (
@@ -857,6 +1128,11 @@ const CreateFantasyTeam = ({
             <button
               className='md:w-[320px] px-2 py-2 relative rounded-md font-inter font-semibold text-secondary bg-accent-gold hover:brightness-105 hover:opacity-80 !duration-300'
               onClick={() => {
+                if (isLockInLocked()) {
+                  toast.error('You cannot change your team on game days');
+                  return;
+                }
+
                 if (Object.values(fantasyRoster).some((p) => p === undefined)) {
                   toast.error('You need to fill all the roles');
                   return;

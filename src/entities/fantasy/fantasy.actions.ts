@@ -3,6 +3,7 @@
 import { Stats } from '@/utils/types/types';
 import {
   addPlayerToFantasyTeam,
+  changeToCaptain,
   createFantasyTeam,
   getAllUserIds,
   getFantasyHistoryPlayers,
@@ -21,7 +22,7 @@ import {
   areTeamsEqual,
   getPointsFromKillsForPlayer,
 } from './fantasy.helpers';
-import { FantasyRoster } from './fantasy.types';
+import { FantasyPlayer, FantasyRoster } from './fantasy.types';
 import { getCompletedEventsSincePicked } from '@/data-access/data-access';
 import { Player, PlayerToFantasyTeam } from '@/db/types';
 import { currentUser } from '@clerk/nextjs';
@@ -141,7 +142,13 @@ export async function getFantasyTeamStats() {
       });
       return {
         [fantasyPlayer.role]: {
-          ...fantasyPoints,
+          pointsFromGameWins: fantasyPoints.pointsFromGameWins,
+          pointsFromKills: fantasyPoints.pointsFromKills,
+          pointsFromAssists: fantasyPoints.pointsFromAssists,
+          pointsFromDeaths: fantasyPoints.pointsFromDeaths,
+          totalFantasyPoints: fantasyPlayer.isCaptain
+            ? fantasyPoints.totalFantasyPoints * 2
+            : fantasyPoints.totalFantasyPoints,
         },
       };
     })
@@ -184,6 +191,27 @@ export async function getFantasyTeamStats() {
 //     return fantasyPoints;
 //   });
 // }
+
+export async function makeCaptain({
+  fantasyPlayer,
+}: {
+  fantasyPlayer: FantasyPlayer;
+}) {
+  if (isLockInLocked()) throw new Error('Week is locked');
+
+  const user = await currentUser();
+
+  if (!user) throw new Error('No user found');
+
+  const fantasyTeamId = await getFantasyTeamId({ userId: user.id });
+
+  if (!fantasyTeamId) throw new Error('No fantasy team found');
+
+  await changeToCaptain({
+    fantasyPlayer,
+    fantasyTeamId,
+  });
+}
 
 export async function calculateFantasyPoints() {
   console.log('Calculating fantasy points...');
@@ -228,7 +256,9 @@ export async function calculateFantasyPoints() {
         });
 
         await updateFantasyPointsForPlayer({
-          points: fantasyPoints.totalFantasyPoints,
+          points: fantasyPlayer.isCaptain
+            ? fantasyPoints.totalFantasyPoints * 2
+            : fantasyPoints.totalFantasyPoints,
           playerId: fantasyPlayer.playerId,
           fantasyTeamId: fantasyPlayer.fantasyTeamId,
         });

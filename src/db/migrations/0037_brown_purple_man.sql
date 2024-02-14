@@ -1,0 +1,1 @@
+ALTER TABLE `playerToFantasyTeam` ADD `isCaptain` boolean DEFAULT false NOT NULL;
