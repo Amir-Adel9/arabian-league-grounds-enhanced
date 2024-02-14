@@ -91,7 +91,7 @@ const Features = () => {
           </motion.div>
         </Link>
         <Link
-          href='/leaderboard/predictions'
+          href='/leaderboard/fantasy'
           className='lg:w-1/3 xl:w-1/4 h-[500px]'
         >
           <motion.div
