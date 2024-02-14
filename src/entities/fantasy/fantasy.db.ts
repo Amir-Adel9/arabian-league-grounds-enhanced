@@ -335,7 +335,7 @@ export async function updateCreditsForUser({
   fantasyPoints: number;
 }) {
   db.transaction(async (tx) => {
-    console.log('updating creds for user:', userClerkId);
+    // console.log('updating creds for user:', userClerkId);
     const [_user] = await tx
       .select({
         credits: user.credits,
@@ -358,11 +358,11 @@ export async function updateCreditsForUser({
     await db
       .update(user)
       .set({
-        credits: sql`${_user.credits} + ${Math.abs(
+        credits: sql`${_user.credits} + ${
           _user.credits -
-            ((_user.predictionPoints / 100) * 10 +
-              Math.ceil((fantasyPoints * 0.5) / 5) * 5)
-        )}`,
+          ((_user.predictionPoints / 100) * 10 +
+            Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+        }`,
       })
       .where(eq(user.clerkId, userClerkId));
   });
