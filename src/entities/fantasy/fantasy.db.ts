@@ -262,18 +262,12 @@ export async function getTeamCaptain({
   fantasyTeamId: number;
 }) {
   const captainId = await db
-    .select({
-      playerId: playerToFantasyTeam.playerId,
-    })
+    .select()
     .from(playerToFantasyTeam)
-    .where(
-      and(
-        eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId),
-        eq(playerToFantasyTeam.isCaptain, true)
-      )
-    )
-    .then((res) => res[0].playerId);
+    .where(eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId))
+    .then((res) => (res[0].isCaptain ? res[0].playerId : null));
 
+  if (!captainId) return undefined;
   const captain = await db
     .select()
     .from(player)
@@ -341,6 +335,7 @@ export async function updateCreditsForUser({
   fantasyPoints: number;
 }) {
   db.transaction(async (tx) => {
+    console.log('updating creds for user:', userClerkId);
     const [_user] = await tx
       .select({
         credits: user.credits,
@@ -349,18 +344,6 @@ export async function updateCreditsForUser({
       })
       .from(user)
       .where(eq(user.clerkId, userClerkId));
-
-    const tId = await getFantasyTeamId({ userId: userClerkId });
-    const cost = await getFantasyRoster({
-      fantasyTeamId: tId,
-    }).then((res) => {
-      return Object.values(res).reduce((acc, curr) => {
-        return acc + curr?.cost;
-      }, 0);
-    });
-
-    console.log(cost);
-
     console.log(
       'abeeta',
       _user.credits,
@@ -375,7 +358,7 @@ export async function updateCreditsForUser({
     await db
       .update(user)
       .set({
-        credits: sql`${700 - cost < 0 ? 0 : 700 - cost} + ${Math.abs(
+        credits: sql`${_user.credits} + ${Math.abs(
           _user.credits -
             ((_user.predictionPoints / 100) * 10 +
               Math.ceil((fantasyPoints * 0.5) / 5) * 5)
@@ -385,47 +368,47 @@ export async function updateCreditsForUser({
   });
 }
 
-export async function updateCreditsForUsers() {
-  db.transaction(async (tx) => {
-    const users = await tx.select().from(user);
+// export async function updateCreditsForUsers() {
+//   db.transaction(async (tx) => {
+//     const users = await tx.select().from(user);
 
-    users.forEach(async (_user) => {
-      const { clerkId: userClerkId, fantasyPoints } = _user;
-      console.log('updating creds for user:', _user.username);
-      const tId = await getFantasyTeamId({ userId: userClerkId });
-      const cost = await getFantasyRoster({
-        fantasyTeamId: tId,
-      }).then((res) => {
-        return Object.values(res).reduce((acc, curr) => {
-          return acc + curr?.cost;
-        }, 0);
-      });
+//     users.forEach(async (_user) => {
+//       const { clerkId: userClerkId, fantasyPoints } = _user;
+//       console.log('updating creds for user:', _user.username);
+//       const tId = await getFantasyTeamId({ userId: userClerkId });
+//       const cost = await getFantasyRoster({
+//         fantasyTeamId: tId,
+//       }).then((res) => {
+//         return Object.values(res).reduce((acc, curr) => {
+//           return acc + curr?.cost;
+//         }, 0);
+//       });
 
-      console.log(cost);
+//       console.log(cost);
 
-      console.log(
-        'abeeta',
-        _user.credits,
-        (_user.predictionPoints / 100) * 10 +
-          Math.ceil((fantasyPoints * 0.5) / 5) * 5,
-        ` ${
-          _user.credits -
-          ((_user.predictionPoints / 100) * 10 +
-            Math.ceil((fantasyPoints * 0.5) / 5) * 5)
-        }`
-      );
-      await db
-        .update(user)
-        .set({
-          credits: sql`${700 - cost < 0 ? 0 : 700 - cost} + ${Math.abs(
-            (_user.predictionPoints / 100) * 10 +
-              Math.ceil((fantasyPoints * 0.5) / 5) * 5
-          )}`,
-        })
-        .where(eq(user.clerkId, userClerkId));
-    });
-  });
-}
+//       console.log(
+//         'abeeta',
+//         _user.credits,
+//         (_user.predictionPoints / 100) * 10 +
+//           Math.ceil((fantasyPoints * 0.5) / 5) * 5,
+//         ` ${
+//           _user.credits -
+//           ((_user.predictionPoints / 100) * 10 +
+//             Math.ceil((fantasyPoints * 0.5) / 5) * 5)
+//         }`
+//       );
+//       await db
+//         .update(user)
+//         .set({
+//           credits: sql`${700 - cost < 0 ? 0 : 700 - cost} + ${Math.abs(
+//             (_user.predictionPoints / 100) * 10 +
+//               Math.ceil((fantasyPoints * 0.5) / 5) * 5
+//           )}`,
+//         })
+//         .where(eq(user.clerkId, userClerkId));
+//     });
+//   });
+// }
 
 export async function getFantasyHistoryPlayers({
   fantasyTeamId,

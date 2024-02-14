@@ -55,7 +55,7 @@ const CreateFantasyTeam = ({
 }: {
   rostersByRole: TeamRostersByRole;
   currentFantasyTeam?: FantasyRoster;
-  teamCaptain?: FantasyPlayer;
+  teamCaptain?: FantasyPlayer | undefined;
   isShowing: boolean;
   user: User;
 }) => {

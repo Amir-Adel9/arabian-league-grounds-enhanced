@@ -22,7 +22,7 @@ const Fantasy = async ({
   user,
 }: {
   rostersByRole: TeamRostersByRole;
-  teamCaptain?: FantasyPlayer;
+  teamCaptain?: FantasyPlayer | undefined;
   currentFantasyTeam: FantasyRoster;
   user: User;
 }) => {
