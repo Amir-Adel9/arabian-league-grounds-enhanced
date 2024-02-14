@@ -1,0 +1,1 @@
+ALTER TABLE `player` ADD `isSub` boolean DEFAULT false;

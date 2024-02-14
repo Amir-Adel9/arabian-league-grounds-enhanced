@@ -1,5 +1,6 @@
 import { relations } from 'drizzle-orm';
 import {
+  boolean,
   int,
   mysqlTable,
   serial,
@@ -8,7 +9,6 @@ import {
   varchar,
 } from 'drizzle-orm/mysql-core';
 import { playerToFantasyTeam } from './playerToFantasyTeam';
-import { fantasyHistory } from './fantasyHistory';
 export const player = mysqlTable(
   'player',
   {
@@ -25,6 +25,7 @@ export const player = mysqlTable(
       .default('https://liquipedia.net/commons/images/d/d0/Eg_hd.png'),
     role: text('role').notNull(),
     cost: int('cost').notNull(),
+    isSub: boolean('isSub').default(false),
     teamName: text('teamName'),
     teamCode: text('teamCode'),
     teamSlug: text('teamSlug'),
