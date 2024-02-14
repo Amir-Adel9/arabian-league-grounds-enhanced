@@ -247,7 +247,7 @@ export async function changeToCaptain({
     .where(
       and(
         eq(playerToFantasyTeam.fantasyTeamId, fantasyTeamId),
-        eq(playerToFantasyTeam.playerSummonerName, fantasyPlayer.summonerName)
+        eq(playerToFantasyTeam.playerId, fantasyPlayer.id)
       )
     );
   revalidatePath('/', 'layout');
