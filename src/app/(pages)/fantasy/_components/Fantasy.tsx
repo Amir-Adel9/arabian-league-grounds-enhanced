@@ -431,7 +431,7 @@ const Fantasy = async ({
                       <span className='font-bold'>
                         <span className='font-bold'>
                           {' '}
-                          {stats.bot.pointsFromAssists / 3}
+                          {stats.bot.pointsFromAssists}
                         </span>
                       </span>
                       {` +(${stats.bot.pointsFromAssists})`}
