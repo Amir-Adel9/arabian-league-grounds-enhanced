@@ -61,10 +61,6 @@ const WildCards = ({
     }
   );
 
-  useEffect(() => {
-    console.log(allStats.sort((a, b) => b.kills - a.kills));
-  }, [allStats]);
-
   return (
     <div className='mt-20 mb-16 lg:mb-0 flex flex-col overflow-y-auto overflow-x-hidden w-full h-[calc(100vh-10rem)] lg:h-[calc(100vh-5rem)]'>
       <h1 className='text-accent-gold text-2xl md:text-5xl font-kanit font-bold justify-self-start text-center my-10'>

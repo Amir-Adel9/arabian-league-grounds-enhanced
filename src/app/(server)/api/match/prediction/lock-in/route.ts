@@ -85,6 +85,7 @@ export async function POST(request: NextRequest) {
     revalidatePath('/leaderboard/predictions');
     revalidatePath('/leaderboard/fantasy');
     revalidatePath('/');
+    revalidatePath('/', 'layout');
 
     return NextResponse.json({ state: 'success' });
   }
