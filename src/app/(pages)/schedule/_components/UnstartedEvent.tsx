@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { Event, Team } from '@/utils/types/types';
 import { Prediction } from '@/db/types';
-import { useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '@/utils/utils';
 import EventSkeleton from './EventSkeleton';
@@ -46,6 +46,12 @@ const UnstartedEvent = ({
     }/api/match/prediction/retrieve?matchId=${event.match.id}`,
     fetcher
   );
+
+  useEffect(() => {
+    if (currentPrediction?.status === 'lockedIn') {
+      setIsLockedIn(true);
+    }
+  }, [currentPrediction]);
 
   return (
     <>

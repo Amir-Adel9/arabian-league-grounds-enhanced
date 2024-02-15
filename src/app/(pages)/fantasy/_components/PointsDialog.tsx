@@ -33,7 +33,7 @@ const PointsDialog = () => {
           </AlertDialogTitle>
           <p className='text-center'>
             You earn <span className='font-semibold'>Fantasy Points </span>
-            based on the indvidual performance of each player in the Arabian
+            based on the individual performance of each player in the Arabian
             League games
           </p>
         </AlertDialogHeader>

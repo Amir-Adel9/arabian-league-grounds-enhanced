@@ -8,7 +8,7 @@ import Link from 'next/link';
 import PredictButton from '@/app/(pages)/schedule/_components/PredictButton';
 import { Prediction } from '@/db/types';
 import { Event, Team } from '@/utils/types/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { fetcher } from '@/utils/utils';
 import { SignInButton, SignedIn, SignedOut } from '@clerk/nextjs';
@@ -37,6 +37,12 @@ const UpcomingMatchCard = ({
     }/api/match/prediction/retrieve?matchId=${event.match.id}`,
     fetcher
   );
+
+  useEffect(() => {
+    if (currentPrediction?.status === 'lockedIn') {
+      setIsLockedIn(true);
+    }
+  }, [currentPrediction]);
 
   return (
     <div className='relative border border-accent-gold flex min-h-[250px] flex-col items-center justify-center rounded-lg shadow-lg p-4 duration-200 hover:scale-105'>

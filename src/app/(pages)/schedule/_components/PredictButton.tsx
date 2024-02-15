@@ -47,14 +47,14 @@ const PredictButton = ({
           toast.error('Please sign in to predict!');
           throw new Error('Not logged in!');
         } else {
-          if (currentPrediction?.status === 'lockedIn' && !isPredicting) {
+          if (isLockedIn && !isPredicting) {
             setSelectedTeam(null);
             return;
           } else if (!selectedTeam) {
             isPredicting && toast.error('Please select a team');
             throw new Error('No team selected!');
           } else if (
-            event.state === 'completes' ||
+            event.state === 'completed' ||
             event.state === 'inProgress'
           ) {
             toast.error('This match has already been played.');
@@ -84,15 +84,15 @@ const PredictButton = ({
                 bestOf: event.match.strategy.count,
               }),
             });
+            toast.success('Prediction Locked In!');
+            setIsPredicting(false);
           }
         }
-        toast.success('Prediction Locked In!');
-        setIsPredicting(false);
       }}
       className={`w-18 sm:w-28 h-8 ${color} text-primary py-1 px-2 rounded font-rubik z-10 duration-300 hover:filter hover:opacity-90 text-xs sm:text-sm font-medium`}
       hidden={teams.firstTeam.name === 'TBD' || teams.secondTeam.name === 'TBD'}
     >
-      {currentPrediction?.status === 'lockedIn' && !isPredicting
+      {isLockedIn && !isPredicting
         ? 'Edit'
         : selectedTeam
         ? 'Lock in'

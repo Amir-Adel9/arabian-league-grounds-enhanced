@@ -1,32 +1,27 @@
 import { Game, GameDay } from '@/utils/types/types';
 import GameCard from './GameCard';
 import { requestParams } from '@/utils/constants/requestParams';
+import { getTeamRosters } from '@/utils/functions/getTeamRosters';
 
 const DashboardSchedule = ({ gameDays }: { gameDays: GameDay[] }) => {
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col gap-2'>
       {gameDays.map((gameDay: GameDay, index: number) => {
         const { date, events } = gameDay;
         return (
-          <div key={index}>
+          <div className='flex flex-col gap-2' key={index}>
             <h2>{date}</h2>
             <div className='flex flex-wrap gap-2'>
               {events.map(async (event) => {
-                const gameIds = await fetch(
-                  `https://esports-api.lolesports.com/persisted/gw/getEventDetails?hl=en-US&id=${event.match.id}`,
-                  requestParams
-                )
-                  .then((res) => res.json())
-                  .then((res) => {
-                    return res.data.event.match.games
-                      .filter((game: Game) => {
-                        return game.state === 'completed';
-                      })
-                      .map((game: Game) => {
-                        return game.id;
-                      });
-                  });
-                console.log(gameIds);
+                const playersInGame = await getTeamRosters().then((teams) =>
+                  teams
+                    .filter(
+                      (team) =>
+                        team.teamCode === event.match.teams[0].code ||
+                        team.teamCode === event.match.teams[1].code
+                    )
+                    .map((team) => team.players)
+                );
                 return (
                   <GameCard
                     key={event.match.id}
@@ -34,6 +29,8 @@ const DashboardSchedule = ({ gameDays }: { gameDays: GameDay[] }) => {
                       firstTeam: event.match.teams[0],
                       secondTeam: event.match.teams[1],
                     }}
+                    event={event}
+                    playersInGame={playersInGame}
                   />
                 );
               })}
