@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3002",
     "build": "next build",
-    "start": "next start --port 3002",
+    "start": "next start --port 3002 --turbo",
     "lint": "next lint",
     "studio": "drizzle-kit studio --host 127.0.0.1 --port 6969 --verbose --config=drizzle.config.ts",
     "migrations:generate": "drizzle-kit generate:mysql",

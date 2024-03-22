@@ -65,7 +65,11 @@ const UpcomingMatchCard = ({
           className='flex flex-col items-center flex-grow justify-between cursor-pointer group'
         >
           <Image
-            src={match.teams[0].image}
+            src={`${
+              match.teams[0].code === 'TBD'
+                ? 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png'
+                : match.teams[0].image
+            }`}
             alt={match.teams[0].code}
             className={`${
               match.teams[0].code === 'TBD' ? 'opacity-50 invert' : ''
@@ -98,7 +102,11 @@ const UpcomingMatchCard = ({
           className='flex flex-col items-center flex-grow justify-between cursor-pointer relative group'
         >
           <Image
-            src={match.teams[1].image}
+            src={`${
+              match.teams[1].code === 'TBD'
+                ? 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png'
+                : match.teams[1].image
+            }`}
             alt={match.teams[1].code}
             className={`${
               match.teams[1].code === 'TBD' ? 'opacity-50 invert' : ''
