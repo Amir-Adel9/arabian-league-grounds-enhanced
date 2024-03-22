@@ -99,8 +99,12 @@ const UnstartedEvent = ({
               }`}
             ></div>
             <Image
-              src={teams.firstTeam.image}
-              alt={teams.firstTeam.name}
+              src={`${
+                teams.firstTeam.code === 'TBD'
+                  ? 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png'
+                  : teams.firstTeam.image
+              }`}
+              alt={teams.firstTeam.name + ' logo'}
               width={384}
               height={384}
               className='w-96 h-96 grayscale opacity-10 absolute'
@@ -228,7 +232,11 @@ const UnstartedEvent = ({
               }`}
             >
               <Image
-                src={teams.secondTeam.image}
+                src={`${
+                  teams.secondTeam.code === 'TBD'
+                    ? 'https://am-a.akamaihd.net/image?resize=70:&f=http%3A%2F%2Fassets.lolesports.com%2Fwatch%2Fteam-tbd.png'
+                    : teams.secondTeam.image
+                }`}
                 alt={teams.secondTeam.name}
                 width={80}
                 height={80}
